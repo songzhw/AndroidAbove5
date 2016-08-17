@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText"
+    >
+
+    <others.swirl.SwirlView
+        android:id="@+id/swirl"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        tools:swirl_state="on"
+        />
+
+
+
+    <RadioGroup
+        android:id="@+id/state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:checkedButton="@+id/off"
+        android:orientation="horizontal"
+        tools:checkedButton="@+id/on"
+        >
+
+        <RadioButton
+            android:id="@+id/off"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="32dp"
+            android:text="Off"
+            />
+
+        <RadioButton
+            android:id="@+id/on"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="32dp"
+            android:text="On"
+            />
+
+        <RadioButton
+            android:id="@+id/error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Error"
+            />
+    </RadioGroup>
+</LinearLayout>

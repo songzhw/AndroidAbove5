@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical"
+    >
+    <FrameLayout android:layout_width="fill_parent" android:layout_height="200dp">
+        <ImageView android:id="@+id/iv_anim_show" android:layout_width="50dp" android:layout_height="50dp" android:src="@drawable/ic_launcher"/>
+    </FrameLayout>
+
+    <TableLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp">
+        <TableRow>
+            <Button android:background="?android:attr/selectableItemBackground"  android:text="Ripple01"/>
+            <Button android:background="?android:attr/selectableItemBackgroundBorderless"  android:text="Ripple02"/>
+        </TableRow>
+
+        <TableRow>
+            <Button android:background="@drawable/bg_anim_ripple_mask"  android:text="RippleBg01"/>
+            <Button android:background="@drawable/bg_anim_ripple_no_mask"  android:text="RippleBg02"/>
+        </TableRow>
+
+        <TableRow>
+            <Button  android:text="ViewAnimationUtil" android:onClick="click2CreateViewAnimationUtil" />
+            <Button  android:text="PathAnim" android:onClick="click2PathAnim" />
+            <Button android:stateListAnimator="@drawable/bg_zselector"  android:text="Selector"/>
+        </TableRow>
+
+        <TableRow>
+            <Button android:text="SVG" android:onClick="click2ShowSvg"/>
+            <Button android:text="SvgAnim" android:onClick="click2AnimSvg"/>
+        </TableRow>
+
+        <TableRow>
+            <Button android:text="Actv-scaleUp" android:onClick="click2LaunchScaleUp"/>
+        </TableRow>
+    </TableLayout>
+
+
+
+</LinearLayout>

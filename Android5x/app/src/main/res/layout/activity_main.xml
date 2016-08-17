@@ -1,0 +1,32 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent"
+    >
+
+    <TableLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <TableRow>
+            <Button android:text="SimpleRv" android:onClick="clickSimpleRv"/>
+            <Button android:text="CardRv" android:onClick="clickCardRv"/>
+            <Button android:text="WaterFall" android:onClick="clickWaterfall"/>
+
+        </TableRow>
+
+        <TableRow>
+            <Button android:text="5.xAnim" android:onClick="clickAnimTest"/>
+            <Button android:text="ActvTransition" android:onClick="clickActvTrans"/>
+            <Button android:text="ViewReveal" android:onClick="clickViewTrans"/>
+            <Button android:text="Explode" android:onClick="clickExplode"/>
+
+        </TableRow>
+
+        <TableRow>
+            <Button android:text="SnackBar" android:onClick="clickSnackBar"/>
+        </TableRow>
+
+
+        <TableRow>
+            <Button android:text="Demo: Music Player" android:onClick="clickMusic"/>
+        </TableRow>
+
+
+    </TableLayout>
+
+</RelativeLayout>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android" android:drawable="@drawable/svg_icon_red_tri">
+    <target android:animation="@anim/anim_svg_rotate" android:name="rotationGroup"/>
+    <target android:animation="@anim/anim_svg_color" android:name="v"/>
+</animated-vector>

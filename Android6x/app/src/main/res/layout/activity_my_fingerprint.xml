@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <Button android:id="@+id/btnMyFingerprint" android:layout_width="fill_parent" android:layout_height="60dp"
+            android:onClick="clickAuthen" android:text="authenticate your fingerprint" android:textAllCaps="false"
+            android:drawableLeft="@drawable/ic_fingerprint"/>
+
+    <ImageView android:id="@+id/ivMyFingerprint"  android:layout_width="80dp" android:layout_height="80dp" android:scaleType="fitXY"
+               android:src="@drawable/ic_fingerprint"/>
+
+    <TextView android:id="@+id/tvMyFingerprint"  android:layout_width="fill_parent" android:layout_height="wrap_content"
+              android:text="log" android:textSize="24dp" android:layout_margin="10dp"
+              />
+
+</LinearLayout>

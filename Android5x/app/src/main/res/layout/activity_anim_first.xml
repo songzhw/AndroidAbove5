@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView android:id="@+id/iv_anim_first" android:layout_width="wrap_content" android:layout_height="wrap_content"  android:src="@drawable/hashiqi"  android:layout_margin="5dp"
+        android:transitionName="lovely"
+        />
+    <TextView android:id="@+id/tv_anim_first" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="14dp" android:text="Title"
+        android:transitionName="test"
+        />
+
+    <Button android:onClick="click2ScaleUp" android:text="ScaleUp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="5dp"/>
+    <Button android:onClick="click2ThumbScaleUp" android:text="ThumbScaleUp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="5dp"/>
+    <Button android:onClick="click2SceneTrans" android:text="SceneTransition" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="5dp"/>
+    <Button android:onClick="click2SceneTransPair" android:text="SceneTransition_Pair" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="5dp"/>
+    <Button android:onClick="click2Explode" android:text="Explode" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5dp" android:layout_marginTop="18dp"/>
+
+
+</LinearLayout>

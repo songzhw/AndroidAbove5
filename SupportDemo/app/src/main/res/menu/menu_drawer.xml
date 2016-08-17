@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/munuitem_agenda"
+            android:checked="true"
+            android:icon="@android:drawable/ic_menu_agenda"
+            android:title="Agenda"/>
+
+        <item
+            android:id="@+id/menuitem_compass"
+            android:icon="@android:drawable/ic_menu_compass"
+            android:title="Compass"/>
+    </group>
+
+    <group android:checkableBehavior="all">
+        <item
+            android:id="@+id/menuitem_add"
+            android:checked="true"
+            android:icon="@android:drawable/ic_menu_add"
+            android:title="Add"/>
+
+        <item
+            android:id="@+id/menuitem_delete"
+            android:icon="@android:drawable/ic_menu_delete"
+            android:title="Delete"/>
+    </group>
+
+    <item
+        android:id="@+id/navigation_subheader"
+        android:title="navigation_subheader">
+        <menu>
+            <item
+                android:id="@+id/navigation_sub_item_1"
+                android:icon="@drawable/ic_launcher"
+                android:title="navigation_sub_item_1"/>
+            <item
+                android:id="@+id/navigation_sub_item_2"
+                android:icon="@drawable/ic_launcher"
+                android:title="navigation_sub_item_2"/>
+        </menu>
+    </item>
+
+</menu>

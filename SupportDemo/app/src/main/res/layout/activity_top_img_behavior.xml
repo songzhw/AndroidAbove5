@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.design.widget.AppBarLayout android:id="@+id/appbar_topimgbeh" android:layout_width="fill_parent" android:layout_height="200dp" >
+        <android.support.design.widget.CollapsingToolbarLayout android:layout_width="match_parent" android:layout_height="match_parent"
+            android:id="@+id/ctlay_topimgbeh"   app:layout_scrollFlags="scroll|exitUntilCollapsed"  app:contentScrim="#30469b">
+            <ImageView android:layout_width="fill_parent" android:layout_height="fill_parent" android:src="@drawable/west_lake" android:scaleType="centerCrop" app:layout_collapseMode="parallax"/>
+            <android.support.v7.widget.Toolbar android:id="@+id/tb_topimgbeh" android:layout_width="fill_parent" android:layout_height="?attr/actionBarSize" app:layout_scrollFlags="scroll|enterAlways" app:layout_collapseMode="pin"/>
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <ImageView android:id="@+id/iv_topimgbe_target" android:layout_width="100dp" android:layout_height="80dp" android:src="@drawable/ic_launcher" android:scaleType="centerCrop"
+        app:layout_anchor="@id/appbar_topimgbeh" app:layout_anchorGravity="bottom|center"
+        app:layout_behavior="cn.six.sup.design_lib.behavior.TopImageBehavior"/>
+
+    <include layout="@layout/content_scrolling"/>
+
+</android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ca.six.and7.HomeActivity"
+    tools:showIn="@layout/activity_home">
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
+        app:layout_constraintBottom_toBottomOf="@+id/content_home"
+        app:layout_constraintLeft_toLeftOf="@+id/content_home"
+        app:layout_constraintRight_toRightOf="@+id/content_home"
+        app:layout_constraintTop_toTopOf="@+id/content_home" />
+</android.support.constraint.ConstraintLayout>

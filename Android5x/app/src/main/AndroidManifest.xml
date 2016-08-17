@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cn.song.and5" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".rv.waterfall.RvWaterFallActivity"/>
+        <activity android:name=".anim.ViewCircularRevealActivity"/>
+        <activity android:name=".anim.transition.AnimFirstActivity"/>
+        <activity android:name=".anim.transition.AnimSecondActivity"/>
+        <activity android:name=".rv.simple.RvSimpleTestActivity"/>
+        <activity android:name=".rv.cards.RvCardsActivity"/>
+        <activity android:name=".snackbar.SnackBarTestActivity"
+                  android:theme="@style/six.snackBarTheme"/>
+        <activity android:name=".anim.actv.ExplodeActivit01y"/>
+        <activity android:name=".anim.actv.ExplodeActivity02"/>
+
+        <activity android:name=".anim.musicplayer.ListPage"/>
+        <activity android:name=".anim.musicplayer.DetailPage"/>
+
+
+
+    </application>
+
+</manifest>
