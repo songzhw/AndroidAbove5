@@ -173,6 +173,7 @@
             android:label="Rv with One Adapter">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
@@ -181,11 +182,11 @@
             android:label="Rv with GroupAdapter">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
-
-
+        <activity android:name=".rv.tmp.Main2Activity"></activity>
     </application>
 
 </manifest>
