@@ -1,4 +1,4 @@
-package cn.six.sup.rv.swipe_refresh1;
+package cn.six.sup.rv.swipe_refresh2;
 
 import android.os.Handler;
 import android.os.Message;
@@ -18,7 +18,7 @@ import cn.six.sup.rv.one_adapter.OneAdapter;
 import cn.six.sup.R;
 
 // only "swipe to refresh"
-public class SwipeRefreshRvActivity01 extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class SwipeRefreshRvActivity02 extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
     private SwipeRefreshLayout slay;
     private RecyclerView rv;
     private OneAdapter<String> adapter;
@@ -53,7 +53,7 @@ public class SwipeRefreshRvActivity01 extends AppCompatActivity implements Swipe
     @Override
     public void onRefresh() {
         // Mock the http
-        handler.sendEmptyMessageDelayed(11, 5000);
+        handler.sendEmptyMessageDelayed(11, 4000);
     }
 
     private Handler handler = new Handler(){

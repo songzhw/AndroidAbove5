@@ -170,7 +170,23 @@
         </activity>
         <activity
             android:name=".rv.swipe_refresh1.SwipeRefreshRvActivity01"
-            android:label="Rv with Swipe Refresh">
+            android:label="Rv with Swipe Refresh 001 : swipe refresh">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".rv.swipe_refresh2.SwipeRefreshRvActivity02"
+            android:label="Rv with Swipe Refresh 002 : load more">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".rv.swipe_refresh3.SwipeRefreshRvActivity03"
+            android:label="Rv with Swipe Refresh 003 : perfect">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.SAMPLE_CODE" />
