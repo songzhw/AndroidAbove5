@@ -64,7 +64,7 @@ public class SwipeRefreshRvActivity01 extends AppCompatActivity implements Swipe
             if(msg.what == 11){
                 data.add(0, "Item : "+ System.currentTimeMillis());
                 adapter.notifyItemInserted(0);
-                rv.scrollTo(0, 0); // TODO
+                rv.smoothScrollToPosition(0); // move to item 0 for better UX
                 slay.setRefreshing(false);
             }
         }
