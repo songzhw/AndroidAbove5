@@ -49,7 +49,7 @@ public class RvWaterFallActivity extends Activity {
         ab.setDisplayHomeAsUpEnabled(true);
 
         adapter = new RvWaterFallAdapter();
-        rv = (RecyclerView) findViewById(R.id.rv_data);
+        rv = (RecyclerView) findViewById(R.id.rvRefresh);
 //        rv.setLayoutManager(new LinearLayoutManager(this));
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
         rv.setLayoutManager(layoutManager);

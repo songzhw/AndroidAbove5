@@ -23,7 +23,7 @@ public class GroupRvDemo extends Activity {
         super.onCreate(savedInstanceState);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler);
-        rv = (RecyclerView) findViewById(R.id.rv_data);
+        rv = (RecyclerView) findViewById(R.id.rvRefresh);
         rv.setHasFixedSize(true);
 
         adapter = new GroupRvAdapter<Province, City>(R.layout.item_rv_group_title, R.layout.item_rv_group_content) {

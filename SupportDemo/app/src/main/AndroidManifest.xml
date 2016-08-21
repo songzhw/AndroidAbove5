@@ -11,7 +11,6 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -20,7 +19,6 @@
             android:label="ToolBar Demo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
@@ -29,7 +27,6 @@
             android:label="FloatingActionButton Demo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
@@ -38,7 +35,6 @@
             android:label="NavigationView Demo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
@@ -47,7 +43,6 @@
             android:label="Scolling Demo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
@@ -65,7 +60,6 @@
             android:label="Flexible Top Demo 002">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
@@ -74,7 +68,6 @@
             android:label="Swipe Behavior Demo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
@@ -92,7 +85,6 @@
             android:label="Custom Behavior Demo 002">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
@@ -101,7 +93,6 @@
             android:label="Connected two views">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
@@ -110,7 +101,6 @@
             android:label="Two behaviors in CoordinatorLayout">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
@@ -119,7 +109,6 @@
             android:label="BottomSheetBehavior">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
@@ -128,7 +117,6 @@
             android:label="Rv with sorted data">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
@@ -137,7 +125,6 @@
             android:label="Rv with Grouped (Old)">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
@@ -146,7 +133,6 @@
             android:label="Rv with Drag+Drop ">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
@@ -155,7 +141,6 @@
             android:label="Rv with Header">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
@@ -164,7 +149,6 @@
             android:label="Rv with EmptyView">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
@@ -173,7 +157,6 @@
             android:label="Rv with One Adapter">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
@@ -182,11 +165,17 @@
             android:label="Rv with GroupAdapter">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
-        <activity android:name=".rv.tmp.Main2Activity"></activity>
+        <activity
+            android:name=".rv.swipe_refresh1.SwipeRefreshRvActivity01"
+            android:label="Rv with Swipe Refresh">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

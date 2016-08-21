@@ -2,10 +2,8 @@ package cn.six.sup.rv.header;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
@@ -24,7 +22,7 @@ public class HeaderRvDemo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler);
-        rv = (RecyclerView) findViewById(R.id.rv_data);
+        rv = (RecyclerView) findViewById(R.id.rvRefresh);
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(this));
 //        rv.setLayoutManager(new GridLayoutManager(this, 3));
