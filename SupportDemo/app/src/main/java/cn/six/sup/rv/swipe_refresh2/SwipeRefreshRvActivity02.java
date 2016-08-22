@@ -83,13 +83,31 @@ public class SwipeRefreshRvActivity02 extends AppCompatActivity implements Swipe
         }
     };
 
+    // mock
+    private boolean hasMore = true;
     @Override
     public boolean hasMore() {
-        return false;
+        System.out.println("szw hasMore() ");
+        return hasMore;
     }
 
+    private int currentPage = 1;
     @Override
     public void onLoadMore() {
+        System.out.println("szw onLaodMore() : "+currentPage);
+        for(int i = 0; i < 10; i++){
+            data.add("Item : "+currentPage+""+i);
+        }
+        currentPage++;
+        if(currentPage >= 3){
+            hasMore = false;
+        }
 
+        adapter.data = data;
+        handler.post(new Runnable() {
+            public void run() {
+                wrapper.notifyDataSetChanged();
+            }
+        });
     }
 }
