@@ -16,7 +16,7 @@ import cn.six.sup.rv.one_adapter.OneAdapter;
 
 import cn.six.sup.R;
 
-// only "swipe to refresh"
+// Header +  "swipe to refresh" + Load More
 public class SwipeRefreshRvActivity03 extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
     private SwipeRefreshLayout slay;
     private RecyclerView rv;

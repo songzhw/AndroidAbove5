@@ -169,7 +169,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".rv.load_more.LoadMoreRvDemo"
+            android:name=".rv.load_more.deprecated.LoadMoreRvDeprecated"
             android:label="Rv with LoadMore">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

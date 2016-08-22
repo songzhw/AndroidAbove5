@@ -1,4 +1,4 @@
-package cn.six.sup.rv.load_more;
+package cn.six.sup.rv.load_more.deprecated;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +12,12 @@ import cn.six.sup.rv.RvViewHolder;
 /**
  * Created by songzhw on 2016-08-21
  */
+
+// bug: 到达最后一页， 无法让loadMoreView消失！
+// LoadMoreWrapper感觉走了偏锋。 用传统的rv.setOnScrollListener()方法可能更合适。
+// 另外， 因onBindViewHolder()导致hitBottomAndHasMore()被多次调用， 怕有隐患
+
+@Deprecated
 public class LoadMoreWrapper extends RecyclerView.Adapter<RvViewHolder> {
 
     private RecyclerView.Adapter<RvViewHolder> innerAdapter;
@@ -50,7 +56,7 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RvViewHolder> {
 
     @Override
     public void onBindViewHolder(RvViewHolder holder, int position) {
-        if(hasMore(position)){
+        if(hitBottomAndHasMore(position)){
             listener.onLoadMore();
             return ;
         }
@@ -60,7 +66,7 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RvViewHolder> {
         innerAdapter.onBindViewHolder(holder, position);
     }
 
-    private boolean hasMore(int pos) {
+    private boolean hitBottomAndHasMore(int pos) {
         if (listener == null) {
             return false;
         }

@@ -8,27 +8,28 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
-import android.view.Gravity;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.six.sup.rv.RvViewHolder;
-import cn.six.sup.rv.OnRvItemClickListener;
-import cn.six.sup.rv.load_more.ILoadMoreListener;
-import cn.six.sup.rv.load_more.LoadMoreWrapper;
+import cn.six.sup.rv.load_more.deprecated.ILoadMoreListener;
+import cn.six.sup.rv.load_more.deprecated.LoadMoreWrapper;
 import cn.six.sup.rv.one_adapter.OneAdapter;
 
 import cn.six.sup.R;
 
-// only "swipe to refresh"
+// "swipe to refresh" + Load More
+// bug: 到达最后一页， 无法让loadMoreView消失！
+// LoadMoreWrapper感觉走了偏锋。 用传统的rv.setOnScrollListener()方法可能更合适。
+@Deprecated
 public class SwipeRefreshRvActivity02 extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, ILoadMoreListener {
     private SwipeRefreshLayout slay;
     private RecyclerView rv;
     private OneAdapter<String> adapter;
     private LoadMoreWrapper wrapper;
+    private TextView loadMoreView;
     private List<String> data;
 
     @Override
@@ -56,11 +57,11 @@ public class SwipeRefreshRvActivity02 extends AppCompatActivity implements Swipe
         adapter.data = data;
 //        rv.setAdapter(adapter);
 
-        TextView tv = new TextView(this);
-        tv.setText("Loading ...");
-        tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 22);
+        loadMoreView = new TextView(this);
+        loadMoreView.setText("Loading ...");
+        loadMoreView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 22);
         wrapper = new LoadMoreWrapper(adapter, this);
-        wrapper.loadMoreView = tv;
+        wrapper.loadMoreView = loadMoreView;
         rv.setAdapter(wrapper);
     }
 
@@ -84,7 +85,7 @@ public class SwipeRefreshRvActivity02 extends AppCompatActivity implements Swipe
     };
 
     // mock
-    private boolean hasMore = true;
+    private boolean hasMore = true; // initial value msut be true
     @Override
     public boolean hasMore() {
         System.out.println("szw hasMore() ");
@@ -94,7 +95,6 @@ public class SwipeRefreshRvActivity02 extends AppCompatActivity implements Swipe
     private int currentPage = 1;
     @Override
     public void onLoadMore() {
-        System.out.println("szw onLaodMore() : "+currentPage);
         for(int i = 0; i < 10; i++){
             data.add("Item : "+currentPage+""+i);
         }

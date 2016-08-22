@@ -1,4 +1,4 @@
-package cn.six.sup.rv.load_more;
+package cn.six.sup.rv.load_more.deprecated;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,10 +16,10 @@ import cn.six.sup.rv.one_adapter.OneAdapter;
 
 import cn.six.sup.R;
 
-
-public class LoadMoreRvDemo extends AppCompatActivity {
+// songzhw, 2016-08-21
+@Deprecated
+public class LoadMoreRvDeprecated extends AppCompatActivity implements ILoadMoreListener {
     private RecyclerView rv;
-    private OneAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +48,31 @@ public class LoadMoreRvDemo extends AppCompatActivity {
             }
         };
         adapter.data = data;
-        rv.setAdapter(adapter);
 
+        ImageView iv = new ImageView(this);
+        iv.setImageResource(R.drawable.west_lake);
+        iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        LoadMoreWrapper wrapper = new LoadMoreWrapper(adapter, this);
+        wrapper.loadMoreView = iv;
 
+        rv.setAdapter(wrapper);
+
+/*        rv.setAdapter(adapter);
+        rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                // SCROLL_STATE_IDLE      0
+                // SCROLL_STATE_DRAGGING  1
+                // SCROLL_STATE_SETTLING  2
+                System.out.println("onScrollChanged : "+newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView rv, int dx, int dy) {
+                // dy > 0 : scroll down
+                System.out.println("onScrolled : dy = "+dy);
+            }
+        });*/
 
         rv.addOnItemTouchListener(new OnRvItemClickListener(rv) {
             @Override
@@ -64,4 +86,13 @@ public class LoadMoreRvDemo extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean hasMore() {
+        return true;
+    }
+
+    @Override
+    public void onLoadMore() {
+        System.out.println("szw : load more timing!");
+    }
 }
