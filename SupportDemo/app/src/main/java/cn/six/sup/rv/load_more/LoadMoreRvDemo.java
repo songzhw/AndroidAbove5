@@ -64,6 +64,8 @@ public class LoadMoreRvDemo extends AppCompatActivity {
             @Override
             public void onItemClick(RecyclerView.ViewHolder vh) {
                 System.out.println("szw : click "+vh.getAdapterPosition());
+                wrapper.footView = null;
+                wrapper.notifyItemRemoved(adapter.getItemCount());
             }
             @Override
             public void onLongClick(RecyclerView.ViewHolder vh) {

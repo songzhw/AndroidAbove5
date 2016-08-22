@@ -27,7 +27,7 @@ public class FooterWrapper extends RecyclerView.Adapter<RvViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        if(position >= innerAdapter.getItemCount()){
+        if(position >= innerAdapter.getItemCount() && footView != null){
             return RvConstants.TYPE_FOOTER;
         }
         return innerAdapter.getItemViewType(position);
