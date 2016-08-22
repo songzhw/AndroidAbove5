@@ -144,14 +144,7 @@
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".rv.empty.EmptyRvDemo"
-            android:label="Rv with EmptyView">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-            </intent-filter>
-        </activity>
+
         <activity
             android:name=".rv.one_adapter.RvOneAdaterDemo"
             android:label="Rv with One Adapter">
@@ -169,7 +162,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".rv.load_more.deprecated.LoadMoreRvDeprecated"
+            android:name=".rv.load_more.LoadMoreRvDemo"
             android:label="Rv with LoadMore">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -179,14 +172,6 @@
         <activity
             android:name=".rv.swipe_refresh1.SwipeRefreshRvActivity01"
             android:label="Rv with Swipe Refresh 001 : swipe refresh">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".rv.swipe_refresh2.SwipeRefreshRvActivity02"
-            android:label="Rv with Swipe Refresh 002 : load more">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.SAMPLE_CODE" />

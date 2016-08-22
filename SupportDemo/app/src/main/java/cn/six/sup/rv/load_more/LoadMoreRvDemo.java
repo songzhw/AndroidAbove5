@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,11 +21,17 @@ import cn.six.sup.R;
 public class LoadMoreRvDemo extends AppCompatActivity {
     private RecyclerView rv;
     private OneAdapter<String> adapter;
+    private FooterWrapper wrapper;
+
+    private View loadMoreView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        setContentView(R.layout.view_load_more);
         setContentView(R.layout.activity_recycler);
+
         rv = (RecyclerView) findViewById(R.id.rvRefresh);
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -35,7 +42,7 @@ public class LoadMoreRvDemo extends AppCompatActivity {
         for (int i = 0 ; i < 10; i++){
             data.add("Item : "+i);
         }
-        OneAdapter<String> adapter = new OneAdapter<String>(R.layout.item_rv_simple) {
+        final OneAdapter<String> adapter = new OneAdapter<String>(R.layout.item_rv_simple) {
             @Override
             protected void apply(RvViewHolder vh, String s, int position) {
                 TextView tvItem = vh.getView(R.id.tv_rv_simple_item);
@@ -48,9 +55,10 @@ public class LoadMoreRvDemo extends AppCompatActivity {
             }
         };
         adapter.data = data;
-        rv.setAdapter(adapter);
-
-
+        wrapper = new FooterWrapper(adapter);
+        loadMoreView = getLayoutInflater().inflate(R.layout.view_load_more, null);
+        wrapper.footView = loadMoreView;
+        rv.setAdapter(wrapper);
 
         rv.addOnItemTouchListener(new OnRvItemClickListener(rv) {
             @Override
@@ -62,6 +70,25 @@ public class LoadMoreRvDemo extends AppCompatActivity {
             }
         });
 
+        rv.addOnScrollListener(listener);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        rv.removeOnScrollListener(listener);
+    }
+
+    private RecyclerView.OnScrollListener listener = new RecyclerView.OnScrollListener() {
+        @Override
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+            super.onScrollStateChanged(recyclerView, newState);
+        }
+
+        @Override
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            super.onScrolled(recyclerView, dx, dy);
+        }
+    };
 
 }
