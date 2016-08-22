@@ -22,7 +22,8 @@ public class FooterWrapper extends RecyclerView.Adapter<RvViewHolder> {
 
     @Override
     public int getItemCount() {
-        return innerAdapter.getItemCount() + 1; // inner + footer
+        return innerAdapter.getItemCount() +
+                (footView == null ? 0 : 1); // inner + footer
     }
 
     @Override
