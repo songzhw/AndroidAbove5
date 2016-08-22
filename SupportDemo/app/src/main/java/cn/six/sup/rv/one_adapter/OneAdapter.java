@@ -32,7 +32,7 @@ public abstract class OneAdapter<T> extends RecyclerView.Adapter<RvViewHolder> {
 
     @Override
     public void onBindViewHolder(RvViewHolder holder, int position) {
-        if(data != null){
+        if(data != null && data.size() > position){
             apply(holder, data.get(position), position);
         }
     }

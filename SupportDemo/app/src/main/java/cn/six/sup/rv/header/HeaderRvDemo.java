@@ -5,11 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.six.sup.R;
+import cn.six.sup.rv.RvViewHolder;
+import cn.six.sup.rv.one_adapter.OneAdapter;
 import cn.six.sup.rv.simple.RvSimpleAdapter;
 
 /**
@@ -29,10 +32,21 @@ public class HeaderRvDemo extends AppCompatActivity {
 //        rv.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
 
         List<String> data = new ArrayList<>();
-        for (int i = 0 ; i < 50; i++){
+        for (int i = 0 ; i < 10; i++){
             data.add("Item : "+i);
         }
-        RvSimpleAdapter adapter = new RvSimpleAdapter();
+        OneAdapter<String> adapter = new OneAdapter<String>(R.layout.item_rv_simple) {
+            @Override
+            protected void apply(RvViewHolder vh, String s, int position) {
+                TextView tvItem = vh.getView(R.id.tv_rv_simple_item);
+                tvItem.setText("[szw -- " + data.get(position)+"]" );
+                if(position % 2 == 1){
+                    tvItem.setBackgroundColor(0xffC7EDCC);
+                } else {
+                    tvItem.setBackgroundColor(0xffffffff);
+                }
+            }
+        };
         adapter.data = data;
 
         ImageView iv = new ImageView(this);

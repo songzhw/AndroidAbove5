@@ -8,53 +8,47 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import cn.six.sup.rv.RvConstants;
 import cn.six.sup.rv.RvViewHolder;
 
 /**
  * Created by songzhw on 2016-08-12
  */
-public class HeaderWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    public static final int TYPE_HEADER = 1;
-    public static final int TYPE_CONTENT = 9;
-
+public class HeaderWrapper extends RecyclerView.Adapter<RvViewHolder> {
     public View headerView;
-    public RecyclerView.Adapter innerAdapter;
+    public RecyclerView.Adapter<RvViewHolder> innerAdapter;
 
     public HeaderWrapper(RecyclerView.Adapter innerAdapter) {
         this.innerAdapter = innerAdapter;
     }
 
-    private int getInnerItemCount(){
-        return innerAdapter.getItemCount();
-    }
-
     @Override
     public int getItemCount() {
-        return getInnerItemCount() + 1; // inner + header
+        return innerAdapter.getItemCount() + 1; // inner + header
     }
 
     @Override
     public int getItemViewType(int position) {
         if(position == 0){
-            return TYPE_HEADER;
+            return RvConstants.TYPE_HEADER;
         }
-        return TYPE_CONTENT;
+        return innerAdapter.getItemViewType(position - 1);
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if(viewType == TYPE_HEADER){
+    public RvViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if(viewType == RvConstants.TYPE_HEADER){
             return RvViewHolder.createViewHolder(headerView);
         }
         return innerAdapter.onCreateViewHolder(parent, viewType);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if(getItemViewType(position) == TYPE_HEADER){
+    public void onBindViewHolder(RvViewHolder holder, int position) {
+        if(getItemViewType(position) == RvConstants.TYPE_HEADER){
             return;
         }
-        innerAdapter.onBindViewHolder(holder, position);
+        innerAdapter.onBindViewHolder(holder, position - 1);
     }
 
     // ===================================================
@@ -69,7 +63,7 @@ public class HeaderWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             lay.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
                 @Override
                 public int getSpanSize(int position) {
-                    if(getItemViewType(position) == TYPE_HEADER){
+                    if(getItemViewType(position) == RvConstants.TYPE_HEADER){
                         return lay.getSpanCount();
                     }
                     return 1;
@@ -80,10 +74,10 @@ public class HeaderWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     // deal with header in the StaggerGridLayoutMangaer
     @Override
-    public void onViewAttachedToWindow(RecyclerView.ViewHolder holder) {
+    public void onViewAttachedToWindow(RvViewHolder holder) {
         innerAdapter.onViewAttachedToWindow(holder);
         int position = holder.getLayoutPosition();
-        if(getItemViewType(position) == TYPE_HEADER){
+        if(getItemViewType(position) == RvConstants.TYPE_HEADER){
             ViewGroup.LayoutParams lp = holder.itemView.getLayoutParams();
             if(lp != null && lp instanceof StaggeredGridLayoutManager.LayoutParams){
                 StaggeredGridLayoutManager.LayoutParams staggerLp = (StaggeredGridLayoutManager.LayoutParams) lp;
