@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.six.sup.R;
+import cn.six.sup.rv.OnRvItemClickListener;
 import cn.six.sup.rv.RvViewHolder;
 import cn.six.sup.rv.one_adapter.OneAdapter;
 import cn.six.sup.rv.simple.RvSimpleAdapter;
@@ -55,8 +56,17 @@ public class HeaderRvDemo extends AppCompatActivity {
         HeaderWrapper wrapper = new HeaderWrapper(adapter);
         wrapper.headerView = iv;
 
-
         rv.setAdapter(wrapper);
+
+        rv.addOnItemTouchListener(new OnRvItemClickListener(rv) {
+            @Override
+            public void onItemClick(RecyclerView.ViewHolder vh) {
+                System.out.println("szw : click "+vh.getAdapterPosition());
+            }
+            @Override
+            public void onLongClick(RecyclerView.ViewHolder vh) {
+            }
+        });
 
     }
 }

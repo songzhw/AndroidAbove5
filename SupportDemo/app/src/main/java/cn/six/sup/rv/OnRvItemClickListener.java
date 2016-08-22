@@ -8,6 +8,9 @@ import android.view.View;
 
 /**
  * Created by songzhw on 2016-07-13
+ *
+ * NOTE: If you have a head wrapper, or a footer wrapper, or a load more wrapper,
+ * please note that the position may different than usual!
  */
 public abstract class OnRvItemClickListener implements RecyclerView.OnItemTouchListener {
     private GestureDetectorCompat gestureDetector;
