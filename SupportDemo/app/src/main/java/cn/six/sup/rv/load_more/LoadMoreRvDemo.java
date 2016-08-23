@@ -13,17 +13,21 @@ import java.util.List;
 
 import cn.six.sup.rv.RvViewHolder;
 import cn.six.sup.rv.OnRvItemClickListener;
+import cn.six.sup.rv.load_more.mock.MockInfo;
+import cn.six.sup.rv.load_more.mock.MockTask;
 import cn.six.sup.rv.one_adapter.OneAdapter;
 
 import cn.six.sup.R;
 
 
-public class LoadMoreRvDemo extends AppCompatActivity {
+public class LoadMoreRvDemo extends AppCompatActivity implements MockTask.IPost {
     private RecyclerView rv;
     private OneAdapter<String> adapter;
     private FooterWrapper wrapper;
+    private List<String> data;
 
     private View loadMoreView;
+    private RecyclerView.OnScrollListener listener;
 
 
     @Override
@@ -38,23 +42,19 @@ public class LoadMoreRvDemo extends AppCompatActivity {
 //        rv.setLayoutManager(new GridLayoutManager(this, 3));
 //        rv.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
 
-        List<String> data = new ArrayList<>();
-        for (int i = 0 ; i < 10; i++){
-            data.add("Item : "+i);
-        }
-        final OneAdapter<String> adapter = new OneAdapter<String>(R.layout.item_rv_simple) {
+
+        adapter = new OneAdapter<String>(R.layout.item_rv_simple) {
             @Override
             protected void apply(RvViewHolder vh, String s, int position) {
                 TextView tvItem = vh.getView(R.id.tv_rv_simple_item);
-                tvItem.setText("[szw -- " + data.get(position)+"]" );
-                if(position % 2 == 1){
+                tvItem.setText("[szw -- " + data.get(position) + "]");
+                if (position % 2 == 1) {
                     tvItem.setBackgroundColor(0xffC7EDCC);
                 } else {
                     tvItem.setBackgroundColor(0xffffffff);
                 }
             }
         };
-        adapter.data = data;
         wrapper = new FooterWrapper(adapter);
         loadMoreView = getLayoutInflater().inflate(R.layout.view_load_more, null);
         wrapper.footView = loadMoreView;
@@ -63,16 +63,40 @@ public class LoadMoreRvDemo extends AppCompatActivity {
         rv.addOnItemTouchListener(new OnRvItemClickListener(rv) {
             @Override
             public void onItemClick(RecyclerView.ViewHolder vh) {
-                System.out.println("szw : click "+vh.getAdapterPosition());
-                wrapper.footView = null;
-                wrapper.notifyItemRemoved(adapter.getItemCount());
+                System.out.println("szw : click " + vh.getAdapterPosition());
             }
+
             @Override
             public void onLongClick(RecyclerView.ViewHolder vh) {
             }
         });
 
+        // TODO may expand to grid and stagger
+        listener = new LoadMoreScrollListener((LinearLayoutManager) rv.getLayoutManager()) {
+            @Override
+            public void onLoadMore(int lastPos) {
+                System.out.println("szw onLoadMore["+lastPos+"]");
+            }
+        };
         rv.addOnScrollListener(listener);
+
+        MockTask http = new MockTask(this);
+        http.execute(0);
+        System.out.println("szw CF");
+    }
+
+    @Override
+    public void onResp(MockInfo info) {
+        data = info.data;
+        adapter.data = data;
+        System.out.println("szw onResp() : " + data.size());
+        wrapper.notifyDataSetChanged();
+    }
+
+
+    private void hideFooter() {
+        wrapper.footView = null;
+        wrapper.notifyItemRemoved(adapter.getItemCount());
     }
 
     @Override
@@ -81,16 +105,5 @@ public class LoadMoreRvDemo extends AppCompatActivity {
         rv.removeOnScrollListener(listener);
     }
 
-    private RecyclerView.OnScrollListener listener = new RecyclerView.OnScrollListener() {
-        @Override
-        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-            super.onScrollStateChanged(recyclerView, newState);
-        }
-
-        @Override
-        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-            super.onScrolled(recyclerView, dx, dy);
-        }
-    };
 
 }
