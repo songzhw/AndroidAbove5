@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,6 +91,12 @@ public class LoadMoreRvDemo extends AppCompatActivity implements MockTask.IPost 
 
     @Override
     public void onResp(MockInfo info) {
+        if(info == null){
+            Toast.makeText(this,"No more infos!", Toast.LENGTH_SHORT).show();
+            hideFooter();
+            return;
+        }
+
         data = info.data;
         adapter.data.addAll(data);
         System.out.println("szw onResp() : " + data.size());
