@@ -74,8 +74,8 @@ public class LoadMoreRvDemo extends AppCompatActivity implements MockTask.IPost 
         // TODO may expand to grid and stagger
         listener = new LoadMoreScrollListener((LinearLayoutManager) rv.getLayoutManager()) {
             @Override
-            public void onLoadMore(int lastPos) {
-                System.out.println("szw onLoadMore["+lastPos+"]");
+            public void onLoadMore(int page) {
+                System.out.println("szw onLoadMore["+page+"]");
             }
         };
         rv.addOnScrollListener(listener);
