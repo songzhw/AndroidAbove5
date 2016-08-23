@@ -19,6 +19,7 @@ import cn.six.sup.rv.RvViewHolder;
 
 @Deprecated
 public class LoadMoreWrapper extends RecyclerView.Adapter<RvViewHolder> {
+    public static final int TYPE_LOAD_MORE = 30;
 
     private RecyclerView.Adapter<RvViewHolder> innerAdapter;
     private ILoadMoreListener listener;
@@ -37,7 +38,7 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RvViewHolder> {
     @Override
     public int getItemViewType(int position) {
         if(position >= innerAdapter.getItemCount()){
-            return RvConstants.TYPE_LOAD_MORE;
+            return TYPE_LOAD_MORE;
         }
 
         // because the loadMoreView is usually a footer,
@@ -47,7 +48,7 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RvViewHolder> {
 
     @Override
     public RvViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if(viewType == RvConstants.TYPE_LOAD_MORE){
+        if(viewType == TYPE_LOAD_MORE){
             RvViewHolder holder = RvViewHolder.createViewHolder(loadMoreView);
             return holder;
         }
@@ -90,7 +91,7 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RvViewHolder> {
             lay.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
                 @Override
                 public int getSpanSize(int position) {
-                    if(getItemViewType(position) == RvConstants.TYPE_LOAD_MORE){
+                    if(getItemViewType(position) == TYPE_LOAD_MORE){
                         return lay.getSpanCount();
                     }
                     return 1;
@@ -104,7 +105,7 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RvViewHolder> {
     public void onViewAttachedToWindow(RvViewHolder holder) {
         innerAdapter.onViewAttachedToWindow(holder);
         int position = holder.getLayoutPosition();
-        if(getItemViewType(position) == RvConstants.TYPE_LOAD_MORE){
+        if(getItemViewType(position) == TYPE_LOAD_MORE){
             ViewGroup.LayoutParams lp = holder.itemView.getLayoutParams();
             if(lp != null && lp instanceof StaggeredGridLayoutManager.LayoutParams){
                 StaggeredGridLayoutManager.LayoutParams staggerLp = (StaggeredGridLayoutManager.LayoutParams) lp;

@@ -12,6 +12,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.six.sup.rv.RvConstants;
 import cn.six.sup.rv.RvViewHolder;
 import cn.six.sup.rv.OnRvItemClickListener;
 import cn.six.sup.rv.load_more.mock.MockInfo;
@@ -30,6 +31,7 @@ public class LoadMoreRvDemo extends AppCompatActivity implements MockTask.IPost 
 
     private View loadMoreView;
     private RecyclerView.OnScrollListener listener;
+    private boolean hasMore = true;
 
 
     @Override
@@ -66,7 +68,11 @@ public class LoadMoreRvDemo extends AppCompatActivity implements MockTask.IPost 
         rv.addOnItemTouchListener(new OnRvItemClickListener(rv) {
             @Override
             public void onItemClick(RecyclerView.ViewHolder vh) {
-                System.out.println("szw : click " + vh.getAdapterPosition());
+                int type = vh.getItemViewType();
+                System.out.println("szw : click " + vh.getAdapterPosition()+" ; type = "+type);
+                if(type == RvConstants.TYPE_FOOTER){
+                    // TODO
+                }
             }
 
             @Override
@@ -79,6 +85,13 @@ public class LoadMoreRvDemo extends AppCompatActivity implements MockTask.IPost 
             @Override
             public void onLoadMore(int page) {
                 System.out.println("szw onLoadMore["+page+"]");
+
+                if(!hasMore){
+                    Toast.makeText(self,"No more infos!", Toast.LENGTH_SHORT).show();
+                    hideFooter();
+                    return;
+                }
+
                 MockTask http = new MockTask(self);
                 http.execute(page);
             }
@@ -89,15 +102,13 @@ public class LoadMoreRvDemo extends AppCompatActivity implements MockTask.IPost 
         http.execute(0);
     }
 
+
     @Override
     public void onResp(MockInfo info) {
-        if(info == null){
-            Toast.makeText(this,"No more infos!", Toast.LENGTH_SHORT).show();
-            hideFooter();
-            return;
-        }
-
+        // TODO if(info == null) or if(resp.isFailed()) --> footer.text="click to load", footer.pb = gone
+        // TODO footer.onClick = startMockTask()
         data = info.data;
+        hasMore = info.hasMore;
         adapter.data.addAll(data);
         System.out.println("szw onResp() : " + data.size());
         wrapper.notifyDataSetChanged();
