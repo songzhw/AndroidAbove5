@@ -21,6 +21,7 @@ import cn.six.sup.R;
 
 
 public class LoadMoreRvDemo extends AppCompatActivity implements MockTask.IPost {
+    private LoadMoreRvDemo self;
     private RecyclerView rv;
     private OneAdapter<String> adapter;
     private FooterWrapper wrapper;
@@ -35,6 +36,7 @@ public class LoadMoreRvDemo extends AppCompatActivity implements MockTask.IPost 
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.view_load_more);
         setContentView(R.layout.activity_recycler);
+        self = this;
 
         rv = (RecyclerView) findViewById(R.id.rvRefresh);
         rv.setHasFixedSize(true);
@@ -76,19 +78,20 @@ public class LoadMoreRvDemo extends AppCompatActivity implements MockTask.IPost 
             @Override
             public void onLoadMore(int page) {
                 System.out.println("szw onLoadMore["+page+"]");
+                MockTask http = new MockTask(self);
+                http.execute(page);
             }
         };
         rv.addOnScrollListener(listener);
 
         MockTask http = new MockTask(this);
         http.execute(0);
-        System.out.println("szw CF");
     }
 
     @Override
     public void onResp(MockInfo info) {
         data = info.data;
-        adapter.data = data;
+        adapter.data.addAll(data);
         System.out.println("szw onResp() : " + data.size());
         wrapper.notifyDataSetChanged();
     }

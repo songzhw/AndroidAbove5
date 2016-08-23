@@ -11,7 +11,7 @@ import android.support.v7.widget.RecyclerView;
  */
 public abstract class LoadMoreScrollListener extends RecyclerView.OnScrollListener {
     private LinearLayoutManager layMgr;
-    private int lastVisiblePosition, oldNum, totalNum, currentPage;
+    private int lastVisiblePosition, oldNum, totalNum, currentPage = 0;
     private boolean isDuplicatedCalled = true;
 
     public LoadMoreScrollListener(LinearLayoutManager linearLayoutManager) {
