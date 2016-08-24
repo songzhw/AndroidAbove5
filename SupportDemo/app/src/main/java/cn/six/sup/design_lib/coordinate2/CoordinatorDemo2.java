@@ -17,8 +17,6 @@ import cn.six.sup.rv.dragdrop.DragDropRvAdapter;
  * Created by songzhw on 2016-07-11
  */
 public class CoordinatorDemo2 extends AppCompatActivity {
-    private RecyclerView rv;
-    private DragDropRvAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +31,9 @@ public class CoordinatorDemo2 extends AppCompatActivity {
         for(int i = 0 ; i < 30 ; i++){
             list.add("Position "+i);
         }
-        adapter = new DragDropRvAdapter(list);
+        DragDropRvAdapter adapter = new DragDropRvAdapter(list);
 
-        rv = (RecyclerView) findViewById(R.id.rvCoordinator2);
+        RecyclerView rv = (RecyclerView) findViewById(R.id.rvCoordinator2);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
     }

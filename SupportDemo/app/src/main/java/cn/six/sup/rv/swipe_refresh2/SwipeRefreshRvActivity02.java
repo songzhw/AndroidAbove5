@@ -27,9 +27,7 @@ import cn.six.sup.R;
 public class SwipeRefreshRvActivity02 extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, ILoadMoreListener {
     private SwipeRefreshLayout slay;
     private RecyclerView rv;
-    private OneAdapter<String> adapter;
     private LoadMoreWrapper wrapper;
-    private TextView loadMoreView;
     private List<String> data;
 
     @Override
@@ -44,7 +42,7 @@ public class SwipeRefreshRvActivity02 extends AppCompatActivity implements Swipe
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new OneAdapter<String>(R.layout.item_rv_cards) {
+        OneAdapter<String> adapter = new OneAdapter<String>(R.layout.item_rv_cards) {
             @Override
             protected void apply(RvViewHolder vh, String value, int position) {
                 vh.setText(R.id.tv_rv_card_item, value);
@@ -57,7 +55,7 @@ public class SwipeRefreshRvActivity02 extends AppCompatActivity implements Swipe
         adapter.data = data;
 //        rv.setAdapter(adapter);
 
-        loadMoreView = new TextView(this);
+        TextView loadMoreView = new TextView(this);
         loadMoreView.setText("Loading ...");
         loadMoreView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 22);
         wrapper = new LoadMoreWrapper(adapter, this);
@@ -76,6 +74,7 @@ public class SwipeRefreshRvActivity02 extends AppCompatActivity implements Swipe
         public void handleMessage(Message msg) {
             if(msg.what == 11){
                 data.add(0, "Item : "+ System.currentTimeMillis());
+                OneAdapter<String> adapter;
                 adapter.data = data;
                 wrapper.notifyDataSetChanged(); // important!
                 rv.smoothScrollToPosition(0); // move to item 0 for better UX
@@ -103,6 +102,7 @@ public class SwipeRefreshRvActivity02 extends AppCompatActivity implements Swipe
             hasMore = false;
         }
 
+        OneAdapter<String> adapter;
         adapter.data = data;
         handler.post(new Runnable() {
             public void run() {

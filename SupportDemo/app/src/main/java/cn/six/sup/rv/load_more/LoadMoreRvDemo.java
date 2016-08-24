@@ -27,9 +27,7 @@ public class LoadMoreRvDemo extends AppCompatActivity implements MockTask.IPost 
     private RecyclerView rv;
     private OneAdapter<String> adapter;
     private FooterWrapper wrapper;
-    private List<String> data;
 
-    private View loadMoreView;
     private RecyclerView.OnScrollListener listener;
     private boolean hasMore = true;
 
@@ -61,7 +59,7 @@ public class LoadMoreRvDemo extends AppCompatActivity implements MockTask.IPost 
             }
         };
         wrapper = new FooterWrapper(adapter);
-        loadMoreView = getLayoutInflater().inflate(R.layout.view_load_more, null);
+        View loadMoreView = getLayoutInflater().inflate(R.layout.view_load_more, null);
         wrapper.footView = loadMoreView;
         rv.setAdapter(wrapper);
 
@@ -107,7 +105,7 @@ public class LoadMoreRvDemo extends AppCompatActivity implements MockTask.IPost 
     public void onResp(MockInfo info) {
         // TODO if(info == null) or if(resp.isFailed()) --> footer.text="click to load", footer.pb = gone
         // TODO footer.onClick = startMockTask()
-        data = info.data;
+        List<String> data = info.data;
         hasMore = info.hasMore;
         adapter.data.addAll(data);
         System.out.println("szw onResp() : " + data.size());

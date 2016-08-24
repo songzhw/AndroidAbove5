@@ -24,9 +24,7 @@ import cn.six.sup.R;
  */
 
 public class RvWaterFallActivity extends Activity {
-    private RecyclerView rv;
     private List<String> data;
-    private RvWaterFallAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +46,8 @@ public class RvWaterFallActivity extends Activity {
         ab.setHomeAsUpIndicator(R.drawable.ic_launcher);
         ab.setDisplayHomeAsUpEnabled(true);
 
-        adapter = new RvWaterFallAdapter();
-        rv = (RecyclerView) findViewById(R.id.rvRefresh);
+        RvWaterFallAdapter adapter = new RvWaterFallAdapter();
+        RecyclerView rv = (RecyclerView) findViewById(R.id.rvRefresh);
 //        rv.setLayoutManager(new LinearLayoutManager(this));
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
         rv.setLayoutManager(layoutManager);

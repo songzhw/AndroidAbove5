@@ -15,27 +15,25 @@ import cn.six.sup.rv.group_adapter.entity.Province;
  * Created by songzhw on 2016-08-15
  */
 public class GroupRvDemo extends Activity {
-    private RecyclerView rv;
-    private GroupRvAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler);
-        rv = (RecyclerView) findViewById(R.id.rvRefresh);
+        RecyclerView rv = (RecyclerView) findViewById(R.id.rvRefresh);
         rv.setHasFixedSize(true);
 
-        adapter = new GroupRvAdapter<Province, City>(R.layout.item_rv_group_title, R.layout.item_rv_group_content) {
+        GroupRvAdapter adapter = new GroupRvAdapter<Province, City>(R.layout.item_rv_group_title, R.layout.item_rv_group_content) {
 
             @Override
             protected void applyGroup(RvViewHolder vh, Province item, int position) {
-                vh.setText(R.id.text, "[Province3] : "+ item.name);
+                vh.setText(R.id.text, "[Province3] : " + item.name);
             }
 
             @Override
             protected void applyChild(RvViewHolder vh, City item, int position) {
-                vh.setText(R.id.text, "    City3  Name = "+ item.name);
+                vh.setText(R.id.text, "    City3  Name = " + item.name);
                 vh.setSrc(R.id.image, R.drawable.right_arrow);
             }
         };

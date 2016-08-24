@@ -29,7 +29,6 @@ import cn.six.sup.R;
  * A sample activity that uses {@link SortedList} in combination with RecyclerView.
  */
 public class SortedListActivity extends AppCompatActivity {
-    private RecyclerView rv;
     private SortedListAdapter adapter;
     private EditText etAddTask;
 
@@ -38,7 +37,7 @@ public class SortedListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sorted_list);
 
-        rv = (RecyclerView) findViewById(R.id.rvSortedList);
+        RecyclerView rv = (RecyclerView) findViewById(R.id.rvSortedList);
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(this));
         adapter = new SortedListAdapter(getLayoutInflater(),

@@ -23,11 +23,7 @@ import cn.six.sup.rv.dragdrop.DragDropRvAdapter;
  * Created by songzhw on 2016-07-17
  */
 public class CoordinatorDemo3 extends AppCompatActivity {
-    private RecyclerView rv;
-    private DragDropRvAdapter adapter;
 
-    private LinearLayout llayBottomSheet;
-    private BottomSheetBehavior<LinearLayout> behavior;
     private TextView tvOutterBottomTitle;
 
 
@@ -40,16 +36,16 @@ public class CoordinatorDemo3 extends AppCompatActivity {
         for (int i = 0; i < 30; i++) {
             list.add("Position " + i);
         }
-        adapter = new DragDropRvAdapter(list);
+        DragDropRvAdapter adapter = new DragDropRvAdapter(list);
 
-        rv = (RecyclerView) findViewById(R.id.rvCoordinator3);
+        RecyclerView rv = (RecyclerView) findViewById(R.id.rvCoordinator3);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
 
         tvOutterBottomTitle = (TextView) findViewById(R.id.tvOutterBottomTitle);
 
-        llayBottomSheet = (LinearLayout) findViewById(R.id.llayCoordinate3Bottom);
-        behavior = BottomSheetBehavior.from(llayBottomSheet);
+        LinearLayout llayBottomSheet = (LinearLayout) findViewById(R.id.llayCoordinate3Bottom);
+        BottomSheetBehavior<LinearLayout> behavior = BottomSheetBehavior.from(llayBottomSheet);
         behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged( View bottomSheet, int newState) {

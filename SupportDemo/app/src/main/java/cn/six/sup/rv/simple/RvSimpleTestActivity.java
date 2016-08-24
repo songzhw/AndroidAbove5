@@ -12,13 +12,12 @@ import cn.six.sup.R;
 
 // RecyclerView + CardView
 public class RvSimpleTestActivity extends Activity {
-    private RecyclerView rv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler);
-        rv = (RecyclerView) findViewById(R.id.rvRefresh);
+        RecyclerView rv = (RecyclerView) findViewById(R.id.rvRefresh);
 
         // improve performance if you know that changes in content
         // do not change the size of the RecyclerView

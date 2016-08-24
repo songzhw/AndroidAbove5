@@ -15,8 +15,6 @@ import cn.six.sup.R;
 import cn.six.sup.rv.tmp.data.TempData;
 
 public class RvDemoActivity extends AppCompatActivity {
-    private RecyclerView rv;
-    private OneAdapter<TempData> adapter;
     private List<TempData> data;
 
     @Override
@@ -24,11 +22,11 @@ public class RvDemoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rv_demo);
 
-        rv = (RecyclerView) findViewById(R.id.rvRefresh);
+        RecyclerView rv = (RecyclerView) findViewById(R.id.rvRefresh);
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new OneAdapter<TempData>(R.layout.item_rv_demo) {
+        OneAdapter<TempData> adapter = new OneAdapter<TempData>(R.layout.item_rv_demo) {
             @Override
             protected void apply(RvViewHolder vh, TempData value, int position) {
 

@@ -19,13 +19,12 @@ import cn.six.sup.rv.simple.RvSimpleAdapter;
  * this is not good for UI
  */
 public class EmptyRvDemo extends AppCompatActivity {
-    private RecyclerView rv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler);
-        rv = (RecyclerView) findViewById(R.id.rvRefresh);
+        RecyclerView rv = (RecyclerView) findViewById(R.id.rvRefresh);
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(this));
 //        rv.setLayoutManager(new GridLayoutManager(this, 3));
