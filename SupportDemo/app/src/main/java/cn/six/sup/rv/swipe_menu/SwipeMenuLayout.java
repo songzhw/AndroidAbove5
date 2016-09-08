@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 public class SwipeMenuLayout extends FrameLayout {
     private ViewDragHelper dragger;
     private View contentView, menuView;
+    private int width, menuWidth;
 
     public SwipeMenuLayout(Context context) {
         super(context);
@@ -33,14 +34,26 @@ public class SwipeMenuLayout extends FrameLayout {
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
+        width = getMeasuredWidth();
+        menuWidth = menuView.getMeasuredWidth();
         contentView.layout(left, top, right, bottom);
-        menuView.layout(right, top, right + menuView.getMeasuredWidth(), bottom);
+        menuView.layout(right, top, right + menuWidth, bottom);
     }
 
     private ViewDragHelper.Callback callback = new ViewDragHelper.Callback() {
         @Override
         public boolean tryCaptureView(View child, int pointerId) {
             return child == contentView;
+        }
+
+        @Override
+        public int clampViewPositionHorizontal(View child, int left, int dx) {
+            if(left < -menuWidth){
+                return -menuWidth;
+            } else if(left > 0){
+                return 0;
+            }
+            return left;
         }
     };
 
