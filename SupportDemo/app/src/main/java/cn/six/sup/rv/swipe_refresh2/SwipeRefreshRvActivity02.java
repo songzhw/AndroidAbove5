@@ -27,6 +27,7 @@ import cn.six.sup.R;
 public class SwipeRefreshRvActivity02 extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, ILoadMoreListener {
     private SwipeRefreshLayout slay;
     private RecyclerView rv;
+    private OneAdapter<String> adapter;
     private LoadMoreWrapper wrapper;
     private List<String> data;
 
@@ -42,7 +43,7 @@ public class SwipeRefreshRvActivity02 extends AppCompatActivity implements Swipe
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
-        OneAdapter<String> adapter = new OneAdapter<String>(R.layout.item_rv_cards) {
+        adapter = new OneAdapter<String>(R.layout.item_rv_cards) {
             @Override
             protected void apply(RvViewHolder vh, String value, int position) {
                 vh.setText(R.id.tv_rv_card_item, value);
@@ -74,7 +75,6 @@ public class SwipeRefreshRvActivity02 extends AppCompatActivity implements Swipe
         public void handleMessage(Message msg) {
             if(msg.what == 11){
                 data.add(0, "Item : "+ System.currentTimeMillis());
-                OneAdapter<String> adapter;
                 adapter.data = data;
                 wrapper.notifyDataSetChanged(); // important!
                 rv.smoothScrollToPosition(0); // move to item 0 for better UX
@@ -102,7 +102,6 @@ public class SwipeRefreshRvActivity02 extends AppCompatActivity implements Swipe
             hasMore = false;
         }
 
-        OneAdapter<String> adapter;
         adapter.data = data;
         handler.post(new Runnable() {
             public void run() {
