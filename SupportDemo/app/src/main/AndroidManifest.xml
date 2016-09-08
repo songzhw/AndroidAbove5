@@ -189,6 +189,14 @@
         </activity>
         <activity
             android:name=".rv.swipe_menu.SwipeMenuDemo"
+            android:label="Swipe Menu">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".rv.swipe_menu.rv.SwipeMenuRvDemo"
             android:label="Rv with Swipe Menu (in item)">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

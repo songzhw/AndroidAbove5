@@ -55,6 +55,12 @@ public class SwipeMenuLayout extends FrameLayout {
             }
             return left;
         }
+
+        @Override
+        public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
+            super.onViewPositionChanged(changedView, left, top, dx, dy);
+            menuView.offsetLeftAndRight(dx);
+        }
     };
 
     @Override
