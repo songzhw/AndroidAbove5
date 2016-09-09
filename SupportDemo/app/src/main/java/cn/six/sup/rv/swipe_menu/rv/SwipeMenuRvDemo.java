@@ -20,7 +20,7 @@ import cn.six.sup.R;
 
 public class SwipeMenuRvDemo extends AppCompatActivity {
     private RecyclerView rv;
-    private OneAdapter<String> adapter;
+//    private OneAdapter<String> adapter;
     private List<String> data;
 
     @Override
@@ -32,30 +32,26 @@ public class SwipeMenuRvDemo extends AppCompatActivity {
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new OneAdapter<String>(R.layout.item_swipe_menu_demo) {
-            @Override
-            protected void apply(RvViewHolder vh, String value, int position) {
-                vh.setText(R.id.tvRvItemSwipe, value);
-            }
-        };
+//        OneAdapter adapter = new OneAdapter<String>(R.layout.item_swipe_menu_demo) {
+//            @Override
+//            protected void apply(RvViewHolder vh, String value, int position) {
+//                vh.setText(R.id.tvRvItemSwipe, value);
+//            }
+//        };
         data = new ArrayList<>();
         for(int i = 0 ; i < 20; i++) {
             data.add("Item "+i);
         }
-        adapter.data = data;
+        SwipeRvAdapter adapter = new SwipeRvAdapter(data);
+//        adapter.data = data;
         rv.setAdapter(adapter);
-        System.out.println("szw adapter.count = "+adapter.getItemCount());
-
 
         rv.addOnItemTouchListener(new OnRvItemClickListener(rv) {
             @Override
             public void onLongClick(RecyclerView.ViewHolder vh) {
             }
-
             @Override
             public void onItemClick(RecyclerView.ViewHolder vh) {
-
-                adapter.notifyDataSetChanged();
             }
         });
     }
