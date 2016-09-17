@@ -12,6 +12,8 @@ import ca.six.and7.R;
 
 /**
  * Created by songzhw on 2016-09-15
+ *
+ * Drag this activity will make the activity onDestory() --> onCreate() again.
  */
 
 public class SplitScreenActivity01 extends AppCompatActivity {
