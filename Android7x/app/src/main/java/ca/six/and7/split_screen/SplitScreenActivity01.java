@@ -42,7 +42,12 @@ public class SplitScreenActivity01 extends AppCompatActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        System.out.println("szw SplitScreenActivity01 onConfigurationChanged() : "+newConfig.toString());
+        System.out.println("szw SplitScreenActivity01 onConfigurationChanged() : "
+                + "; height Dp = " + newConfig.screenHeightDp
+                + "; Width  Dp = " + newConfig.screenWidthDp
+                + "; screen layout = " + newConfig.screenLayout
+                + "; screen orientation = " + newConfig.orientation
+        );
     }
 
     @Override
