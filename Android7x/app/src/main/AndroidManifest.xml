@@ -14,10 +14,16 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <!--<layout android:minimalWidth="100dp"-->
-                <!--/>-->
         </activity>
-        <activity android:name=".split_screen.SplitScreenActivity02" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".split_screen.SplitScreenActivity02" android:theme="@style/AppTheme.NoActionBar">
+            <layout
+                android:defaultWidth="250dp"
+                android:minWidth="250dp"
+                android:defaultHeight="500dp"
+                android:minHeight="500dp"
+                android:gravity="top|end"
+                />
+        </activity>
     </application>
 
 </manifest>
