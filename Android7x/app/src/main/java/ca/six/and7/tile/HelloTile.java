@@ -1,10 +1,8 @@
 package ca.six.and7.tile;
 
 import android.graphics.drawable.Icon;
-import android.net.NetworkInfo;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
-import android.widget.Toast;
 
 import ca.six.and7.R;
 
