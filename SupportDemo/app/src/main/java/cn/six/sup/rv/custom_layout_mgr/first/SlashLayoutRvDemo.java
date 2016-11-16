@@ -1,21 +1,15 @@
-package cn.six.sup.rv.swipe_card;
+package cn.six.sup.rv.custom_layout_mgr.first;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.six.sup.R;
-import cn.six.sup.rv.simple.RvSimpleAdapter;
 
-/**
- * Created by songzhw on 2016-11-12
- */
-// TODO: 2016-11-12 later
-public class SwipeCardRvDemo extends Activity {
+public class SlashLayoutRvDemo extends Activity {
     private List<String> aData;
 
     @Override
@@ -24,13 +18,14 @@ public class SwipeCardRvDemo extends Activity {
         setContentView(R.layout.activity_rv_demo);
 
         RecyclerView rv = (RecyclerView) findViewById(R.id.rvRefresh);
-        rv.setLayoutManager(new SwipeCardLayoutManager());
+        rv.setHasFixedSize(true);
+        rv.setLayoutManager(new SlashLayoutManager());
 
-        RvSimpleAdapter adapter = new RvSimpleAdapter();
+        SlashLayoutAdapter adapter = new SlashLayoutAdapter();
 
         aData = new ArrayList<>();
-        for(int i = 0 ; i< 20; i++){
-            aData.add( "Item "+i );
+        for (int i = 0; i < 20; i++) {
+            aData.add("Item " + i);
         }
         adapter.data = aData;
         rv.setAdapter(adapter);

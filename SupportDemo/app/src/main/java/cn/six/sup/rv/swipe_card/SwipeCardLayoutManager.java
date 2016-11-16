@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 /**
  * Created by songzhw on 2016-11-12
  */
+// TODO: 2016-11-12 later
 public class SwipeCardLayoutManager extends RecyclerView.LayoutManager {
 
 
