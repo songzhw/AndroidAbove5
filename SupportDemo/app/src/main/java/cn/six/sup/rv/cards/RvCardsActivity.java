@@ -20,7 +20,7 @@ public class RvCardsActivity extends Activity {
         setContentView(R.layout.activity_recycler);
         RecyclerView rv = (RecyclerView) findViewById(R.id.rvRefresh);
 
-        // improve performance if you know that changes in content
+        // improve performance if you know that changes in aData
         // do not change the size of the RecyclerView
         rv.setHasFixedSize(true);
 

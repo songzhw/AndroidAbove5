@@ -24,7 +24,7 @@ public class OldRvGroupDemo extends Activity {
 
         List<String> strings = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
-            strings.add("this is content:" + i);
+            strings.add("this is aData:" + i);
         }
         strings.add(3,"this is title: 1");
         strings.add(7,"this is title: 2");

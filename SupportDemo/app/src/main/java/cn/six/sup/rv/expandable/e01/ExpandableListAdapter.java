@@ -43,10 +43,7 @@ public class ExpandableListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 TextView itemTextView = new TextView(context);
                 itemTextView.setPadding(subItemPaddingLeft, subItemPaddingTopAndBottom, 0, subItemPaddingTopAndBottom);
                 itemTextView.setTextColor(0x88000000);
-                itemTextView.setLayoutParams(
-                        new ViewGroup.LayoutParams(
-                                ViewGroup.LayoutParams.MATCH_PARENT,
-                                ViewGroup.LayoutParams.WRAP_CONTENT));
+                itemTextView.setLayoutParams( new ViewGroup.LayoutParams( ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 return new RecyclerView.ViewHolder(itemTextView) {
                 };
         }
@@ -57,36 +54,36 @@ public class ExpandableListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         final Item item = data.get(position);
         switch (item.type) {
             case HEADER:
-                final ListHeaderViewHolder itemController = (ListHeaderViewHolder) holder;
-                itemController.refferalItem = item;
-                itemController.header_title.setText(item.text);
+                final ListHeaderViewHolder vh = (ListHeaderViewHolder) holder;
+                vh.aData = item;
+                vh.tvTitle.setText(item.text);
                 if (item.invisibleChildren == null) {
-                    itemController.btn_expand_toggle.setImageResource(R.drawable.circle_minus);
+                    vh.ivRight.setImageResource(R.drawable.circle_minus);
                 } else {
-                    itemController.btn_expand_toggle.setImageResource(R.drawable.circle_plus);
+                    vh.ivRight.setImageResource(R.drawable.circle_plus);
                 }
-                itemController.btn_expand_toggle.setOnClickListener(new View.OnClickListener() {
+                vh.ivRight.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (item.invisibleChildren == null) {
+                        if (item.invisibleChildren == null) { // --> collapse
                             item.invisibleChildren = new ArrayList<Item>();
                             int count = 0;
-                            int pos = data.indexOf(itemController.refferalItem);
+                            int pos = data.indexOf(vh.aData);
                             while (data.size() > pos + 1 && data.get(pos + 1).type == CHILD) {
                                 item.invisibleChildren.add(data.remove(pos + 1));
                                 count++;
                             }
                             notifyItemRangeRemoved(pos + 1, count);
-                            itemController.btn_expand_toggle.setImageResource(R.drawable.circle_plus);
-                        } else {
-                            int pos = data.indexOf(itemController.refferalItem);
+                            vh.ivRight.setImageResource(R.drawable.circle_plus);
+                        } else {                             // --> expand
+                            int pos = data.indexOf(vh.aData);
                             int index = pos + 1;
                             for (Item i : item.invisibleChildren) {
                                 data.add(index, i);
                                 index++;
                             }
                             notifyItemRangeInserted(pos + 1, index - pos - 1);
-                            itemController.btn_expand_toggle.setImageResource(R.drawable.circle_minus);
+                            vh.ivRight.setImageResource(R.drawable.circle_minus);
                             item.invisibleChildren = null;
                         }
                     }
@@ -110,14 +107,14 @@ public class ExpandableListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     private static class ListHeaderViewHolder extends RecyclerView.ViewHolder {
-        public TextView header_title;
-        public ImageView btn_expand_toggle;
-        public Item refferalItem;
+        public TextView tvTitle;
+        public ImageView ivRight;
+        public Item aData;
 
         public ListHeaderViewHolder(View itemView) {
             super(itemView);
-            header_title = (TextView) itemView.findViewById(R.id.header_title);
-            btn_expand_toggle = (ImageView) itemView.findViewById(R.id.btn_expand_toggle);
+            tvTitle = (TextView) itemView.findViewById(R.id.header_title);
+            ivRight = (ImageView) itemView.findViewById(R.id.btn_expand_toggle);
         }
     }
 

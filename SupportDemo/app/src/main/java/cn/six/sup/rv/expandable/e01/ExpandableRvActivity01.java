@@ -26,6 +26,7 @@ public class ExpandableRvActivity01 extends AppCompatActivity {
         data.add(new ExpandableListAdapter.Item(ExpandableListAdapter.CHILD, "Apple"));
         data.add(new ExpandableListAdapter.Item(ExpandableListAdapter.CHILD, "Orange"));
         data.add(new ExpandableListAdapter.Item(ExpandableListAdapter.CHILD, "Banana"));
+
         data.add(new ExpandableListAdapter.Item(ExpandableListAdapter.HEADER, "Cars"));
         data.add(new ExpandableListAdapter.Item(ExpandableListAdapter.CHILD, "Audi"));
         data.add(new ExpandableListAdapter.Item(ExpandableListAdapter.CHILD, "Aston Martin"));
@@ -38,7 +39,6 @@ public class ExpandableRvActivity01 extends AppCompatActivity {
         places.invisibleChildren.add(new ExpandableListAdapter.Item(ExpandableListAdapter.CHILD, "Tamil Nadu"));
         places.invisibleChildren.add(new ExpandableListAdapter.Item(ExpandableListAdapter.CHILD, "Karnataka"));
         places.invisibleChildren.add(new ExpandableListAdapter.Item(ExpandableListAdapter.CHILD, "Maharashtra"));
-
         data.add(places);
 
         recyclerview.setAdapter(new ExpandableListAdapter(data));
