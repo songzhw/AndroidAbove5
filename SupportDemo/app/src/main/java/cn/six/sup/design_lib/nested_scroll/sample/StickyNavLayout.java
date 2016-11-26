@@ -14,6 +14,8 @@ import android.widget.OverScroller;
 
 import cn.six.sup.R;
 
+// http://www.itdadao.com/articles/c15a572970p0.html
+// http://blog.csdn.net/lmj623565791/article/details/52204039
 
 public class StickyNavLayout extends LinearLayout implements NestedScrollingParent {
     private static final String TAG = "StickyNavLayout";
@@ -68,6 +70,7 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
         invalidate();
     }
 
+    // 还要重写scrollTo方法避免滑动过快导致出现空白。
     @Override
     public void scrollTo(int x, int y) {
         if (y < 0) {
