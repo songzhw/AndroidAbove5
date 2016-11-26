@@ -55,43 +55,15 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
         params.height = getMeasuredHeight() - navView.getMeasuredHeight();
 
         setMeasuredDimension(getMeasuredWidth(), topView.getMeasuredHeight() + navView.getMeasuredHeight() + viewPager.getMeasuredHeight());
-
+        System.out.println("szw topHeight 01 = "+topView.getMeasuredHeight());
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         topViewHeight = topView.getMeasuredHeight();
+        System.out.println("szw topHeight 02 = "+topView.getMeasuredHeight());
     }
-
-
-    public void fling(int velocityY) {
-        overScroller.fling(0, getScrollY(), 0, velocityY, 0, 0, 0, topViewHeight);
-        invalidate();
-    }
-
-    // 还要重写scrollTo方法避免滑动过快导致出现空白。
-    @Override
-    public void scrollTo(int x, int y) {
-        if (y < 0) {
-            y = 0;
-        }
-        if (y > topViewHeight) {
-            y = topViewHeight;
-        }
-        if (y != getScrollY()) {
-            super.scrollTo(x, y);
-        }
-    }
-
-    @Override
-    public void computeScroll() {
-        if (overScroller.computeScrollOffset()) {
-            scrollTo(0, overScroller.getCurrY());
-            invalidate();
-        }
-    }
-
 
     @Override
     public void onNestedPreScroll(View target, int dx, int dy, int[] consumed) {
@@ -125,6 +97,35 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
         fling((int) velocityY);
         return true;
     }
+
+
+    public void fling(int velocityY) {
+        overScroller.fling(0, getScrollY(), 0, velocityY, 0, 0, 0, topViewHeight);
+        invalidate();
+    }
+
+    // 还要重写scrollTo方法避免滑动过快导致出现空白。
+    @Override
+    public void scrollTo(int x, int y) {
+        if (y < 0) {
+            y = 0;
+        }
+        if (y > topViewHeight) {
+            y = topViewHeight;
+        }
+        if (y != getScrollY()) {
+            super.scrollTo(x, y);
+        }
+    }
+
+    @Override
+    public void computeScroll() {
+        if (overScroller.computeScrollOffset()) {
+            scrollTo(0, overScroller.getCurrY());
+            invalidate();
+        }
+    }
+
 
     @Override
     public int getNestedScrollAxes() {

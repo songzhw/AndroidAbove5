@@ -6,7 +6,7 @@
         android:text="AA" android:textSize="32dp" android:background="#f00" android:gravity="center"/>
 
     <android.support.v7.widget.RecyclerView android:id="@+id/rvEx02" android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:layout_marginTop="10dp" android:layout_below="@id/tvEx01"
+        android:layout_height="wrap_content" android:layout_marginTop="10dp"
         android:layout_weight="1"
         />
 
