@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-public abstract class BaseBindAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public abstract class BaseBinderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
