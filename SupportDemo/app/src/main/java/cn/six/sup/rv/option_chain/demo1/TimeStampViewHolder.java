@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import ca.six.testt.R;
+import cn.six.sup.R;
 
 
 public class TimeStampViewHolder extends RecyclerView.ViewHolder {
