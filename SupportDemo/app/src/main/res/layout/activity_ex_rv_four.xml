@@ -9,12 +9,11 @@
         <TextView android:id="@+id/tvEx042" android:layout_width="match_parent" android:layout_height="100dp"
             android:text="AA2" android:textSize="32dp" android:background="#ff0" android:gravity="center"/>
     </LinearLayout>
-    <android.support.v7.widget.RecyclerView android:id="@+id/rvEx04" android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:layout_marginTop="10dp"
-        />
 
-    <TextView android:layout_width="match_parent" android:layout_height="100dp"
-        android:text="DD" android:textSize="22dp" android:background="#f0f"/>
+
+    <android.support.v7.widget.RecyclerView android:id="@+id/rvEx04" android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
 
 
 </cn.six.sup.rv.option_chain.demo4.NestLinearLayout>

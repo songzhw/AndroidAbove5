@@ -30,15 +30,13 @@ public class DemoBehavior extends CoordinatorLayout.Behavior<Button> {
 
         int x = width - left - btn.getWidth();
         int y = top;
-        setPosition(btn, x, y);
-        return true;
-    }
 
-    private void setPosition(View v, int x, int y) {
-        CoordinatorLayout.MarginLayoutParams layoutParams = (CoordinatorLayout.MarginLayoutParams) v.getLayoutParams();
+        CoordinatorLayout.MarginLayoutParams layoutParams = (CoordinatorLayout.MarginLayoutParams) btn.getLayoutParams();
         layoutParams.leftMargin = x;
         layoutParams.topMargin = y;
-        v.setLayoutParams(layoutParams);
+        btn.setLayoutParams(layoutParams);
+
+        return true;
     }
 
 }
