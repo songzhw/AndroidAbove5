@@ -73,7 +73,7 @@
         </activity>
         <activity
             android:name=".design_lib.behavior.TopImageBehaviorDemo"
-            android:label="Custom Behavior Demo">
+            android:label="Coornidate : Custom Behavior Demo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -81,7 +81,7 @@
         </activity>
         <activity
             android:name=".design_lib.behavior2.MyFabBehaviorDemo"
-            android:label="Custom Behavior Demo 002">
+            android:label="Coornidate : Custom Behavior Demo 002">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -89,7 +89,7 @@
         </activity>
         <activity
             android:name=".design_lib.coordinate.BehaviorDemoActivity"
-            android:label="Connected two views">
+            android:label="Coornidate : custom behavior 01 : two anti-move views">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -98,7 +98,7 @@
         </activity>
         <activity
             android:name=".design_lib.coordinate2.CoordinatorDemo2"
-            android:label="Two behaviors in CoordinatorLayout">
+            android:label="Coornidate : custom behavior 02 : Two behaviors in CoordinatorLayout">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -106,7 +106,7 @@
         </activity>
         <activity
             android:name=".design_lib.coordinate3.CoordinatorDemo3"
-            android:label="BottomSheetBehavior">
+            android:label="Coornidate : custom behavior 03 : BottomSheetBehavior">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.SAMPLE_CODE" />
