@@ -24,7 +24,7 @@ public class NumbersAdapter extends RecyclerView.Adapter<NumbersAdapter.MyViewHo
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        System.out.println("szw inner onCreateViewHolder()");
+//        System.out.println("szw inner onCreateViewHolder()");
         View view = LayoutInflater.from(ctx).inflate(R.layout.item_only_tv, parent, false);
         return new MyViewHolder(view);
     }
@@ -36,7 +36,7 @@ public class NumbersAdapter extends RecyclerView.Adapter<NumbersAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        System.out.println("szw inner onBindViewHolder("+position+")");
+//        System.out.println("szw inner onBindViewHolder("+position+")");
         holder.tv.setText(data.get(position));
     }
 
