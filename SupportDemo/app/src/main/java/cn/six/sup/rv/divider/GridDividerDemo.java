@@ -30,15 +30,6 @@ public class GridDividerDemo extends Activity {
         rv.setLayoutManager(new GridLayoutManager(this, COLUMN_COUNT));
         rv.setHasFixedSize(true);
 
-//        GridDivider02 divider = new GridDivider02();
-//        divider.setColor(0xff1c1c1c);
-//        divider.setSize(4);
-//        rv.addItemDecoration(divider);
-
-//        Drawable dividerDrawable = ContextCompat.getDrawable(this, R.drawable.divider_grid);
-//        GridDivider01 divider = new GridDivider01(dividerDrawable, dividerDrawable ,COLUMN_COUNT);
-
-
         Drawable dividerDrawable = ContextCompat.getDrawable(this, R.drawable.divider_grid);
         GridDivider03 divider = new GridDivider03(dividerDrawable);
         rv.addItemDecoration(divider);

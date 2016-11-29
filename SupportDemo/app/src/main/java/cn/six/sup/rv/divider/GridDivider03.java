@@ -48,6 +48,7 @@ public class GridDivider03 extends RecyclerView.ItemDecoration {
             final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
             final int left = child.getRight() + params.rightMargin;
             final int right = left + drawable.getIntrinsicWidth();
+//            System.out.println("szw drawVertical() : top = "+top + " ; bottom = "+bottom);
 
             drawable.setBounds(left, top, right, bottom);
             drawable.draw(c);
