@@ -13,6 +13,7 @@ import java.util.List;
 import cn.six.sup.R;
 import cn.six.sup.rv.option_chain.demo2.NumbersAdapter;
 
+// TODO: 2016-11-29 I think drawing happens too much. I can reduce some of them to improve performance
 public class GridDividerDemo extends Activity {
     public static final int COLUMN_COUNT = 5;
 
