@@ -33,8 +33,8 @@ public class HighlightGridDivider extends RecyclerView.ItemDecoration {
             final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
             final int top = child.getBottom() + params.bottomMargin;
 
-
-            if( (i >= 20) && (i <= 24)) {
+            int realPosition = parent.getChildAdapterPosition(child);
+            if ((realPosition >= 20) && (realPosition <= 24)) {
                 final int bottom = top + greenDrawable.getIntrinsicHeight();
                 greenDrawable.setBounds(left, top, right, bottom);
                 greenDrawable.draw(c);
