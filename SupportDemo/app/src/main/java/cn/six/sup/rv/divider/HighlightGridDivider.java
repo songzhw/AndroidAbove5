@@ -8,10 +8,15 @@ import android.view.View;
 public class HighlightGridDivider extends RecyclerView.ItemDecoration {
     private Drawable greyDrawable;
     private Drawable greenDrawable;
+    private int highlightStartPosition;
+    private int highlightEndPosition;
 
-    public HighlightGridDivider(Drawable greyDrawable, Drawable greenDrawable) {
+    public HighlightGridDivider(Drawable greyDrawable, Drawable greenDrawable, int highlightStartPosition,
+                                int highlightEndPosition) {
         this.greyDrawable = greyDrawable;
         this.greenDrawable = greenDrawable;
+        this.highlightStartPosition = highlightStartPosition;
+        this.highlightEndPosition = highlightEndPosition;
     }
 
 
@@ -34,7 +39,7 @@ public class HighlightGridDivider extends RecyclerView.ItemDecoration {
             final int top = child.getBottom() + params.bottomMargin;
 
             int realPosition = parent.getChildAdapterPosition(child);
-            if ((realPosition >= 20) && (realPosition <= 24)) {
+            if ((realPosition >= highlightStartPosition) && (realPosition <= highlightEndPosition)) {
                 final int bottom = top + greenDrawable.getIntrinsicHeight();
                 greenDrawable.setBounds(left, top, right, bottom);
                 greenDrawable.draw(c);
@@ -63,4 +68,3 @@ public class HighlightGridDivider extends RecyclerView.ItemDecoration {
         }
     }
 }
-

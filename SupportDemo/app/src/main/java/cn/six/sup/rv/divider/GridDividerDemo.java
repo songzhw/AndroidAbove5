@@ -33,7 +33,7 @@ public class GridDividerDemo extends Activity {
         Drawable dividerDrawable = ContextCompat.getDrawable(this, R.drawable.divider_grid);
 //        GridDivider03 divider = new GridDivider03(dividerDrawable);
         Drawable specialDrawable = ContextCompat.getDrawable(this, R.drawable.divider_grid_highlight);
-        HighlightGridDivider divider = new HighlightGridDivider(dividerDrawable, specialDrawable);
+        HighlightGridDivider divider = new HighlightGridDivider(dividerDrawable, specialDrawable, 25, 29);
         rv.addItemDecoration(divider);
 
         NumbersAdapter adapter = new NumbersAdapter(this, numbers);
