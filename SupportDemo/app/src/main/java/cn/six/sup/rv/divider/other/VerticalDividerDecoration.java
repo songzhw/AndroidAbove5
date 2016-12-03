@@ -39,11 +39,11 @@ public class VerticalDividerDecoration extends RecyclerView.ItemDecoration {
         }
     }
 
-//    @Override
-//    public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
-//        paint.setShader(linearGradient);
-//        c.drawRect(0, 0, parent.getRight(), 100, paint);
-//    }
+    @Override
+    public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
+        paint.setShader(linearGradient);
+        c.drawRect(0, 0, parent.getRight(), 100, paint);
+    }
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent,

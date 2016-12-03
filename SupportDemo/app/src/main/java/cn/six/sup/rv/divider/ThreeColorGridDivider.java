@@ -51,16 +51,17 @@ public class ThreeColorGridDivider extends RecyclerView.ItemDecoration {
 
             int realPosition = parent.getChildAdapterPosition(child);
             if ((realPosition >= highlightStartPosition) && (realPosition <= highlightEndPosition)) {
-                final int bottom = top + greenDrawable.getIntrinsicWidth();
+                final int bottom = top + greenDrawable.getIntrinsicHeight();
                 greenDrawable.setBounds(left, top, right, bottom);
                 greenDrawable.draw(c);
             }
-            else if(realPosition == 0 || realPosition == 1 || realPosition == 5 || realPosition == 6) {
-                final int bottom = top + width;
+            else if(realPosition == 0 || realPosition == 1 || realPosition == 5 || realPosition == 6
+                    || realPosition == 10 || realPosition == 11 || realPosition == 15 || realPosition == 16) {
+                final int bottom = top + height;
                 dottedDrawable.setBounds(left, top, right, bottom);
                 dottedDrawable.draw(c);
             } else {
-                final int bottom = top + width;
+                final int bottom = top + height;
                 greyDrawable.setBounds(left, top, right, bottom);
                 greyDrawable.draw(c);
             }

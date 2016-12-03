@@ -8,7 +8,6 @@ import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import cn.six.sup.R;
 import cn.six.sup.rv.RvViewHolder;
