@@ -6,7 +6,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
+/**
+ * This LayoutManager Class is needed when a Grid-like RecyclerView is a child of another RecycleView.
+ * It properly lays out the inner RecyclerView otherwise it will not be visible in the parent RecyclerView.
+ */
+
 public class NestedGridLayoutManager extends GridLayoutManager {
+    private int[] measuredDimension = new int[2];
+
     public NestedGridLayoutManager(Context context, int spanCount) {
         super(context, spanCount);
     }
@@ -14,8 +21,6 @@ public class NestedGridLayoutManager extends GridLayoutManager {
     public NestedGridLayoutManager(Context context, int spanCount, int orientation, boolean reverseLayout) {
         super(context, spanCount, orientation, reverseLayout);
     }
-
-    private int[] measuredDimension = new int[2];
 
     @Override
     public void onMeasure(RecyclerView.Recycler recycler, RecyclerView.State state, int widthSpec, int heightSpec) {
@@ -30,23 +35,15 @@ public class NestedGridLayoutManager extends GridLayoutManager {
         int span = getSpanCount();
         for (int index = 0; index < count; index++) {
             measureScrapChild(recycler, index,
-                View.MeasureSpec.makeMeasureSpec(index, View.MeasureSpec.UNSPECIFIED),
-                View.MeasureSpec.makeMeasureSpec(index, View.MeasureSpec.UNSPECIFIED),
-                measuredDimension);
+                    View.MeasureSpec.makeMeasureSpec(index, View.MeasureSpec.UNSPECIFIED),
+                    View.MeasureSpec.makeMeasureSpec(index, View.MeasureSpec.UNSPECIFIED),
+                    measuredDimension);
 
-            if (getOrientation() == HORIZONTAL) {
-                if (index % span == 0) {
-                    width = + + measuredDimension[0];
-                }
-                if (index == 0) {
-                    height = measuredDimension[1];
-                }
-            } else {
+            // add height row by row
+            width = measuredDimension[0];
+            if (getOrientation() != HORIZONTAL) {
                 if (index % span == 0) {
                     height = height + measuredDimension[1];
-                }
-                if (index == 0) {
-                    width = measuredDimension[0];
                 }
             }
         }
@@ -69,16 +66,16 @@ public class NestedGridLayoutManager extends GridLayoutManager {
     }
 
     private void measureScrapChild(RecyclerView.Recycler recycler, int position, int widthSpec,
-        int heightSpec, int[] measuredDimension) {
+                                   int heightSpec, int[] measuredDimension) {
         if (position < getItemCount()) {
             try {
-                View view = recycler.getViewForPosition(0);//fix 动态添加时报IndexOutOfBoundsException
+                View view = recycler.getViewForPosition(0);
                 if (view != null) {
-                    RecyclerView.LayoutParams p = (RecyclerView.LayoutParams)view.getLayoutParams();
+                    RecyclerView.LayoutParams p = (RecyclerView.LayoutParams) view.getLayoutParams();
                     int childWidthSpec = ViewGroup.getChildMeasureSpec(widthSpec,
-                        getPaddingLeft() + getPaddingRight(), p.width);
+                            getPaddingLeft() + getPaddingRight(), p.width);
                     int childHeightSpec = ViewGroup.getChildMeasureSpec(heightSpec,
-                        getPaddingTop() + getPaddingBottom(), p.height);
+                            getPaddingTop() + getPaddingBottom(), p.height);
                     view.measure(childWidthSpec, childHeightSpec);
                     measuredDimension[0] = view.getMeasuredWidth() + p.leftMargin + p.rightMargin;
                     measuredDimension[1] = view.getMeasuredHeight() + p.bottomMargin + p.topMargin;
