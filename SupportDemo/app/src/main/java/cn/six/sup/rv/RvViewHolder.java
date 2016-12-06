@@ -1,5 +1,6 @@
 package cn.six.sup.rv;
 
+import android.support.annotation.ColorRes;
 import android.support.v4.util.SparseArrayCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -51,5 +52,11 @@ public class RvViewHolder extends RecyclerView.ViewHolder {
         ImageView iv = getView(id);
         iv.setImageResource(drawId);
     }
+
+    public void setBackground(int id, int bgResId){
+        View view = getView(id);
+        view.setBackgroundResource(bgResId);
+    }
+
 
 }
