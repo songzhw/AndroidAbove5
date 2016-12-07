@@ -49,7 +49,9 @@ public class SnapHelperDemo extends Activity {
         adapter.data = numbers;
         rv.setAdapter(adapter);
 
-        SnapHelper snapHelper = new LinearSnapHelper();
+        SnapHelper snapHelper = new LeftSnapHelper();
         snapHelper.attachToRecyclerView(rv);
     }
+
+
 }
