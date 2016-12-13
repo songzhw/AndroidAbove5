@@ -12,6 +12,9 @@ import android.widget.ImageView;
  *
  * from : https://github.com/saulmm/CoordinatorBehaviorExample
  */
+
+@Deprecated
+// UI效果不好， 还待改进！
 public class TopImageBehavior extends CoordinatorLayout.Behavior<ImageView> {
 
     public TopImageBehavior(Context context, AttributeSet attrs) {
