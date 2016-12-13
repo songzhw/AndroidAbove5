@@ -23,8 +23,12 @@ public class TranslateHideShowBehavior extends CoordinatorLayout.Behavior<View> 
     // @return true if the Behavior changed the child view's size or position, false otherwise
     @Override
     public boolean onDependentViewChanged(CoordinatorLayout parent, View child, View dependency) {
+        // dependency : AppBarLayout
         int appBarTop = dependency.getTop(); // 上推消失时， 数值由0变-190多。 反之出现时，又从负数变成0.
         float translationY = Math.abs(appBarTop);
+
+        // child : FloatingActionBar and bottom textView are using this behavior
+        // so fab and bottom textView is the "child"
         child.setTranslationY(translationY);
         return true;
     }
