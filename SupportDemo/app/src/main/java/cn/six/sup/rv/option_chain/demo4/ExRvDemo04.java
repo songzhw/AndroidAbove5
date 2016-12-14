@@ -33,6 +33,11 @@ public class ExRvDemo04 extends Activity {
         rv.setHasFixedSize(true);
         rv.setAdapter(adapter);
 
+        // fix bug : Rv inside Nsv cannot fling
+        // http://stackoverflow.com/questions/32175603/fling-not-working-for-nested-scrollview
+        // RV也是NestedScrollingChild的实现类。 此方法其实就是调用NestedScrollingChildHelper的方法
+        rv.setNestedScrollingEnabled(false);
+
         final NestedScrollView nsv = (NestedScrollView) findViewById(R.id.nsv_ex_rv_four);
         // 处理ScrollView的焦点问题
         new Handler().postDelayed(new Runnable(){
@@ -41,6 +46,7 @@ public class ExRvDemo04 extends Activity {
                 //直接用ptrScrollView.scrollTo(0,0)起不到作用！
                 nsv.scrollTo(0, 0);
             }}, 100) ;
+
     }
 
 }
