@@ -2,9 +2,10 @@ package cn.six.sup.rv.option_chain.demo4;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.TextView;
 
 
 import java.util.ArrayList;
@@ -32,5 +33,14 @@ public class ExRvDemo04 extends Activity {
         rv.setHasFixedSize(true);
         rv.setAdapter(adapter);
 
+        final NestedScrollView nsv = (NestedScrollView) findViewById(R.id.nsv_ex_rv_four);
+        // 处理ScrollView的焦点问题
+        new Handler().postDelayed(new Runnable(){
+            @Override
+            public void run() {
+                //直接用ptrScrollView.scrollTo(0,0)起不到作用！
+                nsv.scrollTo(0, 0);
+            }}, 100) ;
     }
+
 }
