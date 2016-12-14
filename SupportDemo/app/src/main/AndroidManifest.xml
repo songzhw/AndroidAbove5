@@ -92,7 +92,6 @@
             android:label="Coornidate + Behavior : 01 two anti-move views">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
@@ -229,7 +228,7 @@
         </activity>
         <activity
             android:name=".design_lib.nested_scroll.sample.NestScollSample"
-            android:label="NestedScrolling">
+            android:label="NestedScrolling : 01 sample from Internet">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -237,7 +236,7 @@
         </activity>
         <activity
             android:name=".rv.option_chain.demo4.ExRvDemo04"
-            android:label="Rv : ChainView 04">
+            android:label="NestedScrolling : 02 ? ＋ rv">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.SAMPLE_CODE" />
