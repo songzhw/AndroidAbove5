@@ -22,7 +22,7 @@ public class ExRvDemo04 extends Activity {
         setContentView(R.layout.activity_ex_rv_four);
 
         List<String> numbers = new ArrayList<>();
-        for(int i = 0; i < 400; i++){
+        for(int i = 0; i < 200; i++){
             numbers.add("item "+i);
         }
 
