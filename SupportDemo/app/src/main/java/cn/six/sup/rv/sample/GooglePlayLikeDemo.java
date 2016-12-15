@@ -48,6 +48,8 @@ public class GooglePlayLikeDemo extends Activity {
         }
         adapter.data = data;
         rv.setAdapter(adapter);
+
+        rv.setNestedScrollingEnabled(false);
     }
 
     private void applyInnerRv(RvViewHolder vh, List<Integer> integers, int position) {
