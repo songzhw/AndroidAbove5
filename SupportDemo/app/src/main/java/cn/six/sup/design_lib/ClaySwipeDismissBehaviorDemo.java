@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import cn.six.sup.R;
@@ -15,8 +14,8 @@ import cn.six.sup.R;
 /**
  * Created by songzhw on 2016/2/24
  */
-public class SwipeBehaviorDemo extends AppCompatActivity implements SwipeDismissBehavior.OnDismissListener {
-    private SwipeBehaviorDemo self;
+public class ClaySwipeDismissBehaviorDemo extends AppCompatActivity implements SwipeDismissBehavior.OnDismissListener {
+    private ClaySwipeDismissBehaviorDemo self;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

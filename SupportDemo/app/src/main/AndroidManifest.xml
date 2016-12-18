@@ -49,7 +49,7 @@
         </activity>
         <activity
             android:name=".design_lib.FlexibleTopDemo"
-            android:label="Flexible Top Demo">
+            android:label="Existing clay Behavior : 01 AppBarLayout.Behavior (show/hide)">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -57,15 +57,23 @@
         </activity>
         <activity
             android:name=".design_lib.FlexibleTopDemo2"
-            android:label="Flexible Top Demo 002">
+            android:label="Existing clay Behavior : 02 AppBarLayout.Behavior (Collapse)">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".design_lib.SwipeBehaviorDemo"
-            android:label="Swipe Behavior Demo">
+            android:name=".design_lib.ClaySwipeDismissBehaviorDemo"
+            android:label="Existing clay Behavior : 03 SwipeDismissBehavior">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".design_lib.coordinate3.ClayBottomSheetBehaviorDemo"
+            android:label="Existing clay Behavior : 04 BottomSheetBehavior">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -73,7 +81,7 @@
         </activity>
         <activity
             android:name=".design_lib.behavior.TopImageBehaviorDemo"
-            android:label="Coornidate + Behavior : 03 Top Image">
+            android:label="Coornidate + Behavior : 03 Top Image (Failed)">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -98,14 +106,6 @@
         <activity
             android:name=".design_lib.coordinate2.CoordinatorDemo2"
             android:label="Coornidate + Behavior : 04 Translate opposite AppBarLayout">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".design_lib.coordinate3.CoordinatorDemo3"
-            android:label="Coornidate + Behavior : 05 BottomSheetBehavior">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.SAMPLE_CODE" />
@@ -284,7 +284,7 @@
         </activity>
         <activity
             android:name=".rv.sample.GooglePlayLikeDemo"
-            android:label="Rv Sample : Google Play Like Demo">
+            android:label="Rv - Sample : Google Play Like Demo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.SAMPLE_CODE" />

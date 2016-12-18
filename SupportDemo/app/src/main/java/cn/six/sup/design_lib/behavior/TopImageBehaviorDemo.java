@@ -8,6 +8,7 @@ import cn.six.sup.R;
 /**
  * Created by songzhw on 2016/2/24
  */
+@Deprecated
 public class TopImageBehaviorDemo extends AppCompatActivity {
 
     @Override

@@ -22,7 +22,7 @@ import cn.six.sup.rv.dragdrop.DragDropRvAdapter;
 /**
  * Created by songzhw on 2016-07-17
  */
-public class CoordinatorDemo3 extends AppCompatActivity {
+public class ClayBottomSheetBehaviorDemo extends AppCompatActivity {
 
     private TextView tvOutterBottomTitle;
 
