@@ -16,7 +16,7 @@ import cn.six.sup.rv.dragdrop.DragDropRvAdapter;
 /**
  * Created by songzhw on 2016-07-11
  */
-public class CoordinatorDemo2 extends AppCompatActivity {
+public class ClayBottomMoveDemo extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

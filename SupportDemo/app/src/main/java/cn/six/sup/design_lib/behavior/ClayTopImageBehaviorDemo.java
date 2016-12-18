@@ -1,16 +1,19 @@
-package cn.six.sup.design_lib.coordinate;
+package cn.six.sup.design_lib.behavior;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import cn.six.sup.R;
 
-
-public class BehaviorDemoActivity extends AppCompatActivity {
+/**
+ * Created by songzhw on 2016/2/24
+ */
+@Deprecated
+public class ClayTopImageBehaviorDemo extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_custom_behavior);
+        setContentView(R.layout.activity_top_img_behavior);
     }
 }

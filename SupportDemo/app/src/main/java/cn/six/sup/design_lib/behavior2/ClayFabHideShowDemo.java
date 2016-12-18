@@ -8,7 +8,7 @@ import cn.six.sup.R;
 /**
  * Created by songzhw on 2016/2/25
  */
-public class MyFabBehaviorDemo extends Activity {
+public class ClayFabHideShowDemo extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
