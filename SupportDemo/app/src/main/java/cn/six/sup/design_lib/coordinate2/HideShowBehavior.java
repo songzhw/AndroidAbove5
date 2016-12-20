@@ -12,7 +12,6 @@ import android.view.View;
  * Created by songzhw on 2016-07-11
  */
 public class HideShowBehavior extends CoordinatorLayout.Behavior<View> {
-    private float childY = 0;
 
     public HideShowBehavior(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -20,13 +19,8 @@ public class HideShowBehavior extends CoordinatorLayout.Behavior<View> {
 
     // 开始滑动时调用一次。 已经在滑动了就不再多次重复调用了。就像action_down一样。不是action_move。
     @Override
-    public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, View child,
-                                       View directTargetChild, View target, int nestedScrollAxes) {
+    public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, View child, View directTargetChild, View target, int nestedScrollAxes) {
         // "child" == fab, "directTargetChild" == "target" == SwipeRefreshLayout, "nestedScrollAxes" == 2
-        if(child.getVisibility() == View.VISIBLE && childY == 0){
-            childY = coordinatorLayout.getHeight() - child.getY();
-            Log.d("szw", "the margin bottomf of fab = "+childY);
-        }
 
         //判断是否竖直滚动
         return (nestedScrollAxes & ViewCompat.SCROLL_AXIS_VERTICAL) != 0;
