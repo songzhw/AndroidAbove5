@@ -1,11 +1,9 @@
-package cn.six.sup.design_lib.coordinate2;
+package cn.six.sup.clay.coordinate2;
 
 import android.content.Context;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 /**

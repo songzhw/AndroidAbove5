@@ -1,4 +1,4 @@
-package cn.six.sup.design_lib.coordinate2;
+package cn.six.sup.clay.coordinate2;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

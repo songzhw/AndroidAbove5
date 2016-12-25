@@ -1,4 +1,4 @@
-package cn.six.sup.design_lib.behavior2;
+package cn.six.sup.clay.behavior2;
 
 import android.app.Activity;
 import android.os.Bundle;

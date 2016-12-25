@@ -1,4 +1,4 @@
-package cn.six.sup.design_lib.behavior2;
+package cn.six.sup.clay.behavior2;
 
 import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;

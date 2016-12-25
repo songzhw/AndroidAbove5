@@ -72,7 +72,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".design_lib.coordinate3.ClayBottomSheetBehaviorDemo"
+            android:name=".clay.coordinate3.ClayBottomSheetBehaviorDemo"
             android:label="Existing clay Behavior : 04 BottomSheetBehavior">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -80,7 +80,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".design_lib.coordinate.ClayTwoAntiMoveDemo"
+            android:name=".clay.coordinate.ClayTwoAntiMoveDemo"
             android:label="Coornidate + Behavior : 01 two anti-move views">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -88,7 +88,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".design_lib.behavior2.ClayFabHideShowDemo"
+            android:name=".clay.behavior2.ClayFabHideShowDemo"
             android:label="Coornidate + Behavior : 02 MyFab Behavior">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -96,7 +96,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".design_lib.coordinate2.ClayBottomMoveDemo"
+            android:name=".clay.coordinate2.ClayBottomMoveDemo"
             android:label="Coornidate + Behavior : 03 Translate opposite AppBarLayout">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -104,8 +104,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".design_lib.behavior.ClayTopImageBehaviorDemo"
+            android:name=".clay.behavior.ClayTopImageBehaviorDemo"
             android:label="Coornidate + Behavior : 04 Top Image (Failed)">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".clay.fixedtop.FixedTopDemo"
+            android:label="Coornidate + Behavior : 05 Fixed Top">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.SAMPLE_CODE" />

@@ -1,4 +1,4 @@
-package cn.six.sup.design_lib.coordinate2;
+package cn.six.sup.clay.coordinate2;
 
 import android.content.Context;
 import android.support.design.widget.AppBarLayout;

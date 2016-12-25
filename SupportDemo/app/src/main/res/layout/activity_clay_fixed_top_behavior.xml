@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView android:id="@+id/ivFixedTop" android:layout_height="@dimen/fixed_top_height" android:layout_width="match_parent"
+        android:scaleType="centerCrop" android:src="@drawable/west_lake"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvFixedTop" android:layout_width="match_parent" android:layout_height="match_parent"
+        android:background="@color/eye_caring"
+        app:layout_behavior="cn.six.sup.clay.fixedtop.FixedTopBehavior"
+        />
+
+</android.support.design.widget.CoordinatorLayout>

@@ -1,4 +1,4 @@
-package cn.six.sup.design_lib.coordinate;
+package cn.six.sup.clay.coordinate;
 
 import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;

@@ -9,7 +9,7 @@
         android:background="#FFCC00" android:text="Child" android:textAllCaps="false"
         app:layout_behavior="cn.six.sup.design_lib.coordinate.DemoBehavior" />
 
-    <cn.six.sup.design_lib.coordinate.DemoView
+    <cn.six.sup.clay.coordinate.DemoView
         android:layout_width="100dp" android:layout_height="100dp"
         android:layout_marginLeft="300dp" android:layout_marginTop="300dp"
         android:background="#3366CC"

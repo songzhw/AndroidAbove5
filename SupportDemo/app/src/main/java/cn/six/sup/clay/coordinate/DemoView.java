@@ -1,4 +1,4 @@
-package cn.six.sup.design_lib.coordinate;
+package cn.six.sup.clay.coordinate;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.design.widget.CoordinatorLayout;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 
