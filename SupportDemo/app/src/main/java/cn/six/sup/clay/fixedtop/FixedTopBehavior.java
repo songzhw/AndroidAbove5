@@ -98,4 +98,23 @@ public class FixedTopBehavior extends CoordinatorLayout.Behavior<View> {
     }
 
 
+    /* 6.
+    若只写了上面的onNestedPreScroll()， 那就只能上滑。 最后不能再往下滑，重新露出top view了。
+    */
+
+    @Override
+    public void onNestedScroll(CoordinatorLayout coordinatorLayout, View child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
+        // !!! dyUnconsumed在下滑时（看前面的内容）， 就是0或负数。 平时是0， 若已经到顶了，还想下滑， 就是负数了。
+
+        if(dyConsumed > 0) {
+            return;
+        }
+
+        float leftY = child.getTranslationY() - dyUnconsumed; //到顶后再下拉，第一参为0， 第二参为负数，这时leftY就成了正数了。
+        if(leftY > 0 && leftY < topViewHeight){
+            child.setTranslationY(leftY); // child仍是rv
+        }
+
+        super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed);
+    }
 }
