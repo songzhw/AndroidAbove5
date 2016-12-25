@@ -28,14 +28,14 @@ public abstract class OneAdapter<T> extends RecyclerView.Adapter<RvViewHolder> {
 
     @Override
     public RvViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        System.out.println("szw onCreateViewHolder()");
+//        System.out.println("szw onCreateViewHolder()");
         RvViewHolder vh = RvViewHolder.createViewHolder(parent, layoutResId);
         return vh;
     }
 
     @Override
     public void onBindViewHolder(RvViewHolder holder, int position) {
-        System.out.println("szw onBindViewHolder("+position+")");
+//        System.out.println("szw onBindViewHolder("+position+")");
         if(data != null && data.size() > position){
             apply(holder, data.get(position), position);
         }
