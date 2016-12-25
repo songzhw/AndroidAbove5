@@ -63,4 +63,39 @@ public class FixedTopBehavior extends CoordinatorLayout.Behavior<View> {
         return (nestedScrollAxes & ViewCompat.SCROLL_AXIS_VERTICAL) != 0 ;
     }
 
+    /* 5. NestScrolling逻辑
+    滑动动作由child主动发起， parent收到回调并做出响应
+
+    child准备滑动时通知parent，
+         child调用了startNestedScroll(),
+         而parent调用了onStartNestedScroll(), 决定是否需要配合child一起处理滑动。
+              如果需要配合， 就还会再回调onNestedScrollAccepted()
+
+    每次滑动前， child都要先询问parent是否需要滑动
+         child调用了dispatchNestedPreScroll(),
+         而parent调用了onNestedPreScroll(), parent可以在此先于child， 先滑动.
+
+    child滑动后，
+         child调用了dispatchNestedScroll(),
+         而parent调用了onNestedScroll(). 就是child滑动完后， 还交待parent是否要后于child滑动
+
+    滑动结束， parent调用 onStopNestedScroll()。
+    */
+
+    @Override
+    public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, View child, View target, int dx, int dy, int[] consumed) {
+        super.onNestedPreScroll(coordinatorLayout, child, target, dx, dy, consumed);
+
+        if(dy < 0) {
+            return; //只处理上滑的， 这时的dy是 > 0的
+        }
+
+        float leftY = child.getTranslationY() - dy;
+        if(leftY > 0){
+            child.setTranslationY(leftY);
+            consumed[1] = dy; // 滑动了多少， 处理了多少。第0位是x， 第1位是y
+        }
+    }
+
+
 }
