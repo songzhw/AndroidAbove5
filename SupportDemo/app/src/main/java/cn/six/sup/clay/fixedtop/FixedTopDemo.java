@@ -36,5 +36,8 @@ public class FixedTopDemo extends Activity {
         }
         adapter.data = data;
         rv.setAdapter(adapter);
+
+        // 加了这一句， 那整个FixedTopBehavior都会失效了！
+//        rv.setNestedScrollingEnabled(false);
     }
 }
