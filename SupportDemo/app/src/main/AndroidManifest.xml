@@ -119,6 +119,14 @@
                 <category android:name="android.intent.category.SAMPLE_CODE" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".clay.top3.ClayTop3Demo"
+            android:label="Coornidate + Behavior : 06 Collapsed Top 3">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.SAMPLE_CODE" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name=".rv.sort.SortedListActivity"

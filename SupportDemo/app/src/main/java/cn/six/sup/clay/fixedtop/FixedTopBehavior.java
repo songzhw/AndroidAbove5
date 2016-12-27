@@ -2,11 +2,9 @@ package cn.six.sup.clay.fixedtop;
 
 import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup;
 
 import cn.six.sup.R;
 
@@ -117,4 +115,7 @@ public class FixedTopBehavior extends CoordinatorLayout.Behavior<View> {
 
         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed);
     }
+
+    // TODO: 2016-12-25 处理fling
+
 }
