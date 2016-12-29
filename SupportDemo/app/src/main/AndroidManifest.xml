@@ -127,6 +127,14 @@
                 <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".clay.top4parallax.ClayTopImageParallaxDemo"
+            android:label="Coornidate + Behavior : 07 Top ImageView Parallax">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="ca.six.sup.demo" />
+            </intent-filter>
+        </activity>
 
         <activity
             android:name=".rv.sort.SortedListActivity"
