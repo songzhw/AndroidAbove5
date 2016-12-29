@@ -19,7 +19,7 @@
             android:label="ToolBar Demo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -27,7 +27,7 @@
             android:label="FloatingActionButton Demo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -36,7 +36,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -44,7 +44,7 @@
             android:label="Scolling Demo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -52,7 +52,7 @@
             android:label="Existing clay Behavior : 01 AppBarLayout.Behavior (show/hide)">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -60,7 +60,7 @@
             android:label="Existing clay Behavior : 02 AppBarLayout.Behavior (Collapse)">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -68,7 +68,7 @@
             android:label="Existing clay Behavior : 03 SwipeDismissBehavior">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -76,7 +76,7 @@
             android:label="Existing clay Behavior : 04 BottomSheetBehavior">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -84,7 +84,7 @@
             android:label="Coornidate + Behavior : 01 two anti-move views">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -92,7 +92,7 @@
             android:label="Coornidate + Behavior : 02 MyFab Behavior">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -100,7 +100,7 @@
             android:label="Coornidate + Behavior : 03 Translate opposite AppBarLayout">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -108,7 +108,7 @@
             android:label="Coornidate + Behavior : 04 Top Image (Failed)">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -116,7 +116,7 @@
             android:label="Coornidate + Behavior : 05 Fixed Top">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -124,7 +124,7 @@
             android:label="Coornidate + Behavior : 06 Collapsed Top 3">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
 
@@ -133,7 +133,7 @@
             android:label="Rv with sorted data">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -141,7 +141,7 @@
             android:label="Rv with Grouped (Old)">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -150,7 +150,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -158,7 +158,7 @@
             android:label="Rv with Header">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -167,7 +167,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -175,7 +175,7 @@
             android:label="Rv with GroupAdapter">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -184,7 +184,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -192,7 +192,7 @@
             android:label="Rv with Swipe Refresh 001 : swipe refresh">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -200,7 +200,7 @@
             android:label="Rv with Swipe Refresh 003 : perfect">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -208,7 +208,7 @@
             android:label="Swipe Menu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -216,7 +216,7 @@
             android:label="Rv with Swipe Menu (in item)">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -224,7 +224,7 @@
             android:label="Rv with Swipe Card">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -232,7 +232,7 @@
             android:label="Rv with Custom LayoutManger 01: Slash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -240,7 +240,7 @@
             android:label="Rv + ExpandableRecyclerView 001">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -248,7 +248,7 @@
             android:label="NestedScrolling : 01 sample from Internet">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -256,7 +256,7 @@
             android:label="NestedScrolling : 02 ? ＋ rv">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -264,7 +264,7 @@
             android:label="Rv + Divider : 01 - Grid">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -272,7 +272,7 @@
             android:label="Rv + Divider : 02 - item decoration">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -280,7 +280,7 @@
             android:label="Rv + Divider : 03 - Three Color decoration">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -288,7 +288,7 @@
             android:label="Rv + ViewHold's 3 different position">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -296,7 +296,7 @@
             android:label="Rv + SnapHelper">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
         <activity
@@ -304,7 +304,7 @@
             android:label="Rv - Sample : Google Play Like Demo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.SAMPLE_CODE" />
+                <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
 
