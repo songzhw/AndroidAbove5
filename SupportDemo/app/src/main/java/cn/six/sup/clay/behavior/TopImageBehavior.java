@@ -11,6 +11,7 @@ import android.widget.ImageView;
  * Created by songzhw on 2016/2/24
  *
  * from : https://github.com/saulmm/CoordinatorBehaviorExample
+ * from : http://blog.csdn.net/tyk0910/article/details/53792012
  */
 
 @Deprecated
