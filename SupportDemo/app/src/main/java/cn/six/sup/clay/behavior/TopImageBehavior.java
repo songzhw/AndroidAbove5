@@ -30,24 +30,23 @@ public class TopImageBehavior extends CoordinatorLayout.Behavior<ImageView> {
     public boolean layoutDependsOn(CoordinatorLayout parent, ImageView child, View dependency) {
         if(dependency instanceof AppBarLayout){
             final AppBarLayout ablay = (AppBarLayout) dependency;
-            System.out.println("szw dependency = "+dependency);
-            ablay.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-                @Override
-                public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                    scrollRange = ablay.getTotalScrollRange();
-                }
-            });
+            ablay.removeOnOffsetChangedListener(listener);
+            ablay.addOnOffsetChangedListener(listener);
         }
         return dependency instanceof AppBarLayout;
     }
 
-
+    private AppBarLayout.OnOffsetChangedListener listener = new AppBarLayout.OnOffsetChangedListener() {
+        @Override
+        public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+            scrollRange = appBarLayout.getTotalScrollRange();
+        }
+    };
 
     // dependency is the Toolbar
     // @return true if the Behavior changed the child view's size or position, false otherwise
     @Override
     public boolean onDependentViewChanged(CoordinatorLayout parent, ImageView child, View dependency) {
-        System.out.println("szw onDependentViewChanged() : scrollRange = "+scrollRange);
         child.setX(child.getX() - 10);
         child.setY(child.getY() - 10);
 
