@@ -16,8 +16,9 @@ import android.widget.ImageView;
  */
 
 @Deprecated
-// UI效果不好， 还待改进！(不好的原因，是child的位置的变化，跟depenedency无关，所以效果很突兀)
+// 最初版本UI效果不好， 还待改进！(不好的原因，是child的位置的变化，跟depenedency无关，所以效果很突兀)
 // 改进方法： 位置和dependency绑定， 让效果更好看
+// 现在的效果好多了
 public class TopImageBehavior extends CoordinatorLayout.Behavior<ImageView> {
 
     private int width, height, top, left;
@@ -66,16 +67,20 @@ public class TopImageBehavior extends CoordinatorLayout.Behavior<ImageView> {
         // 之后， rv或nsv再下拉， top就从-504开始变大了， 随着滑动， 值由-502， -493， ... 一直变到0 ， ty仍桓为0
         System.out.println("szw onDependentViewChanged() : top = "+dependency.getTop()+" ; ty = "+dependency.getTranslationY());
 
-        float percent = Math.abs(y) / scrollRange;
+        float temp = Math.abs(y) / scrollRange;
+        float percent = temp * 0.85f;
 
+        // 位移
+        child.setX(left + 300 * percent);
+        child.setY( top * (1 - percent) );
 
-        child.setX(child.getX() - 10);
-        child.setY(child.getY() - 10);
-
+        // 开始变大/变小
         CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) child.getLayoutParams();
-        lp.width = lp.width - 10;
-        lp.height = lp.height - 10;
+        lp.width = (int) (width * (1 - temp / 2));
+        lp.height = (int) (height * (1 - temp /2 ));
         child.setLayoutParams(lp);
+        // 注意： 不要用lp.height = (int) (lp.height * ...), 因为本来lp.height就在变小
+        // 这样说法小得更快了。 应该要用原来height值再乘以比例
 
         return true;
     }
