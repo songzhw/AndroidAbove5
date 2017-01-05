@@ -18,7 +18,7 @@
     <TextView android:id="@+id/tvCoordinator2" android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
         android:textSize="22dp" android:textColor="#ffff" android:text="Bottom Text" android:gravity="center"
         android:layout_gravity="bottom" android:background="?attr/colorPrimary"
-        app:layout_behavior="cn.six.sup.design_lib.coordinate2.TranslateHideShowBehavior"
+        app:layout_behavior="cn.six.sup.clay.coordinate2.TranslateHideShowBehavior"
         />
 
     <android.support.design.widget.FloatingActionButton
@@ -26,7 +26,7 @@
         android:layout_marginRight="16dp" android:layout_marginBottom="72dp"
         android:layout_gravity="bottom|right"
         android:src="@android:drawable/ic_dialog_info"
-        app:layout_behavior="cn.six.sup.design_lib.coordinate2.HideShowBehavior"
+        app:layout_behavior="cn.six.sup.clay.coordinate2.HideShowBehavior"
         />
 
 
