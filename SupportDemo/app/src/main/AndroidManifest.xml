@@ -307,6 +307,14 @@
                 <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".other.chrome.ChromeJumperDemo"
+            android:label="z Others - Chrome Custom Tab">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="ca.six.sup.demo" />
+            </intent-filter>
+        </activity>
 
     </application>
 
