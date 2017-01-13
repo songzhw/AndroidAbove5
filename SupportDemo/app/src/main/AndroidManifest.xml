@@ -316,6 +316,10 @@
             </intent-filter>
         </activity>
 
+
+        <receiver android:name=".other.chrome.ActionBroadcastReceiver" />
+
+
     </application>
 
 </manifest>
