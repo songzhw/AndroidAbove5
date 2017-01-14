@@ -26,6 +26,8 @@ import static android.support.customtabs.CustomTabsService.ACTION_CUSTOM_TABS_CO
  * Created by songzhw on 2017-01-13
  */
 
+// also see : https://github.com/marktony/PaperPlane/blob/master/app/src/main/java/com/marktony/zhihudaily/customtabs/CustomTabActivityHelper.java
+
 public class ChromeJumperDemo extends Activity implements View.OnClickListener {
 
     @Override
