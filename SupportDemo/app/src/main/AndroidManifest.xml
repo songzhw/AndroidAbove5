@@ -284,6 +284,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".rv.divider.floating.demo.FloatingTitleDemo"
+            android:label="Rv + Divider : 04 - Floating Title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="ca.six.sup.demo" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".rv.viewholder.ViewHolder_PositionActivity"
             android:label="Rv + ViewHold's 3 different position">
             <intent-filter>
