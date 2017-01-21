@@ -12,9 +12,10 @@ import cn.six.sup.R;
 import cn.six.sup.rv.RvViewHolder;
 import cn.six.sup.rv.one_adapter.OneAdapter;
 
-public class FloatingTitleDemo extends Activity {
+public class FloatingTitleDemo extends Activity implements IFloatingGroupCallback {
     private RecyclerView rv;
     private OneAdapter adapter;
+    private List<FloatingModel> data;
 
 
     @Override
@@ -33,7 +34,7 @@ public class FloatingTitleDemo extends Activity {
                 vh.setText(R.id.tv_rv_item, value.text);
             }
         };
-        List<FloatingModel> data = new ArrayList<>();
+        data = new ArrayList<>();
         for (int i = 0 ; i < 26; i++){
             String title = "Group "+ (i / 10);
             data.add(new FloatingModel("Item : "+i, title));
@@ -41,4 +42,11 @@ public class FloatingTitleDemo extends Activity {
         adapter.data = data;
         rv.setAdapter(adapter);
     }
+
+    @Override
+    public String getGroup(int position) {
+        return data.get(position).title;
+    }
+
+
 }
