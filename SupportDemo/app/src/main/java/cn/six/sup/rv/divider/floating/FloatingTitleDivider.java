@@ -32,7 +32,8 @@ public class FloatingTitleDivider extends RecyclerView.ItemDecoration {
         RecyclerView.ViewHolder vh = parent.findContainingViewHolder(view);
 
         if (isFirstItemInGroup(position)) {
-            outRect.bottom = height;
+//            outRect.bottom = height; // bug:   这是在第0项之后加一个divider
+            outRect.top = height;      // fixed: 这才能保证第0项之前有一个didiver
         }
 
     }
