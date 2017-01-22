@@ -9,7 +9,7 @@ public class FloatingModel {
     public FloatingModel() {
     }
 
-    public FloatingModel(String title, String text) {
+    public FloatingModel(String text, String title) {
         this.title = title;
         this.text = text;
     }

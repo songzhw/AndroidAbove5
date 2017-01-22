@@ -284,7 +284,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".rv.divider.floating.demo.FloatingTitleDemo"
+            android:name=".rv.divider.floating.FloatingTitleDemo"
             android:label="Rv + Divider : 04 - Floating Title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

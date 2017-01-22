@@ -26,7 +26,7 @@ public class FloatingTitleDemo extends Activity implements IFloatingGroupCallbac
         rv = (RecyclerView) findViewById(R.id.rvRefresh);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
-        rv.addItemDecoration(new FloatingTitleDivider(this));
+        rv.addItemDecoration(new FloatingTitleDivider(this, this));
 
         adapter = new OneAdapter<FloatingModel>(R.layout.item_rv) {
             @Override
