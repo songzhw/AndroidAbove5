@@ -10,4 +10,5 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <dimen name="fixed_top_height">180dp</dimen>
+    <dimen name="group_title_heigth">50dp</dimen>
 </resources>
