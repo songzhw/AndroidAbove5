@@ -24,7 +24,6 @@ public class FloatingTitleDivider extends RecyclerView.ItemDecoration {
     public FloatingTitleDivider(Context ctx, IFloatingGroupCallback callback) {
         this.ctx = ctx;
         this.callback = callback;
-        fontMetrics = textPaint.getFontMetrics();
         height = (int) ctx.getResources().getDimension(R.dimen.group_title_heigth);
 //        divider = ctx.getResources().getDrawable(R.drawable.divider_rv_row);
 
@@ -34,6 +33,8 @@ public class FloatingTitleDivider extends RecyclerView.ItemDecoration {
         textPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG);
         textPaint.setColor(Color.RED);
         textPaint.setTextSize(90);
+
+        fontMetrics = textPaint.getFontMetrics();
     }
 
     // 这个尺寸，被计入了 RecyclerView 每个 item view 的 padding 中
@@ -71,6 +72,7 @@ public class FloatingTitleDivider extends RecyclerView.ItemDecoration {
             int bottom = top + 8;
 
             // 两种写法
+            paint.setColor(Color.BLACK);
             c.drawRect(left, top, right, bottom, paint);
 //            divider.setBounds(left, top, right, bottom);
 //            divider.draw(c);
@@ -87,7 +89,7 @@ public class FloatingTitleDivider extends RecyclerView.ItemDecoration {
                 String title = callback.getGroup(position);
                 int childTop = child.getTop();
                 int titleTop = (int)(childTop - Math.abs(fontMetrics.top));
-                int textHeight = (int)(Math.abs(textPaint.descent() + textPaint.ascent()) ); // 20与-80多， 成了负数，所以要abs()一下
+                int textHeight = (int) Math.ceil(fontMetrics.bottom - fontMetrics.top);
                 c.drawText(title, 0, titleTop + (height - textHeight) / 2 , textPaint);
             }
         }
