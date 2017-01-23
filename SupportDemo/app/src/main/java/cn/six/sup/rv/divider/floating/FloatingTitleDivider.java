@@ -17,12 +17,14 @@ public class FloatingTitleDivider extends RecyclerView.ItemDecoration {
     private int height;
     private Paint paint;
     private TextPaint textPaint;
+    private Paint.FontMetrics fontMetrics;
     private IFloatingGroupCallback callback;
     private Drawable divider;
 
     public FloatingTitleDivider(Context ctx, IFloatingGroupCallback callback) {
         this.ctx = ctx;
         this.callback = callback;
+        fontMetrics = textPaint.getFontMetrics();
         height = (int) ctx.getResources().getDimension(R.dimen.group_title_heigth);
 //        divider = ctx.getResources().getDrawable(R.drawable.divider_rv_row);
 
@@ -79,9 +81,10 @@ public class FloatingTitleDivider extends RecyclerView.ItemDecoration {
             if (isFirstItemInGroup(position)) {
                 String title = callback.getGroup(position);
                 int titleTop = child.getTop();
+                System.out.println("szw pos = "+position+" ; top = "+titleTop);
                 int titleBottom = titleTop + height;
                 c.drawLine(left, titleTop, right, titleBottom, paint);
-                c.drawText(title, left, titleTop, textPaint);
+                c.drawText(title, 0, titleTop - Math.abs(fontMetrics.top), textPaint); // fontMetrics.top是个负数
             }
         }
 
