@@ -79,14 +79,16 @@ public class FloatingTitleDivider extends RecyclerView.ItemDecoration {
             // 所以getChildCount()是指页面内可见的item总数
             int position = parent.getChildAdapterPosition(child);
             if (isFirstItemInGroup(position)) {
+                int rectBottom = child.getTop();
+                int rectTop = rectBottom - height;
+                paint.setColor(Color.LTGRAY);
+                c.drawRect(left, rectTop, right, rectBottom, paint);
+
                 String title = callback.getGroup(position);
                 int childTop = child.getTop();
                 int titleTop = (int)(childTop - Math.abs(fontMetrics.top));
                 int textHeight = (int)(Math.abs(textPaint.descent() + textPaint.ascent()) ); // 20与-80多， 成了负数，所以要abs()一下
                 c.drawText(title, 0, titleTop + (height - textHeight) / 2 , textPaint);
-
-                int titleBottom = titleTop + height;
-                c.drawLine(left, titleTop, right, titleBottom, paint);
             }
         }
 
