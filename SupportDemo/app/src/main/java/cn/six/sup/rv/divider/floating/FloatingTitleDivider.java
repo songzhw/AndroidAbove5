@@ -115,6 +115,8 @@ public class FloatingTitleDivider extends RecyclerView.ItemDecoration {
         paint.setColor(Color.LTGRAY);
         c.drawRect(left, 0, right, height, paint);
 
+        String title = callback.getGroup(firstPos);
+        c.drawText(title, 0, height/2 + textHeight/4, textPaint);
 
     }
 
