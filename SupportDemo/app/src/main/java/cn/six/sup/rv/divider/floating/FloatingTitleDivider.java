@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextPaint;
 import android.view.View;
@@ -101,6 +102,20 @@ public class FloatingTitleDivider extends RecyclerView.ItemDecoration {
     @Override
     public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
         super.onDrawOver(c, parent, state);
+
+        RecyclerView.LayoutManager temp = parent.getLayoutManager();
+        if(!(temp instanceof LinearLayoutManager)){
+            throw new IllegalStateException("FloatingTitleDivider is noly for LinearLayoutManager!");
+        }
+        LinearLayoutManager layoutManager = (LinearLayoutManager) temp;
+        int firstPos = layoutManager.findFirstVisibleItemPosition();
+
+        int left = parent.getPaddingLeft();
+        int right = parent.getWidth() - parent.getPaddingRight();
+        paint.setColor(Color.LTGRAY);
+        c.drawRect(left, 0, right, height, paint);
+
+
     }
 
 
