@@ -112,15 +112,24 @@ public class FloatingTitleDivider extends RecyclerView.ItemDecoration {
             throw new IllegalStateException("FloatingTitleDivider is noly for LinearLayoutManager!");
         }
         LinearLayoutManager layoutManager = (LinearLayoutManager) temp;
-        int firstPos = layoutManager.findFirstVisibleItemPosition(); //这是all children， 不是可见范围的children
-        View view = layoutManager.findViewByPosition(firstPos); // 这是指可见范围的children。 所以用firstPos大于可见范围内的数目，可能会有得到view为空
-        int realTop = view.getTop() - height;
-        System.out.println("szw ["+firstPos+"] getTop() = "+view.getTop() + " ; realTop = "+realTop);
+        int firstPos = layoutManager.findFirstVisibleItemPosition();
+
+        int rectHeight = height;
+        boolean isGroup = isFirstItemInGroup(firstPos + 1);
+        if(isGroup) {
+            View view = layoutManager.findViewByPosition(firstPos);
+            rectHeight = view.getTop() + height;
+            System.out.println("szw ["+firstPos+"] getTop() = "+view.getTop() + " ; rectHeight = "+rectHeight);
+
+            if (rectHeight > height) {
+                rectHeight = height;
+            }
+        }
 
         int left = parent.getPaddingLeft();
         int right = parent.getWidth() - parent.getPaddingRight();
         paint.setColor(Color.LTGRAY);
-        c.drawRect(left, 0, right, height, paint);
+        c.drawRect(left, 0, right, rectHeight, paint);
 
         String title = callback.getGroup(firstPos);
         c.drawText(title, 0, height/2 + textHeight/4, textPaint);
