@@ -99,6 +99,10 @@ public class FloatingTitleDivider extends RecyclerView.ItemDecoration {
 
     }
 
+    /*
+    A. “被推时”，如何判断drawRect()的这个rect要画多高？ 这明显和group 2相关， 但如何相关的呢？
+    B. “被推时”，如何绘制部分文字？ (group1上推， 文字也只能展示下方一小截， 这个如何做到的?)
+    */
     @Override
     public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
         super.onDrawOver(c, parent, state);
@@ -108,7 +112,15 @@ public class FloatingTitleDivider extends RecyclerView.ItemDecoration {
             throw new IllegalStateException("FloatingTitleDivider is noly for LinearLayoutManager!");
         }
         LinearLayoutManager layoutManager = (LinearLayoutManager) temp;
-        int firstPos = layoutManager.findFirstVisibleItemPosition();
+        int firstPos = layoutManager.findFirstVisibleItemPosition(); //这是all children， 不是可见范围的children
+        System.out.println("szw pos = "+firstPos);
+        View view = parent.getChildAt(firstPos); // 这是指可见范围的children。 所以用firstPos大于可见范围内的数目，可能会有得到view为空
+
+        if(view != null) { // NPE crash
+            int realTop = view.getTop() - height;
+            System.out.println("szw realTop = " + realTop + " ; height = " + height);
+        }
+
 
         int left = parent.getPaddingLeft();
         int right = parent.getWidth() - parent.getPaddingRight();
