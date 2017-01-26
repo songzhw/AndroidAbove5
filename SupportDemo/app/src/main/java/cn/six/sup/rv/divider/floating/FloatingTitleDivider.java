@@ -113,14 +113,9 @@ public class FloatingTitleDivider extends RecyclerView.ItemDecoration {
         }
         LinearLayoutManager layoutManager = (LinearLayoutManager) temp;
         int firstPos = layoutManager.findFirstVisibleItemPosition(); //这是all children， 不是可见范围的children
-        System.out.println("szw pos = "+firstPos);
-        View view = parent.getChildAt(firstPos); // 这是指可见范围的children。 所以用firstPos大于可见范围内的数目，可能会有得到view为空
-
-        if(view != null) { // NPE crash
-            int realTop = view.getTop() - height;
-            System.out.println("szw realTop = " + realTop + " ; height = " + height);
-        }
-
+        View view = layoutManager.findViewByPosition(firstPos); // 这是指可见范围的children。 所以用firstPos大于可见范围内的数目，可能会有得到view为空
+        int realTop = view.getTop() - height;
+        System.out.println("szw ["+firstPos+"] getTop() = "+view.getTop() + " ; realTop = "+realTop);
 
         int left = parent.getPaddingLeft();
         int right = parent.getWidth() - parent.getPaddingRight();
