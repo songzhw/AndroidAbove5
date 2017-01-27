@@ -22,7 +22,7 @@ public class FloatingTitleDivider extends RecyclerView.ItemDecoration {
     private IFloatingGroupCallback callback;
     private Drawable divider;
     private int textHeight;
-    private final int y;
+    private final int originalTextY, originalTextX;
 
     public FloatingTitleDivider(Context ctx, IFloatingGroupCallback callback) {
         this.ctx = ctx;
@@ -39,7 +39,8 @@ public class FloatingTitleDivider extends RecyclerView.ItemDecoration {
 
         fontMetrics = textPaint.getFontMetrics();
         textHeight = (int) Math.ceil(fontMetrics.bottom - fontMetrics.top);
-        y = height / 2 + textHeight / 4;
+        originalTextY = height / 2 + textHeight / 4;
+        originalTextX = 50;
     }
 
     // 这个尺寸，被计入了 RecyclerView 每个 item view 的 padding 中
@@ -92,7 +93,7 @@ public class FloatingTitleDivider extends RecyclerView.ItemDecoration {
                 c.drawRect(left, rectTop, right, rectBottom, paint);
 
                 String title = callback.getGroup(position);
-                c.drawText(title, 0, rectTop + y , textPaint);
+                c.drawText(title, originalTextX, rectTop + originalTextY, textPaint);
             } // 不用textHeight = bounds.getHeight()是因为右值只是text的高度。 (bounds由paint.getTextBounds()来)
             // 而实际绘制时， 不会只绘这么高的，还会上下有富余，用于符号，g,y等下的下部的
         }
@@ -115,13 +116,15 @@ public class FloatingTitleDivider extends RecyclerView.ItemDecoration {
         int firstPos = layoutManager.findFirstVisibleItemPosition();
 
         int rectHeight = height;
+        int textY = originalTextY;  // ▼
         boolean isGroup = isFirstItemInGroup(firstPos + 1);
         if(isGroup) {
             View view = layoutManager.findViewByPosition(firstPos);
-            rectHeight = view.getTop() + height;
-            System.out.println("szw ["+firstPos+"] getTop() = "+view.getTop() + " ; rectHeight = "+rectHeight);
+            int viewTop = view.getTop();
+            rectHeight = viewTop + height;
+            textY = textY + viewTop;   // ▼  // viewTop在这时是[0, -150]范围
 
-            if (rectHeight > height) {
+            if (viewTop > 0) {
                 rectHeight = height;
             }
         }
@@ -132,7 +135,7 @@ public class FloatingTitleDivider extends RecyclerView.ItemDecoration {
         c.drawRect(left, 0, right, rectHeight, paint);
 
         String title = callback.getGroup(firstPos);
-        c.drawText(title, 0, height/2 + textHeight/4, textPaint);
+        c.drawText(title, originalTextX, textY, textPaint);   // ▼
 
     }
 

@@ -36,7 +36,7 @@ public class FloatingTitleDemo extends Activity implements IFloatingGroupCallbac
         };
         data = new ArrayList<>();
         for (int i = 0 ; i < 26; i++){
-            String title = "Group "+ (i / 10);
+            String title = "Group "+ (i / 3);
             data.add(new FloatingModel("Item : "+i, title));
         }
         adapter.data = data;
