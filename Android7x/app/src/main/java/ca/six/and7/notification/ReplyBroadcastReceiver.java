@@ -42,10 +42,6 @@ public class ReplyBroadcastReceiver extends BroadcastReceiver {
 
     private void updateNotification(Context context, int notificationId) {
         NotificationManagerCompat mgr = NotificationManagerCompat.from(context);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
-            .setSmallIcon(R.drawable.ic_done)
-            .setContentText("Done");
-        mgr.notify(notificationId, builder.build());
-
+        mgr.cancel(notificationId);
     }
 }
