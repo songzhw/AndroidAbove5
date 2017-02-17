@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextPaint;
@@ -37,6 +38,7 @@ public class FloatingTitleDivider extends RecyclerView.ItemDecoration {
         textHeight = (int) Math.ceil(fontMetrics.bottom - fontMetrics.top);
         originalTextY = height / 2 + textHeight / 4;
         originalTextX = 50;
+        AsyncTask t;
     }
 
     // 第二参view is the item. Here is the rlay in R.layout.item_rv

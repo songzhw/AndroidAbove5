@@ -323,6 +323,14 @@
                 <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".design_lib.constraitlay.ConstraintLayoutDemo02"
+            android:label="z Constraint - 02">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="ca.six.sup.demo" />
+            </intent-filter>
+        </activity>
 
 
         <receiver android:name=".other.chrome.ActionBroadcastReceiver" />

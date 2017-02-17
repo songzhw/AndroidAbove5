@@ -33,6 +33,12 @@
             </intent-filter>
         </service>
 
+        <receiver android:name=".notification.ReplyBroadcastReceiver" android:exported="false">
+            <intent-filter>
+                <action android:name="ACTION_REPLY"/>
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>
