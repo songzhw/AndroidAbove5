@@ -23,6 +23,12 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // or
+        /*
+        Button btn = (Button) findViewById(R.id.btnZ);
+        StateListAnimator anim = AnimatorInflater.loadStateListAnimator(this, R.animator.selector_elevation);
+        btn.setStateListAnimator(anim);
+        */
     }
 
     public void clickWaterfall(View v){

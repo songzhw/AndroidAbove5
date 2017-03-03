@@ -19,6 +19,7 @@
 
         <TableRow>
             <Button android:text="SnackBar" android:onClick="clickSnackBar"/>
+            <Button android:id="@+id/btnZ" android:text="z height" android:stateListAnimator="@animator/selector_elevation"/>
         </TableRow>
 
 
