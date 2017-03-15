@@ -10,7 +10,7 @@ import android.view.ViewGroup;
  */
 
 public class CardsLayoutManager extends RecyclerView.LayoutManager {
-    public static final int MAX_COUNT = 3;
+    public static final int MAX_INDEX = 3; // 即显示4个
     public static final float SCALE = 0.1f;
     public static final int TRANSLATE_Y = 14;
 
@@ -26,42 +26,34 @@ public class CardsLayoutManager extends RecyclerView.LayoutManager {
         detachAndScrapAttachedViews(recycler);
 
         int count = getItemCount();
-        if (count > MAX_COUNT) {
-            for (int pos = MAX_COUNT; pos >= 0; pos--) {
-                View view = recycler.getViewForPosition(pos);
-                addView(view);
+        int visibleMaxIndex = count - 1;
+        if (count > MAX_INDEX) {
+            visibleMaxIndex = MAX_INDEX;
+        }
 
-                measureChildWithMargins(view, 0, 0);
-                int viewWidth = getDecoratedMeasuredWidth(view);
-                int viewHeight = getDecoratedMeasuredHeight(view);
-                int spaceWidth = getWidth() - viewWidth;
-                int spaceHeight = getHeight() - viewHeight;
+        for (int pos = visibleMaxIndex; pos >= 0; pos--) {
+            View view = recycler.getViewForPosition(pos);
+            addView(view);
 
-                layoutDecoratedWithMargins(view, spaceWidth / 2, spaceHeight / 2,
-                        spaceWidth / 2 + viewWidth, spaceHeight / 2 + viewHeight);
+            measureChildWithMargins(view, 0, 0);
+            int viewWidth = getDecoratedMeasuredWidth(view);
+            int viewHeight = getDecoratedMeasuredHeight(view);
+            int spaceWidth = getWidth() - viewWidth;
+            int spaceHeight = getHeight() - viewHeight;
 
-                if (pos == MAX_COUNT) {
-                    int index = pos - 1;
-                    view.setScaleX(1 - index * SCALE);
-                    view.setScaleY(1 - index * SCALE);
-                    view.setTranslationY(index * view.getMeasuredHeight() / TRANSLATE_Y);
-                } else if (pos > 0) {
-                    view.setScaleX(1 - pos * SCALE);
-                    view.setScaleY(1 - pos * SCALE);
-                    view.setTranslationY(pos * view.getMeasuredHeight() / TRANSLATE_Y);
+            layoutDecoratedWithMargins(view, spaceWidth / 2, spaceHeight / 2,
+                    spaceWidth / 2 + viewWidth, spaceHeight / 2 + viewHeight);
+
+            if (pos > 0) {
+                int index = pos;
+                if (pos == MAX_INDEX) {
+                    index = pos - 1;
                 }
-
-                if (pos > 0) {
-                    int index = pos;
-                    if (pos == MAX_COUNT) {
-                        index = pos - 1;
-                    }
-                    view.setScaleX(1 - index * SCALE);
-                    view.setScaleY(1 - index * SCALE);
-                    view.setTranslationY(index * view.getMeasuredHeight() / TRANSLATE_Y);
-                } else {
-                    view.setOnTouchListener(touchListener);
-                }
+                view.setScaleX(1 - index * SCALE);
+                view.setScaleY(1 - index * SCALE);
+                view.setTranslationY(index * view.getMeasuredHeight() / TRANSLATE_Y);
+            } else {
+                view.setOnTouchListener(touchListener);
             }
         }
     }
