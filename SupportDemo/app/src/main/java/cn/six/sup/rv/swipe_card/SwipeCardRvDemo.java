@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.six.sup.R;
+import cn.six.sup.rv.card_stack.CardsLayoutManager;
 import cn.six.sup.rv.simple.RvSimpleAdapter;
 
 /**
@@ -24,7 +25,7 @@ public class SwipeCardRvDemo extends Activity {
         setContentView(R.layout.activity_rv_demo);
 
         RecyclerView rv = (RecyclerView) findViewById(R.id.rvRefresh);
-        rv.setLayoutManager(new SwipeCardLayoutManager());
+        rv.setLayoutManager(new CardsLayoutManager());
 
         RvSimpleAdapter adapter = new RvSimpleAdapter();
 
