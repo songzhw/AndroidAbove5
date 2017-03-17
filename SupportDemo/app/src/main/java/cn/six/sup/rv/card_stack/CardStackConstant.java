@@ -1,10 +1,5 @@
 package cn.six.sup.rv.card_stack;
 
-import android.support.annotation.IntDef;
-
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-
 /**
  * Created by songzhw on 2017-03-16
  */
