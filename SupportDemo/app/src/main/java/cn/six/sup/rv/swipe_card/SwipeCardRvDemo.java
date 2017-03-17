@@ -25,7 +25,7 @@ public class SwipeCardRvDemo extends Activity {
         setContentView(R.layout.activity_rv_demo);
 
         RecyclerView rv = (RecyclerView) findViewById(R.id.rvRefresh);
-        rv.setLayoutManager(new CardsLayoutManager());
+        rv.setLayoutManager(new SwipeCardLayoutManager());
 
         RvSimpleAdapter adapter = new RvSimpleAdapter();
 

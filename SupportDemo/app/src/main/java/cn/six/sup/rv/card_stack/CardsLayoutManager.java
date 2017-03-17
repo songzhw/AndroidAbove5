@@ -1,6 +1,8 @@
 package cn.six.sup.rv.card_stack;
 
+import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,14 @@ public class CardsLayoutManager extends RecyclerView.LayoutManager {
     public static final int MAX_INDEX = 3; // 即显示4个
     public static final float SCALE = 0.1f;
     public static final int TRANSLATE_Y = 14;
+
+    private RecyclerView rv;
+    private ItemTouchHelper helper;
+
+    public CardsLayoutManager(RecyclerView rv, ItemTouchHelper helper) {
+        this.rv = rv;
+        this.helper = helper;
+    }
 
     @Override
     public RecyclerView.LayoutParams generateDefaultLayoutParams() {
@@ -62,6 +72,10 @@ public class CardsLayoutManager extends RecyclerView.LayoutManager {
     private View.OnTouchListener touchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
+            RecyclerView.ViewHolder vh = rv.getChildViewHolder(v);
+            if(MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
+                helper.startSwipe(vh);
+            }
             return false;
         }
     };
