@@ -10,6 +10,7 @@ import java.util.List;
 import cn.six.sup.R;
 import cn.six.sup.rv.RvViewHolder;
 import cn.six.sup.rv.one_adapter.OneAdapter;
+import cn.six.sup.rv.swipe_card.SwipeCardLayoutManager;
 
 public class SwipeCardRvDemo extends Activity {
     private List<Integer> aData;
