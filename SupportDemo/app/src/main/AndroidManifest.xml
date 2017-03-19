@@ -80,6 +80,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".other.BottomSheetDemo"
+            android:label="Bottom Sheet Dialog - Demo">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="ca.six.sup.demo" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".clay.coordinate3.ClayBottomSheetBehaviorDemo"
             android:label="Existing clay Behavior : 04 BottomSheetBehavior">
             <intent-filter>

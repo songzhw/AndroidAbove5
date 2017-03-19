@@ -24,8 +24,8 @@ public class SpringActivity extends Activity {
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
-        stiffness = (SeekBar) findViewById(R.id.stiffness);
-        damping = (SeekBar) findViewById(R.id.damping);
+        stiffness = (SeekBar) findViewById(R.id.stiffness); // 刚性程度
+        damping = (SeekBar) findViewById(R.id.damping);     // 阻尼效果
         velocityTracker = VelocityTracker.obtain();
         final View box = findViewById(R.id.box);
         findViewById(R.id.root).setOnTouchListener(new View.OnTouchListener() {
