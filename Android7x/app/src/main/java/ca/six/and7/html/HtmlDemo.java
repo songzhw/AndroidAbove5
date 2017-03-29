@@ -17,12 +17,23 @@ public class HtmlDemo extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         TextView tv = new TextView(this);
-        tv.setTextSize(40);
+        tv.setTextSize(30);
         setContentView(tv);
 
+        // 1. just text
+//        String htmlStr = "<html><body><b>This text is bold</b><br/> <i>This text is italic</i><br/> Html<sup>005</sup></body></html>";
+//        Spanned spanned = Html.fromHtml(htmlStr, 0);
+//        tv.setText(spanned);
 
-        String htmlStr = "<html><body><b>This text is bold</b><br/> <i>This text is italic</i><br/> Html<sup>005</sup></body></html>";
-        Spanned spanned = Html.fromHtml(htmlStr, 0);
-        tv.setText(spanned);
+
+        // 2.
+        String htmlStr2 = "<html><body>" +
+                "<b>This text is bold</b><br/> " +
+                "<i>This text is italic</i><br/> " +
+                "Html<sup>005</sup><br/>" +
+                "<img src=\"https://static-s.aa-cdn.net/img/gp/20600002622696/dYjJdGSa9_TPfO4XrMaCbOwKzqoS1hLpIHIWnEUXyMc4LgHLfJKajA8LGlxgDZ9jSwk=w300?v=1\"/>" +
+                "</body></html>";
+        Spanned spanned2 = Html.fromHtml(htmlStr2, 0);
+        tv.setText(spanned2);
     }
 }
