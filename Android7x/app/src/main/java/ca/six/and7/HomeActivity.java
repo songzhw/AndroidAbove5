@@ -13,8 +13,9 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Consumer;
+//import java.util.function.Consumer;
 
+/** jack is deprecated */
 public class HomeActivity extends AppCompatActivity {
     private Handler handler;
     private Runnable runnable;
@@ -34,47 +35,47 @@ public class HomeActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
-        // ===============     Lambda      ===============
-        Button btn = new Button(this);
-        btn.setOnClickListener( (view)-> System.out.println("szw"));
-
-        // Warning: Call requires API Level 24 (current min is 16) : java.util.Collection # stream
-        List<String> list = new ArrayList(Arrays.asList("one","two","3"));
-        list.stream().map( (it) -> "["+it+"]").forEach( (it) -> System.out.println(it));
-
-
-        // =============== Method Reference ===============
-        handler = new Handler(Looper.getMainLooper());
-        runnable = () -> this.foo() ;
-        handler.postDelayed(runnable, 1000);
-
-
-        handler.postDelayed(this::foo, 3000);
-
-
-        test(this::doRealJob, 23);
+//
+//        // ===============     Lambda      ===============
+//        Button btn = new Button(this);
+//        btn.setOnClickListener( (view)-> System.out.println("szw"));
+//
+//        // Warning: Call requires API Level 24 (current min is 16) : java.util.Collection # stream
+//        List<String> list = new ArrayList(Arrays.asList("one","two","3"));
+//        list.stream().map( (it) -> "["+it+"]").forEach( (it) -> System.out.println(it));
+//
+//
+//        // =============== Method Reference ===============
+//        handler = new Handler(Looper.getMainLooper());
+//        runnable = () -> this.foo() ;
+//        handler.postDelayed(runnable, 1000);
+//
+//
+//        handler.postDelayed(this::foo, 3000);
+//
+//
+//        test(this::doRealJob, 23);
     }
-
-    @Override
-    protected void onDestroy() {
-        handler.removeCallbacks(runnable);
-        handler.removeCallbacks( this::foo );
-
-        super.onDestroy();
-    }
-
-    private void foo(){
-        System.out.println("runnable");
-    }
-
-    // Supplier, Consumer, BiConsumer, Predicate, Function, BiFunction, BinaryOperator
-    public void test(Consumer<Integer> fun, int arg){
-        fun.accept(arg); //=> Requrie API 24.  (current min is 16)
-    }
-
-    public void doRealJob(int i){
-        System.out.println("doRealJob "+i);
-    }
+//
+//    @Override
+//    protected void onDestroy() {
+//        handler.removeCallbacks(runnable);
+//        handler.removeCallbacks( this::foo );
+//
+//        super.onDestroy();
+//    }
+//
+//    private void foo(){
+//        System.out.println("runnable");
+//    }
+//
+//    // Supplier, Consumer, BiConsumer, Predicate, Function, BiFunction, BinaryOperator
+//    public void test(Consumer<Integer> fun, int arg){
+//        fun.accept(arg); //=> Requrie API 24.  (current min is 16)
+//    }
+//
+//    public void doRealJob(int i){
+//        System.out.println("doRealJob "+i);
+//    }
 
 }
