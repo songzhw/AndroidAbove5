@@ -8,7 +8,7 @@
         android:resizeableActivity="true"
         >
 
-        <activity android:name=".split_screen.SplitScreenActivity01" android:label="@string/app_name"
+        <activity android:name=".html.HtmlDemo" android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
