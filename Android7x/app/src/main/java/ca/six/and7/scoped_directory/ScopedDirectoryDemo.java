@@ -14,6 +14,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -61,10 +63,13 @@ public class ScopedDirectoryDemo extends AppCompatActivity {
         data.add("Music");
 
         lvDirectory.setAdapter(new ArrayAdapter<>(this, R.layout.spinner_item, data));
-        lvDirectory.setOnItemClickListener((parent, view, position, id) -> {
-            StorageVolume storageVolume = mStorageManger.getPrimaryStorageVolume();
-            Intent storageIntent = storageVolume.createAccessIntent(getDirectoryName(position));
-            startActivityForResult(storageIntent, DIRECTORY_REQUEST_CODE);
+        lvDirectory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                StorageVolume storageVolume = mStorageManger.getPrimaryStorageVolume();
+                Intent storageIntent = storageVolume.createAccessIntent(getDirectoryName(position));
+                startActivityForResult(storageIntent, DIRECTORY_REQUEST_CODE);
+            }
         });
 
         mDirectoryAdapter = new DirectoryRecyclerAdapter(this, mListItems);
