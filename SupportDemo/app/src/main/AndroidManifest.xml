@@ -358,6 +358,7 @@
         <activity android:name=".other.notification.Notification_B"/>
         <activity android:name=".other.notification.Notification_C"/>
         <activity android:name=".other.notification.Notification_D"/>
+        <activity android:name=".other.notification.Notification_E"/>
 
 
         <receiver android:name=".other.chrome.ActionBroadcastReceiver" />
