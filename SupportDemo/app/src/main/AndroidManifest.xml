@@ -347,6 +347,17 @@
                 <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".other.notification.Notification_A"
+            android:label="z Notification with Action">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="ca.six.sup.demo" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".other.notification.Notification_B"/>
+        <activity android:name=".other.notification.Notification_C"/>
+        <activity android:name=".other.notification.Notification_D"/>
 
 
         <receiver android:name=".other.chrome.ActionBroadcastReceiver" />
