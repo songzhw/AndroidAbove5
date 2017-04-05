@@ -30,19 +30,19 @@ public class Notification_A extends Activity {
     private void showNotification(){
         Intent it1 = new Intent(this, Notification_B.class);
         it1.putExtra("key","This is B");
-        PendingIntent pi1 = PendingIntent.getActivity(this, 0, it1, 0);
+        PendingIntent pi1 = PendingIntent.getActivity(this, 0, it1, PendingIntent.FLAG_CANCEL_CURRENT);
 
         Intent it2 = new Intent(this, Notification_C.class);
         it2.putExtra("key","This is C");
-        PendingIntent pi2 = PendingIntent.getActivity(this, 0, it2, 0);
+        PendingIntent pi2 = PendingIntent.getActivity(this, 0, it2, PendingIntent.FLAG_CANCEL_CURRENT);
 
         Intent it3 = new Intent(this, Notification_D.class);
         it3.putExtra("key","This is D");
-        PendingIntent pi3 = PendingIntent.getActivity(this, 0, it3, 0);
+        PendingIntent pi3 = PendingIntent.getActivity(this, 0, it3, PendingIntent.FLAG_CANCEL_CURRENT);
 
         Intent it4 = new Intent(this, Notification_E.class);
         it4.putExtra("key","This is E");
-        PendingIntent pi4 = PendingIntent.getActivity(this, 0, it4, 0);
+        PendingIntent pi4 = PendingIntent.getActivity(this, 0, it4, PendingIntent.FLAG_CANCEL_CURRENT);
 
         Notification notification = new NotificationCompat.Builder(this)
                 .setContentTitle("Title")
