@@ -21,9 +21,8 @@ public class TwoTextRow extends BaseRow {
     }
 
     @Override
-    protected RvViewHolder getViewHolder(ViewGroup parent) {
-        RvViewHolder vh = RvViewHolder.createViewHolder(parent, R.layout.item_two_text);
-        return vh;
+    protected int getLayoutXmlRes() {
+        return R.layout.item_two_text;
     }
 
     @Override

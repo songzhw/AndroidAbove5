@@ -21,10 +21,10 @@ public class HeaderRow extends BaseRow {
     }
 
     @Override
-    protected RvViewHolder getViewHolder(ViewGroup parent) {
-        RvViewHolder vh = RvViewHolder.createViewHolder(parent, R.layout.item_header);
-        return vh;
+    protected int getLayoutXmlRes() {
+        return R.layout.item_header;
     }
+
 
     @Override
     protected void bind(RvViewHolder holder) {
