@@ -24,8 +24,13 @@ public class ComposedRvDemo extends AppCompatActivity {
         rv.setLayoutManager(new LinearLayoutManager(this));
 
         List<BaseRow> items = new ArrayList<>();
-        items.add(new HeaderRow("t1","description1"));
-        items.add(new HeaderRow("title2","caption 0000000000002"));
+        for(int i = 0 ; i < 5; i++) {
+            items.add(new HeaderRow("t1", "description1"));
+            items.add(new TwoTextRow("time: ", "2017-05-21"));
+            items.add(new HeaderRow("title2", "caption 0000000000002"));
+            items.add(new TwoTextRow("location: ", "US MountainView"));
+            items.add(new TwoTextRow("price: ", "$300,888,666,222"));
+        }
 
         BaseComposedAdapter adapter = new BaseComposedAdapter(items);
         rv.setAdapter(adapter);
