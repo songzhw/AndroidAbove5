@@ -3,7 +3,6 @@ package cn.six.sup.rv.composition;
 import android.support.annotation.LayoutRes;
 import android.view.ViewGroup;
 
-import cn.six.sup.R;
 import cn.six.sup.rv.RvViewHolder;
 
 public abstract class BaseRow {
@@ -13,9 +12,8 @@ public abstract class BaseRow {
 
     protected abstract int getViewType();
 
-    protected RvViewHolder getViewHolder(ViewGroup parent){
-        RvViewHolder vh = RvViewHolder.createViewHolder(parent, getLayoutXmlRes());
-        return vh;
+    RvViewHolder getViewHolder(ViewGroup parent){
+        return RvViewHolder.createViewHolder(parent, getLayoutXmlRes());
     }
 
     protected abstract @LayoutRes int getLayoutXmlRes();
