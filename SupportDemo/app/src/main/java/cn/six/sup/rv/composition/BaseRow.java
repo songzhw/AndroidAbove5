@@ -1,19 +1,16 @@
 package cn.six.sup.rv.composition;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
-public class BaseRow {
+import cn.six.sup.rv.RvViewHolder;
 
-    public int getViewType(){
-        return 0;
-    }
+public abstract class BaseRow {
+    protected static final int TYPE_HEADER = 3;
 
-    public RecyclerView.ViewHolder getViewHolder(ViewGroup parent){
-        return null;
-    }
 
-    public void bind(){
+    protected abstract int getViewType();
 
-    }
+    protected abstract RvViewHolder getViewHolder(ViewGroup parent);
+
+    protected abstract void bind(RvViewHolder holder);
 }

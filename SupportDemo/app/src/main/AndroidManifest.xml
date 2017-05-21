@@ -316,6 +316,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".rv.composition.demo.ComposedRvDemo"
+            android:label="Rv + Composed Row">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="ca.six.sup.demo" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".rv.snap.SnapHelperDemo"
             android:label="Rv + SnapHelper">
             <intent-filter>

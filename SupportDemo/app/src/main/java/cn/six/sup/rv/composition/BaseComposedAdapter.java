@@ -7,14 +7,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import cn.six.sup.rv.RvViewHolder;
 
-public class BaseComposedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+public class BaseComposedAdapter extends RecyclerView.Adapter<RvViewHolder> {
     protected List<BaseRow> items = new ArrayList<>();
     private HashMap<Integer, BaseRow> typeRowMap = new HashMap<>();
 
-    public BaseComposedAdapter() {
+    public BaseComposedAdapter(List<BaseRow> items) {
+        this.items = items;
         for(BaseRow row : items){
-            typeRowMap.put(row.getViewType(), row);
+            typeRowMap.put(row.getViewType(), row); // 同id时，会覆盖前值
         }
     }
 
@@ -25,15 +28,15 @@ public class BaseComposedAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RvViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         BaseRow row = typeRowMap.get(viewType);
         return row.getViewHolder(parent);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RvViewHolder holder, int position) {
         BaseRow row = items.get(position);
-        row.bind();
+        row.bind(holder);
     }
 
     @Override
