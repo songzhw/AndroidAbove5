@@ -24,3 +24,6 @@ public class ExampleInstrumentedTest {
         assertEquals("ca.six.demo", appContext.getPackageName());
     }
 }
+
+
+
