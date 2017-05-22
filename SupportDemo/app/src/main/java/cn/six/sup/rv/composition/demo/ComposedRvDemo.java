@@ -5,15 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import cn.six.sup.R;
 import cn.six.sup.rv.composition.BaseComposedAdapter;
 import cn.six.sup.rv.composition.BaseRow;
-import cn.six.sup.rv.composition.demo.data.EntityHeader;
-import cn.six.sup.rv.composition.demo.data.EntityTwo;
-import cn.six.sup.rv.composition.demo.data.IEntity;
 
 public class ComposedRvDemo extends AppCompatActivity implements IComposedRvView {
 

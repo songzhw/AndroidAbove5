@@ -1,7 +1,5 @@
 package cn.six.sup.rv.composition.demo;
 
-import android.view.ViewGroup;
-
 import cn.six.sup.R;
 import cn.six.sup.rv.RvViewHolder;
 import cn.six.sup.rv.composition.BaseRow;
