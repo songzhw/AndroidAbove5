@@ -2,20 +2,22 @@ package cn.six.sup.rv.composition.demo;
 
 import java.util.List;
 
+import cn.six.sup.rv.composition.BaseRow;
 import cn.six.sup.rv.composition.demo.data.EntityGateway;
-import cn.six.sup.rv.composition.demo.data.IEntity;
+import cn.six.sup.rv.composition.demo.data.HomeUseCase;
 
 public class ComposedRvPresenter {
     private IComposedRvView view;
-    private EntityGateway model;
+    private HomeUseCase useCase;
 
     public ComposedRvPresenter(IComposedRvView view) {
         this.view = view;
-        this.model = new EntityGateway();
+        EntityGateway gateway = new EntityGateway();
+        useCase = new HomeUseCase(gateway);
     }
 
     public void getData() {
-        List<IEntity> list = model.getHomeData();
+        List<BaseRow> list = useCase.getHomeRows();
         view.refreshList(list);
     }
 
