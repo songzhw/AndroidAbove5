@@ -11,26 +11,42 @@ import java.util.List;
 import cn.six.sup.R;
 import cn.six.sup.rv.composition.BaseComposedAdapter;
 import cn.six.sup.rv.composition.BaseRow;
+import cn.six.sup.rv.composition.demo.data.EntityHeader;
+import cn.six.sup.rv.composition.demo.data.EntityTwo;
+import cn.six.sup.rv.composition.demo.data.IEntity;
 
+public class ComposedRvDemo extends AppCompatActivity implements IComposedRvView {
 
-public class ComposedRvDemo extends AppCompatActivity {
+    private RecyclerView rv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler);
-        RecyclerView rv = (RecyclerView) findViewById(R.id.rvRefresh);
+        rv = (RecyclerView) findViewById(R.id.rvRefresh);
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
+        ComposedRvPresenter presenter = new ComposedRvPresenter(this);
+        presenter.getData();
+    }
+
+    @Override
+    public void refreshList(List<IEntity> data) {
         List<BaseRow> items = new ArrayList<>();
-        for(int i = 0 ; i < 5; i++) {
-            items.add(new HeaderRow("t1"+i, "description1"));
-            items.add(new TwoTextRow("time: ", "2017-05-21"));
-            items.add(new HeaderRow("title2"+i, "caption 0000000000002"));
-            items.add(new TwoTextRow("location: ", "US MountainView"));
-            items.add(new TwoTextRow("price: ", "$300,888,666,222"));
+
+        for(IEntity raw : data){
+            int type = raw.getType();
+            if(BaseRow.TYPE_HEADER == type){
+                EntityHeader header = (EntityHeader) raw;
+                items.add(new HeaderRow(header.title, header.caption));
+            } else if (BaseRow.TYPE_TWO_TEXT == type){
+                EntityTwo two = (EntityTwo) raw;
+                items.add(new TwoTextRow(two.left, two.right));
+            }
         }
+
+
 
         BaseComposedAdapter adapter = new BaseComposedAdapter(items);
         rv.setAdapter(adapter);
