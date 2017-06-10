@@ -11,4 +11,7 @@
 
     <dimen name="fixed_top_height">180dp</dimen>
     <dimen name="group_title_heigth">50dp</dimen>
+
+    <dimen name="anim_trans_y">52dp</dimen>
+
 </resources>

@@ -1,19 +1,23 @@
 package cn.six.sup.sample.clay;
 
+import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import cn.six.sup.R;
 import cn.six.sup.rv.RvViewHolder;
 import cn.six.sup.rv.one_adapter.OneAdapter;
-import cn.six.sup.sample.clay.ShowcaseItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +25,14 @@ import java.util.List;
 
 public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener {
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ext_appbar_layout);
+
+        final TypedArray styledAttributes = getTheme().obtainStyledAttributes(new int[]{android.R.attr.actionBarSize});
+        toolbarSize = (int) styledAttributes.getDimension(0, 0);
 
         appbar = (AppBarLayout)findViewById(R.id.extlay_home);
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams)appbar.getLayoutParams();
@@ -48,13 +56,7 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
         listTop.add(new ShowcaseItem(R.drawable.ic_notifications, "Bird2"));
         listTop.add(new ShowcaseItem(R.drawable.ic_pets, "Baby2"));
 
-        OneAdapter adapterTop = new OneAdapter<ShowcaseItem>(R.layout.item_showcase){
-            @Override
-            protected void apply(RvViewHolder vh, ShowcaseItem showcaseItem, int position) {
-                vh.setText(R.id.tv_top_name, showcaseItem.text);
-                vh.setSrc(R.id.iv_top_icon, showcaseItem.icon);
-            }
-        };
+        adapterTop = new TopAdapter(R.layout.item_showcase);
         adapterTop.data = listTop;
         rvTop.setAdapter(adapterTop);
 
@@ -89,14 +91,67 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
         System.out.println("szw : verticalOffest = " + verticalOffset); //=> 初始为0，一路变小， 直到 -260
         float percent = ((float) Math.abs(verticalOffset) / (float) appbar.getTotalScrollRange()); //0是最初状态， 1是全收缩起来的状态了
 
+        if(percent != COLLAPSED){
+            int leftMargin = (int)(percent * toolbarSize);
+            CollapsingToolbarLayout.LayoutParams params = (CollapsingToolbarLayout.LayoutParams) rvTop.getLayoutParams();
+            params.leftMargin = leftMargin + leftMargin / 4; // 1 + 0.25
+            rvTop.setLayoutParams(params);
 
+            adapterTop.setAnimationFactor(percent);
+        }
+
+    }
+
+    private class TopAdapter extends OneAdapter<ShowcaseItem>{
+
+        public float scale = 1.0f, transitionFactor = 0.0f;
+        private int transitionOffset = 0;
+
+        public TopAdapter(int layoutResId) {
+            super(layoutResId);
+        }
+
+
+        public void setAnimationFactor(float factor) {
+            transitionFactor = factor;
+            scale = 1.0f - (factor * 0.3f);
+            notifyDataSetChanged();
+        }
+
+        @Override
+        protected void apply(RvViewHolder vh, ShowcaseItem showcaseItem, int position) {
+            Context ctx = vh.itemView.getContext();
+            if(transitionOffset == 0){
+                transitionOffset = (int)ctx.getResources().getDimension(R.dimen.anim_trans_y);
+            }
+
+
+            TextView tv = vh.getView(R.id.tv_top_name);
+            ImageView iv = vh.getView(R.id.iv_top_icon);
+
+            iv.setImageResource(showcaseItem.icon);
+            iv.setScaleX(scale);
+            iv.setScaleY(scale);
+            iv.setTranslationY(transitionFactor * transitionOffset);
+
+            tv.setText(showcaseItem.text);
+            tv.setAlpha(1 - transitionFactor * 2f);
+            tv.setTranslationY( -42 * transitionFactor);
+
+
+            vh.setText(R.id.tv_top_name, showcaseItem.text);
+            vh.setSrc(R.id.iv_top_icon, showcaseItem.icon);
+        }
 
     }
 
 
+    private int toolbarSize;
+
     private AppBarLayout appbar;
     private Toolbar toolbar;
     private RecyclerView rvContent, rvTop;
+    private TopAdapter adapterTop;
 
     public static final float COLLAPSED = 1;
     public static final float EXPANDED = 0;
