@@ -20,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/west_lake"/>
+                android:src="@drawable/snow_fox"/>
 
             <View
                 android:id="@+id/view_top_pure_color"
