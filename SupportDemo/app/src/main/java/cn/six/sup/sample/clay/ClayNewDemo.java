@@ -106,7 +106,7 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
         if(percent != COLLAPSED){
             int leftMargin = (int)(percent * toolbarSize);
             CollapsingToolbarLayout.LayoutParams params = (CollapsingToolbarLayout.LayoutParams) rvTop.getLayoutParams();
-            params.leftMargin = leftMargin + leftMargin / 4; // 1 + 0.25
+            params.leftMargin = leftMargin + leftMargin / 4; // 1.25
 
             adapterTop.setAnimationFactor(percent);
         }
