@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import cn.six.sup.R;
+import cn.six.sup.rv.OnRvItemClickListener;
 import cn.six.sup.rv.RvViewHolder;
 import cn.six.sup.rv.one_adapter.OneAdapter;
 
@@ -60,6 +61,13 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
         adapterTop.data = listTop;
         rvTop.setAdapter(adapterTop);
 
+        rvTop.addOnItemTouchListener(new OnRvItemClickListener(rvTop) {
+            @Override
+            public void onItemClick(RecyclerView.ViewHolder vh) {
+                System.out.println("rvTop click : "+vh.getLayoutPosition());
+            }
+        });
+
 
         rvContent = (RecyclerView)findViewById(R.id.rv_home);
         rvContent.setLayoutManager(new LinearLayoutManager(this));
@@ -80,22 +88,25 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
         adapter.data = data;
         rvContent.setAdapter(adapter);
 
-        System.out.println("szw scroll range(1) = "+appbar.getTotalScrollRange()); //=> 0
         appbar.addOnOffsetChangedListener(this);
 
     }
 
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-        System.out.println("szw scroll range(2) = "+appbar.getTotalScrollRange()); //=> 260
-        System.out.println("szw : verticalOffest = " + verticalOffset); //=> 初始为0，一路变小， 直到 -260
+//        System.out.println("szw scroll range(2) = "+appbar.getTotalScrollRange()); //=> 260
+//        System.out.println("szw : verticalOffest = " + verticalOffset); //=> 初始为0，一路变小， 直到 -260
         float percent = ((float) Math.abs(verticalOffset) / (float) appbar.getTotalScrollRange()); //0是最初状态， 1是全收缩起来的状态了
+        System.out.println("szw Percent = "+percent);
+
+        if(percent == EXPANDED){
+            return;
+        }
 
         if(percent != COLLAPSED){
             int leftMargin = (int)(percent * toolbarSize);
             CollapsingToolbarLayout.LayoutParams params = (CollapsingToolbarLayout.LayoutParams) rvTop.getLayoutParams();
             params.leftMargin = leftMargin + leftMargin / 4; // 1 + 0.25
-            rvTop.setLayoutParams(params);
 
             adapterTop.setAnimationFactor(percent);
         }
