@@ -6,11 +6,10 @@ import cn.six.sup.rv.composition.BaseRow;
 
 
 public class HeaderRow extends BaseRow {
-    private String title, caption;
+    private String title;
 
-    public HeaderRow(String title, String caption) {
+    public HeaderRow(String title) {
         this.title = title;
-        this.caption = caption;
     }
 
     @Override
@@ -26,7 +25,6 @@ public class HeaderRow extends BaseRow {
 
     @Override
     protected void bind(RvViewHolder holder) {
-        holder.setText(R.id.title_text, title);
-        holder.setText(R.id.caption_text, caption);
+        holder.setText(R.id.tv_title, title);
     }
 }

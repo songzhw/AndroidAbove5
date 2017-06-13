@@ -21,7 +21,7 @@ public class HomeUseCase {
             int type = raw.getType();
             if(BaseRow.TYPE_HEADER == type){
                 EntityHeader header = (EntityHeader) raw;
-                items.add(new HeaderRow(header.title, header.caption));
+                items.add(new HeaderRow(header.title));
             } else if (BaseRow.TYPE_TWO_TEXT == type){
                 EntityTwo two = (EntityTwo) raw;
                 items.add(new TwoTextRow(two.left, two.right));
