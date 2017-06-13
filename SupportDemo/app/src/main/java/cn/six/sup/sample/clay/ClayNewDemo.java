@@ -18,6 +18,9 @@ import android.widget.TextView;
 import cn.six.sup.R;
 import cn.six.sup.rv.OnRvItemClickListener;
 import cn.six.sup.rv.RvViewHolder;
+import cn.six.sup.rv.composition.BaseComposedAdapter;
+import cn.six.sup.rv.composition.BaseRow;
+import cn.six.sup.rv.composition.demo.HeaderRow;
 import cn.six.sup.rv.one_adapter.OneAdapter;
 
 import java.util.ArrayList;
@@ -75,17 +78,12 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
         rvContent.setItemAnimator(new DefaultItemAnimator()); // system class for removing, adding, moving items
         //        itemTouchHelper.attachToRecyclerViews(rv);
 
-        OneAdapter adapter = new OneAdapter<String>(R.layout.item_rv_cards) {
-            @Override
-            protected void apply(RvViewHolder vh, String s, int position) {
-                vh.setText(R.id.tv_rv_card_item, "item : ( " + s + " )");
-            }
-        };
-        List<String> data = new ArrayList<>();
-        for (int i = 0; i < 25; i++) {
-            data.add("" + i);
-        }
-        adapter.data = data;
+        List<BaseRow> items = new ArrayList<>();
+        items.add(new HeaderRow("Sales"));
+        items.add(new HeaderRow("Coupons"));
+        items.add(new HeaderRow("Cards"));
+
+        BaseComposedAdapter adapter = new BaseComposedAdapter(items);
         rvContent.setAdapter(adapter);
 
         appbar.addOnOffsetChangedListener(this);
