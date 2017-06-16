@@ -1,36 +1,31 @@
 package cn.six.sup.sample.clay;
 
-import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import cn.six.sup.R;
 import cn.six.sup.rv.OnRvItemClickListener;
-import cn.six.sup.rv.RvItemTouchHelperCallback;
-import cn.six.sup.rv.RvItemTouchHelperListener;
-import cn.six.sup.rv.RvViewHolder;
+import cn.six.sup.rv.RvItemDragSwipeCallback;
+import cn.six.sup.rv.RvItemDragSwipeListener;
 import cn.six.sup.rv.composition.BaseComposedAdapter;
 import cn.six.sup.rv.composition.BaseRow;
 import cn.six.sup.rv.composition.demo.HeaderRow;
-import cn.six.sup.rv.one_adapter.OneAdapter;
+import cn.six.sup.rv.composition.demo.TwoTextRow;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener, RvItemTouchHelperListener {
+public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener, RvItemDragSwipeListener {
 
 
     @Override
@@ -48,28 +43,37 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
         rvContent.setLayoutManager(new LinearLayoutManager(this));
         rvContent.setNestedScrollingEnabled(false);
         rvContent.setItemAnimator(new DefaultItemAnimator()); // system class for removing, adding, moving items
-        //        itemTouchHelper.attachToRecyclerViews(rv);
 
         List<BaseRow> items = new ArrayList<>();
         items.add(new HeaderRow("Sales"));
+        items.add(new TwoTextRow("A1", "**A1**"));
+        items.add(new TwoTextRow("A2", "**A2**"));
+        items.add(new TwoTextRow("A3", "**A3**"));
+        items.add(new TwoTextRow("A4", "**A4**"));
         items.add(new HeaderRow("Coupons"));
+        items.add(new TwoTextRow("B1", "**B1**"));
+        items.add(new TwoTextRow("B2", "**B2**"));
         items.add(new HeaderRow("Cards"));
+        items.add(new TwoTextRow("C1", "**C1**"));
+        items.add(new TwoTextRow("C2", "**C2**"));
+        items.add(new TwoTextRow("C3", "**C3**"));
 
         BaseComposedAdapter adapter = new BaseComposedAdapter(items);
         rvContent.setAdapter(adapter);
 
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RvItemTouchHelperCallback(this));
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RvItemDragSwipeCallback(this));
         itemTouchHelper.attachToRecyclerView(rvContent);
 
     }
 
 
     @Override
-    public void onMove(int fromPosition, int toPosition) { }
+    public void onMove(int fromPosition, int toPosition) {
+    }
 
     @Override
     public void onSwiped(int position) {
-
+        System.out.println("szw swipe "+position);
     }
 
     @Override
@@ -119,7 +123,7 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
 //        System.out.println("szw scroll range(2) = "+appbar.getTotalScrollRange()); //=> 260
 //        System.out.println("szw : verticalOffest = " + verticalOffset); //=> 初始为0，一路变小， 直到 -260
         float percent = ((float) Math.abs(verticalOffset) / (float) appbar.getTotalScrollRange()); //0是最初状态， 1是全收缩起来的状态了
-        System.out.println("szw Percent = "+percent);
+//        System.out.println("szw Percent = "+percent);
 
         if(percent == EXPANDED){
             return;

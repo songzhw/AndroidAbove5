@@ -1,9 +1,7 @@
 package cn.six.sup.rv.dragdrop;
 
 import android.app.Activity;
-import android.app.Service;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -14,14 +12,14 @@ import java.util.List;
 
 import cn.six.sup.R;
 import cn.six.sup.rv.OnRvItemClickListener;
-import cn.six.sup.rv.RvItemTouchHelperCallback;
-import cn.six.sup.rv.RvItemTouchHelperListener;
+import cn.six.sup.rv.RvItemDragSwipeCallback;
+import cn.six.sup.rv.RvItemDragSwipeListener;
 
 
 /**
  * Created by songzhw on 2016-06-09.
  */
-public class DragRecyclerViewDemo extends Activity implements RvItemTouchHelperListener {
+public class DragRecyclerViewDemo extends Activity implements RvItemDragSwipeListener {
 
     private List<String> data;
     private DragDropRvAdapter adapter;
@@ -52,12 +50,12 @@ public class DragRecyclerViewDemo extends Activity implements RvItemTouchHelperL
             }
         });
 
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RvItemTouchHelperCallback(this));
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RvItemDragSwipeCallback(this));
         itemTouchHelper.attachToRecyclerView(rv);
     }
 
 
-    // =============== RvItemTouchHelperListener =================
+    // =============== RvItemDragSwipeListener =================
     @Override
     public void onMove(int fromPosition, int toPosition) {
         if (fromPosition < toPosition) {

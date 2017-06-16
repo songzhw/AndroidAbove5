@@ -8,10 +8,10 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 /**
  * Created by songzhw on 2016-06-09.
  */
-public class RvItemTouchHelperCallback extends ItemTouchHelper.Callback {
-    public RvItemTouchHelperListener listener;
+public class RvItemDragSwipeCallback extends ItemTouchHelper.Callback {
+    public RvItemDragSwipeListener listener;
 
-    public RvItemTouchHelperCallback(RvItemTouchHelperListener listener) {
+    public RvItemDragSwipeCallback(RvItemDragSwipeListener listener) {
         this.listener = listener;
     }
 

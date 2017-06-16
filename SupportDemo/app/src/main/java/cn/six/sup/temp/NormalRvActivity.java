@@ -55,7 +55,7 @@ public class NormalRvActivity extends AppCompatActivity {
             }
         });
 
-        // ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RvItemTouchHelperCallback(this));
+        // ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RvItemDragSwipeCallback(this));
         // itemTouchHelper.attachToRecyclerView(rv);        
     }
 }
