@@ -32,6 +32,7 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
 
 
     private List<BaseRow> items;
+    private BaseComposedAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,7 +64,7 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
         items.add(new TwoTextRow("C2", "**C2**"));
         items.add(new TwoTextRow("C3", "**C3**"));
 
-        BaseComposedAdapter adapter = new BaseComposedAdapter(items);
+        adapter = new BaseComposedAdapter(items);
         rvContent.setAdapter(adapter);
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RvItemSwipeCallback(this));
@@ -82,7 +83,9 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
 
     @Override
     public void onSwiped(int position) {
-        System.out.println("szw swipe " + position);
+        items.remove(position);
+        adapter.notifyItemRemoved(position);
+
     }
 
     private void configRvTop() {
