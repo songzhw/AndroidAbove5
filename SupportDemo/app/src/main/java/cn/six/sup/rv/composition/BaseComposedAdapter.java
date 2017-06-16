@@ -9,7 +9,11 @@ import java.util.List;
 
 import cn.six.sup.rv.RvViewHolder;
 
-
+/*
+TODO It is easy to forget to update the items and typeRowMap together.
+  Once I remove one item from items, I should remove it from typeRowMap too,
+  but this is hard to remember
+*/
 public class BaseComposedAdapter extends RecyclerView.Adapter<RvViewHolder> {
     protected List<BaseRow> items = new ArrayList<>();
     private HashMap<Integer, BaseRow> typeRowMap = new HashMap<>();
@@ -43,4 +47,13 @@ public class BaseComposedAdapter extends RecyclerView.Adapter<RvViewHolder> {
     public int getItemCount() {
         return items.size();
     }
+
+
+    public void replaceItem(int position, BaseRow newRow){
+        typeRowMap.remove( items.get(position).getViewType() );
+        typeRowMap.put(newRow.getViewType(), newRow);
+        items.remove(position);
+        items.add(position, newRow);
+    }
+
 }

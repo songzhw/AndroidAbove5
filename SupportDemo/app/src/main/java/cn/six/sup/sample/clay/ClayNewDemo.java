@@ -85,9 +85,8 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
 
     @Override
     public void onSwiped(int position) {
-        //TODO item list remove the old item, and add the new undo item? is it doable? What will happen with adapter?
-        items.remove(position);
-        adapter.notifyItemRemoved(position);
+        adapter.replaceItem(position, new UndoRow(this));
+        adapter.notifyItemChanged(position);
     }
 
     // click "undo" row, this onClick() method will get called
