@@ -16,6 +16,8 @@ import cn.six.sup.R;
 import cn.six.sup.rv.OnRvItemClickListener;
 import cn.six.sup.rv.RvItemDragSwipeCallback;
 import cn.six.sup.rv.RvItemDragSwipeListener;
+import cn.six.sup.rv.RvItemSwipeCallback;
+import cn.six.sup.rv.RvItemSwipeListener;
 import cn.six.sup.rv.composition.BaseComposedAdapter;
 import cn.six.sup.rv.composition.BaseRow;
 import cn.six.sup.rv.composition.demo.HeaderRow;
@@ -25,8 +27,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener, RvItemDragSwipeListener {
+public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener,
+        RvItemSwipeListener {
 
+
+    private List<BaseRow> items;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,12 +44,12 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
     }
 
     private void configRvContent() {
-        rvContent = (RecyclerView)findViewById(R.id.rv_home);
+        rvContent = (RecyclerView) findViewById(R.id.rv_home);
         rvContent.setLayoutManager(new LinearLayoutManager(this));
         rvContent.setNestedScrollingEnabled(false);
         rvContent.setItemAnimator(new DefaultItemAnimator()); // system class for removing, adding, moving items
 
-        List<BaseRow> items = new ArrayList<>();
+        items = new ArrayList<>();
         items.add(new HeaderRow("Sales"));
         items.add(new TwoTextRow("A1", "**A1**"));
         items.add(new TwoTextRow("A2", "**A2**"));
@@ -61,26 +66,27 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
         BaseComposedAdapter adapter = new BaseComposedAdapter(items);
         rvContent.setAdapter(adapter);
 
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RvItemDragSwipeCallback(this));
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RvItemSwipeCallback(this));
         itemTouchHelper.attachToRecyclerView(rvContent);
 
     }
 
-
     @Override
-    public void onMove(int fromPosition, int toPosition) {
+    public boolean isDragable(int position) {
+        BaseRow row = items.get(position);
+        if (row instanceof HeaderRow) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public void onSwiped(int position) {
-        System.out.println("szw swipe "+position);
+        System.out.println("szw swipe " + position);
     }
 
-    @Override
-    public void onFinishDrag() { }
-
     private void configRvTop() {
-        rvTop = (RecyclerView)findViewById(R.id.rv_home_top);
+        rvTop = (RecyclerView) findViewById(R.id.rv_home_top);
         rvTop.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
         List<ShowcaseItem> listTop = new ArrayList<>();
@@ -101,7 +107,7 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
         rvTop.addOnItemTouchListener(new OnRvItemClickListener(rvTop) {
             @Override
             public void onItemClick(RecyclerView.ViewHolder vh) {
-                System.out.println("rvTop click : "+vh.getLayoutPosition());
+                System.out.println("rvTop click : " + vh.getLayoutPosition());
             }
         });
     }
@@ -110,10 +116,10 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
         final TypedArray styledAttributes = getTheme().obtainStyledAttributes(new int[]{android.R.attr.actionBarSize});
         toolbarSize = (int) styledAttributes.getDimension(0, 0);
 
-        appbar = (AppBarLayout)findViewById(R.id.extlay_home);
+        appbar = (AppBarLayout) findViewById(R.id.extlay_home);
         appbar.addOnOffsetChangedListener(this);
 
-        toolbar = (Toolbar)findViewById(R.id.toolbar_home);
+        toolbar = (Toolbar) findViewById(R.id.toolbar_home);
         setSupportActionBar(toolbar);
         setTitle(""); // 不加这个， 默认就会有字样打出来
     }
@@ -125,12 +131,12 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
         float percent = ((float) Math.abs(verticalOffset) / (float) appbar.getTotalScrollRange()); //0是最初状态， 1是全收缩起来的状态了
 //        System.out.println("szw Percent = "+percent);
 
-        if(percent == EXPANDED){
+        if (percent == EXPANDED) {
             return;
         }
 
-        if(percent != COLLAPSED){
-            int leftMargin = (int)(percent * toolbarSize);
+        if (percent != COLLAPSED) {
+            int leftMargin = (int) (percent * toolbarSize);
             CollapsingToolbarLayout.LayoutParams params = (CollapsingToolbarLayout.LayoutParams) rvTop.getLayoutParams();
             params.leftMargin = leftMargin + leftMargin / 4; // 1.25
 
