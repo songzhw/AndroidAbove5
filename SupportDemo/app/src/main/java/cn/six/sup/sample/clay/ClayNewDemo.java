@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.View;
 
 import cn.six.sup.R;
 import cn.six.sup.rv.OnRvItemClickListener;
@@ -20,6 +21,7 @@ import cn.six.sup.rv.RvItemSwipeCallback;
 import cn.six.sup.rv.RvItemSwipeListener;
 import cn.six.sup.rv.composition.BaseComposedAdapter;
 import cn.six.sup.rv.composition.BaseRow;
+import cn.six.sup.rv.composition.UndoRow;
 import cn.six.sup.rv.composition.demo.HeaderRow;
 import cn.six.sup.rv.composition.demo.TwoTextRow;
 
@@ -28,7 +30,7 @@ import java.util.List;
 
 
 public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener,
-        RvItemSwipeListener {
+        RvItemSwipeListener, View.OnClickListener {
 
 
     private List<BaseRow> items;
@@ -83,9 +85,15 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
 
     @Override
     public void onSwiped(int position) {
+        //TODO item list remove the old item, and add the new undo item? is it doable? What will happen with adapter?
         items.remove(position);
         adapter.notifyItemRemoved(position);
+    }
 
+    // click "undo" row, this onClick() method will get called
+    @Override
+    public void onClick(View v) {
+        System.out.println("szw click undo");
     }
 
     private void configRvTop() {
@@ -158,5 +166,6 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
 
     public static final float COLLAPSED = 1;
     public static final float EXPANDED = 0;
+
 }
 
