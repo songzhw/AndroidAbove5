@@ -12,11 +12,14 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import cn.six.sup.R;
 import cn.six.sup.rv.OnRvItemClickListener;
+import cn.six.sup.rv.RvItemTouchHelperCallback;
+import cn.six.sup.rv.RvItemTouchHelperListener;
 import cn.six.sup.rv.RvViewHolder;
 import cn.six.sup.rv.composition.BaseComposedAdapter;
 import cn.six.sup.rv.composition.BaseRow;
@@ -27,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener {
+public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener, RvItemTouchHelperListener {
 
 
     @Override
@@ -35,17 +38,44 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ext_appbar_layout);
 
-        final TypedArray styledAttributes = getTheme().obtainStyledAttributes(new int[]{android.R.attr.actionBarSize});
-        toolbarSize = (int) styledAttributes.getDimension(0, 0);
+        configAppBar();
+        configRvTop();
+        configRvContent();
+    }
 
-        appbar = (AppBarLayout)findViewById(R.id.extlay_home);
-        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams)appbar.getLayoutParams();
-        params.setBehavior(new AppBarLayout.Behavior());
+    private void configRvContent() {
+        rvContent = (RecyclerView)findViewById(R.id.rv_home);
+        rvContent.setLayoutManager(new LinearLayoutManager(this));
+        rvContent.setNestedScrollingEnabled(false);
+        rvContent.setItemAnimator(new DefaultItemAnimator()); // system class for removing, adding, moving items
+        //        itemTouchHelper.attachToRecyclerViews(rv);
 
-        toolbar = (Toolbar)findViewById(R.id.toolbar_home);
-        setSupportActionBar(toolbar);
-        setTitle(""); // 不加这个， 默认就会有字样打出来
+        List<BaseRow> items = new ArrayList<>();
+        items.add(new HeaderRow("Sales"));
+        items.add(new HeaderRow("Coupons"));
+        items.add(new HeaderRow("Cards"));
 
+        BaseComposedAdapter adapter = new BaseComposedAdapter(items);
+        rvContent.setAdapter(adapter);
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RvItemTouchHelperCallback(this));
+        itemTouchHelper.attachToRecyclerView(rvContent);
+
+    }
+
+
+    @Override
+    public void onMove(int fromPosition, int toPosition) { }
+
+    @Override
+    public void onSwiped(int position) {
+
+    }
+
+    @Override
+    public void onFinishDrag() { }
+
+    private void configRvTop() {
         rvTop = (RecyclerView)findViewById(R.id.rv_home_top);
         rvTop.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
@@ -70,24 +100,18 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
                 System.out.println("rvTop click : "+vh.getLayoutPosition());
             }
         });
+    }
 
+    private void configAppBar() {
+        final TypedArray styledAttributes = getTheme().obtainStyledAttributes(new int[]{android.R.attr.actionBarSize});
+        toolbarSize = (int) styledAttributes.getDimension(0, 0);
 
-        rvContent = (RecyclerView)findViewById(R.id.rv_home);
-        rvContent.setLayoutManager(new LinearLayoutManager(this));
-        rvContent.setNestedScrollingEnabled(false);
-        rvContent.setItemAnimator(new DefaultItemAnimator()); // system class for removing, adding, moving items
-        //        itemTouchHelper.attachToRecyclerViews(rv);
-
-        List<BaseRow> items = new ArrayList<>();
-        items.add(new HeaderRow("Sales"));
-        items.add(new HeaderRow("Coupons"));
-        items.add(new HeaderRow("Cards"));
-
-        BaseComposedAdapter adapter = new BaseComposedAdapter(items);
-        rvContent.setAdapter(adapter);
-
+        appbar = (AppBarLayout)findViewById(R.id.extlay_home);
         appbar.addOnOffsetChangedListener(this);
 
+        toolbar = (Toolbar)findViewById(R.id.toolbar_home);
+        setSupportActionBar(toolbar);
+        setTitle(""); // 不加这个， 默认就会有字样打出来
     }
 
     @Override
@@ -121,6 +145,5 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
 
     public static final float COLLAPSED = 1;
     public static final float EXPANDED = 0;
-
 }
 
