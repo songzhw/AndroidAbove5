@@ -13,6 +13,8 @@ import cn.six.sup.rv.RvViewHolder;
 TODO It is easy to forget to update the items and typeRowMap together.
   Once I remove one item from items, I should remove it from typeRowMap too,
   but this is hard to remember
+  <p>
+  TODO will refactor it later. I want to delete the typeRowMap
 */
 public class BaseComposedAdapter extends RecyclerView.Adapter<RvViewHolder> {
     protected List<BaseRow> items = new ArrayList<>();

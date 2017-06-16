@@ -15,8 +15,6 @@ import android.view.View;
 
 import cn.six.sup.R;
 import cn.six.sup.rv.OnRvItemClickListener;
-import cn.six.sup.rv.RvItemDragSwipeCallback;
-import cn.six.sup.rv.RvItemDragSwipeListener;
 import cn.six.sup.rv.RvItemSwipeCallback;
 import cn.six.sup.rv.RvItemSwipeListener;
 import cn.six.sup.rv.composition.BaseComposedAdapter;
@@ -31,10 +29,6 @@ import java.util.List;
 
 public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener,
         RvItemSwipeListener, View.OnClickListener {
-
-
-    private List<BaseRow> items;
-    private BaseComposedAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,7 +71,7 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
     @Override
     public boolean isDragable(int position) {
         BaseRow row = items.get(position);
-        if (row instanceof HeaderRow) {
+        if (row instanceof HeaderRow || row instanceof UndoRow) {
             return false;
         }
         return true;
@@ -85,14 +79,28 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
 
     @Override
     public void onSwiped(int position) {
-        adapter.replaceItem(position, new UndoRow(this));
+
+        // save data for undo
+        lastDeletedRow = items.get(position);
+        lastDeletedIndex = position;
+
+        adapter.replaceItem(position, new UndoRow(this));//这不能直接操作list,要通过adapter的方法，不然会有NPE。因为adapter中还有个map需要维护。
         adapter.notifyItemChanged(position);
     }
 
     // click "undo" row, this onClick() method will get called
     @Override
     public void onClick(View v) {
-        System.out.println("szw click undo");
+        if(lastDeletedRow == null || lastDeletedIndex < 0){
+            return;
+        }
+
+        adapter.replaceItem(lastDeletedIndex, lastDeletedRow);
+        adapter.notifyItemChanged(lastDeletedIndex);
+
+        // reset the temporary data
+        lastDeletedRow = null;
+        lastDeletedIndex = -1;
     }
 
     private void configRvTop() {
@@ -162,6 +170,12 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
     private Toolbar toolbar;//得是UntouchableToolbar，不然收缩后， rv的点击或滑动都不能
     private RecyclerView rvContent, rvTop;
     private TopAdapter adapterTop;
+
+    private List<BaseRow> items;
+    private BaseComposedAdapter adapter;
+
+    private BaseRow lastDeletedRow;
+    private int lastDeletedIndex = -1;
 
     public static final float COLLAPSED = 1;
     public static final float EXPANDED = 0;
