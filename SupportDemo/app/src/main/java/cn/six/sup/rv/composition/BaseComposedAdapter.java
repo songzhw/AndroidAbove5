@@ -58,4 +58,10 @@ public class BaseComposedAdapter extends RecyclerView.Adapter<RvViewHolder> {
         items.add(position, newRow);
     }
 
+    public void deleteItem(int positoin){
+        BaseRow row = items.get(positoin);
+        typeRowMap.remove(row.getViewType());
+        items.remove(row);
+    }
+
 }

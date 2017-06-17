@@ -77,8 +77,14 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
         return true;
     }
 
+    // TODO: 2017-06-16 BUG: two undo, the second block the next item (not in the right place) 
     @Override
     public void onSwiped(int position) {
+        // if there is another undo, the old undo row should disappear;
+        if (lastDeletedRow != null && lastDeletedIndex > -1) {
+            adapter.deleteItem(lastDeletedIndex);
+            adapter.notifyItemRemoved(lastDeletedIndex);
+        }
 
         // save data for undo
         lastDeletedRow = items.get(position);
@@ -91,7 +97,7 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
     // click "undo" row, this onClick() method will get called
     @Override
     public void onClick(View v) {
-        if(lastDeletedRow == null || lastDeletedIndex < 0){
+        if (lastDeletedRow == null || lastDeletedIndex < 0) {
             return;
         }
 
