@@ -2,9 +2,12 @@ package cn.six.sup.sample.clay;
 
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -35,10 +38,29 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ext_appbar_layout);
 
+        configSwipeRefreshLayout();
         configAppBar();
         configRvTop();
         configRvContent();
     }
+
+    private void configSwipeRefreshLayout() {
+        srlay = (SwipeRefreshLayout) findViewById(R.id.srlayClayNew);
+        srlay.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                handler.sendEmptyMessageDelayed(11, 4000);
+            }
+        });
+    }
+
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            srlay.setRefreshing(false);
+            System.out.println("szw refreshed");
+        }
+    };
 
     private void configRvContent() {
         rvContent = (RecyclerView) findViewById(R.id.rv_home);
@@ -77,13 +99,18 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
         return true;
     }
 
-    // TODO: 2017-06-16 BUG: two undo, the second block the next item (not in the right place) 
+    // TODO: 2017-06-16 BUG: two undo, the second block the next item (not in the right place)
     @Override
-    public void onSwiped(int position) {
+    public void onSwiped(int originalPosition) {
+        int position = originalPosition;
+        System.out.println("szw last = "+lastDeletedIndex+" ; now = "+position);
         // if there is another undo, the old undo row should disappear;
         if (lastDeletedRow != null && lastDeletedIndex > -1) {
             adapter.deleteItem(lastDeletedIndex);
             adapter.notifyItemRemoved(lastDeletedIndex);
+            if (originalPosition > lastDeletedIndex) {
+                position--; // 若第二次swipe项， 在第一次swipe项之后， 这时第一项要被干掉，因此这时第二项的position就减少了1.
+            }
         }
 
         // save data for undo
@@ -131,7 +158,7 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
         rvTop.addOnItemTouchListener(new OnRvItemClickListener(rvTop) {
             @Override
             public void onItemClick(RecyclerView.ViewHolder vh) {
-                System.out.println("rvTop click : " + vh.getLayoutPosition());
+                System.out.println("szw rvTop click : " + vh.getLayoutPosition());
             }
         });
     }
@@ -172,6 +199,7 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
 
     private int toolbarSize;
 
+    private SwipeRefreshLayout srlay;
     private AppBarLayout appbar;
     private Toolbar toolbar;//得是UntouchableToolbar，不然收缩后， rv的点击或滑动都不能
     private RecyclerView rvContent, rvTop;
