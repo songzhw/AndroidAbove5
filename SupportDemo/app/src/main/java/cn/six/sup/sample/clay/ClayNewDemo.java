@@ -177,10 +177,19 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
 
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+
+        // ===================== 1. fix the scroll conflict between srlay and clay =====================
+        if(verticalOffset >= 0){
+            srlay.setEnabled(true);
+        } else {
+            srlay.setEnabled(false);
+        }
+
+
+        // ===================== 2. collapse/expand the rvTop =====================
 //        System.out.println("szw scroll range(2) = "+appbar.getTotalScrollRange()); //=> 260
 //        System.out.println("szw : verticalOffest = " + verticalOffset); //=> 初始为0，一路变小， 直到 -260
         float percent = ((float) Math.abs(verticalOffset) / (float) appbar.getTotalScrollRange()); //0是最初状态， 1是全收缩起来的状态了
-//        System.out.println("szw Percent = "+percent);
 
         if (percent == EXPANDED) {
             return;
@@ -195,7 +204,6 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
         }
 
     }
-
 
     private int toolbarSize;
 
@@ -215,4 +223,3 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
     public static final float EXPANDED = 0;
 
 }
-
