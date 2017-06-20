@@ -95,5 +95,24 @@ public class StickyHorizDivider extends RecyclerView.ItemDecoration {
 
     }
 
+    @Override
+    public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
+        super.onDrawOver(c, parent, state);
+
+        RecyclerView.LayoutManager temp = parent.getLayoutManager();
+        if (!(temp instanceof LinearLayoutManager)) {
+            throw new IllegalStateException("FloatingTitleDivider is noly for LinearLayoutManager!");
+        }
+        LinearLayoutManager layoutManager = (LinearLayoutManager) temp;
+        int firstPos = layoutManager.findFirstVisibleItemPosition();
+
+        // 代码和FloatingTitleDemo类似， 就不详细写了。
+        //        int rectWidth = width;//        int textY = originalTextY;//        boolean isGroup = isFirstItemInGroup(firstPos + 1);//        if (isGroup) {//            View view = layoutManager.findViewByPosition(firstPos);//            int viewLeft = view.getLeft(); // viewTopLeft在这时是[0, -150]范围//            int viewTop = view.getTop();  // viewTop在这时是[0, -150]范围//            rectWidth = viewLeft + width;//            textY = 150;////            if (viewTop > 0) { // 但viewTop在第0项时特殊， 值是在[150, -150]的范围，所以这里要处理一下//                rectWidth = width;//            }//        }////        int top = parent.getPaddingTop();//        int bottom = parent.getHeight() - parent.getPaddingBottom();////        paint.setColor(Color.LTGRAY);//        c.drawRect(0, top, 0, rectWidth, paint);
+
+        String title = callback.getGroup(firstPos);
+        c.drawText(title, originalTextX, 150, textPaint);
+
+    }
+
 
 }
