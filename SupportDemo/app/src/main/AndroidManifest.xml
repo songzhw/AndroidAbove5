@@ -9,17 +9,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
+        </activity>
+
+
+        <activity android:name=".sample.clay.ClayNewDemo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-
-        <activity android:name=".sample.clay.ClayNewDemo">
-        </activity>
-
-        <activity android:name=".sample.clay.BuyActivity"/>
+        <activity android:name=".sample.clay.BuyActivity"
+            android:theme="@android:style/Theme.Dialog"
+            />
 
 
         <activity

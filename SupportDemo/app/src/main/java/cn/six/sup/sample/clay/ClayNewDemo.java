@@ -77,15 +77,6 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
         rvContent.setItemAnimator(new DefaultItemAnimator()); // system class for removing, adding, moving items
 
         items = new ArrayList<>();
-        items.add(new HeaderRow("Sales"));
-        items.add(new TwoTextRow("A1", "**A1**"));
-        items.add(new TwoTextRow("A2", "**A2**"));
-        items.add(new TwoTextRow("A3", "**A3**"));
-        items.add(new TwoTextRow("A4", "**A4**"));
-
-        items.add(new HeaderRow("Coupons"));
-        items.add(new TwoTextRow("B1", "**B1**"));
-        items.add(new TwoTextRow("B2", "**B2**"));
 
         View.OnClickListener clothClickListener = new View.OnClickListener() {
             @Override
@@ -113,6 +104,18 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
 
         items.add(new HeaderRow("Cards"));
         items.add(clothRow);
+
+        items.add(new HeaderRow("Sales"));
+        items.add(new TwoTextRow("A1", "**A1**"));
+        items.add(new TwoTextRow("A2", "**A2**"));
+        items.add(new TwoTextRow("A3", "**A3**"));
+        items.add(new TwoTextRow("A4", "**A4**"));
+
+        items.add(new HeaderRow("Coupons"));
+        items.add(new TwoTextRow("B1", "**B1**"));
+        items.add(new TwoTextRow("B2", "**B2**"));
+
+
 
         adapter = new BaseComposedAdapter(items);
         rvContent.setAdapter(adapter);
