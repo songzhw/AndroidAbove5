@@ -1,5 +1,7 @@
 package cn.six.sup.sample.clay;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,6 +9,8 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -15,6 +19,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
+import android.widget.TextView;
 
 import cn.six.sup.R;
 import cn.six.sup.rv.OnRvItemClickListener;
@@ -38,6 +43,7 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ext_appbar_layout);
+        self = this;
 
         configSwipeRefreshLayout();
         configAppBar();
@@ -55,6 +61,7 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
         });
     }
 
+    @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -80,14 +87,32 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
         items.add(new TwoTextRow("B1", "**B1**"));
         items.add(new TwoTextRow("B2", "**B2**"));
 
-        items.add(new HeaderRow("Cards"));
-        items.add(new ClothRow("China Qipao", "Qipao is a tranditional cloth in China. Woman love to wear it.",
-                "Buy Now", new View.OnClickListener() {
+        View.OnClickListener clothClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: 2017-06-21
+                View parent = (View) v.getParent();
+                if (parent != null) {
+                    TextView tvTitle = (TextView) parent.findViewById(R.id.tv_cloth_title);
+                    TextView tvDesp = (TextView) parent.findViewById(R.id.tv_cloth_desp);
+
+                    View v1 = tvTitle;
+                    View v2 = tvDesp;
+                    Pair<View,String> p1 = Pair.create(v1, "cloth_name");
+                    Pair<View,String> p2 = Pair.create(v2, "cloth_desp");
+                    Pair<View,String> p3 = Pair.create(v, "cloth_buy");
+
+                    ActivityOptionsCompat opt = ActivityOptionsCompat.makeSceneTransitionAnimation(self, p1, p2, p3);
+                    Intent it = new Intent(self, BuyActivity.class);
+                    self.startActivity(it, opt.toBundle());
+                }
             }
-        }));
+        };
+
+        ClothRow clothRow = new ClothRow("China Qipao", "Qipao is a tranditional cloth in China. Woman love to wear it.",
+                "Buy Now", clothClickListener);
+
+        items.add(new HeaderRow("Cards"));
+        items.add(clothRow);
 
         adapter = new BaseComposedAdapter(items);
         rvContent.setAdapter(adapter);
@@ -209,6 +234,7 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
 
     }
 
+    private ClayNewDemo self;
     private int toolbarSize;
 
     private SwipeRefreshLayout srlay;
