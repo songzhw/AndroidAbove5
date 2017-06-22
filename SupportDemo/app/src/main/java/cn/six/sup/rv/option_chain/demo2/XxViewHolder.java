@@ -7,10 +7,10 @@ import android.view.View;
 import cn.six.sup.R;
 
 
-public class RvViewHolder extends RecyclerView.ViewHolder {
+public class XxViewHolder extends RecyclerView.ViewHolder {
     public RecyclerView rvInner;
 
-    public RvViewHolder(View itemView) {
+    public XxViewHolder(View itemView) {
         super(itemView);
         rvInner = (RecyclerView)itemView.findViewById(R.id.rvItem);
     }

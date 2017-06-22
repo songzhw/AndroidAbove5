@@ -22,7 +22,7 @@ public class ExRvAdapter02 extends BaseBinderAdapter {
         this.items = new ArrayList<>();
 
         items.add(new TimeStampeStampBinder("Right now : "));
-        items.add(new RvViewBinder(ctx, numbers));
+        items.add(new XxViewBinder(ctx, numbers));
         items.add(new TimeStampeStampBinder("Another   : "));
     }
 

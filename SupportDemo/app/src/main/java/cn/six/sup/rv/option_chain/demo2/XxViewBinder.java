@@ -9,23 +9,23 @@ import cn.six.sup.rv.option_chain.BaseBinder;
 
 import java.util.List;
 
-public class RvViewBinder extends BaseBinder<RvViewHolder> {
+public class XxViewBinder extends BaseBinder<XxViewHolder> {
     private Context ctx;
     private List<String> numbers;
 
-    public RvViewBinder(Context ctx, List<String> numbers) {
+    public XxViewBinder(Context ctx, List<String> numbers) {
         this.ctx = ctx;
         this.numbers = numbers;
     }
 
     @Override
-    public RvViewHolder createViewHolder(ViewGroup parent) {
+    public XxViewHolder createViewHolder(ViewGroup parent) {
         View view = getView(R.layout.item_only_rv, parent);
-        return new RvViewHolder(view);
+        return new XxViewHolder(view);
     }
 
     @Override
-    public void bindViewHolder(RvViewHolder holder) {
+    public void bindViewHolder(XxViewHolder holder) {
         holder.rvInner.setLayoutManager(new NestedGridLayoutManager(ctx, 4));
         holder.rvInner.setHasFixedSize(true);
         NumbersAdapter adapter = new NumbersAdapter(ctx, numbers);
