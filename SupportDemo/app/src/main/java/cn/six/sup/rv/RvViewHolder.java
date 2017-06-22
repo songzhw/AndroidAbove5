@@ -58,5 +58,11 @@ public class RvViewHolder extends RecyclerView.ViewHolder {
         view.setBackgroundResource(bgResId);
     }
 
+    public void setClickListener(int id, View.OnClickListener listener){
+        View view = getView(id);
+        view.setOnClickListener(listener);
+    }
+
+
 
 }
