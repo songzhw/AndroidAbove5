@@ -22,6 +22,7 @@ import cn.six.sup.rv.RvItemSwipeCallback;
 import cn.six.sup.rv.RvItemSwipeListener;
 import cn.six.sup.rv.composition.BaseComposedAdapter;
 import cn.six.sup.rv.composition.BaseRow;
+import cn.six.sup.rv.composition.ClothRow;
 import cn.six.sup.rv.composition.UndoRow;
 import cn.six.sup.rv.composition.demo.HeaderRow;
 import cn.six.sup.rv.composition.demo.TwoTextRow;
@@ -54,7 +55,7 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
         });
     }
 
-    private Handler handler = new Handler(){
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             srlay.setRefreshing(false);
@@ -74,13 +75,19 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
         items.add(new TwoTextRow("A2", "**A2**"));
         items.add(new TwoTextRow("A3", "**A3**"));
         items.add(new TwoTextRow("A4", "**A4**"));
+
         items.add(new HeaderRow("Coupons"));
         items.add(new TwoTextRow("B1", "**B1**"));
         items.add(new TwoTextRow("B2", "**B2**"));
+
         items.add(new HeaderRow("Cards"));
-        items.add(new TwoTextRow("C1", "**C1**"));
-        items.add(new TwoTextRow("C2", "**C2**"));
-        items.add(new TwoTextRow("C3", "**C3**"));
+        items.add(new ClothRow("China Qipao", "Qipao is a tranditional cloth in China. Woman love to wear it.",
+                "Buy Now", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: 2017-06-21
+            }
+        }));
 
         adapter = new BaseComposedAdapter(items);
         rvContent.setAdapter(adapter);
@@ -100,7 +107,7 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
     @Override
     public void onSwiped(int originalPosition) {
         int position = originalPosition;
-        System.out.println("szw last = "+lastDeletedIndex+" ; now = "+position);
+        System.out.println("szw last = " + lastDeletedIndex + " ; now = " + position);
         // if there is another undo, the old undo row should disappear;
         if (lastDeletedRow != null && lastDeletedIndex > -1) {
             adapter.deleteItem(lastDeletedIndex);
@@ -176,7 +183,7 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
 
         // ===================== 1. fix the scroll conflict between srlay and clay =====================
-        if(verticalOffset >= 0){
+        if (verticalOffset >= 0) {
             srlay.setEnabled(true);
         } else {
             srlay.setEnabled(false);

@@ -16,22 +16,26 @@ public class ClothRow extends BaseRow {
         this.listener = listener;
     }
 
-    @Override    protected int getViewType() {
+    @Override
+    protected int getViewType() {
         return TYPE_CLOTH;
     }
 
-    @Override    protected int getLayoutXmlRes() {
+    @Override
+    protected int getLayoutXmlRes() {
         return R.layout.item_cloth;
     }
 
-    @Override    protected void bind(RvViewHolder holder) {
+    @Override
+    protected void bind(RvViewHolder holder) {
         holder.setText(R.id.tv_cloth_desp, desp);
         holder.setText(R.id.tv_cloth_title, name);
         holder.setText(R.id.btn_cloth_buy, action);
         holder.setClickListener(R.id.btn_cloth_buy, listener);
     }
 
-    @Override    public boolean isDraggable() {
+    @Override
+    public boolean isDraggable() {
         return false;
     }
 }
