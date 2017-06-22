@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_marginLeft="25dp" android:layout_marginRight="25dp"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="260dp" android:layout_height="240dp">
 
     <TextView android:id="@+id/tv_cloth_title" android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:transitionName="cloth_name" android:textStyle="bold" android:textSize="24dp" android:text="Title"/>
+        android:transitionName="cloth_name" android:textStyle="bold" android:textSize="24dp" android:text="Title" android:textColor="#000"/>
 
     <TextView android:id="@+id/tv_cloth_desp" android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:transitionName="cloth_desp" android:layout_marginTop="15dp" android:textSize="18dp" android:text="description"/>
+        android:transitionName="cloth_desp" android:layout_marginTop="15dp" android:textSize="18dp" android:text="description"  android:textColor="#000"/>
 
     <View android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginTop="20dp" android:layout_marginBottom="20dp"
         android:background="#ccc" />
@@ -29,7 +29,7 @@
         android:background="#ccc" />
 
     <Button android:id="@+id/btn_cloth_buy" android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:transitionName="cloth_buy" android:layout_marginBottom="25dp"
+        android:transitionName="cloth_buy" android:layout_marginBottom="25dp"  android:textColor="#000"
         android:layout_gravity="right" android:text="Buy Now" android:layout_marginRight="10dp" />
 
 
