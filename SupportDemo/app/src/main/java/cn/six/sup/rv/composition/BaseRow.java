@@ -9,6 +9,7 @@ public abstract class BaseRow {
     public static final int TYPE_UNDO=99;
     public static final int TYPE_HEADER = 3;
     public static final int TYPE_TWO_TEXT = 4;
+    public static final int TYPE_CLOTH = 5;
 
 
     protected abstract int getViewType();
