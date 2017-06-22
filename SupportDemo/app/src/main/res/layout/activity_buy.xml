@@ -4,10 +4,10 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView android:id="@+id/tv_cloth_title" android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:transitionName="cloth_name" android:textStyle="bold" android:textSize="24dp" tools:text="Title"/>
+        android:transitionName="cloth_name" android:textStyle="bold" android:textSize="24dp" android:text="Title"/>
 
     <TextView android:id="@+id/tv_cloth_desp" android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:transitionName="cloth_desp" android:layout_marginTop="15dp" android:textSize="18dp" tools:text="description"/>
+        android:transitionName="cloth_desp" android:layout_marginTop="15dp" android:textSize="18dp" android:text="description"/>
 
     <View android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginTop="20dp" android:layout_marginBottom="20dp"
         android:background="#ccc" />
@@ -30,6 +30,6 @@
 
     <Button android:id="@+id/btn_cloth_buy" android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:transitionName="cloth_buy" android:layout_marginBottom="25dp"
-        android:layout_gravity="right" tools:text="Buy Now" android:layout_marginRight="10dp" />
+        android:layout_gravity="right" android:text="Buy Now" android:layout_marginRight="10dp" />
 
 </LinearLayout>
