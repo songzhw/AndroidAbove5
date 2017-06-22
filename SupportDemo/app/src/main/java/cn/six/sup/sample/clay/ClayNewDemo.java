@@ -93,10 +93,7 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
     @Override
     public boolean isDragable(int position) {
         BaseRow row = items.get(position);
-        if (row instanceof HeaderRow || row instanceof UndoRow) {
-            return false;
-        }
-        return true;
+        return row.isDraggable();
     }
 
     // TODO: 2017-06-16 BUG: two undo, the second block the next item (not in the right place)

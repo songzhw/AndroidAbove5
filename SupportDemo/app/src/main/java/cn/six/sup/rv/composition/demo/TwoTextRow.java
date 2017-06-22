@@ -28,4 +28,9 @@ public class TwoTextRow extends BaseRow {
         holder.setText(R.id.tvLeft, leftText);
         holder.setText(R.id.tvRight, rightText);
     }
+
+    @Override
+    public boolean isDraggable() {
+        return true;
+    }
 }

@@ -22,9 +22,14 @@ public class HeaderRow extends BaseRow {
         return R.layout.item_header;
     }
 
-
     @Override
     protected void bind(RvViewHolder holder) {
         holder.setText(R.id.tv_title, title);
     }
+
+    @Override
+    public boolean isDraggable() {
+        return false;
+    }
+
 }

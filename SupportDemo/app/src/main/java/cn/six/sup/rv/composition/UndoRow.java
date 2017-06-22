@@ -26,4 +26,9 @@ public class UndoRow extends BaseRow {
     protected void bind(RvViewHolder holder) {
         holder.itemView.setOnClickListener(listener);
     }
+
+    @Override
+    public boolean isDraggable() {
+        return false;
+    }
 }

@@ -20,4 +20,6 @@ public abstract class BaseRow {
     protected abstract @LayoutRes int getLayoutXmlRes();
 
     protected abstract void bind(RvViewHolder holder);
+
+    public abstract boolean isDraggable();
 }
