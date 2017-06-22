@@ -20,7 +20,7 @@
         </activity>
 
         <activity android:name=".sample.clay.BuyActivity"
-            android:theme="@android:style/Theme.Dialog"
+            android:theme="@style/Theme.CustomDialog"
             />
 
 
