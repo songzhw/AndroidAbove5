@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
 import android.widget.HorizontalScrollView;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.List;
 import cn.six.sup.R;
 import cn.six.sup.rv.RvViewHolder;
 import cn.six.sup.rv.one_adapter.OneAdapter;
+
 
 public class MultiRvDemo extends Activity {
     public static final int HEIGHT = 15;
@@ -62,20 +64,18 @@ public class MultiRvDemo extends Activity {
 
     }
 
-    // 当我滑动完了， 成idle了， rvLeft移除此监听
     private final RecyclerView.OnScrollListener rvLeftScrollListener = new MultiRvScrollListener(){
         @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-            super.onScrolled(recyclerView, dx, dy);
+            super.onScrolled(recyclerView, dx, dy); // 当我滑动完了， 成idle了， rvLeft移除此监听
             rvRight.scrollBy(dx, dy); // rvLeft的移动， 要求rvRight也做相关动作。
         }
     };
 
-    // 当我滑动完了， 成idle了， rvRight移除此监听
     private final RecyclerView.OnScrollListener rvRightScrollListener = new MultiRvScrollListener() {
         @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-            super.onScrolled(recyclerView, dx, dy);
+            super.onScrolled(recyclerView, dx, dy); // 当我滑动完了， 成idle了， rvLeft移除此监听
             rvLeft.scrollBy(dx, dy); //rvRight的移动，也要求rvLeft动。 这和上面一比对，明显会无限循环。 所以要做处理。
         }
     };
@@ -90,7 +90,6 @@ public class MultiRvDemo extends Activity {
                 if(rv.getScrollState() == RecyclerView.SCROLL_STATE_IDLE) {
                     onTouchEvent(rv, e);
                 }
-
                 return false;
             }
 
@@ -136,5 +135,6 @@ public class MultiRvDemo extends Activity {
         });
     }
 }
+
 
 
