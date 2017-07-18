@@ -1,6 +1,5 @@
 package cn.six.sup.rv.one_adapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
@@ -9,9 +8,6 @@ import java.util.List;
 
 import cn.six.sup.rv.RvViewHolder;
 
-/**
- * Created by songzhw on 2016-08-13
- */
 public abstract class OneAdapter<T> extends RecyclerView.Adapter<RvViewHolder> {
     public int layoutResId;
     public List<T> data;
@@ -21,6 +17,11 @@ public abstract class OneAdapter<T> extends RecyclerView.Adapter<RvViewHolder> {
         data = new ArrayList<>();
     }
 
+    public OneAdapter(int layoutResId, List<T> data){
+        this.layoutResId = layoutResId;
+        this.data = data;
+    }
+
     @Override
     public int getItemCount() {
         return data == null ? 0 : data.size();
@@ -28,14 +29,12 @@ public abstract class OneAdapter<T> extends RecyclerView.Adapter<RvViewHolder> {
 
     @Override
     public RvViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//        System.out.println("szw onCreateViewHolder()");
         RvViewHolder vh = RvViewHolder.createViewHolder(parent, layoutResId);
         return vh;
     }
 
     @Override
     public void onBindViewHolder(RvViewHolder holder, int position) {
-//        System.out.println("szw onBindViewHolder("+position+")");
         if(data != null && data.size() > position){
             apply(holder, data.get(position), position);
         }
@@ -43,6 +42,5 @@ public abstract class OneAdapter<T> extends RecyclerView.Adapter<RvViewHolder> {
 
 
     protected abstract void apply(RvViewHolder vh, T t, int position);
-
 
 }
