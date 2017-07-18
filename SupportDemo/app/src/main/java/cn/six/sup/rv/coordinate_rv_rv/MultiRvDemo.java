@@ -62,18 +62,20 @@ public class MultiRvDemo extends Activity {
 
     }
 
+    // 当我滑动完了， 成idle了， rvLeft移除此监听
     private final RecyclerView.OnScrollListener rvLeftScrollListener = new MultiRvScrollListener(){
         @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-            super.onScrolled(recyclerView, dx, dy); // 当我滑动完了， 成idle了， rvLeft移除此监听
+            super.onScrolled(recyclerView, dx, dy);
             rvRight.scrollBy(dx, dy); // rvLeft的移动， 要求rvRight也做相关动作。
         }
     };
 
+    // 当我滑动完了， 成idle了， rvRight移除此监听
     private final RecyclerView.OnScrollListener rvRightScrollListener = new MultiRvScrollListener() {
         @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-            super.onScrolled(recyclerView, dx, dy); // 当我滑动完了， 成idle了， rvLeft移除此监听
+            super.onScrolled(recyclerView, dx, dy);
             rvLeft.scrollBy(dx, dy); //rvRight的移动，也要求rvLeft动。 这和上面一比对，明显会无限循环。 所以要做处理。
         }
     };
@@ -84,6 +86,11 @@ public class MultiRvDemo extends Activity {
 
             @Override
             public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                // fire the touch event, otherwise ,the onTouchEvent() will never get called
+                if(rv.getScrollState() == RecyclerView.SCROLL_STATE_IDLE) {
+                    onTouchEvent(rv, e);
+                }
+
                 return false;
             }
 
@@ -108,6 +115,10 @@ public class MultiRvDemo extends Activity {
             int lastY;
             @Override
             public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                // fire the touch event, otherwise ,the onTouchEvent() will never get called
+                if(rv.getScrollState() == RecyclerView.SCROLL_STATE_IDLE) {
+                    onTouchEvent(rv, e);
+                }
                 return false;
             }
 
