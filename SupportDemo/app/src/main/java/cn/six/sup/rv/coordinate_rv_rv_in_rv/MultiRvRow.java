@@ -23,6 +23,7 @@ public class MultiRvRow implements ItemView {
     private final List<String> dataRight;
     private RecyclerView rvLeft;
     private RecyclerView rvRight;
+    private CoordinateRvScrollListener rvLeftScrollListener, rvRightScrollListener;
 
     public MultiRvRow() {
         dataLeft = new ArrayList<>();
@@ -56,7 +57,8 @@ public class MultiRvRow implements ItemView {
                 vh.setText(R.id.tvItemSymbol, s);
             }
         });
-        initRvLeftScrollListener();
+        rvLeftScrollListener = new CoordinateRvScrollListener(rvRight);
+        rvLeft.addOnItemTouchListener(new CoordinateRvItemTouchListener(rvRight, rvLeftScrollListener));
 
         rvRight.setLayoutManager(new GridLayoutManager(ctx, WIDTH));
         rvRight.setAdapter(new OneAdapter<String>(R.layout.item_right, dataRight) {
@@ -65,7 +67,8 @@ public class MultiRvRow implements ItemView {
                 vh.setText(R.id.tvItemDetails, s);
             }
         });
-        initRvRightScrollListener();
+        rvRightScrollListener = new CoordinateRvScrollListener(rvLeft);
+        rvRight.addOnItemTouchListener(new CoordinateRvItemTouchListener(rvLeft, rvRightScrollListener));
 
         hsv.setScrollViewListener(new ObservableHorizontalScrollView.ScrollViewListener() {
             @Override
@@ -76,78 +79,51 @@ public class MultiRvRow implements ItemView {
         });
     }
 
-    // 当我滑动完了， 成idle了， rvLeft移除此监听
-    private final RecyclerView.OnScrollListener rvLeftScrollListener = new MultiRvScrollListener(){
+    // 当我滑动完了， 成idle了， recyclerView会移除此监听
+    private class CoordinateRvScrollListener extends MultiRvScrollListener{
+        private RecyclerView rvOther;
+
+        public CoordinateRvScrollListener(RecyclerView rvOther) {
+            this.rvOther = rvOther;
+        }
+
         @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-            System.out.println("szw rvLeft scroll listener");
             super.onScrolled(recyclerView, dx, dy);
-            rvRight.scrollBy(dx, dy); // rvLeft的移动， 要求rvRight也做相关动作。
+            rvOther.scrollBy(dx, dy);
         }
-    };
+    }
 
-    // 当我滑动完了， 成idle了， rvRight移除此监听
-    private final RecyclerView.OnScrollListener rvRightScrollListener = new MultiRvScrollListener() {
+    // 在rvOther是idle时， 才会真的能移动
+    private class CoordinateRvItemTouchListener implements RecyclerView.OnItemTouchListener {
+        private RecyclerView rvOther;
+        private CoordinateRvScrollListener scrollListener;
+
+        public CoordinateRvItemTouchListener(RecyclerView rvOther,
+                                             CoordinateRvScrollListener scrollListener) {
+            this.rvOther = rvOther;
+            this.scrollListener = scrollListener;
+        }
+
         @Override
-        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-            System.out.println("szw rvRight scroll listener");
-            super.onScrolled(recyclerView, dx, dy);
-            rvLeft.scrollBy(dx, dy); //rvRight的移动，也要求rvLeft动。 这和上面一比对，明显会无限循环。 所以要做处理。
+        public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+            // fire the touch event, otherwise ,the onTouchEvent() will never get called
+            if(rv.getScrollState() == RecyclerView.SCROLL_STATE_IDLE) {
+                onTouchEvent(rv, e);
+            }
+            return false;
         }
-    };
 
-
-    private void initRvLeftScrollListener(){
-        rvLeft.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-            @Override
-            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-                System.out.println("szw ItemTouch onInterceptTouchEvent() : rvLeft");
-                // fire the touch event, otherwise ,the onTouchEvent() will never get called
-                if(rv.getScrollState() == RecyclerView.SCROLL_STATE_IDLE) {
-                    onTouchEvent(rv, e);
-                }
-                return false;
+        @Override
+        public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+            int action = e.getAction();
+            if(action == MotionEvent.ACTION_DOWN && rvOther.getScrollState() == RecyclerView.SCROLL_STATE_IDLE){
+                rv.addOnScrollListener(scrollListener);
             }
+        }
 
-            @Override
-            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-                System.out.println("szw ItemTouch onTouchEvent() : rvLeft");
-                int action = e.getAction();
-                // action_down保证只addOnScrollListener()一次，不会添加多个listener
-                // rvRight是idle， 保证rvRight没有onScrollListener，这样就不会无限死循环
-                if(action == MotionEvent.ACTION_DOWN && rvRight.getScrollState() == RecyclerView.SCROLL_STATE_IDLE){
-                    rv.addOnScrollListener(rvLeftScrollListener);
-                }
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) { }
-        });
+        @Override
+        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) { }
     }
 
-    private void initRvRightScrollListener(){
-        rvRight.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-            @Override
-            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-                System.out.println("szw ItemTouch onInterceptTouchEvent() : rvRight");
-                // fire the touch event, otherwise ,the onTouchEvent() will never get called
-                if(rv.getScrollState() == RecyclerView.SCROLL_STATE_IDLE) {
-                    onTouchEvent(rv, e);
-                }
-                return false;
-            }
-
-            @Override
-            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-                System.out.println("szw ItemTouch onTouchEvent() : rvRight");
-                int action = e.getAction();
-                if(action == MotionEvent.ACTION_DOWN && rvLeft.getScrollState() == RecyclerView.SCROLL_STATE_IDLE) {
-                    rv.addOnScrollListener(rvRightScrollListener);
-                }
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) { }
-        });
-    }
 }
