@@ -13,7 +13,6 @@ import java.util.List;
 import cn.six.sup.R;
 import cn.six.sup.rv.ItemView;
 import cn.six.sup.rv.OneTypesAdapter;
-
 public class RvWrapMultiRvDemo extends Activity {
 
     @Override
@@ -25,6 +24,7 @@ public class RvWrapMultiRvDemo extends Activity {
         rv.setLayoutManager(new LinearLayoutManager(this));
 
         List<ItemView> data = new ArrayList<>();
+        data.add(new MultiRvRow());
         data.add(new SimpleMenuRow());
         data.add(new SimpleMenuRow());
         data.add(new SimpleMenuRow());
@@ -37,4 +37,5 @@ public class RvWrapMultiRvDemo extends Activity {
     }
 
 }
+
 
