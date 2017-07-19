@@ -88,10 +88,12 @@ public class MultiRvDemo extends Activity {
         }
     }
 
+
     // 在rvOther是idle时， 才会真的能移动
     private class CoordinateRvItemTouchListener implements RecyclerView.OnItemTouchListener {
         private RecyclerView rvOther;
         private CoordinateRvScrollListener scrollListener;
+        private int lastY;
 
         public CoordinateRvItemTouchListener(RecyclerView rvOther,
                                              CoordinateRvScrollListener scrollListener) {
@@ -112,15 +114,21 @@ public class MultiRvDemo extends Activity {
         public void onTouchEvent(RecyclerView rv, MotionEvent e) {
             int action = e.getAction();
             if(action == MotionEvent.ACTION_DOWN && rvOther.getScrollState() == RecyclerView.SCROLL_STATE_IDLE){
+                lastY = rv.getScrollY();
                 rv.addOnScrollListener(scrollListener);
+            } else {
+                // if this touch is not a scrolling action, remove the scroll listener
+                if(action == MotionEvent.ACTION_UP && rv.getScrollY() == lastY) {
+                    rv.removeOnScrollListener(scrollListener);
+                }
             }
         }
 
         @Override
         public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) { }
     }
-
 }
+
 
 
 
