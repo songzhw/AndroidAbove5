@@ -10,7 +10,7 @@ import android.widget.SeekBar;
 
 import cn.six.sup.R;
 
-public class SpringActivity extends Activity {
+public class SpringActivity02 extends Activity {
 
     private float downX, downY;
     private SeekBar damping, stiffness;

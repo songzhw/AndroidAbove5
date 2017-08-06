@@ -9,14 +9,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-        </activity>
-
-
-        <activity android:name=".sample.clay.ClayNewDemo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name=".sample.clay.ClayNewDemo">
         </activity>
 
         <activity android:name=".sample.clay.BuyActivity"
@@ -82,8 +81,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".other.spring.SpringActivity"
-            android:label="Support Spring Demo">
+            android:name=".other.spring.SpringActivity01"
+            android:label="Support Spring Demo 01">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="ca.six.sup.demo" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".other.spring.SpringActivity02"
+            android:label="Support Spring Demo 02">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="ca.six.sup.demo" />
