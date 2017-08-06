@@ -97,6 +97,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".other.spring.SpringActivity03"
+            android:label="Support Spring Demo 03">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="ca.six.sup.demo" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".other.BottomSheetDemo"
             android:label="Bottom Sheet Dialog - Demo">
             <intent-filter>

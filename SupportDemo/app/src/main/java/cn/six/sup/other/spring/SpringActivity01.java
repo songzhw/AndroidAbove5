@@ -20,8 +20,8 @@ public class SpringActivity01 extends Activity {
         ImageView iv = (ImageView) findViewById(R.id.ivSpring01);
 
         final SpringForce force = new SpringForce(0f)
-                .setDampingRatio(SpringForce.DAMPING_RATIO_LOW_BOUNCY) // 阻力。 振幅会逐渐下降。
-                .setStiffness(SpringForce.STIFFNESS_MEDIUM); // 刚度。 多久回到原点。
+                .setDampingRatio(SpringForce.DAMPING_RATIO_LOW_BOUNCY) // 阻力。 振幅会逐渐下降。停止得越快。
+                .setStiffness(SpringForce.STIFFNESS_MEDIUM); // 刚度。 运动得越快
         final SpringAnimation anim = new SpringAnimation(iv, SpringAnimation.TRANSLATION_Y)
                 .setSpring(force);
 
@@ -38,3 +38,8 @@ public class SpringActivity01 extends Activity {
 
     }
 }
+
+/*
+Damping Ratio :从理论上讲分为三种情况 Overdamped过阻尼（ζ > 1）、Critically damped临界阻尼(ζ = 1)、Underdamped欠阻尼状态(0<ζ <1)。
+
+ */
