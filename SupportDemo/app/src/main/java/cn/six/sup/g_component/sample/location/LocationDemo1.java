@@ -61,6 +61,21 @@ public class LocationDemo1 extends Activity implements GoogleApiClient.Connectio
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        System.out.println("szw onStart()");
+        googleApiClient.connect();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        System.out.println("szw onStop()");
+        googleApiClient.disconnect();
+    }
+
+
+    @Override
     public void onConnected(@Nullable Bundle bundle) {
         System.out.println("szw google play connected");
     }
