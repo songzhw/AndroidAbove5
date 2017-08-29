@@ -17,7 +17,7 @@ import com.google.android.gms.location.LocationServices;
 
 @SuppressWarnings("MissingPermission")
 public class LocationDemo1 extends Activity implements GoogleApiClient.ConnectionCallbacks,
-    GoogleApiClient.OnConnectionFailedListener, LocationListener {
+        GoogleApiClient.OnConnectionFailedListener, LocationListener {
     private FusedLocationProviderApi locationClient;
     private GoogleApiClient googleApiClient;
     private LocationRequest locationRequest;
@@ -27,20 +27,28 @@ public class LocationDemo1 extends Activity implements GoogleApiClient.Connectio
         super.onCreate(savedInstanceState);
 
         googleApiClient = new GoogleApiClient.Builder(this)
-            .addApi(LocationServices.API)
-            .addConnectionCallbacks(this)
-            .addOnConnectionFailedListener(this)
-            .build();
+                .addApi(LocationServices.API)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .build();
+        googleApiClient.connect();
 
         locationClient = LocationServices.FusedLocationApi;
 
         locationRequest = LocationRequest.create()
-            .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-            .setInterval(5000)
-            .setFastestInterval(1000)
-            .setSmallestDisplacement(2);
+                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+                .setInterval(5000)
+                .setFastestInterval(1000)
+                .setSmallestDisplacement(2);
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("szw onDestroy()");
+        googleApiClient.disconnect();
+    }
 
     @Override
     protected void onResume() {
@@ -58,22 +66,8 @@ public class LocationDemo1 extends Activity implements GoogleApiClient.Connectio
         if (googleApiClient.isConnected()) {
             locationClient.removeLocationUpdates(googleApiClient, this);
         }
-    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        System.out.println("szw onStart()");
-        googleApiClient.connect();
     }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        System.out.println("szw onStop()");
-        googleApiClient.disconnect();
-    }
-
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
@@ -92,6 +86,7 @@ public class LocationDemo1 extends Activity implements GoogleApiClient.Connectio
 
     @Override
     public void onLocationChanged(Location location) {
-        System.out.println("szw location : ( " + location.getLatitude() + " , " + location.getLongitude() + " )");
+        System.out.println("szw location1 : ( " + location.getLatitude() + " , " + location.getLongitude() + " )");
     }
 }
+
