@@ -50,6 +50,17 @@ public class LocationWatcher implements LifecycleObserver, GoogleApiClient.Conne
                 .setFastestInterval(1000)
                 .setSmallestDisplacement(2);
 
+        Permission6.executeWithPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION, new IAfterDo() {
+            @Override
+            public void doAfterPermission() {
+                // do nothing
+            }
+
+            @Override
+            public void userDenyPermission() {
+                isUserDenyPermission = true;
+            }
+        });
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
