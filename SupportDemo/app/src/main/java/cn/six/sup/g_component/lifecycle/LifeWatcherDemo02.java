@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import cn.six.sup.R;
+import cn.six.sup.g_component.LifeAppCompatActivity;
 
 
 public class LifeWatcherDemo02 extends LifeAppCompatActivity {

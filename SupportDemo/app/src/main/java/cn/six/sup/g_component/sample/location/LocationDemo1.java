@@ -18,10 +18,11 @@ import com.google.android.gms.location.LocationServices;
 
 import ca.six.util.IAfterDo;
 import ca.six.util.Permission6;
+import cn.six.sup.g_component.LifeAppCompatActivity;
 
 
 //@SuppressWarnings("MissingPermission")
-public class LocationDemo1 extends Activity implements GoogleApiClient.ConnectionCallbacks,
+public class LocationDemo1 extends LifeAppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener, IAfterDo {
     private FusedLocationProviderApi locationClient;
     private GoogleApiClient googleApiClient;

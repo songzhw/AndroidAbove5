@@ -1,4 +1,4 @@
-package cn.six.sup.g_component.lifecycle;
+package cn.six.sup.g_component;
 
 import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.LifecycleRegistryOwner;
@@ -12,4 +12,3 @@ public class LifeAppCompatActivity extends AppCompatActivity implements Lifecycl
         return mRegistry;
     }
 }
-
