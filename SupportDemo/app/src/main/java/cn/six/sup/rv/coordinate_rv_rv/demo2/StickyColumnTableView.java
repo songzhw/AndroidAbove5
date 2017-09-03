@@ -12,13 +12,16 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import cn.six.sup.R;
+import cn.six.sup.rv.RvViewHolder;
 import cn.six.sup.rv.coordinate_rv_rv.MultiRvScrollListener;
 import cn.six.sup.rv.coordinate_rv_rv.ObservableHorizontalScrollView;
+import cn.six.sup.rv.one_adapter.OneAdapter;
 
 /**
  * Need to setAdapter(), then call refresh().
  */
 public class StickyColumnTableView extends LinearLayout {
+    //TODO 要单拎出来, 可以放到adapter中去
     public static final int HEIGHT = 15;
     public static final int WIDTH = 7;
 
@@ -59,14 +62,46 @@ public class StickyColumnTableView extends LinearLayout {
         this.adapter = adapter;
     }
 
+    // TODO 改String为T
+    // TODO applyLeft(), applyRight()要弄出去啊
     public void refresh(){
         if(adapter == null){
             return;
         }
 
+        rvLeft.setAdapter(new OneAdapter<String>(R.layout.item_left, adapter.getLeftData()) {
+            @Override
+            protected void apply(RvViewHolder vh, String s, int position) {
+                vh.setText(R.id.tvItemSymbol, s);
+            }
+        });
+
+        rvRight.setAdapter(new OneAdapter<String>(R.layout.item_right, adapter.getRightData()) {
+            @Override
+            protected void apply(RvViewHolder vh, String s, int position) {
+                vh.setText(R.id.tvItemDetails, s);
+            }
+        });
+
+        rvLeftScrollListener = new CoordinateRvScrollListener(rvRight);
+        rvLeft.addOnItemTouchListener(new CoordinateRvItemTouchListener(rvRight, rvLeftScrollListener));
+
+        rvRightScrollListener = new CoordinateRvScrollListener(rvLeft);
+        rvRight.addOnItemTouchListener(new CoordinateRvItemTouchListener(rvLeft, rvRightScrollListener));
+
+        rightScrollView.setScrollViewListener(new ObservableHorizontalScrollView.ScrollViewListener() {
+            @Override
+            public void onScrollChanged(ObservableHorizontalScrollView scrollView, int x, int y, int oldx, int oldy) {
+                rvLeft.removeOnScrollListener(rvLeftScrollListener);
+                rvRight.removeOnScrollListener(rvRightScrollListener);
+            }
+        });
+
     }
 
 
+
+    // TODO 两个class给挪出来, 另成一类, 减少本类的内容
     private class CoordinateRvScrollListener extends MultiRvScrollListener {
         private RecyclerView rvOther;
 
@@ -121,3 +156,4 @@ public class StickyColumnTableView extends LinearLayout {
         public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) { }
     }
 }
+
