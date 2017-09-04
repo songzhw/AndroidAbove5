@@ -27,7 +27,7 @@ public class ChangeOneRvItemDemo extends Activity implements View.OnClickListene
         RecyclerView rv = (RecyclerView)findViewById(R.id.rvSingle);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
-        List<String> data = new ArrayList<>();
+        final List<String> data = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
             data.add("String Index " + i);
         }
@@ -43,8 +43,10 @@ public class ChangeOneRvItemDemo extends Activity implements View.OnClickListene
             @Override
             public void onItemClick(RecyclerView.ViewHolder vh) {
                 int position = vh.getAdapterPosition();
-                adapter.notifyItemRemoved(position);
+                data.set(position, "I'm different "+position);
+                adapter.notifyItemChanged(position);
                 System.out.println("szw click2 rv item : "+position);
+
             }
         });
 
