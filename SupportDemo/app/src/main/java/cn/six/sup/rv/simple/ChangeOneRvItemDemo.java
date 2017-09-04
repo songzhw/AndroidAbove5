@@ -44,16 +44,11 @@ public class ChangeOneRvItemDemo extends Activity implements View.OnClickListene
             @Override
             public void onItemClick(RecyclerView.ViewHolder vh) {
                 int position = vh.getAdapterPosition();
-                for (int i = position; i > 0; i--){
-                    Collections.swap(data, i, i-1);
-                }
-                adapter.notifyItemMoved(position, 0);
-                System.out.println("szw click2 rv item : "+position);
+                data.add(position, "new Items " + position); //就在点击这一行. 原来后面诸行都逐个往后靠
+                adapter.notifyItemInserted(position);
+                System.out.println("szw click2 rv item : " + position);
             }
         });
-
-
-
 
         findViewById(R.id.btnSingleRv).setOnClickListener(this);
     }
