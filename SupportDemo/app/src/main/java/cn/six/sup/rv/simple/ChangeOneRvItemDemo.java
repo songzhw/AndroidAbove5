@@ -43,11 +43,12 @@ public class ChangeOneRvItemDemo extends Activity implements View.OnClickListene
             @Override
             public void onItemClick(RecyclerView.ViewHolder vh) {
                 int position = vh.getAdapterPosition();
-                data.remove(position);
-                adapter.notifyItemRemoved(position);
+                data.set(position, "I'm different "+position);
+                adapter.notifyItemChanged(position);
                 System.out.println("szw click2 rv item : "+position);
             }
         });
+
 
 
         findViewById(R.id.btnSingleRv).setOnClickListener(this);
