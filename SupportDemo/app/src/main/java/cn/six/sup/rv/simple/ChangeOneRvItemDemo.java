@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import cn.six.sup.R;
@@ -43,11 +44,14 @@ public class ChangeOneRvItemDemo extends Activity implements View.OnClickListene
             @Override
             public void onItemClick(RecyclerView.ViewHolder vh) {
                 int position = vh.getAdapterPosition();
-                data.set(position, "I'm different "+position);
-                adapter.notifyItemChanged(position);
+                for (int i = position; i > 0; i--){
+                    Collections.swap(data, i, i-1);
+                }
+                adapter.notifyItemMoved(position, 0);
                 System.out.println("szw click2 rv item : "+position);
             }
         });
+
 
 
 
