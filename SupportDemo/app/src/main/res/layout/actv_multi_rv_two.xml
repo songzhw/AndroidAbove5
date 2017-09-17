@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <cn.six.sup.rv.coordinate_rv_rv.demo2.StickyColumnTableView
+    <cn.six.sup.rv.cooridinate_rv_rv_2.StickyColumnTableView
         android:id="@+id/sctv_demo2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
