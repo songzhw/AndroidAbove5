@@ -15,7 +15,7 @@ import cn.six.sup.rv.cooridinate_rv_rv_2.StickyColumnTableView;
 
 public class MultiRvDemo2 extends Activity implements IStickyColumnTableInflater<String> {
     public static final int HEIGHT = 15;
-    public static final int WIDTH = 7;
+    public static final int WIDTH = 7; // need to match with "app:sctColumnNumber=7" in xml
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,7 +35,6 @@ public class MultiRvDemo2 extends Activity implements IStickyColumnTableInflater
 
         StickyColumnTableAdapter<String> adapter = new StickyColumnTableAdapter<>(dataLeft, dataRight);
         StickyColumnTableView<String> tableView = (StickyColumnTableView<String>) findViewById(R.id.sctv_demo2);
-        tableView.setColumnNumber(7);
         tableView.setAdapter(adapter);
         tableView.setBinder(this);
         tableView.refresh();

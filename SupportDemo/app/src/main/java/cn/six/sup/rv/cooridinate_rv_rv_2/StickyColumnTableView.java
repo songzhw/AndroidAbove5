@@ -1,6 +1,7 @@
 package cn.six.sup.rv.cooridinate_rv_rv_2;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,7 +19,7 @@ import cn.six.sup.rv.one_adapter.OneAdapter;
  * Need to setAdapter(), then call refresh().
  */
 public class StickyColumnTableView<T> extends LinearLayout {
-    public int width = 7;
+    public static final int DEFAULT_COLUMN_NUMBER = 8;
 
     private StickyColumnTableAdapter adapter;
     private RecyclerView rvLeft, rvRight;
@@ -29,16 +30,22 @@ public class StickyColumnTableView<T> extends LinearLayout {
 
     public StickyColumnTableView(Context context) {
         super(context);
-        init(context);
+        init(context, null);
     }
 
     public StickyColumnTableView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        init(context);
+        init(context, attrs);
     }
 
-    private void init(Context ctx) {
+    private void init(Context ctx, AttributeSet attrs) {
         this.setOrientation(HORIZONTAL);
+
+        int width = DEFAULT_COLUMN_NUMBER;
+        if (attrs != null) {
+            TypedArray ta = ctx.obtainStyledAttributes(attrs, R.styleable.StickyColumnTableView);
+            width = ta.getInteger(R.styleable.StickyColumnTableView_sctColumnNumber, DEFAULT_COLUMN_NUMBER);
+        }
 
         LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View leftView = inflater.inflate(R.layout.sub_multi_rv_left, this, false);
@@ -50,7 +57,8 @@ public class StickyColumnTableView<T> extends LinearLayout {
         rvRight = (RecyclerView) findViewById(R.id.rvMultiRvRight);
         rightScrollView = (ObservableHorizontalScrollView) findViewById(R.id.hsvRight);
 
-
+        rvLeft.setLayoutManager(new LinearLayoutManager(ctx));
+        rvRight.setLayoutManager(new GridLayoutManager(ctx, width));
     }
 
     public void setAdapter(StickyColumnTableAdapter adapter) {
@@ -59,13 +67,6 @@ public class StickyColumnTableView<T> extends LinearLayout {
 
     public void setBinder(IStickyColumnTableInflater<T> binder) {
         this.binder = binder;
-    }
-
-    public void setColumnNumber(int width){
-        this.width = width;
-        Context ctx = getContext();
-        rvLeft.setLayoutManager(new LinearLayoutManager(ctx));
-        rvRight.setLayoutManager(new GridLayoutManager(ctx, width));
     }
 
     public void refresh() {
