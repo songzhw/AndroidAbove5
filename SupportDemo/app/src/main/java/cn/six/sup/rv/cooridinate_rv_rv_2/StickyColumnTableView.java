@@ -27,6 +27,7 @@ public class StickyColumnTableView extends LinearLayout {
     private RecyclerView rvLeft, rvRight;
     private ObservableHorizontalScrollView rightScrollView;
     private CoordinateRvScrollListener rvLeftScrollListener, rvRightScrollListener;
+    private IStickyColumnTableInflater<String> binder;
 
 
     public StickyColumnTableView(Context context) {
@@ -70,14 +71,14 @@ public class StickyColumnTableView extends LinearLayout {
         rvLeft.setAdapter(new OneAdapter<String>(R.layout.item_left, adapter.getLeftData()) {
             @Override
             protected void apply(RvViewHolder vh, String s, int position) {
-                vh.setText(R.id.tvItemSymbol, s);
+                binder.bindLeft(vh, s, position);
             }
         });
 
         rvRight.setAdapter(new OneAdapter<String>(R.layout.item_right, adapter.getRightData()) {
             @Override
             protected void apply(RvViewHolder vh, String s, int position) {
-                vh.setText(R.id.tvItemDetails, s);
+                binder.bindRight(vh, s, position);
             }
         });
 
@@ -96,13 +97,6 @@ public class StickyColumnTableView extends LinearLayout {
         });
 
     }
-
-
-
-    // TODO 两个class给挪出来, 另成一类, 减少本类的内容
-
-
-
 
 }
 
