@@ -1,4 +1,4 @@
-package cn.six.sup.rv.coordinate_rv_rv;
+package cn.six.sup.rv.cooridinate_rv_rv_2;
 
 import android.support.v7.widget.RecyclerView;
 

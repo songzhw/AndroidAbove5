@@ -13,8 +13,8 @@ import android.widget.LinearLayout;
 
 import cn.six.sup.R;
 import cn.six.sup.rv.RvViewHolder;
-import cn.six.sup.rv.coordinate_rv_rv.MultiRvScrollListener;
-import cn.six.sup.rv.coordinate_rv_rv.ObservableHorizontalScrollView;
+import cn.six.sup.rv.cooridinate_rv_rv_2.MultiRvScrollListener;
+import cn.six.sup.rv.cooridinate_rv_rv_2.ObservableHorizontalScrollView;
 import cn.six.sup.rv.one_adapter.OneAdapter;
 
 /**

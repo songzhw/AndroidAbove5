@@ -1,6 +1,8 @@
-package cn.six.sup.rv.coordinate_rv_rv_in_rv;
+package cn.six.sup.rv.cooridinate_rv_rv_2.demo;
 
-import android.content.Context;
+import android.app.Activity;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,67 +12,60 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.six.sup.R;
-import cn.six.sup.rv.ItemView;
 import cn.six.sup.rv.RvViewHolder;
 import cn.six.sup.rv.cooridinate_rv_rv_2.MultiRvScrollListener;
 import cn.six.sup.rv.cooridinate_rv_rv_2.ObservableHorizontalScrollView;
 import cn.six.sup.rv.one_adapter.OneAdapter;
 
-
-public class MultiRvRow implements ItemView {
+public class MultiRvDemo2 extends Activity {
     public static final int HEIGHT = 15;
     public static final int WIDTH = 7;
-    private final List<String> dataLeft;
-    private final List<String> dataRight;
     private RecyclerView rvLeft;
     private RecyclerView rvRight;
+    private ObservableHorizontalScrollView hsv;
     private CoordinateRvScrollListener rvLeftScrollListener, rvRightScrollListener;
 
-    public MultiRvRow() {
-        dataLeft = new ArrayList<>();
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.actv_multi_rv);
+
+        List<String> dataLeft = new ArrayList<>();
         for(int i = 1; i <= HEIGHT; i++){
             dataLeft.add(""+i);
         }
 
-        dataRight = new ArrayList<>();
+        List<String> dataRight = new ArrayList<>();
         int sum = HEIGHT * WIDTH;
         for(int i = 1; i <= sum; i++){
             dataRight.add(""+i);
         }
-    }
 
-    @Override
-    public int getViewType() {
-        return R.layout.item_multi_rv;
-    }
-
-    @Override
-    public void bind(RvViewHolder holder) {
-        Context ctx = holder.itemView.getContext();
-        rvLeft = holder.getView(R.id.rvMultiRvLeft);
-        rvRight = holder.getView(R.id.rvMultiRvRight);
-        ObservableHorizontalScrollView hsv = holder.getView(R.id.hsvRight);
-
-        rvLeft.setLayoutManager(new LinearLayoutManager(ctx));
+        rvLeft = (RecyclerView)findViewById(R.id.rvMultiRvLeft);
+        rvLeft.setLayoutManager(new LinearLayoutManager(this));
         rvLeft.setAdapter(new OneAdapter<String>(R.layout.item_left, dataLeft) {
             @Override
             protected void apply(RvViewHolder vh, String s, int position) {
                 vh.setText(R.id.tvItemSymbol, s);
             }
         });
-        rvLeftScrollListener = new CoordinateRvScrollListener(rvRight);
-        rvLeft.addOnItemTouchListener(new CoordinateRvItemTouchListener(rvRight, rvLeftScrollListener));
 
-        rvRight.setLayoutManager(new GridLayoutManager(ctx, WIDTH));
+        rvRight = (RecyclerView)findViewById(R.id.rvMultiRvRight);
+        rvRight.setLayoutManager(new GridLayoutManager(this, WIDTH));
         rvRight.setAdapter(new OneAdapter<String>(R.layout.item_right, dataRight) {
             @Override
             protected void apply(RvViewHolder vh, String s, int position) {
                 vh.setText(R.id.tvItemDetails, s);
             }
         });
+
+        rvLeftScrollListener = new CoordinateRvScrollListener(rvRight);
+        rvLeft.addOnItemTouchListener(new CoordinateRvItemTouchListener(rvRight, rvLeftScrollListener));
+
         rvRightScrollListener = new CoordinateRvScrollListener(rvLeft);
         rvRight.addOnItemTouchListener(new CoordinateRvItemTouchListener(rvLeft, rvRightScrollListener));
 
+        hsv = (ObservableHorizontalScrollView)findViewById(R.id.hsvRight);
         hsv.setScrollViewListener(new ObservableHorizontalScrollView.ScrollViewListener() {
             @Override
             public void onScrollChanged(ObservableHorizontalScrollView scrollView, int x, int y, int oldx, int oldy) {
@@ -81,7 +76,7 @@ public class MultiRvRow implements ItemView {
     }
 
     // 当我滑动完了， 成idle了， recyclerView会移除此监听
-    private class CoordinateRvScrollListener extends MultiRvScrollListener{
+    private class CoordinateRvScrollListener extends MultiRvScrollListener {
         private RecyclerView rvOther;
 
         public CoordinateRvScrollListener(RecyclerView rvOther) {
@@ -94,6 +89,7 @@ public class MultiRvRow implements ItemView {
             rvOther.scrollBy(dx, dy);
         }
     }
+
 
     // 在rvOther是idle时， 才会真的能移动
     private class CoordinateRvItemTouchListener implements RecyclerView.OnItemTouchListener {
@@ -133,6 +129,7 @@ public class MultiRvRow implements ItemView {
         @Override
         public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) { }
     }
-
 }
+
+
 

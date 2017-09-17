@@ -13,6 +13,8 @@ import java.util.List;
 
 import cn.six.sup.R;
 import cn.six.sup.rv.RvViewHolder;
+import cn.six.sup.rv.cooridinate_rv_rv_2.MultiRvScrollListener;
+import cn.six.sup.rv.cooridinate_rv_rv_2.ObservableHorizontalScrollView;
 import cn.six.sup.rv.one_adapter.OneAdapter;
 
 public class MultiRvDemo extends Activity {
@@ -74,7 +76,7 @@ public class MultiRvDemo extends Activity {
     }
 
     // 当我滑动完了， 成idle了， recyclerView会移除此监听
-    private class CoordinateRvScrollListener extends MultiRvScrollListener{
+    private class CoordinateRvScrollListener extends MultiRvScrollListener {
         private RecyclerView rvOther;
 
         public CoordinateRvScrollListener(RecyclerView rvOther) {
