@@ -13,7 +13,7 @@ import cn.six.sup.rv.cooridinate_rv_rv_2.IStickyColumnTableInflater;
 import cn.six.sup.rv.cooridinate_rv_rv_2.StickyColumnTableAdapter;
 import cn.six.sup.rv.cooridinate_rv_rv_2.StickyColumnTableView;
 
-public class MultiRvDemo2 extends Activity implements IStickyColumnTableInflater<String>{
+public class MultiRvDemo2 extends Activity implements IStickyColumnTableInflater<String> {
     public static final int HEIGHT = 15;
     public static final int WIDTH = 7;
 
@@ -35,6 +35,7 @@ public class MultiRvDemo2 extends Activity implements IStickyColumnTableInflater
 
         StickyColumnTableAdapter<String> adapter = new StickyColumnTableAdapter<>(dataLeft, dataRight);
         StickyColumnTableView<String> tableView = (StickyColumnTableView<String>) findViewById(R.id.sctv_demo2);
+        tableView.setColumnNumber(7);
         tableView.setAdapter(adapter);
         tableView.setBinder(this);
         tableView.refresh();

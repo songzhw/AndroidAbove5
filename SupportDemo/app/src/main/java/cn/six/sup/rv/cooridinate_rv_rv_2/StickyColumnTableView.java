@@ -18,9 +18,7 @@ import cn.six.sup.rv.one_adapter.OneAdapter;
  * Need to setAdapter(), then call refresh().
  */
 public class StickyColumnTableView<T> extends LinearLayout {
-    //TODO 要单拎出来, 可以放到adapter中去
-    public static final int HEIGHT = 15;
-    public static final int WIDTH = 7;
+    public int width = 7;
 
     private StickyColumnTableAdapter adapter;
     private RecyclerView rvLeft, rvRight;
@@ -51,8 +49,7 @@ public class StickyColumnTableView<T> extends LinearLayout {
         rvLeft = (RecyclerView) findViewById(R.id.rvMultiRvLeft);
         rvRight = (RecyclerView) findViewById(R.id.rvMultiRvRight);
         rightScrollView = (ObservableHorizontalScrollView) findViewById(R.id.hsvRight);
-        rvLeft.setLayoutManager(new LinearLayoutManager(ctx));
-        rvRight.setLayoutManager(new GridLayoutManager(ctx, WIDTH));
+
 
     }
 
@@ -62,6 +59,13 @@ public class StickyColumnTableView<T> extends LinearLayout {
 
     public void setBinder(IStickyColumnTableInflater<T> binder) {
         this.binder = binder;
+    }
+
+    public void setColumnNumber(int width){
+        this.width = width;
+        Context ctx = getContext();
+        rvLeft.setLayoutManager(new LinearLayoutManager(ctx));
+        rvRight.setLayoutManager(new GridLayoutManager(ctx, width));
     }
 
     public void refresh() {
