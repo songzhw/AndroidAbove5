@@ -100,58 +100,9 @@ public class StickyColumnTableView extends LinearLayout {
 
 
     // TODO 两个class给挪出来, 另成一类, 减少本类的内容
-    private class CoordinateRvScrollListener extends MultiRvScrollListener {
-        private RecyclerView rvOther;
-
-        public CoordinateRvScrollListener(RecyclerView rvOther) {
-            this.rvOther = rvOther;
-        }
-
-        @Override
-        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-            super.onScrolled(recyclerView, dx, dy);
-            rvOther.scrollBy(dx, dy);
-        }
-    }
 
 
-    // 在rvOther是idle时， 才会真的能移动
-    private class CoordinateRvItemTouchListener implements RecyclerView.OnItemTouchListener {
-        private RecyclerView rvOther;
-        private CoordinateRvScrollListener scrollListener;
-        private int lastY;
 
-        public CoordinateRvItemTouchListener(RecyclerView rvOther,
-                                             CoordinateRvScrollListener scrollListener) {
-            this.rvOther = rvOther;
-            this.scrollListener = scrollListener;
-        }
 
-        @Override
-        public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-            // fire the touch event, otherwise ,the onTouchEvent() will never get called
-            if(rv.getScrollState() == RecyclerView.SCROLL_STATE_IDLE) {
-                onTouchEvent(rv, e);
-            }
-            return false;
-        }
-
-        @Override
-        public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-            int action = e.getAction();
-            if(action == MotionEvent.ACTION_DOWN && rvOther.getScrollState() == RecyclerView.SCROLL_STATE_IDLE){
-                lastY = rv.getScrollY();
-                rv.addOnScrollListener(scrollListener);
-            } else {
-                // if this touch is not a scrolling action, remove the scroll listener
-                if(action == MotionEvent.ACTION_UP && rv.getScrollY() == lastY) {
-                    rv.removeOnScrollListener(scrollListener);
-                }
-            }
-        }
-
-        @Override
-        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) { }
-    }
 }
 
