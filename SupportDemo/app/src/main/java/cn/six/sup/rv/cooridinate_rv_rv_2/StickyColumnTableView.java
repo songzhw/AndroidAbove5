@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -18,7 +17,7 @@ import cn.six.sup.rv.one_adapter.OneAdapter;
 /**
  * Need to setAdapter(), then call refresh().
  */
-public class StickyColumnTableView extends LinearLayout {
+public class StickyColumnTableView<T> extends LinearLayout {
     //TODO 要单拎出来, 可以放到adapter中去
     public static final int HEIGHT = 15;
     public static final int WIDTH = 7;
@@ -27,7 +26,7 @@ public class StickyColumnTableView extends LinearLayout {
     private RecyclerView rvLeft, rvRight;
     private ObservableHorizontalScrollView rightScrollView;
     private CoordinateRvScrollListener rvLeftScrollListener, rvRightScrollListener;
-    private IStickyColumnTableInflater<String> binder;
+    private IStickyColumnTableInflater<T> binder;
 
 
     public StickyColumnTableView(Context context) {
@@ -43,15 +42,15 @@ public class StickyColumnTableView extends LinearLayout {
     private void init(Context ctx) {
         this.setOrientation(HORIZONTAL);
 
-        LayoutInflater inflater = (LayoutInflater)ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View leftView = inflater.inflate(R.layout.sub_multi_rv_left, this, false);
         View rightView = inflater.inflate(R.layout.sub_multi_rv_right, this, false);
         this.addView(leftView);
         this.addView(rightView);
 
-        rvLeft = (RecyclerView)findViewById(R.id.rvMultiRvLeft);
-        rvRight = (RecyclerView)findViewById(R.id.rvMultiRvRight);
-        rightScrollView = (ObservableHorizontalScrollView)findViewById(R.id.hsvRight);
+        rvLeft = (RecyclerView) findViewById(R.id.rvMultiRvLeft);
+        rvRight = (RecyclerView) findViewById(R.id.rvMultiRvRight);
+        rightScrollView = (ObservableHorizontalScrollView) findViewById(R.id.hsvRight);
         rvLeft.setLayoutManager(new LinearLayoutManager(ctx));
         rvRight.setLayoutManager(new GridLayoutManager(ctx, WIDTH));
 
@@ -61,24 +60,26 @@ public class StickyColumnTableView extends LinearLayout {
         this.adapter = adapter;
     }
 
-    // TODO 改String为T
-    // TODO applyLeft(), applyRight()要弄出去啊
-    public void refresh(){
-        if(adapter == null){
+    public void setBinder(IStickyColumnTableInflater<T> binder) {
+        this.binder = binder;
+    }
+
+    public void refresh() {
+        if (adapter == null) {
             return;
         }
 
-        rvLeft.setAdapter(new OneAdapter<String>(R.layout.item_left, adapter.getLeftData()) {
+        rvLeft.setAdapter(new OneAdapter<T>(R.layout.item_left, adapter.getLeftData()) {
             @Override
-            protected void apply(RvViewHolder vh, String s, int position) {
-                binder.bindLeft(vh, s, position);
+            protected void apply(RvViewHolder vh, T value, int position) {
+                binder.bindLeft(vh, value, position);
             }
         });
 
-        rvRight.setAdapter(new OneAdapter<String>(R.layout.item_right, adapter.getRightData()) {
+        rvRight.setAdapter(new OneAdapter<T>(R.layout.item_right, adapter.getRightData()) {
             @Override
-            protected void apply(RvViewHolder vh, String s, int position) {
-                binder.bindRight(vh, s, position);
+            protected void apply(RvViewHolder vh, T value, int position) {
+                binder.bindRight(vh, value, position);
             }
         });
 

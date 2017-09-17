@@ -34,8 +34,9 @@ public class MultiRvDemo2 extends Activity implements IStickyColumnTableInflater
         }
 
         StickyColumnTableAdapter<String> adapter = new StickyColumnTableAdapter<>(dataLeft, dataRight);
-        StickyColumnTableView tableView = (StickyColumnTableView) findViewById(R.id.sctv_demo2);
+        StickyColumnTableView<String> tableView = (StickyColumnTableView<String>) findViewById(R.id.sctv_demo2);
         tableView.setAdapter(adapter);
+        tableView.setBinder(this);
         tableView.refresh();
     }
 
