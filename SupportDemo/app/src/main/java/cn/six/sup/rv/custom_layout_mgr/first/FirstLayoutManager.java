@@ -5,6 +5,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 class FirstLayoutManager extends RecyclerView.LayoutManager {
+    private int verticalScrollOffset = 0;
+    private int totalHeight = 0;
+
     @Override
     public RecyclerView.LayoutParams generateDefaultLayoutParams() {
         return new RecyclerView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -16,7 +19,7 @@ class FirstLayoutManager extends RecyclerView.LayoutManager {
 
         int offsetY = 0;
         int itemCount = getItemCount();
-        for(int i = 0; i < itemCount; i++){
+        for (int i = 0; i < itemCount; i++) {
             View view = recycler.getViewForPosition(i);
             addView(view);
             measureChildWithMargins(view, 0, 0);
@@ -29,4 +32,36 @@ class FirstLayoutManager extends RecyclerView.LayoutManager {
             offsetY += height;
         }
     }
+
+
+    @Override
+    public boolean canScrollVertically() {
+        return true;
+    }
+
+    @Override
+    public int scrollVerticallyBy(int dy, RecyclerView.Recycler recycler, RecyclerView.State state) {
+        int travel = dy; //实际要滑动的距离
+        int verticalSpace = getVerticalSpace();
+
+        // 如果滑到了最顶部
+        if (verticalScrollOffset + dy < 0) {
+            travel = -verticalScrollOffset;
+        }
+        // 如果滑到最底部
+        else if (verticalScrollOffset + dy > (totalHeight - verticalSpace)) {
+            travel = totalHeight - verticalSpace - verticalScrollOffset;
+        }
+
+        verticalScrollOffset += travel;
+        offsetChildrenVertical(-travel);
+        return travel;
+    }
+
+    // 获取RecyclerView在垂直方向上的可用空间，即去除了padding后的高度
+    private int getVerticalSpace() {
+        return getHeight() - getPaddingBottom() - getPaddingTop();
+    }
+
+
 }
