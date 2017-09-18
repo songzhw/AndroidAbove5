@@ -280,8 +280,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".rv.custom_layout_mgr.first.SlashLayoutRvDemo"
-            android:label="Rv with Custom LayoutManger 01: Slash">
+            android:name=".rv.custom_layout_mgr.first.FirstLayoutRvDemo"
+            android:label="Rv with Custom LayoutManger 01: vertical linear">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="ca.six.sup.demo" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".rv.custom_layout_mgr.second.SlashLayoutRvDemo"
+            android:label="Rv with Custom LayoutManger 02: Slash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="ca.six.sup.demo" />

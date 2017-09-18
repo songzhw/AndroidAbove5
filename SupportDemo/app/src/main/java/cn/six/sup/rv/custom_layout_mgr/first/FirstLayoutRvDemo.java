@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.six.sup.R;
+import cn.six.sup.rv.RvViewHolder;
+import cn.six.sup.rv.one_adapter.OneAdapter;
 
-public class SlashLayoutRvDemo extends Activity {
+public class FirstLayoutRvDemo extends Activity {
     private List<String> aData;
 
     @Override
@@ -19,15 +21,18 @@ public class SlashLayoutRvDemo extends Activity {
 
         RecyclerView rv = (RecyclerView) findViewById(R.id.rvRefresh);
         rv.setHasFixedSize(true);
-        rv.setLayoutManager(new SlashLayoutManager());
-
-        SlashLayoutAdapter adapter = new SlashLayoutAdapter();
+        rv.setLayoutManager(new FirstLayoutManager());
 
         aData = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 26; i++) {
             aData.add("Item " + i);
         }
-        adapter.data = aData;
+        OneAdapter<String> adapter = new OneAdapter<String>(R.layout.item_rv_slash, aData){
+            @Override
+            protected void apply(RvViewHolder vh, String s, int position) {
+                vh.setText(R.id.tvSlash, s);
+            }
+        };
         rv.setAdapter(adapter);
 
     }

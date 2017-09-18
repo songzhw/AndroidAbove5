@@ -1,4 +1,4 @@
-package cn.six.sup.rv.custom_layout_mgr.first;
+package cn.six.sup.rv.custom_layout_mgr.second;
 
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
-import java.util.Random;
 
 import cn.six.sup.R;
 
