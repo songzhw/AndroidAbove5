@@ -58,8 +58,22 @@ class FirstLayoutManager extends RecyclerView.LayoutManager {
     // 这时的verticalScrollOffset最大的值, 就是这个1436
     @Override
     public int scrollVerticallyBy(int dy, RecyclerView.Recycler recycler, RecyclerView.State state) {
-        offsetChildrenVertical(-dy);
-        return dy;
+        int travel = dy; //实际要滑动的距离
+        int verticalSpace = getVerticalSpace();
+        System.out.println(" szw scrollVerticallyBy() : verticalScrollOffset = "+verticalScrollOffset+ " ; dy = "+dy);
+
+        // 如果滑到了最顶部
+        if (verticalScrollOffset + dy < 0) {
+            travel = -verticalScrollOffset;
+        }
+        // 如果滑到最底部
+        else if (verticalScrollOffset + dy > (totalHeight - verticalSpace)) {
+            travel = totalHeight - verticalSpace - verticalScrollOffset;
+        }
+
+        verticalScrollOffset += travel;
+        offsetChildrenVertical(-travel);
+        return travel;
     }
 
     // 获取RecyclerView在垂直方向上的可用空间，即去除了padding后的高度
