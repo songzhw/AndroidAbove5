@@ -9,10 +9,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".sample.clay.ClayNewDemo">
@@ -284,7 +280,7 @@
             android:label="Rv with Custom LayoutManger 01: vertical linear">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="ca.six.sup.demo" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
