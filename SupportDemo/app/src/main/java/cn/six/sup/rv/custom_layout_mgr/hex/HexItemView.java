@@ -24,10 +24,6 @@ public class HexItemView extends View {
     private int outerColor, innerColor;// 内侧颜色和外侧的颜色
     private int centerX, centerY;
 
-    //绘制阴影状态变量
-    private float shadowRadius, shadowDx, shadowDy;
-    private int shadowColor;
-
     private Paint outerPaint, innerPaint;
     private Path viewPath;
     private Region region;
@@ -54,19 +50,14 @@ public class HexItemView extends View {
     }
 
     private void initData() {
-        //关闭硬件加速，为了可以设置阴影
-        setLayerType(LAYER_TYPE_SOFTWARE, null);
-
         outerPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         outerPaint.setStyle(Paint.Style.STROKE);
         outerPaint.setStrokeWidth(outerWidth);
         outerPaint.setColor(outerColor);
 
-
         innerPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         innerPaint.setStyle(Paint.Style.FILL_AND_STROKE);
         innerPaint.setColor(innerColor);
-
 
         region = new Region();
         viewPath = new Path();
@@ -83,7 +74,6 @@ public class HexItemView extends View {
         }
         setHexPath(POLYGON_COUNT);
     }
-
 
     public void setHexPath(int count) {
         if (count < POLYGON_COUNT) {
@@ -130,108 +120,6 @@ public class HexItemView extends View {
                 (int) bounds.right, (int) bounds.bottom));
         //判断 当前的触摸点是否在这个范围内
         return region.contains((int) event.getX(), (int) event.getY());
-    }
-
-    /**
-     * 设置多边形边框颜色
-     */
-    public void setOuterColor(int color) {
-        outerColor = color;
-        outerPaint.setColor(color);
-        invalidate();
-    }
-
-    public int getOuterColor() {
-        return outerColor;
-    }
-
-    /**
-     * 设置正六边形的内部填充颜色
-     */
-    public void setInnerColor(int color) {
-        innerColor = color;
-        innerPaint.setColor(color);
-        invalidate();
-    }
-
-    public int getInnerColor() {
-        return innerColor;
-    }
-
-    /**
-     * 设置正六边形的边框大小
-     */
-    public void setOuterWidth(int outerWidth) {
-        if (outerWidth < 0) {
-            return;
-        }
-        this.outerWidth = outerWidth;
-        outerPaint.setStrokeWidth(outerWidth);
-        invalidate();
-    }
-
-    public int getOutWidth() {
-        return outerWidth;
-    }
-
-    /**
-     * 设置正六边形是否被填充(无边框)
-     */
-    public void setViewFullMode(boolean isFull) {
-        this.isHasStroke = isFull;
-        invalidate();
-    }
-
-    public boolean getViewFullMode() {
-        return isHasStroke;
-    }
-
-    /**
-     * 设置正六边形的外圆半径
-     */
-    public void setRadius(int radius) {
-        this.radius = radius;
-        setHexPath(POLYGON_COUNT);
-        invalidate();
-    }
-
-    public int getRadius() {
-        return radius;
-    }
-
-    /**
-     * 设置阴影  指的是实心的阴影
-     */
-    public void setShadowLayer(float radius, float dx, float dy, int color, boolean isOuter) {
-        if (isOuter && isHasStroke) {
-            outerPaint.setShadowLayer(radius, dx, dy, color);
-        } else if (!isOuter) {
-            innerPaint.setShadowLayer(radius, dx, dy, color);
-        } else {
-            return;
-        }
-        shadowRadius = radius;
-        shadowDx = dx;
-        shadowDy = dy;
-        shadowColor = color;
-        invalidate();
-    }
-
-    public float getShadowRadius() {
-        return shadowRadius;
-    }
-
-    public float getShadowDx() {
-        return shadowDx;
-    }
-
-    public float getShadowDy() {
-        return shadowDy;
-    }
-
-    @ColorInt
-    public int getShadowColor() {
-        return shadowColor;
     }
 
 }
