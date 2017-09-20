@@ -114,12 +114,14 @@ public class MultiRvDemo extends Activity {
         @Override
         public void onTouchEvent(RecyclerView rv, MotionEvent e) {
             int action = e.getAction();
+            System.out.println("szw MultiRvDemo : "+getAction(e));
             if(action == MotionEvent.ACTION_DOWN && rvOther.getScrollState() == RecyclerView.SCROLL_STATE_IDLE){
                 lastY = rv.getScrollY();
                 rv.addOnScrollListener(scrollListener);
             } else {
                 // if this touch is not a scrolling action, remove the scroll listener
-                if(action == MotionEvent.ACTION_UP && rv.getScrollY() == lastY) {
+                boolean isTimeToCancel = action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL;
+                if (isTimeToCancel && rv.getScrollY() == lastY) {
                     rv.removeOnScrollListener(scrollListener);
                 }
             }
@@ -128,6 +130,25 @@ public class MultiRvDemo extends Activity {
         @Override
         public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) { }
     }
+
+
+    private String getAction(MotionEvent e) {
+        String ret;
+        int action = e.getAction();
+        if(action == MotionEvent.ACTION_UP){
+            ret = "up";
+        } else if(action == MotionEvent.ACTION_DOWN){
+            ret = "down";
+        } else if(action == MotionEvent.ACTION_MOVE){
+            ret = "move";
+        } else if(action == MotionEvent.ACTION_CANCEL){
+            ret = "cancel";
+        } else {
+            ret = "" + action;
+        }
+        return ret;
+    }
+
 }
 
 
