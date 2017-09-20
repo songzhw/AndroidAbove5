@@ -106,7 +106,7 @@ class FirstLayoutManager extends RecyclerView.LayoutManager {
 
     // 获取RecyclerView在垂直方向上的可用空间，即去除了padding后的高度
     private int getVerticalSpace() {
-        return getHeight() - getPaddingBottom() - getPaddingTop(); //此三参数, 皆是来自rv
+        return getHeight() - getPaddingBottom() - getPaddingTop(); //此三参数, 皆是来自layoutManager!
     }
 
     private int getHorizontalSpace() {
