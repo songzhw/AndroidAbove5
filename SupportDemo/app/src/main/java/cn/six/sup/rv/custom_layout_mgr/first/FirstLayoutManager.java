@@ -19,8 +19,12 @@ class FirstLayoutManager extends RecyclerView.LayoutManager {
 
     @Override
     public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
-        if (getItemCount() <= 0) {return;}
-        if (state.isPreLayout()) { return; }  // 跳过preLayout，preLayout主要用于支持动画
+        if (getItemCount() <= 0) {
+            return;
+        }
+        if (state.isPreLayout()) {
+            return;
+        }  // 跳过preLayout，preLayout主要用于支持动画
 
         detachAndScrapAttachedViews(recycler); //1. rv的两级缓存
 
@@ -39,11 +43,11 @@ class FirstLayoutManager extends RecyclerView.LayoutManager {
             // 不再直接layout 子View了, 而是走 回收池的路子了
 //            layoutDecorated(view, 0, offsetY, width, offsetY + height);
             Rect frame = allItemFrames.get(i);
-            if(frame == null){
+            if (frame == null) {
                 frame = new Rect();
             }
             frame.set(0, offsetY, width, offsetY + height); //把上面要直接layoutDecorated()的坐标, 存这了
-            allItemFrames.put(i, frame);
+            allItemFrames.put(i, frame);  // replacing the previous mapping from the specified key if there was one.
             offsetY += height;
         }
 
@@ -56,7 +60,7 @@ class FirstLayoutManager extends RecyclerView.LayoutManager {
     }
 
 
-/*
+
     @Override
     public boolean canScrollVertically() {
         return true;
@@ -75,7 +79,7 @@ class FirstLayoutManager extends RecyclerView.LayoutManager {
         int travel = dy; //实际要滑动的距离
         int verticalSpace = getVerticalSpace();
 //        System.out.println(" szw scrollVerticallyBy() : verticalScrollOffset = "+verticalScrollOffset+ " ; dy = "+dy);
-        System.out.println("szw childCount = "+getChildCount() +" ; itemCount = "+getItemCount());
+        System.out.println("szw 111 childCount = "+getChildCount() +" ; itemCount = "+getItemCount());
 
         // 如果滑到了最顶部
         if (verticalScrollOffset + dy < 0) {
@@ -91,10 +95,11 @@ class FirstLayoutManager extends RecyclerView.LayoutManager {
 
         // 前面是detach, 这里要回收/循环利用子项了
         recycleAndFillItems(recycler, state);
+        System.out.println("szw 222 childCount = "+getChildCount() +" ; itemCount = "+getItemCount());
 
         return travel;
     }
-*/
+
 
 
     private void recycleAndFillItems(RecyclerView.Recycler recycler, RecyclerView.State state) {
@@ -108,7 +113,9 @@ class FirstLayoutManager extends RecyclerView.LayoutManager {
         // 将滑出屏幕的Items回收到Recycle缓存中
         Rect childFrame = new Rect();
         int childCount = getChildCount();
-        for(int i = 0; i < childCount ; i++) {
+        System.out.println("szw 1 : "+childCount);
+        for (int i = 0; i < getChildCount(); i++) {
+            System.out.println("szw 2 : "+getChildCount());
             View child = getChildAt(i);
             childFrame.left = getDecoratedLeft(child);
             childFrame.top = getDecoratedTop(child);
@@ -150,7 +157,6 @@ class FirstLayoutManager extends RecyclerView.LayoutManager {
     private int getHorizontalSpace() {
         return getWidth() - getPaddingRight() - getPaddingLeft();
     }
-
 
 
 }
