@@ -19,18 +19,18 @@ public class HexItemView extends View {
     private static final int POLYGON_COUNT = 6; // 正六边形的边数量
     private static final int DEFAULT_OUTER_WIDTH = 4; // 默认的边框宽度
     public static final int DEFAULT_OUTER_COLOR = Color.parseColor("#f5c421"); // 默认的边框颜色
-    private int mMaxRadius, mRadius;//包裹着正六边形的圆的半径
-    private int mOuterWidth; //边框线的宽度
-    private int mOuterColor, mInnerColor;// 内侧颜色和外侧的颜色
-    private int mCenterX, mCenterY;
+    private int maxRadius, radius;//包裹着正六边形的圆的半径
+    private int outerWidth; //边框线的宽度
+    private int outerColor, innerColor;// 内侧颜色和外侧的颜色
+    private int centerX, centerY;
 
     //绘制阴影状态变量
-    private float mShadowRadius, mShadowDx, mShadowDy;
-    private int mShadowColor;
+    private float shadowRadius, shadowDx, shadowDy;
+    private int shadowColor;
 
-    private Paint mOuterPaint, mInnerPaint;
-    private Path mViewPath;
-    private Region mRegion;
+    private Paint outerPaint, innerPaint;
+    private Path viewPath;
+    private Region region;
     private boolean isHasStroke; //是否无边框填充
 
     public HexItemView(Context context) {
@@ -44,10 +44,10 @@ public class HexItemView extends View {
     public HexItemView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         TypedArray mTypeArray = context.obtainStyledAttributes(attrs, R.styleable.Polygon, defStyleAttr, 0);
-        mRadius = mTypeArray.getDimensionPixelSize(R.styleable.Polygon_radius, 0);
-        mInnerColor = mTypeArray.getColor(R.styleable.Polygon_innerColor, Color.WHITE);
-        mOuterColor = mTypeArray.getColor(R.styleable.Polygon_outerColor, DEFAULT_OUTER_COLOR);
-        mOuterWidth = mTypeArray.getDimensionPixelSize(R.styleable.Polygon_outerWidth, DEFAULT_OUTER_WIDTH);
+        radius = mTypeArray.getDimensionPixelSize(R.styleable.Polygon_radius, 0);
+        innerColor = mTypeArray.getColor(R.styleable.Polygon_innerColor, Color.WHITE);
+        outerColor = mTypeArray.getColor(R.styleable.Polygon_outerColor, DEFAULT_OUTER_COLOR);
+        outerWidth = mTypeArray.getDimensionPixelSize(R.styleable.Polygon_outerWidth, DEFAULT_OUTER_WIDTH);
         isHasStroke = mTypeArray.getBoolean(R.styleable.Polygon_isHasStroke, true);
         mTypeArray.recycle();
         initData();
@@ -57,60 +57,57 @@ public class HexItemView extends View {
         //关闭硬件加速，为了可以设置阴影
         setLayerType(LAYER_TYPE_SOFTWARE, null);
 
-        mOuterPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mOuterPaint.setStyle(Paint.Style.STROKE);
-        mOuterPaint.setStrokeWidth(mOuterWidth);
-        mOuterPaint.setColor(mOuterColor);
+        outerPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        outerPaint.setStyle(Paint.Style.STROKE);
+        outerPaint.setStrokeWidth(outerWidth);
+        outerPaint.setColor(outerColor);
 
 
-        mInnerPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mInnerPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-        mInnerPaint.setColor(mInnerColor);
+        innerPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        innerPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        innerPaint.setColor(innerColor);
 
 
-        mRegion = new Region();
-        mViewPath = new Path();
+        region = new Region();
+        viewPath = new Path();
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        mCenterX = w / 2;
-        mCenterY = h / 2;
-        mMaxRadius = Math.min(mCenterX, mCenterY);
-        if (mRadius <= 0 || mRadius > mMaxRadius) {
-            mRadius = mMaxRadius;
+        centerX = w / 2;
+        centerY = h / 2;
+        maxRadius = Math.min(centerX, centerY);
+        if (radius <= 0 || radius > maxRadius) {
+            radius = maxRadius;
         }
-        lineMultShape(POLYGON_COUNT);
+        setHexPath(POLYGON_COUNT);
     }
 
 
-    /**
-     * 绘制多边形
-     */
-    public void lineMultShape(int count) {
+    public void setHexPath(int count) {
         if (count < POLYGON_COUNT) {
             return;
         }
-        mViewPath.reset();
+        viewPath.reset();
         for (int i = 0; i < count; i++) {
             //当前角度
             int angle = 360 / count * i;
             if (i == 0) {
-                mViewPath.moveTo(mCenterX + mRadius * MathUtil.cos(angle), mCenterY + mRadius * MathUtil.sin(angle));
+                viewPath.moveTo(centerX + radius * MathUtil.cos(angle), centerY + radius * MathUtil.sin(angle));
             } else {
-                mViewPath.lineTo(mCenterX + mRadius * MathUtil.cos(angle), mCenterY + mRadius * MathUtil.sin(angle));
+                viewPath.lineTo(centerX + radius * MathUtil.cos(angle), centerY + radius * MathUtil.sin(angle));
             }
         }
-        mViewPath.close();
+        viewPath.close();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawPath(mViewPath, mInnerPaint);
+        canvas.drawPath(viewPath, innerPaint);
         if (isHasStroke) {
-            canvas.drawPath(mViewPath, mOuterPaint);
+            canvas.drawPath(viewPath, outerPaint);
         }
     }
 
@@ -124,47 +121,41 @@ public class HexItemView extends View {
         return super.dispatchTouchEvent(event);
     }
 
-    /**
-     * 判断是否在多边形内
-     *
-     * @param event
-     * @return
-     */
     private boolean isEventInPath(MotionEvent event) {
         RectF bounds = new RectF();
         //计算Path的边界
-        mViewPath.computeBounds(bounds, true);
+        viewPath.computeBounds(bounds, true);
         //将边界赋予Region中
-        mRegion.setPath(mViewPath, new Region((int) bounds.left, (int) bounds.top,
+        region.setPath(viewPath, new Region((int) bounds.left, (int) bounds.top,
                 (int) bounds.right, (int) bounds.bottom));
         //判断 当前的触摸点是否在这个范围内
-        return mRegion.contains((int) event.getX(), (int) event.getY());
+        return region.contains((int) event.getX(), (int) event.getY());
     }
 
     /**
      * 设置多边形边框颜色
      */
     public void setOuterColor(int color) {
-        mOuterColor = color;
-        mOuterPaint.setColor(color);
+        outerColor = color;
+        outerPaint.setColor(color);
         invalidate();
     }
 
     public int getOuterColor() {
-        return mOuterColor;
+        return outerColor;
     }
 
     /**
      * 设置正六边形的内部填充颜色
      */
     public void setInnerColor(int color) {
-        mInnerColor = color;
-        mInnerPaint.setColor(color);
+        innerColor = color;
+        innerPaint.setColor(color);
         invalidate();
     }
 
     public int getInnerColor() {
-        return mInnerColor;
+        return innerColor;
     }
 
     /**
@@ -174,13 +165,13 @@ public class HexItemView extends View {
         if (outerWidth < 0) {
             return;
         }
-        mOuterWidth = outerWidth;
-        mOuterPaint.setStrokeWidth(outerWidth);
+        this.outerWidth = outerWidth;
+        outerPaint.setStrokeWidth(outerWidth);
         invalidate();
     }
 
     public int getOutWidth() {
-        return mOuterWidth;
+        return outerWidth;
     }
 
     /**
@@ -199,13 +190,13 @@ public class HexItemView extends View {
      * 设置正六边形的外圆半径
      */
     public void setRadius(int radius) {
-        this.mRadius = radius;
-        lineMultShape(POLYGON_COUNT);
+        this.radius = radius;
+        setHexPath(POLYGON_COUNT);
         invalidate();
     }
 
     public int getRadius() {
-        return mRadius;
+        return radius;
     }
 
     /**
@@ -213,34 +204,34 @@ public class HexItemView extends View {
      */
     public void setShadowLayer(float radius, float dx, float dy, int color, boolean isOuter) {
         if (isOuter && isHasStroke) {
-            mOuterPaint.setShadowLayer(radius, dx, dy, color);
+            outerPaint.setShadowLayer(radius, dx, dy, color);
         } else if (!isOuter) {
-            mInnerPaint.setShadowLayer(radius, dx, dy, color);
+            innerPaint.setShadowLayer(radius, dx, dy, color);
         } else {
             return;
         }
-        mShadowRadius = radius;
-        mShadowDx = dx;
-        mShadowDy = dy;
-        mShadowColor = color;
+        shadowRadius = radius;
+        shadowDx = dx;
+        shadowDy = dy;
+        shadowColor = color;
         invalidate();
     }
 
     public float getShadowRadius() {
-        return mShadowRadius;
+        return shadowRadius;
     }
 
     public float getShadowDx() {
-        return mShadowDx;
+        return shadowDx;
     }
 
     public float getShadowDy() {
-        return mShadowDy;
+        return shadowDy;
     }
 
     @ColorInt
     public int getShadowColor() {
-        return mShadowColor;
+        return shadowColor;
     }
 
 }
