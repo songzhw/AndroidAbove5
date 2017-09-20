@@ -38,4 +38,26 @@ public class SlashLayoutManager extends RecyclerView.LayoutManager{
             offsetY += height;
         }
     }
+
+    @Override
+    public boolean canScrollHorizontally() {
+        return true;
+    }
+
+    @Override
+    public int scrollHorizontallyBy(int dx, RecyclerView.Recycler recycler, RecyclerView.State state) {
+        offsetChildrenHorizontal(-dx);
+        return dx;
+    }
+
+    @Override
+    public boolean canScrollVertically() {
+        return true;
+    }
+
+    @Override
+    public int scrollVerticallyBy(int dy, RecyclerView.Recycler recycler, RecyclerView.State state) {
+        offsetChildrenVertical(-dy);
+        return dy;
+    }
 }
