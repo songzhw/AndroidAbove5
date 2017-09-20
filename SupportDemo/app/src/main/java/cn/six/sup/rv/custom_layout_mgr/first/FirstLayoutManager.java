@@ -19,12 +19,8 @@ class FirstLayoutManager extends RecyclerView.LayoutManager {
 
     @Override
     public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
-        if (getItemCount() <= 0) return;
-
-        // 跳过preLayout，preLayout主要用于支持动画
-        if (state.isPreLayout()) {
-            return;
-        }
+        if (getItemCount() <= 0) {return;}
+        if (state.isPreLayout()) { return; }  // 跳过preLayout，preLayout主要用于支持动画
 
         detachAndScrapAttachedViews(recycler); //1. rv的两级缓存
 
@@ -60,7 +56,7 @@ class FirstLayoutManager extends RecyclerView.LayoutManager {
     }
 
 
-
+/*
     @Override
     public boolean canScrollVertically() {
         return true;
@@ -98,15 +94,57 @@ class FirstLayoutManager extends RecyclerView.LayoutManager {
 
         return travel;
     }
+*/
+
 
     private void recycleAndFillItems(RecyclerView.Recycler recycler, RecyclerView.State state) {
+        if (state.isPreLayout()) { // 跳过preLayout，preLayout主要用于支持动画
+            return;
+        }
 
+        // 当前scroll offset状态下, 整个rv的显示区域
+        Rect displayFrame = new Rect(0, verticalScrollOffset, getHorizontalSpace(), verticalScrollOffset + getVerticalSpace());
+
+        // 将滑出屏幕的Items回收到Recycle缓存中
+        Rect childFrame = new Rect();
+        int childCount = getChildCount();
+        for(int i = 0; i < childCount ; i++) {
+            View child = getChildAt(i);
+            childFrame.left = getDecoratedLeft(child);
+            childFrame.top = getDecoratedTop(child);
+            childFrame.right = getDecoratedRight(child);
+            childFrame.bottom = getDecoratedBottom(child);
+            // 如果Item没有在显示区域，就说明需要回收
+            if (!Rect.intersects(displayFrame, childFrame)) {
+                //回收掉滑出屏幕的View
+                this.removeAndRecycleView(child, recycler); // LayoutManager的方法
+            }
+        }
+
+        // 从缓存中拿出来复用
+        int itemCount = getItemCount();
+        for (int i = 0; i < itemCount; i++) {
+            if (Rect.intersects(displayFrame, allItemFrames.get(i))) {
+                View scrap = recycler.getViewForPosition(i);
+                measureChildWithMargins(scrap, 0, 0);
+                addView(scrap);
+
+                Rect frame = allItemFrames.get(i);
+                //将这个item布局出来
+                layoutDecorated(scrap,
+                        frame.left,
+                        frame.top - verticalScrollOffset,
+                        frame.right,
+                        frame.bottom - verticalScrollOffset);
+            }
+
+        }
     }
 
 
     // 获取RecyclerView在垂直方向上的可用空间，即去除了padding后的高度
     private int getVerticalSpace() {
-        return getHeight() - getPaddingBottom() - getPaddingTop(); //此三参数, 皆是来自layoutManager!
+        return getHeight() - getPaddingBottom() - getPaddingTop(); //此三参数, 皆是来自layoutManager
     }
 
     private int getHorizontalSpace() {
