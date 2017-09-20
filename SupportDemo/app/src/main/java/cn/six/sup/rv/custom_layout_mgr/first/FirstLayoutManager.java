@@ -26,7 +26,7 @@ class FirstLayoutManager extends RecyclerView.LayoutManager {
             return;
         }  // 跳过preLayout，preLayout主要用于支持动画
 
-        detachAndScrapAttachedViews(recycler); //1. rv的两级缓存
+        detachAndScrapAttachedViews(recycler); // rv的两级缓存. 现在只是全打回了回收池里
 
         int offsetY = 0;
         int itemCount = getItemCount();
@@ -35,18 +35,16 @@ class FirstLayoutManager extends RecyclerView.LayoutManager {
             addView(view); // 只是add, 并没有layout. 若不加layoutDecorated(), 那显示就是一片空白
             measureChildWithMargins(view, 0, 0);
 
-            // 2. 这的宽高, 都是都是包含了divider的宽高的(divider, 即ItemDecorate)
+            // 这的宽高, 都是都是包含了divider的宽高的(divider, 即ItemDecorate)
             int width = getDecoratedMeasuredWidth(view);
             int height = getDecoratedMeasuredHeight(view);
             totalHeight += height;
 
-            // 不再直接layout 子View了, 而是走 回收池的路子了
-//            layoutDecorated(view, 0, offsetY, width, offsetY + height);
             Rect frame = allItemFrames.get(i);
             if (frame == null) {
                 frame = new Rect();
             }
-            frame.set(0, offsetY, width, offsetY + height); //把上面要直接layoutDecorated()的坐标, 存这了
+            frame.set(0, offsetY, width, offsetY + height);
             allItemFrames.put(i, frame);  // replacing the previous mapping from the specified key if there was one.
             offsetY += height;
         }
@@ -66,20 +64,13 @@ class FirstLayoutManager extends RecyclerView.LayoutManager {
         return true;
     }
 
-    // 1. 看rv下面的内容, 即往上拉, dy就是正值; 否则dy就是负值. (dy相当于move, 每move一次就有一次dy值.)
-    // 注意, 到底后,再往上拉, dy仍是有的, 仍是正值. 值的大小看你的拉动的距离有多大.
-    // 2. 到底部: rv是match_parent的, 数据超过了一屏. 这时totalHeight = 3744, getVerticalSpace = 2308, 二值差为1436
-    // 这时的verticalScrollOffset最大的值, 就是这个1436
     @Override
     public int scrollVerticallyBy(int dy, RecyclerView.Recycler recycler, RecyclerView.State state) {
         // 先要detach所有attached的view. 因为滑动就有变化, 就有新的项入回收池, 也要从回收池拿出数据来填充
         detachAndScrapAttachedViews(recycler);
 
-
         int travel = dy; //实际要滑动的距离
         int verticalSpace = getVerticalSpace();
-//        System.out.println(" szw scrollVerticallyBy() : verticalScrollOffset = "+verticalScrollOffset+ " ; dy = "+dy);
-        System.out.println("szw 111 childCount = "+getChildCount() +" ; itemCount = "+getItemCount());
 
         // 如果滑到了最顶部
         if (verticalScrollOffset + dy < 0) {
@@ -95,8 +86,6 @@ class FirstLayoutManager extends RecyclerView.LayoutManager {
 
         // 前面是detach, 这里要回收/循环利用子项了
         recycleAndFillItems(recycler, state);
-        System.out.println("szw 222 childCount = "+getChildCount() +" ; itemCount = "+getItemCount());
-
         return travel;
     }
 
@@ -123,7 +112,6 @@ class FirstLayoutManager extends RecyclerView.LayoutManager {
             childFrame.bottom = getDecoratedBottom(child);
             // 如果Item没有在显示区域，就说明需要回收
             if (!Rect.intersects(displayFrame, childFrame)) {
-                //回收掉滑出屏幕的View
                 this.removeAndRecycleView(child, recycler); // LayoutManager的方法
             }
         }
