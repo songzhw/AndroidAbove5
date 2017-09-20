@@ -21,6 +21,10 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="ca.six.sup.demo" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".sample.clay.BuyActivity"
             android:theme="@style/Theme.CustomDialog"
@@ -289,10 +293,6 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="ca.six.sup.demo" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity

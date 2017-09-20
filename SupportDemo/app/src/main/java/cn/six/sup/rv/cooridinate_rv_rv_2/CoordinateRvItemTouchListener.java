@@ -31,10 +31,28 @@ public class CoordinateRvItemTouchListener implements RecyclerView.OnItemTouchLi
             rv.addOnScrollListener(scrollListener);
         } else {
             // if this touch is not a scrolling action, remove the scroll listener
-            if (action == MotionEvent.ACTION_UP && rv.getScrollY() == lastY) {
+            boolean isTimeToCancel = action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL;
+            if (isTimeToCancel && rv.getScrollY() == lastY) {
                 rv.removeOnScrollListener(scrollListener);
             }
         }
+    }
+
+    private String getAction(MotionEvent e) {
+        String ret;
+        int action = e.getAction();
+        if(action == MotionEvent.ACTION_UP){
+            ret = "up";
+        } else if(action == MotionEvent.ACTION_DOWN){
+            ret = "down";
+        } else if(action == MotionEvent.ACTION_MOVE){
+            ret = "move";
+        } else if(action == MotionEvent.ACTION_CANCEL){
+            ret = "cancel";
+        } else {
+            ret = "" + action;
+        }
+        return ret;
     }
 
     @Override
