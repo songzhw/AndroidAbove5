@@ -11,6 +11,13 @@
         <activity android:name=".MainActivity">
         </activity>
 
+        <activity android:name=".rv.custom_layout_mgr.hex.demo.HexViewDemo">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".sample.clay.ClayNewDemo">
         </activity>
 
@@ -20,10 +27,6 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="ca.six.sup.demo" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".sample.clay.BuyActivity"
