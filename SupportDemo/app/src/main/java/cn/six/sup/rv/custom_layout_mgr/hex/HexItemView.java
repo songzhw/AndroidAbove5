@@ -68,6 +68,7 @@ public class HexItemView extends View {
         super.onSizeChanged(w, h, oldw, oldh);
         centerX = w / 2;
         centerY = h / 2;
+        System.out.println("szw x = "+centerX+"; y = "+centerY);
         maxRadius = Math.min(centerX, centerY);
         if (radius <= 0 || radius > maxRadius) {
             radius = maxRadius;
@@ -99,6 +100,9 @@ public class HexItemView extends View {
         if (isHasStroke) {
             canvas.drawPath(viewPath, outerPaint);
         }
+
+        // for debug: to get the correct circle that is outside of hexView
+//        canvas.drawCircle(centerX, centerY, radius, outerPaint);
     }
 
     @Override
