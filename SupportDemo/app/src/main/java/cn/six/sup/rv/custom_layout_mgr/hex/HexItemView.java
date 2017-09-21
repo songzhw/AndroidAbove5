@@ -68,7 +68,6 @@ public class HexItemView extends View {
         super.onSizeChanged(w, h, oldw, oldh);
         centerX = w / 2;
         centerY = h / 2;
-        System.out.println("szw x = "+centerX+"; y = "+centerY);
         maxRadius = Math.min(centerX, centerY);
         if (radius <= 0 || radius > maxRadius) {
             radius = maxRadius;
@@ -101,18 +100,23 @@ public class HexItemView extends View {
             canvas.drawPath(viewPath, outerPaint);
         }
 
-        // for debug: to get the correct circle that is outside of hexView
+        // [for debug]: to get the correct circle that is outside of hexView
 //        canvas.drawCircle(centerX, centerY, radius, outerPaint);
+
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
+        System.out.println("szw[] dispatchTouchEvent() "+event.getAction());
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             if (!isEventInPath(event)) {
                 return false;
             }
         }
-        return super.dispatchTouchEvent(event);
+
+        boolean ret = super.dispatchTouchEvent(event);
+        System.out.println("szw dispatchTouchEvent() : ret = "+ret);
+        return ret;
     }
 
     private boolean isEventInPath(MotionEvent event) {
@@ -126,4 +130,18 @@ public class HexItemView extends View {
         return region.contains((int) event.getX(), (int) event.getY());
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        boolean ret = super.onTouchEvent(event);
+        System.out.println("szw onTouchEvent() : ret = "+ret);
+        return ret;
+    }
+
+    // @return : True there was an assigned OnClickListener that was called, false otherwise is returned.
+    @Override
+    public boolean performClick() {
+        boolean ret = super.performClick();
+        System.out.println("szw performClick() : ret = "+ret);
+        return ret;
+    }
 }
