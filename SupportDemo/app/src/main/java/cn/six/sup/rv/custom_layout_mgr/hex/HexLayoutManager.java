@@ -69,6 +69,17 @@ public class HexLayoutManager extends RecyclerView.LayoutManager {
     private void recycleAndFillChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
     }
 
+    @Override
+    public boolean canScrollVertically() {
+        return true;
+    }
+
+    @Override
+    public int scrollVerticallyBy(int dy, RecyclerView.Recycler recycler, RecyclerView.State state) {
+        offsetChildrenVertical(-dy);
+        return dy;
+    }
+
     // 判断当前索引位置 是否处于组内的第一行
     private boolean isItemInFirstLine(int index) {
         return index % 2 == 0; //定制为2格的正六边形
