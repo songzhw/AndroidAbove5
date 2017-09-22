@@ -6,11 +6,12 @@ import android.view.ViewGroup;
 
 
 public class HexLayoutManager extends RecyclerView.LayoutManager {
-    private static final int GROUP_SIZE = 2;
+    private static final int SIZE_PER_ROW = 2;
     private static final int DEFAULT_GROUP_INTERVAL = 10; //每组之间的间隙(正六边形之间的)(横向)
     private float horizonGap = DEFAULT_GROUP_INTERVAL; //代表横向的间距,只三个正六边形形成的等边三角形的中心距离 (存在默认值)
     private float verticalGap; //代表纵向的间隔,指两个正六边形之间的上下间距
     private int centerOffset;  //居中的偏移量
+    private int totalHeight, verticalOffset;
 
 
     @Override
@@ -45,7 +46,7 @@ public class HexLayoutManager extends RecyclerView.LayoutManager {
             addView(view);
             measureChildWithMargins(view, 0, 0);
 
-            int offsetHeight = (int) ((i / GROUP_SIZE) * (height + verticalGap));
+            int offsetHeight = (int) ((i / SIZE_PER_ROW) * (height + verticalGap));
             int left, top, right, bottom;
             if (isItemInFirstLine(i)) {  //每组的第一行
                 left = centerOffset;
@@ -64,6 +65,16 @@ public class HexLayoutManager extends RecyclerView.LayoutManager {
             }
             layoutDecorated(view, left, top, right, bottom);
         }
+
+        int columnNum = getColumnSize();
+        int totalHeight = (int) (columnNum * height + (columnNum - 1) * verticalGap);
+        int itemOffsetHeight = (int) ((int) ((2 * width + verticalGap) / 2) - 0.5 * width);
+        if (!isItemInFirstLine(getItemCount() - 1)) {
+            totalHeight += itemOffsetHeight;
+        }
+        totalHeight = Math.max(totalHeight, getVerticalSpace());
+        System.out.println("szw 01 : totalHeight = "+totalHeight);
+        System.out.println("szw 02 : vertical = "+getVerticalSpace());
     }
 
     private void recycleAndFillChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
@@ -76,6 +87,14 @@ public class HexLayoutManager extends RecyclerView.LayoutManager {
 
     @Override
     public int scrollVerticallyBy(int dy, RecyclerView.Recycler recycler, RecyclerView.State state) {
+        detachAndScrapAttachedViews(recycler);
+
+        if(verticalOffset + dy < 0){
+            dy = 0;
+        } else if(verticalOffset + dy > (totalHeight - getVerticalSpace())) {
+            dy = 0;
+        }
+        verticalOffset += dy;
         offsetChildrenVertical(-dy);
         return dy;
     }
@@ -92,6 +111,11 @@ public class HexLayoutManager extends RecyclerView.LayoutManager {
     private int getHorizontalSpace() {
         return getWidth() - getPaddingLeft() - getPaddingRight();
     }
+
+    private int getColumnSize() {
+        return (int) Math.ceil(getItemCount() / (float) SIZE_PER_ROW); //向上取整
+    }
+
 
     @Override
     public RecyclerView.LayoutParams generateDefaultLayoutParams() {
