@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <cn.six.sup.rv.custom_layout_mgr.hex.HexItemView android:id="@+id/hexItem"
+        android:layout_width="110dp" android:layout_height="110dp"
+        app:isHasStroke="true" app:outerColor="@color/colorPrimaryDark"
+        app:radius="50dp"
+        />
+
+    <TextView android:id="@+id/tvHexItem" android:layout_centerInParent="true"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent" android:textSize="18dp"
+        tools:text="Item 100"
+        />
+
+</RelativeLayout>
