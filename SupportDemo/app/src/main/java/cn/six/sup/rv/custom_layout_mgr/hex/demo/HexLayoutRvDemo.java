@@ -23,7 +23,7 @@ public class HexLayoutRvDemo extends Activity {
 
         RecyclerView rv = (RecyclerView) findViewById(R.id.rvRefresh);
         rv.setHasFixedSize(true);
-        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setLayoutManager(new HexLayoutManager());
 
         aData = new ArrayList<>();
         for (int i = 0; i < 26; i++) {
