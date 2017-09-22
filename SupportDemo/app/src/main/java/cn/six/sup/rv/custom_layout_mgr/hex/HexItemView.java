@@ -107,7 +107,6 @@ public class HexItemView extends View {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
-        System.out.println("szw[] dispatchTouchEvent() "+event.getAction());
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             if (!isEventInPath(event)) {
                 return false;
@@ -115,7 +114,6 @@ public class HexItemView extends View {
         }
 
         boolean ret = super.dispatchTouchEvent(event);
-        System.out.println("szw dispatchTouchEvent() : ret = "+ret);
         return ret;
     }
 
@@ -130,18 +128,4 @@ public class HexItemView extends View {
         return region.contains((int) event.getX(), (int) event.getY());
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        boolean ret = super.onTouchEvent(event);
-        System.out.println("szw onTouchEvent() : ret = "+ret);
-        return ret;
-    }
-
-    // @return : True there was an assigned OnClickListener that was called, false otherwise is returned.
-    @Override
-    public boolean performClick() {
-        boolean ret = super.performClick();
-        System.out.println("szw performClick() : ret = "+ret);
-        return ret;
-    }
 }
