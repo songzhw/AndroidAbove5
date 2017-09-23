@@ -100,6 +100,7 @@ public class HexLayoutManager extends RecyclerView.LayoutManager {
         verticalOffset += dy;
 
         offsetChildrenVertical(-dy);
+        System.out.println("szw scroll() : "+getChildCount());
         return dy;
     }
 
