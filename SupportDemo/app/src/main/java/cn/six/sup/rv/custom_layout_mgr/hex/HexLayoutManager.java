@@ -72,7 +72,7 @@ public class HexLayoutManager extends RecyclerView.LayoutManager {
         if (!isItemInFirstLine(getItemCount() - 1)) {
             totalHeight += itemOffsetHeight;
         }
-        totalHeight = Math.max(totalHeight, getVerticalSpace());
+        this.totalHeight = Math.max(totalHeight, getVerticalSpace());
         System.out.println("szw 01 : totalHeight = "+this.totalHeight);
         System.out.println("szw 02 : vertical = "+getVerticalSpace());
     }
