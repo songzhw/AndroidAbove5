@@ -96,6 +96,24 @@ public class HexLayoutManager extends RecyclerView.LayoutManager {
                 getHorizontalSpace(),
                 getVerticalSpace() + verticalOffset);
 
+        // put invisible item to the pool
+        Rect childFrame = new Rect();
+        int childCount = getChildCount();
+        System.out.println("szw 1 : "+childCount);
+        for (int i = 0; i < getChildCount(); i++) {
+            System.out.println("szw 2 : "+getChildCount());
+            View child = getChildAt(i);
+            childFrame.left = getDecoratedLeft(child);
+            childFrame.top = getDecoratedTop(child);
+            childFrame.right = getDecoratedRight(child);
+            childFrame.bottom = getDecoratedBottom(child);
+            // 如果Item没有在显示区域，就说明需要回收
+            if (!Rect.intersects(displayRect, childFrame)) {
+                this.removeAndRecycleView(child, recycler); // LayoutManager的方法
+            }
+        }
+
+        // reuse the items in the pool
         for (int i = 0; i < getItemCount(); i++) {
             Rect frame = pool.get(i);
             if (Rect.intersects(displayRect, frame)) {
