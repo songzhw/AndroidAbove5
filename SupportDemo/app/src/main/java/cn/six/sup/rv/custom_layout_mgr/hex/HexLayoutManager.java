@@ -11,7 +11,7 @@ public class HexLayoutManager extends RecyclerView.LayoutManager {
     private float horizonGap = DEFAULT_GROUP_INTERVAL; //代表横向的间距,只三个正六边形形成的等边三角形的中心距离 (存在默认值)
     private float verticalGap; //代表纵向的间隔,指两个正六边形之间的上下间距
     private int centerOffset;  //居中的偏移量
-    private int totalHeight, verticalOffset;
+    private int totalHeight = 0, verticalOffset = 0;
 
 
     @Override
@@ -73,7 +73,7 @@ public class HexLayoutManager extends RecyclerView.LayoutManager {
             totalHeight += itemOffsetHeight;
         }
         totalHeight = Math.max(totalHeight, getVerticalSpace());
-        System.out.println("szw 01 : totalHeight = "+totalHeight);
+        System.out.println("szw 01 : totalHeight = "+this.totalHeight);
         System.out.println("szw 02 : vertical = "+getVerticalSpace());
     }
 
@@ -86,15 +86,19 @@ public class HexLayoutManager extends RecyclerView.LayoutManager {
     }
 
     @Override
-    public int scrollVerticallyBy(int dy, RecyclerView.Recycler recycler, RecyclerView.State state) {
-        detachAndScrapAttachedViews(recycler);
+    public boolean canScrollHorizontally() {
+        return false;
+    }
 
+    @Override // 想看底部, dy就是+.  否则为-.
+    public int scrollVerticallyBy(int dy, RecyclerView.Recycler recycler, RecyclerView.State state) {
         if(verticalOffset + dy < 0){
-            dy = 0;
+            dy = -verticalOffset;
         } else if(verticalOffset + dy > (totalHeight - getVerticalSpace())) {
-            dy = 0;
+            dy = totalHeight - getVerticalSpace() - verticalOffset;
         }
         verticalOffset += dy;
+
         offsetChildrenVertical(-dy);
         return dy;
     }
