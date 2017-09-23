@@ -1,5 +1,7 @@
 package cn.six.sup.rv.custom_layout_mgr.hex;
 
+import android.graphics.Rect;
+import android.support.v4.util.SparseArrayCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,8 @@ public class HexLayoutManager extends RecyclerView.LayoutManager {
     private float verticalGap; //代表纵向的间隔,指两个正六边形之间的上下间距
     private int centerOffset;  //居中的偏移量
     private int totalHeight = 0, verticalOffset = 0;
+
+    private SparseArrayCompat<Rect> pool = new SparseArrayCompat<>();
 
 
     @Override
@@ -46,6 +50,12 @@ public class HexLayoutManager extends RecyclerView.LayoutManager {
             addView(view);
             measureChildWithMargins(view, 0, 0);
 
+            Rect frame = pool.get(i);
+            if(frame == null){
+                frame = new Rect();
+                pool.put(i, frame);
+            }
+
             int offsetHeight = (int) ((i / SIZE_PER_ROW) * (height + verticalGap));
             int left, top, right, bottom;
             if (isItemInFirstLine(i)) {  //每组的第一行
@@ -63,7 +73,7 @@ public class HexLayoutManager extends RecyclerView.LayoutManager {
                 right = centerOffset + itemOffsetWidth + width;
                 bottom = offsetHeight + itemOffsetHeight + height;
             }
-            layoutDecorated(view, left, top, right, bottom);
+            frame.set(left, top, right, bottom);
         }
 
         int columnNum = getColumnSize();
@@ -73,11 +83,29 @@ public class HexLayoutManager extends RecyclerView.LayoutManager {
             totalHeight += itemOffsetHeight;
         }
         this.totalHeight = Math.max(totalHeight, getVerticalSpace());
-        System.out.println("szw 01 : totalHeight = "+this.totalHeight);
-        System.out.println("szw 02 : vertical = "+getVerticalSpace());
+
+        recycleAndFillChildren(recycler, state);
     }
 
     private void recycleAndFillChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
+        if (getItemCount() <= 0 || state.isPreLayout()) {
+            return;
+        }
+
+        Rect displayRect = new Rect(0, verticalOffset,
+                getHorizontalSpace(),
+                getVerticalSpace() + verticalOffset);
+
+        for (int i = 0; i < getItemCount(); i++) {
+            Rect frame = pool.get(i);
+            if (Rect.intersects(displayRect, frame)) {
+                View scrap = recycler.getViewForPosition(i);
+                addView(scrap);
+                measureChildWithMargins(scrap, 0, 0);
+                layoutDecorated(scrap, frame.left, frame.top - verticalOffset,
+                        frame.right, frame.bottom - verticalOffset);
+            }
+        }
     }
 
     @Override
@@ -92,6 +120,8 @@ public class HexLayoutManager extends RecyclerView.LayoutManager {
 
     @Override // 想看底部, dy就是+.  否则为-.
     public int scrollVerticallyBy(int dy, RecyclerView.Recycler recycler, RecyclerView.State state) {
+        detachAndScrapAttachedViews(recycler);
+
         if(verticalOffset + dy < 0){
             dy = -verticalOffset;
         } else if(verticalOffset + dy > (totalHeight - getVerticalSpace())) {
@@ -100,6 +130,8 @@ public class HexLayoutManager extends RecyclerView.LayoutManager {
         verticalOffset += dy;
 
         offsetChildrenVertical(-dy);
+
+        recycleAndFillChildren(recycler, state);
         System.out.println("szw scroll() : "+getChildCount());
         return dy;
     }
