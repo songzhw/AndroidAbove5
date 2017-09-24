@@ -109,7 +109,7 @@ public class HexLayoutManager extends RecyclerView.LayoutManager {
             childFrame.bottom = getDecoratedBottom(child);
             // 如果Item没有在显示区域，就说明需要回收
             if (!Rect.intersects(displayRect, childFrame)) {
-                this.removeAndRecycleView(child, recycler); // LayoutManager的方法
+                this.detachAndScrapView(child, recycler); // LayoutManager的方法
             }
         }
 
