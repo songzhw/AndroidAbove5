@@ -101,10 +101,7 @@ class FirstLayoutManager extends RecyclerView.LayoutManager {
 
         // 将滑出屏幕的Items回收到Recycle缓存中
         Rect childFrame = new Rect();
-        int childCount = getChildCount();
-        System.out.println("szw 1 : "+childCount);
         for (int i = 0; i < getChildCount(); i++) {
-            System.out.println("szw 2 : "+getChildCount());
             View child = getChildAt(i);
             childFrame.left = getDecoratedLeft(child);
             childFrame.top = getDecoratedTop(child);

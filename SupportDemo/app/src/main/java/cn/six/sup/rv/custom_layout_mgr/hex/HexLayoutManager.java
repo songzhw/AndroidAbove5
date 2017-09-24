@@ -98,10 +98,7 @@ public class HexLayoutManager extends RecyclerView.LayoutManager {
 
         // put invisible item to the pool
         Rect childFrame = new Rect();
-        int childCount = getChildCount();
-        System.out.println("szw 1 : "+childCount);
         for (int i = 0; i < getChildCount(); i++) {
-            System.out.println("szw 2 : "+getChildCount());
             View child = getChildAt(i);
             childFrame.left = getDecoratedLeft(child);
             childFrame.top = getDecoratedTop(child);
@@ -150,7 +147,6 @@ public class HexLayoutManager extends RecyclerView.LayoutManager {
         offsetChildrenVertical(-dy);
 
         recycleAndFillChildren(recycler, state);
-        System.out.println("szw scroll() : "+getChildCount());
         return dy;
     }
 
