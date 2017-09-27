@@ -123,7 +123,7 @@ class FixedLayoutManager extends RecyclerView.LayoutManager {
                 measureChildWithMargins(scrap, 0, 0);
                 addView(scrap);
 
-                if (ctx == null) { ctx = scrap.getContext(); }
+//                if (ctx == null) { ctx = scrap.getContext(); }
 
                 Rect frame = allItemFrames.get(i);
                 //将这个item布局出来
@@ -135,20 +135,20 @@ class FixedLayoutManager extends RecyclerView.LayoutManager {
             }
         }
 
-        if(tv == null){
-            tv = new TextView(ctx);
-            tv.setTextSize(40);
-            tv.setBackgroundColor(Color.RED);
-            tv.setTextColor(Color.BLUE);
-            tv.setText("fixed");
-            tv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-        }
-        layoutDecorated(tv, 0, 0, 300, 300);
+//        if(tv == null){
+//            tv = new TextView(ctx);
+//            tv.setTextSize(40);
+//            tv.setBackgroundColor(Color.RED);
+//            tv.setTextColor(Color.BLUE);
+//            tv.setText("fixed");
+//            tv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+//        }
+//        layoutDecorated(tv, 200, 200, 500, 500);
 
     }
 
-    private Context ctx;
-    private TextView tv;
+//    private Context ctx;
+//    private TextView tv;
 
 
     // 获取RecyclerView在垂直方向上的可用空间，即去除了padding后的高度
