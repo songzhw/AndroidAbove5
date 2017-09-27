@@ -8,6 +8,7 @@ import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.support.v7.widget.RecyclerView.LayoutParams;
 
 class FixedLayoutManager extends RecyclerView.LayoutManager {
     private int verticalScrollOffset = 0; // 竖直方向的滑动偏移量
@@ -137,11 +138,12 @@ class FixedLayoutManager extends RecyclerView.LayoutManager {
         if(tv == null){
             tv = new TextView(ctx);
             tv.setTextSize(40);
-            tv.setBackgroundColor(Color.GRAY);
+            tv.setBackgroundColor(Color.RED);
             tv.setTextColor(Color.BLUE);
             tv.setText("fixed");
+            tv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
         }
-        layoutDecorated(tv, 0, 0, 200, 200);
+        layoutDecorated(tv, 0, 0, 300, 300);
 
     }
 
