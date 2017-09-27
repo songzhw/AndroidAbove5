@@ -1,10 +1,13 @@
 package cn.six.sup.rv.custom_layout_mgr.fixed;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 class FixedLayoutManager extends RecyclerView.LayoutManager {
     private int verticalScrollOffset = 0; // 竖直方向的滑动偏移量
@@ -58,7 +61,6 @@ class FixedLayoutManager extends RecyclerView.LayoutManager {
     }
 
 
-
     @Override
     public boolean canScrollVertically() {
         return true;
@@ -88,7 +90,6 @@ class FixedLayoutManager extends RecyclerView.LayoutManager {
         recycleAndFillItems(recycler, state);
         return travel;
     }
-
 
 
     private void recycleAndFillItems(RecyclerView.Recycler recycler, RecyclerView.State state) {
@@ -121,6 +122,8 @@ class FixedLayoutManager extends RecyclerView.LayoutManager {
                 measureChildWithMargins(scrap, 0, 0);
                 addView(scrap);
 
+                if (ctx == null) { ctx = scrap.getContext(); }
+
                 Rect frame = allItemFrames.get(i);
                 //将这个item布局出来
                 layoutDecorated(scrap,
@@ -129,9 +132,21 @@ class FixedLayoutManager extends RecyclerView.LayoutManager {
                         frame.right,
                         frame.bottom - verticalScrollOffset);
             }
-
         }
+
+        if(tv == null){
+            tv = new TextView(ctx);
+            tv.setTextSize(40);
+            tv.setBackgroundColor(Color.GRAY);
+            tv.setTextColor(Color.BLUE);
+            tv.setText("fixed");
+        }
+        layoutDecorated(tv, 0, 0, 200, 200);
+
     }
+
+    private Context ctx;
+    private TextView tv;
 
 
     // 获取RecyclerView在垂直方向上的可用空间，即去除了padding后的高度
