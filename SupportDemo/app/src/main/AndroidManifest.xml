@@ -11,7 +11,7 @@
         <activity android:name=".MainActivity">
         </activity>
 
-        <activity android:name=".rv.custom_layout_mgr.fixed.FixedLayoutRvDemo">
+        <activity android:name=".rv.custom_layout_mgr.fixed_row.FixedLayoutRvDemo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -283,7 +283,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".rv.custom_layout_mgr.first.FirstLayoutRvDemo"
+            android:name=".rv.custom_layout_mgr.linear.FirstLayoutRvDemo"
             android:label="Rv with Custom LayoutManger 01: vertical linear">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -291,7 +291,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".rv.custom_layout_mgr.second.SlashLayoutRvDemo"
+            android:name=".rv.custom_layout_mgr.slash.SlashLayoutRvDemo"
             android:label="Rv with Custom LayoutManger 02: Slash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

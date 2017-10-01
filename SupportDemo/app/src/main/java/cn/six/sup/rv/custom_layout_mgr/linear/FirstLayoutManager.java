@@ -1,4 +1,4 @@
-package cn.six.sup.rv.custom_layout_mgr.first;
+package cn.six.sup.rv.custom_layout_mgr.linear;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;

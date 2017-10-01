@@ -1,4 +1,4 @@
-package cn.six.sup.rv.custom_layout_mgr.first;
+package cn.six.sup.rv.custom_layout_mgr.fixed_row;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import cn.six.sup.R;
 import cn.six.sup.rv.RvViewHolder;
 import cn.six.sup.rv.one_adapter.OneAdapter;
 
-public class FirstLayoutRvDemo extends Activity {
+public class FixedLayoutRvDemo extends Activity {
     private List<String> aData;
 
     @Override
@@ -21,7 +21,7 @@ public class FirstLayoutRvDemo extends Activity {
 
         RecyclerView rv = (RecyclerView) findViewById(R.id.rvRefresh);
         rv.setHasFixedSize(true);
-        rv.setLayoutManager(new FirstLayoutManager());
+        rv.setLayoutManager(new FixedLayoutManager());
 
         aData = new ArrayList<>();
         for (int i = 0; i < 26; i++) {

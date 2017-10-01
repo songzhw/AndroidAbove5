@@ -1,4 +1,4 @@
-package cn.six.sup.rv.custom_layout_mgr.second;
+package cn.six.sup.rv.custom_layout_mgr.slash;
 
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;

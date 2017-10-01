@@ -1,4 +1,4 @@
-package cn.six.sup.rv.custom_layout_mgr.fixed;
+package cn.six.sup.rv.custom_layout_mgr.slash;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,10 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.six.sup.R;
-import cn.six.sup.rv.RvViewHolder;
-import cn.six.sup.rv.one_adapter.OneAdapter;
 
-public class FixedLayoutRvDemo extends Activity {
+public class SlashLayoutRvDemo extends Activity {
     private List<String> aData;
 
     @Override
@@ -21,18 +19,15 @@ public class FixedLayoutRvDemo extends Activity {
 
         RecyclerView rv = (RecyclerView) findViewById(R.id.rvRefresh);
         rv.setHasFixedSize(true);
-        rv.setLayoutManager(new FixedLayoutManager());
+        rv.setLayoutManager(new SlashLayoutManager());
+
+        SlashLayoutAdapter adapter = new SlashLayoutAdapter();
 
         aData = new ArrayList<>();
-        for (int i = 0; i < 26; i++) {
+        for (int i = 0; i < 20; i++) {
             aData.add("Item " + i);
         }
-        OneAdapter<String> adapter = new OneAdapter<String>(R.layout.item_rv_slash, aData){
-            @Override
-            protected void apply(RvViewHolder vh, String s, int position) {
-                vh.setText(R.id.tvSlash, s);
-            }
-        };
+        adapter.data = aData;
         rv.setAdapter(adapter);
 
     }
