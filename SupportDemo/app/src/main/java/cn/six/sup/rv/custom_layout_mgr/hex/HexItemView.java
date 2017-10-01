@@ -8,7 +8,6 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.Region;
-import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,9 +15,9 @@ import android.view.View;
 import cn.six.sup.R;
 
 public class HexItemView extends View {
+    public static final int DEFAULT_OUTER_COLOR = Color.parseColor("#f5c421"); // 默认的边框颜色
     private static final int POLYGON_COUNT = 6; // 正六边形的边数量
     private static final int DEFAULT_OUTER_WIDTH = 4; // 默认的边框宽度
-    public static final int DEFAULT_OUTER_COLOR = Color.parseColor("#f5c421"); // 默认的边框颜色
     private int maxRadius, radius;//包裹着正六边形的圆的半径
     private int outerWidth; //边框线的宽度
     private int outerColor, innerColor;// 内侧颜色和外侧的颜色

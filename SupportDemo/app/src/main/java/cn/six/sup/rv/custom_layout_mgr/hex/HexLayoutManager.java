@@ -51,7 +51,7 @@ public class HexLayoutManager extends RecyclerView.LayoutManager {
             measureChildWithMargins(view, 0, 0);
 
             Rect frame = pool.get(i);
-            if(frame == null){
+            if (frame == null) {
                 frame = new Rect();
                 pool.put(i, frame);
             }
@@ -137,9 +137,9 @@ public class HexLayoutManager extends RecyclerView.LayoutManager {
     public int scrollVerticallyBy(int dy, RecyclerView.Recycler recycler, RecyclerView.State state) {
         detachAndScrapAttachedViews(recycler);
 
-        if(verticalOffset + dy < 0){
+        if (verticalOffset + dy < 0) {
             dy = -verticalOffset;
-        } else if(verticalOffset + dy > (totalHeight - getVerticalSpace())) {
+        } else if (verticalOffset + dy > (totalHeight - getVerticalSpace())) {
             dy = totalHeight - getVerticalSpace() - verticalOffset;
         }
         verticalOffset += dy;

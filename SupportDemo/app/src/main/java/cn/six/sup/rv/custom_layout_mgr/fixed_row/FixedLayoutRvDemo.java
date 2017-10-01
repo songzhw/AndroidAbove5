@@ -27,7 +27,7 @@ public class FixedLayoutRvDemo extends Activity {
         for (int i = 0; i < 26; i++) {
             aData.add("Item " + i);
         }
-        OneAdapter<String> adapter = new OneAdapter<String>(R.layout.item_rv_slash, aData){
+        OneAdapter<String> adapter = new OneAdapter<String>(R.layout.item_rv_slash, aData) {
             @Override
             protected void apply(RvViewHolder vh, String s, int position) {
                 vh.setText(R.id.tvSlash, s);

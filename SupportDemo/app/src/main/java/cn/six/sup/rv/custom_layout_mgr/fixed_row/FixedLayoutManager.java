@@ -45,7 +45,7 @@ class FixedLayoutManager extends RecyclerView.LayoutManager {
                 frame = new Rect();
             }
             frame.set(0, offsetY, width, offsetY + height);
-            System.out.println("szw CF : frame = "+frame);
+            System.out.println("szw CF : frame = " + frame);
             allItemFrames.put(i, frame);  // replacing the previous mapping from the specified key if there was one.
             offsetY += height;
         }
@@ -137,7 +137,7 @@ class FixedLayoutManager extends RecyclerView.LayoutManager {
             addView(scrap);
 
             Rect frame = allItemFrames.get(0);
-            System.out.println("szw frame0 = "+frame+" ; view = "+scrap);
+            System.out.println("szw frame0 = " + frame + " ; view = " + scrap);
             layoutDecorated(scrap, 0, 0, frame.right, frame.bottom);
         }
 

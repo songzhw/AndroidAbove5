@@ -8,7 +8,7 @@ import android.view.ViewGroup;
  * Created by songzhw on 2016-11-12
  */
 
-public class SlashLayoutManager extends RecyclerView.LayoutManager{
+public class SlashLayoutManager extends RecyclerView.LayoutManager {
 
     @Override // from LayoutManager
     public RecyclerView.LayoutParams generateDefaultLayoutParams() {

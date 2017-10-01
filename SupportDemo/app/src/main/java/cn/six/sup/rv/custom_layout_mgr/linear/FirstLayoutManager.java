@@ -58,7 +58,6 @@ class FirstLayoutManager extends RecyclerView.LayoutManager {
     }
 
 
-
     @Override
     public boolean canScrollVertically() {
         return true;
@@ -88,7 +87,6 @@ class FirstLayoutManager extends RecyclerView.LayoutManager {
         recycleAndFillItems(recycler, state);
         return travel;
     }
-
 
 
     private void recycleAndFillItems(RecyclerView.Recycler recycler, RecyclerView.State state) {

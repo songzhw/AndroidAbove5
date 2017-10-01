@@ -2,7 +2,6 @@ package cn.six.sup.rv.custom_layout_mgr.hex.demo;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ public class HexLayoutRvDemo extends Activity {
         for (int i = 0; i < 26; i++) {
             aData.add("Item " + i);
         }
-        OneAdapter<String> adapter = new OneAdapter<String>(R.layout.item_rv_hex, aData){
+        OneAdapter<String> adapter = new OneAdapter<String>(R.layout.item_rv_hex, aData) {
             @Override
             protected void apply(RvViewHolder vh, String s, int position) {
                 vh.setText(R.id.tvHexItem, s);

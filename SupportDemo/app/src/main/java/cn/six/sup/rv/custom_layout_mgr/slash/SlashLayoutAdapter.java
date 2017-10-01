@@ -20,14 +20,14 @@ public class SlashLayoutAdapter extends RecyclerView.Adapter<SlashLayoutAdapter.
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view =  LayoutInflater.from(parent.getContext()).inflate(R.layout.item_rv_slash, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_rv_slash, parent, false);
         SlashLayoutAdapter.ViewHolder holder = new SlashLayoutAdapter.ViewHolder(view);
         return holder;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        if(data != null && data.size() > position) {
+        if (data != null && data.size() > position) {
             int color1 = (int) (Math.random() * 255);
             int color2 = (int) (Math.random() * 255);
             int color3 = (int) (Math.random() * 255);
