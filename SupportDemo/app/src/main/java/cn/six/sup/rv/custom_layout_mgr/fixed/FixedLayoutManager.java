@@ -1,14 +1,10 @@
 package cn.six.sup.rv.custom_layout_mgr.fixed;
 
-import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.support.v7.widget.RecyclerView.LayoutParams;
 
 class FixedLayoutManager extends RecyclerView.LayoutManager {
     private int verticalScrollOffset = 0; // 竖直方向的滑动偏移量
@@ -49,6 +45,7 @@ class FixedLayoutManager extends RecyclerView.LayoutManager {
                 frame = new Rect();
             }
             frame.set(0, offsetY, width, offsetY + height);
+            System.out.println("szw CF : frame = "+frame);
             allItemFrames.put(i, frame);  // replacing the previous mapping from the specified key if there was one.
             offsetY += height;
         }
@@ -111,19 +108,17 @@ class FixedLayoutManager extends RecyclerView.LayoutManager {
             childFrame.bottom = getDecoratedBottom(child);
             // 如果Item没有在显示区域，就说明需要回收
             if (!Rect.intersects(displayFrame, childFrame)) {
-                this.removeAndRecycleView(child, recycler); // LayoutManager的方法
+                this.removeAndRecycleView(child, recycler); // LayoutManager的方法. 会导致getChildCount()变得更少
             }
         }
 
         // 从缓存中拿出来复用
-        int itemCount = getItemCount();
+        int itemCount = getItemCount(); //itemCount == adapter.getItemCount()
         for (int i = 0; i < itemCount; i++) {
             if (Rect.intersects(displayFrame, allItemFrames.get(i))) {
                 View scrap = recycler.getViewForPosition(i);
                 measureChildWithMargins(scrap, 0, 0);
                 addView(scrap);
-
-//                if (ctx == null) { ctx = scrap.getContext(); }
 
                 Rect frame = allItemFrames.get(i);
                 //将这个item布局出来
@@ -135,20 +130,19 @@ class FixedLayoutManager extends RecyclerView.LayoutManager {
             }
         }
 
-//        if(tv == null){
-//            tv = new TextView(ctx);
-//            tv.setTextSize(40);
-//            tv.setBackgroundColor(Color.RED);
-//            tv.setTextColor(Color.BLUE);
-//            tv.setText("fixed");
-//            tv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-//        }
-//        layoutDecorated(tv, 200, 200, 500, 500);
+        // is not in the top
+        if (verticalScrollOffset > 0) {
+            View scrap = recycler.getViewForPosition(0);
+            measureChildWithMargins(scrap, 0, 0);
+            addView(scrap);
+
+            Rect frame = allItemFrames.get(0);
+            System.out.println("szw frame0 = "+frame+" ; view = "+scrap);
+            layoutDecorated(scrap, 0, 0, frame.right, frame.bottom);
+        }
+
 
     }
-
-//    private Context ctx;
-//    private TextView tv;
 
 
     // 获取RecyclerView在垂直方向上的可用空间，即去除了padding后的高度
