@@ -1,4 +1,4 @@
-package cn.six.sup.rv.coordinate_rv_rv_in_rv;
+package cn.six.sup.rv.stickyColumnTable.coordinate_rv_rv_in_rv;
 
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
@@ -12,8 +12,8 @@ import java.util.List;
 import cn.six.sup.R;
 import cn.six.sup.rv.ItemView;
 import cn.six.sup.rv.RvViewHolder;
-import cn.six.sup.rv.coordinate_rv_rv.MultiRvScrollListener;
-import cn.six.sup.rv.cooridinate_rv_rv_2.ObservableHorizontalScrollView;
+import cn.six.sup.rv.stickyColumnTable.coordinate_rv_rv.MultiRvScrollListener;
+import cn.six.sup.rv.stickyColumnTable.cooridinate_rv_rv_2.ObservableHorizontalScrollView;
 import cn.six.sup.rv.one_adapter.OneAdapter;
 
 

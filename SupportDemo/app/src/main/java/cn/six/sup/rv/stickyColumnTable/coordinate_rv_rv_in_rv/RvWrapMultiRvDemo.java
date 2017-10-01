@@ -1,4 +1,4 @@
-package cn.six.sup.rv.coordinate_rv_rv_in_rv;
+package cn.six.sup.rv.stickyColumnTable.coordinate_rv_rv_in_rv;
 
 import android.app.Activity;
 import android.os.Bundle;

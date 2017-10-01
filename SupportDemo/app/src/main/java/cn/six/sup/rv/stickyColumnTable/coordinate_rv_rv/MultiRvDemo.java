@@ -1,4 +1,4 @@
-package cn.six.sup.rv.coordinate_rv_rv;
+package cn.six.sup.rv.stickyColumnTable.coordinate_rv_rv;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import java.util.List;
 
 import cn.six.sup.R;
 import cn.six.sup.rv.RvViewHolder;
-import cn.six.sup.rv.cooridinate_rv_rv_2.ObservableHorizontalScrollView;
+import cn.six.sup.rv.stickyColumnTable.cooridinate_rv_rv_2.ObservableHorizontalScrollView;
 import cn.six.sup.rv.one_adapter.OneAdapter;
 
 public class MultiRvDemo extends Activity {

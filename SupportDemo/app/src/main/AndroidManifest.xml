@@ -22,7 +22,7 @@
         </activity>
 
         <activity
-            android:name=".rv.cooridinate_rv_rv_2.demo.MultiRvDemo2"
+            android:name=".rv.stickyColumnTable.cooridinate_rv_rv_2.demo.MultiRvDemo2"
             android:label="2个rv互动">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

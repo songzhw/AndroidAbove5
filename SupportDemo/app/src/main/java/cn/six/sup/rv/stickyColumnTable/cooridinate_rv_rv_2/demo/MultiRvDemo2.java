@@ -1,4 +1,4 @@
-package cn.six.sup.rv.cooridinate_rv_rv_2.demo;
+package cn.six.sup.rv.stickyColumnTable.cooridinate_rv_rv_2.demo;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,9 +9,9 @@ import java.util.List;
 
 import cn.six.sup.R;
 import cn.six.sup.rv.RvViewHolder;
-import cn.six.sup.rv.cooridinate_rv_rv_2.IStickyColumnTableInflater;
-import cn.six.sup.rv.cooridinate_rv_rv_2.StickyColumnTableAdapter;
-import cn.six.sup.rv.cooridinate_rv_rv_2.StickyColumnTableView;
+import cn.six.sup.rv.stickyColumnTable.cooridinate_rv_rv_2.IStickyColumnTableInflater;
+import cn.six.sup.rv.stickyColumnTable.cooridinate_rv_rv_2.StickyColumnTableAdapter;
+import cn.six.sup.rv.stickyColumnTable.cooridinate_rv_rv_2.StickyColumnTableView;
 
 public class MultiRvDemo2 extends Activity implements IStickyColumnTableInflater<String> {
     public static final int HEIGHT = 15;
