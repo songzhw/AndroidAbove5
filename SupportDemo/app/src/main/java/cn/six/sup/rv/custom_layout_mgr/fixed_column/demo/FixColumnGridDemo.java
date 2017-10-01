@@ -19,6 +19,9 @@ public class FixColumnGridDemo extends Activity {
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new GridLayoutManager(this, 6));
 
+
+
+
         GridDemoAdapter adapter = new GridDemoAdapter();
 
         rv.setAdapter(adapter);
