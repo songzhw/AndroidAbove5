@@ -6,7 +6,6 @@ import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
     private int columnSize = 0;
     private int verticallyOffset = 0, horizontalOffset = 0;
@@ -44,20 +43,21 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
 
             int posInReal = i + 1;
             int left, top, right, bottom;
-            if ( posInReal % columnSize != 0) {
-                // 非每行最末一项, 就是普通平移就好
+            // 1. 最末一列, 布局完后要换行, 即offsetY += height, offsetX = 0
+            if (posInReal % columnSize == 0){
                 left = offsetX;
                 top = offsetY;
 
-                offsetX += width;
-            } else {
-                // 每行最末一项, 以5column为例 应该是4, 9, 14, 19, ...(以0开始). 要换行.
-                left = 0;
-                top = offsetY;
-
-                offsetX = width;
-                offsetY += height; //TODO 这里可能有问题
+                offsetX = 0;
+                offsetY += height; //TODO 这里可能有问题. 因为这个height只是一项的高度,不是一行的高度
             }
+            // 2. 中间的普通列, 按offsetX, offsetY来就好了
+            else {
+                left = offsetX;
+                top = offsetY;
+                offsetX += width;
+            }
+
             System.out.println("szw ox = "+ offsetX +" ; oy = "+offsetY);
             right = left + width;
             bottom = top + height;
@@ -87,6 +87,6 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
         offsetChildrenVertical(-dy);
         return dy;
     }
-
 }
+
 
