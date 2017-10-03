@@ -65,5 +65,28 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
         }
 
     }
+
+    @Override
+    public boolean canScrollHorizontally() {
+        return true;
+    }
+
+    @Override
+    public boolean canScrollVertically() {
+        return true;
+    }
+
+    @Override
+    public int scrollHorizontallyBy(int dx, RecyclerView.Recycler recycler, RecyclerView.State state) {
+        offsetChildrenHorizontal(-dx);
+        return dx;
+    }
+
+    @Override
+    public int scrollVerticallyBy(int dy, RecyclerView.Recycler recycler, RecyclerView.State state) {
+        offsetChildrenVertical(-dy);
+        return dy;
+    }
+
 }
 
