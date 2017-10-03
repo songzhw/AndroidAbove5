@@ -38,7 +38,7 @@ public class GridDemoAdapter extends RecyclerView.Adapter<RvViewHolder> {
                 break;
         }
         RvViewHolder vh = RvViewHolder.createViewHolder(parent, layoutResId);
-        return null;
+        return vh;
     }
 
     @Override
