@@ -41,7 +41,7 @@ public class FixColumnGridDemo extends Activity {
 
             for (int j = 0; j < 20; j++) {
                 Numbera num = new Numbera();
-                num.num = i * 30 + j;
+                num.num = i * 20 + j;
                 data.add(num);
             }
 
@@ -51,12 +51,6 @@ public class FixColumnGridDemo extends Activity {
         GridDemoAdapter adapter = new GridDemoAdapter();
         adapter.data = data;
         rv.setAdapter(adapter);
-
-        Drawable drawable = ContextCompat.getDrawable(this, R.drawable.divider_grid);
-        GridDivider03 divider = new GridDivider03(drawable);
-        rv.addItemDecoration(divider);
-
-
 
     }
 
