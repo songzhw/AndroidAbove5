@@ -130,16 +130,20 @@ class FixedLayoutManager extends RecyclerView.LayoutManager {
             }
         }
 
-        // is not in the top
+        // is not in the top (不能用rect.intersects()来做判断, 不然没有需要的UI效果, 会出来太晚了)
         if (verticalScrollOffset > 0) {
             View scrap = recycler.getViewForPosition(0);
             measureChildWithMargins(scrap, 0, 0);
-            addView(scrap);
+            addView(scrap); //实践了下, 重复添加第0项, 不会有"parent已有"的crash
 
             Rect frame = allItemFrames.get(0);
-            System.out.println("szw frame0 = " + frame + " ; view = " + scrap);
             layoutDecorated(scrap, 0, 0, frame.right, frame.bottom);
         }
+
+        System.out.println("szw child count = "+getChildCount());
+        // 正常进入是30;  稍一滑动是17; 头未出去, 下面一个又出来时是18.
+        // 加上上面一段if(verticalOffset>0)后, 结果是: 进入时仍30, 但滑动时成了18, 19.
+
 
 
     }
