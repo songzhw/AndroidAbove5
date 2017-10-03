@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.six.sup.R;
+import cn.six.sup.rv.custom_layout_mgr.fixed_column.FixColumnGridLayoutManager;
 import cn.six.sup.rv.custom_layout_mgr.fixed_column.demo.entity.Action;
 import cn.six.sup.rv.custom_layout_mgr.fixed_column.demo.entity.IFixedGridType;
 import cn.six.sup.rv.custom_layout_mgr.fixed_column.demo.entity.Name;
@@ -29,7 +30,7 @@ public class FixColumnGridDemo extends Activity {
 
         RecyclerView rv = (RecyclerView) findViewById(R.id.rvRefresh);
         rv.setHasFixedSize(true);
-        rv.setLayoutManager(new GridLayoutManager(this, 22));
+        rv.setLayoutManager(new FixColumnGridLayoutManager(22));
 
         List<IFixedGridType> data = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
