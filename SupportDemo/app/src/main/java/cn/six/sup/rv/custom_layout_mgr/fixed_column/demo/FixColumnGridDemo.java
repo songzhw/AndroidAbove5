@@ -1,6 +1,7 @@
 package cn.six.sup.rv.custom_layout_mgr.fixed_column.demo;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,6 +15,7 @@ import cn.six.sup.rv.custom_layout_mgr.fixed_column.demo.entity.Action;
 import cn.six.sup.rv.custom_layout_mgr.fixed_column.demo.entity.IFixedGridType;
 import cn.six.sup.rv.custom_layout_mgr.fixed_column.demo.entity.Name;
 import cn.six.sup.rv.custom_layout_mgr.fixed_column.demo.entity.Numbera;
+import cn.six.sup.rv.divider.GridDivider02;
 
 public class FixColumnGridDemo extends Activity {
 
@@ -24,7 +26,7 @@ public class FixColumnGridDemo extends Activity {
 
         RecyclerView rv = (RecyclerView) findViewById(R.id.rvRefresh);
         rv.setHasFixedSize(true);
-        rv.setLayoutManager(new GridLayoutManager(this, 6));
+        rv.setLayoutManager(new GridLayoutManager(this, 22));
 
         List<IFixedGridType> data = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
@@ -45,6 +47,12 @@ public class FixColumnGridDemo extends Activity {
         GridDemoAdapter adapter = new GridDemoAdapter();
         adapter.data = data;
         rv.setAdapter(adapter);
+
+        GridDivider02 divider = new GridDivider02();
+        divider.setColor(Color.DKGRAY);
+        divider.setSize(2);
+        rv.addItemDecoration(divider);
+
 
     }
 
