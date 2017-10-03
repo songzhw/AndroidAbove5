@@ -6,6 +6,9 @@ import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 
+// 问题1: 如何适用rv为wrap_content的情形
+// 问题2: 如何循环得用多viewType的各View
+
 public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
     private int columnSize = 0;
     private int verticallyOffset = 0, horizontalOffset = 0;
