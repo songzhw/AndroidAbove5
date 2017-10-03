@@ -1,12 +1,8 @@
 package cn.six.sup.rv.custom_layout_mgr.fixed_column.demo;
 
 import android.app.Activity;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -18,8 +14,6 @@ import cn.six.sup.rv.custom_layout_mgr.fixed_column.demo.entity.Action;
 import cn.six.sup.rv.custom_layout_mgr.fixed_column.demo.entity.IFixedGridType;
 import cn.six.sup.rv.custom_layout_mgr.fixed_column.demo.entity.Name;
 import cn.six.sup.rv.custom_layout_mgr.fixed_column.demo.entity.Numbera;
-import cn.six.sup.rv.divider.GridDivider02;
-import cn.six.sup.rv.divider.GridDivider03;
 
 public class FixColumnGridDemo extends Activity {
 
@@ -56,3 +50,6 @@ public class FixColumnGridDemo extends Activity {
 
 
 }
+
+// bug1: action跑最前面了
+// bug2: 第一列和其它列不一样. 其它列的name都在action之后. 第一列是重合了
