@@ -6,8 +6,8 @@ import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 
-// 问题1: 如何适用rv为wrap_content的情形
-// 问题2: 如何循环得用多viewType的各View
+// 问题1: 如何适用rv为wrap_content的情形 (目前还没解决)
+// 问题2: 如何循环得用多viewType的各View (解决: 可以用LayMgr中的 **int getItemViewType(View view)** 方法)
 
 public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
     private int columnSize = 0;
