@@ -89,6 +89,7 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
         int offsetY = 0;
         if(verticallyOffset > 0) {
             int itemCount = getItemCount();
+            // TODO Add all items back
             for (int i = 0; i < itemCount; i++) {
                 int posInReal = i + 1;
                 // 第一列
