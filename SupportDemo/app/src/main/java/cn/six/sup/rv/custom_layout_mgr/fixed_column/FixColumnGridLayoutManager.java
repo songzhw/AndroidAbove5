@@ -77,8 +77,13 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
 
     @Override
     public int scrollHorizontallyBy(int dx, RecyclerView.Recycler recycler, RecyclerView.State state) {
+        // 先要detach所有attached的view. 因为滑动就有变化, 就有新的项入回收池, 也要从回收池拿出数据来填充
+        detachAndScrapAttachedViews(recycler);
+
         offsetChildrenHorizontal(-dx);
         verticallyOffset += dx;
+
+        // TODO bring it back after finished the reycleAndFill() method -- only recycle the first column
 
         // fixed first coloumn behavior
         int offsetY = 0;
@@ -100,6 +105,7 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
                 }
             }
         }
+
         return dx;
     }
 
