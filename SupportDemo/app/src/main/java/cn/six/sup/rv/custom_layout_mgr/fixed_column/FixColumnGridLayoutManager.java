@@ -83,7 +83,27 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
     public int scrollHorizontallyBy(int dx, RecyclerView.Recycler recycler, RecyclerView.State state) {
         offsetChildrenHorizontal(-dx);
         verticallyOffset += dx;
-        System.out.println("szw verticallyOffset = "+verticallyOffset);
+
+        // fixed first coloumn behavior
+        int offsetY = 0;
+        if(verticallyOffset > 0) {
+            int itemCount = getItemCount();
+            for (int i = 0; i < itemCount; i++) {
+                int posInReal = i + 1;
+                // 第一列
+                if( posInReal % columnSize == 1){
+                    View view = recycler.getViewForPosition(i);
+                    measureChildWithMargins(view, 0, 0);
+                    addView(view);
+
+                    int width = getDecoratedMeasuredWidth(view);
+                    int height = getDecoratedMeasuredHeight(view);
+
+                    layoutDecorated(view, 0, offsetY, width, offsetY + height);
+                    offsetY += height;
+                }
+            }
+        }
         return dx;
     }
 
