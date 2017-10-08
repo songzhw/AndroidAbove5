@@ -82,12 +82,15 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
     @Override
     public int scrollHorizontallyBy(int dx, RecyclerView.Recycler recycler, RecyclerView.State state) {
         offsetChildrenHorizontal(-dx);
+        verticallyOffset += dx;
+        System.out.println("szw verticallyOffset = "+verticallyOffset);
         return dx;
     }
 
     @Override
     public int scrollVerticallyBy(int dy, RecyclerView.Recycler recycler, RecyclerView.State state) {
         offsetChildrenVertical(-dy);
+        horizontalOffset += dy;
         return dy;
     }
 }
