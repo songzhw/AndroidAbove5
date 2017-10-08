@@ -74,10 +74,6 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
         return true;
     }
 
-    @Override
-    public boolean canScrollVertically() {
-        return true;
-    }
 
     @Override
     public int scrollHorizontallyBy(int dx, RecyclerView.Recycler recycler, RecyclerView.State state) {
@@ -107,12 +103,19 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
         return dx;
     }
 
-    @Override
-    public int scrollVerticallyBy(int dy, RecyclerView.Recycler recycler, RecyclerView.State state) {
-        offsetChildrenVertical(-dy);
-        horizontalOffset += dy;
-        return dy;
-    }
+
+// ================= 先disable掉, 方便我调试 =================
+//    @Override
+//    public boolean canScrollVertically() {
+//        return true;
+//    }
+
+//    @Override
+//    public int scrollVerticallyBy(int dy, RecyclerView.Recycler recycler, RecyclerView.State state) {
+//        offsetChildrenVertical(-dy);
+//        horizontalOffset += dy;
+//        return dy;
+//    }
 }
 
 
