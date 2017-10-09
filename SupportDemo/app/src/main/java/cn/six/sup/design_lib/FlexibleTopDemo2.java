@@ -1,13 +1,11 @@
 package cn.six.sup.design_lib;
 
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -44,7 +42,7 @@ public class FlexibleTopDemo2 extends Activity {
 
         @Override
         public void onBindViewHolder(MyHolder holder, int position) {
-            holder.tv.setText("TaskStatus "+position);
+            holder.tv.setText("TaskStatus " + position);
         }
 
         @Override
@@ -53,7 +51,7 @@ public class FlexibleTopDemo2 extends Activity {
         }
     }
 
-    private class MyHolder extends RecyclerView.ViewHolder{
+    private class MyHolder extends RecyclerView.ViewHolder {
         public TextView tv;
 
         public MyHolder(View itemView) {

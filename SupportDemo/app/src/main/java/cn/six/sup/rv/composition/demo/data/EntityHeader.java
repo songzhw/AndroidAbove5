@@ -2,7 +2,7 @@ package cn.six.sup.rv.composition.demo.data;
 
 import cn.six.sup.rv.composition.BaseRow;
 
-public class EntityHeader implements IEntity{
+public class EntityHeader implements IEntity {
     public String title;
     public String caption;
 

@@ -34,7 +34,7 @@ public class LocationWatcher implements LifecycleObserver, GoogleApiClient.Conne
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    public void onCreate(){
+    public void onCreate() {
         googleApiClient = new GoogleApiClient.Builder(activity)
                 .addApi(LocationServices.API)
                 .addConnectionCallbacks(this)
@@ -64,17 +64,17 @@ public class LocationWatcher implements LifecycleObserver, GoogleApiClient.Conne
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    public void onDestroy(){
+    public void onDestroy() {
         System.out.println("szw + onDestroy()");
         googleApiClient.disconnect();
     }
 
     @SuppressWarnings("MissingPermission")
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    public void onResume(){
+    public void onResume() {
         System.out.println("szw + onResume()");
 
-        if (isUserDenyPermission){
+        if (isUserDenyPermission) {
             return;
         }
 
@@ -94,7 +94,7 @@ public class LocationWatcher implements LifecycleObserver, GoogleApiClient.Conne
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-    public void onPause(){
+    public void onPause() {
         System.out.println("szw + onPause()");
         if (googleApiClient.isConnected()) {
             locationClient.removeLocationUpdates(googleApiClient, this);
@@ -116,7 +116,6 @@ public class LocationWatcher implements LifecycleObserver, GoogleApiClient.Conne
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         System.out.println("szw + google play connect failed");
     }
-
 
 
     @Override

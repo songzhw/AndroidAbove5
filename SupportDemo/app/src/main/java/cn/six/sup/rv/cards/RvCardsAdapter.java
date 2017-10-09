@@ -11,19 +11,8 @@ import java.util.List;
 import cn.six.sup.R;
 
 
-
 public class RvCardsAdapter extends RecyclerView.Adapter<RvCardsAdapter.ViewHolder> {
     public List<String> data;
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tv;
-
-        public ViewHolder(CardView itemView) {
-            super(itemView);
-            tv = (TextView) itemView.findViewById(R.id.tv_rv_card_item);
-        }
-    }
-
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -34,8 +23,8 @@ public class RvCardsAdapter extends RecyclerView.Adapter<RvCardsAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        if(data != null && data.size() > position){
-           holder.tv.setText("[cards -- " + data.get(position) + "]");
+        if (data != null && data.size() > position) {
+            holder.tv.setText("[cards -- " + data.get(position) + "]");
         }
     }
 
@@ -44,6 +33,14 @@ public class RvCardsAdapter extends RecyclerView.Adapter<RvCardsAdapter.ViewHold
         return data.size();
     }
 
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView tv;
+
+        public ViewHolder(CardView itemView) {
+            super(itemView);
+            tv = (TextView) itemView.findViewById(R.id.tv_rv_card_item);
+        }
+    }
 
 
 }

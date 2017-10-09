@@ -7,7 +7,7 @@ import cn.six.sup.rv.group_adapter.IEntityInfo;
 /**
  * Created by songzhw on 2016-08-15
  */
-public class City implements IEntityInfo{
+public class City implements IEntityInfo {
     public String name;
 
     public City(String name) {

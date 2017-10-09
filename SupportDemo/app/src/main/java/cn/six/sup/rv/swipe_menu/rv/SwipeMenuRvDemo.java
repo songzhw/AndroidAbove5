@@ -1,26 +1,19 @@
 package cn.six.sup.rv.swipe_menu.rv;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import android.view.LayoutInflater;
-import android.view.View;
-
-import cn.six.sup.rv.RvViewHolder;
-import cn.six.sup.rv.OnRvItemClickListener;
-import cn.six.sup.rv.one_adapter.OneAdapter;
-import cn.six.sup.rv.header.HeaderWrapper;
-
 import cn.six.sup.R;
+import cn.six.sup.rv.OnRvItemClickListener;
 
 public class SwipeMenuRvDemo extends AppCompatActivity {
     private RecyclerView rv;
-//    private OneAdapter<String> adapter;
+    //    private OneAdapter<String> adapter;
     private List<String> data;
 
     @Override
@@ -39,8 +32,8 @@ public class SwipeMenuRvDemo extends AppCompatActivity {
 //            }
 //        };
         data = new ArrayList<>();
-        for(int i = 0 ; i < 20; i++) {
-            data.add("Item "+i);
+        for (int i = 0; i < 20; i++) {
+            data.add("Item " + i);
         }
         SwipeRvAdapter adapter = new SwipeRvAdapter(data);
 //        adapter.data = data;
@@ -50,6 +43,7 @@ public class SwipeMenuRvDemo extends AppCompatActivity {
             @Override
             public void onLongClick(RecyclerView.ViewHolder vh) {
             }
+
             @Override
             public void onItemClick(RecyclerView.ViewHolder vh) {
             }

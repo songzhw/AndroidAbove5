@@ -28,7 +28,7 @@ public class FooterWrapper extends RecyclerView.Adapter<RvViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        if(position >= innerAdapter.getItemCount() && footView != null){
+        if (position >= innerAdapter.getItemCount() && footView != null) {
             return RvConstants.TYPE_FOOTER;
         }
         return innerAdapter.getItemViewType(position);
@@ -36,7 +36,7 @@ public class FooterWrapper extends RecyclerView.Adapter<RvViewHolder> {
 
     @Override
     public RvViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if(viewType == RvConstants.TYPE_FOOTER){
+        if (viewType == RvConstants.TYPE_FOOTER) {
             return RvViewHolder.createViewHolder(footView);
         }
         return innerAdapter.onCreateViewHolder(parent, viewType);
@@ -44,7 +44,7 @@ public class FooterWrapper extends RecyclerView.Adapter<RvViewHolder> {
 
     @Override
     public void onBindViewHolder(RvViewHolder holder, int position) {
-        if(getItemViewType(position) == RvConstants.TYPE_FOOTER){
+        if (getItemViewType(position) == RvConstants.TYPE_FOOTER) {
             return;
         }
         innerAdapter.onBindViewHolder(holder, position);
@@ -57,12 +57,12 @@ public class FooterWrapper extends RecyclerView.Adapter<RvViewHolder> {
     public void onAttachedToRecyclerView(RecyclerView rv) {
         innerAdapter.onAttachedToRecyclerView(rv);
         RecyclerView.LayoutManager layMgr = rv.getLayoutManager();
-        if(layMgr instanceof GridLayoutManager){
+        if (layMgr instanceof GridLayoutManager) {
             final GridLayoutManager lay = (GridLayoutManager) layMgr;
             lay.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
                 @Override
                 public int getSpanSize(int position) {
-                    if(getItemViewType(position) == RvConstants.TYPE_FOOTER){
+                    if (getItemViewType(position) == RvConstants.TYPE_FOOTER) {
                         return lay.getSpanCount();
                     }
                     return 1;
@@ -76,9 +76,9 @@ public class FooterWrapper extends RecyclerView.Adapter<RvViewHolder> {
     public void onViewAttachedToWindow(RvViewHolder holder) {
         innerAdapter.onViewAttachedToWindow(holder);
         int position = holder.getLayoutPosition();
-        if(getItemViewType(position) == RvConstants.TYPE_FOOTER){
+        if (getItemViewType(position) == RvConstants.TYPE_FOOTER) {
             ViewGroup.LayoutParams lp = holder.itemView.getLayoutParams();
-            if(lp != null && lp instanceof StaggeredGridLayoutManager.LayoutParams){
+            if (lp != null && lp instanceof StaggeredGridLayoutManager.LayoutParams) {
                 StaggeredGridLayoutManager.LayoutParams staggerLp = (StaggeredGridLayoutManager.LayoutParams) lp;
                 staggerLp.setFullSpan(true);
             }

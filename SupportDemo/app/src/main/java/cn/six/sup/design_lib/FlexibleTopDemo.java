@@ -1,7 +1,6 @@
 package cn.six.sup.design_lib;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -42,7 +41,7 @@ public class FlexibleTopDemo extends Activity {
 
         @Override
         public void onBindViewHolder(MyHolder holder, int position) {
-            holder.tv.setText("TaskStatus "+position);
+            holder.tv.setText("TaskStatus " + position);
         }
 
         @Override
@@ -51,7 +50,7 @@ public class FlexibleTopDemo extends Activity {
         }
     }
 
-    private class MyHolder extends RecyclerView.ViewHolder{
+    private class MyHolder extends RecyclerView.ViewHolder {
         public TextView tv;
 
         public MyHolder(View itemView) {

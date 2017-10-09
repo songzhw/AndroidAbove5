@@ -23,11 +23,11 @@ public class GridDividerDemo extends Activity {
         setContentView(R.layout.activity_rv_divider_one);
 
         List<String> numbers = new ArrayList<>();
-        for(int i = 0; i < 500; i++){
-            numbers.add("$ "+i);
+        for (int i = 0; i < 500; i++) {
+            numbers.add("$ " + i);
         }
 
-        RecyclerView rv = (RecyclerView)findViewById(R.id.rvDivider01);
+        RecyclerView rv = (RecyclerView) findViewById(R.id.rvDivider01);
         rv.setLayoutManager(new GridLayoutManager(this, COLUMN_COUNT));
         rv.setHasFixedSize(true);
 

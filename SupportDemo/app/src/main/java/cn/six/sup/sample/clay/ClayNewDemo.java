@@ -21,6 +21,9 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cn.six.sup.R;
 import cn.six.sup.rv.OnRvItemClickListener;
 import cn.six.sup.rv.RvItemSwipeCallback;
@@ -32,12 +35,31 @@ import cn.six.sup.rv.composition.UndoRow;
 import cn.six.sup.rv.composition.demo.HeaderRow;
 import cn.six.sup.rv.composition.demo.TwoTextRow;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener,
         RvItemSwipeListener, View.OnClickListener {
+
+    public static final float COLLAPSED = 1;
+    public static final float EXPANDED = 0;
+    private ClayNewDemo self;
+    private int toolbarSize;
+    private SwipeRefreshLayout srlay;
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            srlay.setRefreshing(false);
+            System.out.println("szw refreshed");
+        }
+    };
+    private AppBarLayout appbar;
+    private Toolbar toolbar;//得是UntouchableToolbar，不然收缩后， rv的点击或滑动都不能
+    private RecyclerView rvContent, rvTop;
+    private TopAdapter adapterTop;
+    private List<BaseRow> items;
+    private BaseComposedAdapter adapter;
+    private BaseRow lastDeletedRow;
+    private int lastDeletedIndex = -1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,15 +83,6 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
         });
     }
 
-    @SuppressLint("HandlerLeak")
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            srlay.setRefreshing(false);
-            System.out.println("szw refreshed");
-        }
-    };
-
     private void configRvContent() {
         rvContent = (RecyclerView) findViewById(R.id.rv_home);
         rvContent.setLayoutManager(new LinearLayoutManager(this));
@@ -88,9 +101,9 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
 
                     View v1 = tvTitle;
                     View v2 = tvDesp;
-                    Pair<View,String> p1 = Pair.create(v1, "cloth_name");
-                    Pair<View,String> p2 = Pair.create(v2, "cloth_desp");
-                    Pair<View,String> p3 = Pair.create(v, "cloth_buy");
+                    Pair<View, String> p1 = Pair.create(v1, "cloth_name");
+                    Pair<View, String> p2 = Pair.create(v2, "cloth_desp");
+                    Pair<View, String> p3 = Pair.create(v, "cloth_buy");
 
                     ActivityOptionsCompat opt = ActivityOptionsCompat.makeSceneTransitionAnimation(self, p1, p2, p3);
                     Intent it = new Intent(self, BuyActivity.class);
@@ -114,7 +127,6 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
         items.add(new HeaderRow("Coupons"));
         items.add(new TwoTextRow("B1", "**B1**"));
         items.add(new TwoTextRow("B2", "**B2**"));
-
 
 
         adapter = new BaseComposedAdapter(items);
@@ -236,23 +248,5 @@ public class ClayNewDemo extends AppCompatActivity implements AppBarLayout.OnOff
         }
 
     }
-
-    private ClayNewDemo self;
-    private int toolbarSize;
-
-    private SwipeRefreshLayout srlay;
-    private AppBarLayout appbar;
-    private Toolbar toolbar;//得是UntouchableToolbar，不然收缩后， rv的点击或滑动都不能
-    private RecyclerView rvContent, rvTop;
-    private TopAdapter adapterTop;
-
-    private List<BaseRow> items;
-    private BaseComposedAdapter adapter;
-
-    private BaseRow lastDeletedRow;
-    private int lastDeletedIndex = -1;
-
-    public static final float COLLAPSED = 1;
-    public static final float EXPANDED = 0;
 
 }

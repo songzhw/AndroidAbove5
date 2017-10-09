@@ -27,7 +27,9 @@ public class RvSimpleTestActivity extends Activity {
         rv.setLayoutManager(layout);
 
         List<String> data = new ArrayList<>();
-        data.add("13");data.add("ab");data.add("test");
+        data.add("13");
+        data.add("ab");
+        data.add("test");
         RvSimpleAdapter adapter = new RvSimpleAdapter();
         adapter.data = data;
         rv.setAdapter(adapter);

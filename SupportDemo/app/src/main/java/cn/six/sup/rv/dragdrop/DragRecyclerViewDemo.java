@@ -32,8 +32,11 @@ public class DragRecyclerViewDemo extends Activity implements RvItemDragSwipeLis
 
         RecyclerView rv = (RecyclerView) findViewById(R.id.rvDragDrop);
         rv.setLayoutManager(new LinearLayoutManager(this));
-        this.data = new ArrayList<>();this.data.add("Alibaba");
-        this.data.add("NetEase");this.data.add("Google");this.data.add("Apple");
+        this.data = new ArrayList<>();
+        this.data.add("Alibaba");
+        this.data.add("NetEase");
+        this.data.add("Google");
+        this.data.add("Apple");
 
         adapter = new DragDropRvAdapter(this.data);
         rv.setAdapter(adapter);
@@ -41,12 +44,12 @@ public class DragRecyclerViewDemo extends Activity implements RvItemDragSwipeLis
         rv.addOnItemTouchListener(new OnRvItemClickListener(rv) {
             @Override
             public void onLongClick(RecyclerView.ViewHolder vh) {
-                System.out.println("szw long click = "+vh.toString());
+                System.out.println("szw long click = " + vh.toString());
             }
 
             @Override
             public void onItemClick(RecyclerView.ViewHolder vh) {
-                System.out.println("szw click = "+vh.toString());
+                System.out.println("szw click = " + vh.toString());
             }
         });
 

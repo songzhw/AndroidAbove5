@@ -17,36 +17,30 @@ import java.lang.ref.WeakReference;
  * of the number of columns.  It will then determine the number of columns
  * that are possible, enforcing the size specified by adding spacing
  * between the columns to make sure the grid items width isn't resized.
- *
+ * <p>
  * <b>NOTE:</b> Due to limitations of the {@link GridLayoutManager} the layout
  * for the grid items should have a width of "match_parent", otherwise the items
  * won't be correctly centered
  */
 @SuppressWarnings("unused")
 public class AutoColumnGridLayoutManager extends GridLayoutManager {
-    public enum SpacingMethod {
-        ALL,
-        EDGES,
-        SEPARATOR
-    }
-
     protected int rowSpacing = 0;
     protected int edgeSpacing = 0;
     protected boolean matchSpacing = false;
     protected int minColumnSpacingEdge = 0;
     protected int minColumnSpacingSeparator = 0;
-    @NonNull protected SpacingMethod spacingMethod = SpacingMethod.ALL;
-
+    @NonNull
+    protected SpacingMethod spacingMethod = SpacingMethod.ALL;
     protected int requestedColumnWidth;
     protected int maxColumnCount = Integer.MAX_VALUE;
-
-    @NonNull protected WeakReference<RecyclerView> parent = new WeakReference<>(null);
+    @NonNull
+    protected WeakReference<RecyclerView> parent = new WeakReference<>(null);
 
     /**
      * Constructs the layout manager that will correctly determine the number
      * of possible columns based on the <code>gridItemWidth</code> specified.
      *
-     * @param context The context to use for the layout manager
+     * @param context       The context to use for the layout manager
      * @param gridItemWidth The width for the items in each column
      */
     public AutoColumnGridLayoutManager(@NonNull Context context, int gridItemWidth) {
@@ -73,10 +67,10 @@ public class AutoColumnGridLayoutManager extends GridLayoutManager {
      * decoration that correctly spaces the grid items will be removed.
      *
      * @param recyclerView The {@link RecyclerView} that the layout manager is detaching from
-     * @param recycler The {@link RecyclerView.Recycler}
+     * @param recycler     The {@link RecyclerView.Recycler}
      */
     @Override
-    public void onDetachedFromWindow(@NonNull  RecyclerView recyclerView, @NonNull RecyclerView.Recycler recycler) {
+    public void onDetachedFromWindow(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.Recycler recycler) {
         super.onDetachedFromWindow(recyclerView, recycler);
         parent = new WeakReference<>(null);
     }
@@ -121,7 +115,7 @@ public class AutoColumnGridLayoutManager extends GridLayoutManager {
      * be used when determining the number of columns possible with the gridItemWidth specified
      * with {@link #AutoColumnGridLayoutManager(Context, int)} or {@link #setColumnWidth(int)}
      *
-     * @param minSpacingEdge The minimum amount of spacing between the edge of the RecyclerView and the first and last items in each row
+     * @param minSpacingEdge      The minimum amount of spacing between the edge of the RecyclerView and the first and last items in each row
      * @param minSpacingSeparator The minimum amount of spacing between items in each row
      */
     public void setMinColumnSpacing(int minSpacingEdge, int minSpacingSeparator) {
@@ -166,20 +160,20 @@ public class AutoColumnGridLayoutManager extends GridLayoutManager {
     /**
      * Sets the methodology to use when determining the spacing between columns.
      * <ul>
-     *     <li>
-     *         {@link SpacingMethod#EDGES} will only increase the size of the left-most and right-most spacing,
-     *          leaving the separators with the value specified by {@link #setMinColumnSpacing(int, int)}
-     *     </li>
-     *     <li>
-     *         {@link SpacingMethod#SEPARATOR} will only increase the size of the spacing in between
-     *         columns, leaving the edges with the value specified by {@link #setMinColumnSpacing(int, int)}
-     *     </li>
-     *     <li>
-     *         {@link SpacingMethod#ALL} will increase the size of the spacing along both the edges and
-     *         the separators, adding based on the relative amounts specified by {@link #setMinColumnSpacing(int, int)}.
-     *         (e.g. <code>setMinColumnSpacing(100, 50)</code> will result in the edges growing 2px for every 1px the
-     *         separators grow)
-     *     </li>
+     * <li>
+     * {@link SpacingMethod#EDGES} will only increase the size of the left-most and right-most spacing,
+     * leaving the separators with the value specified by {@link #setMinColumnSpacing(int, int)}
+     * </li>
+     * <li>
+     * {@link SpacingMethod#SEPARATOR} will only increase the size of the spacing in between
+     * columns, leaving the edges with the value specified by {@link #setMinColumnSpacing(int, int)}
+     * </li>
+     * <li>
+     * {@link SpacingMethod#ALL} will increase the size of the spacing along both the edges and
+     * the separators, adding based on the relative amounts specified by {@link #setMinColumnSpacing(int, int)}.
+     * (e.g. <code>setMinColumnSpacing(100, 50)</code> will result in the edges growing 2px for every 1px the
+     * separators grow)
+     * </li>
      * </ul>
      *
      * @param spacingMethod The method for displaying the spacing
@@ -224,9 +218,9 @@ public class AutoColumnGridLayoutManager extends GridLayoutManager {
      * column, row, and the edges of the RecyclerView.  This pays attention to
      * the value from {@link #setSpacingMethod(SpacingMethod)}
      *
-     * @param recyclerView The RecyclerView to use for determining the amount of space that needs to be added
+     * @param recyclerView  The RecyclerView to use for determining the amount of space that needs to be added
      * @param gridItemWidth The requested width for the items
-     * @param columnCount The number of columns to display
+     * @param columnCount   The number of columns to display
      */
     protected void updateSpacing(@NonNull RecyclerView recyclerView, int gridItemWidth, int columnCount) {
         edgeSpacing = minColumnSpacingEdge;
@@ -237,7 +231,7 @@ public class AutoColumnGridLayoutManager extends GridLayoutManager {
         int padding = recyclerView.getPaddingLeft() + recyclerView.getPaddingRight();
         int usableWidth = recyclerView.getWidth() - padding;
 
-        int separatorCount = columnCount -1;
+        int separatorCount = columnCount - 1;
         int spacerCount = 2 * columnCount;
 
         int freeSpace = usableWidth - (gridItemWidth * columnCount);
@@ -251,8 +245,8 @@ public class AutoColumnGridLayoutManager extends GridLayoutManager {
 
                 //If the totalMinSpace is 0, then the percentage is edge count / separators + edges
                 int totalMinSpace = totalMinEdges + totalMinSeparators;
-                double edgeSpacePercentage = totalMinSpace == 0 ? (2 / (2 + separatorCount)) : (double)totalMinEdges / (double)totalMinSpace;
-                int totalSeparatorSpace = (int)((1d - edgeSpacePercentage) * freeSpace);
+                double edgeSpacePercentage = totalMinSpace == 0 ? (2 / (2 + separatorCount)) : (double) totalMinEdges / (double) totalMinSpace;
+                int totalSeparatorSpace = (int) ((1d - edgeSpacePercentage) * freeSpace);
 
                 separatorSpacing = spacerCount == 0 ? 0 : totalSeparatorSpace / spacerCount;
                 edgeSpacing = ((freeSpace - totalSeparatorSpace) / 2) + separatorSpacing;
@@ -281,7 +275,7 @@ public class AutoColumnGridLayoutManager extends GridLayoutManager {
      * {@link #minColumnSpacingSeparator} in conjunction with the requested width
      * for the items
      *
-     * @param recyclerView The RecyclerView to use when determining the possible number of columns
+     * @param recyclerView  The RecyclerView to use when determining the possible number of columns
      * @param gridItemWidth The requested width for items to be
      * @return The calculated number of possible columns
      */
@@ -295,7 +289,7 @@ public class AutoColumnGridLayoutManager extends GridLayoutManager {
         //Decreases the columnCount until the specified min spacing can be achieved.
         do {
             usedColumnWidth = columnCount * gridItemWidth;
-            minRequiredSpacing = (2 * minColumnSpacingEdge) + ((columnCount -1) * minColumnSpacingSeparator);
+            minRequiredSpacing = (2 * minColumnSpacingEdge) + ((columnCount - 1) * minColumnSpacingSeparator);
 
             //If the specified min spacing is reached, return the number of columns
             if (usableWidth - usedColumnWidth - minRequiredSpacing >= 0) {
@@ -303,7 +297,7 @@ public class AutoColumnGridLayoutManager extends GridLayoutManager {
             }
 
             columnCount--;
-        } while(columnCount > 1);
+        } while (columnCount > 1);
 
         return columnCount;
     }
@@ -324,6 +318,12 @@ public class AutoColumnGridLayoutManager extends GridLayoutManager {
         );
     }
 
+    public enum SpacingMethod {
+        ALL,
+        EDGES,
+        SEPARATOR
+    }
+
     /**
      * A Listener for the RecyclerView so that we can correctly update the number of columns
      * once the RecyclerView has been sized
@@ -339,11 +339,11 @@ public class AutoColumnGridLayoutManager extends GridLayoutManager {
         public void onGlobalLayout() {
             removeOnGlobalLayoutListener(recyclerView, this);
 
-            GridLayoutManager gridLayoutManager = (GridLayoutManager)recyclerView.getLayoutManager();
+            GridLayoutManager gridLayoutManager = (GridLayoutManager) recyclerView.getLayoutManager();
             gridLayoutManager.setSpanCount(determineColumnCount(requestedColumnWidth));
         }
 
-        public void removeOnGlobalLayoutListener(@NonNull  View view, @NonNull ViewTreeObserver.OnGlobalLayoutListener listener){
+        public void removeOnGlobalLayoutListener(@NonNull View view, @NonNull ViewTreeObserver.OnGlobalLayoutListener listener) {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
                 //noinspection deprecation
                 view.getViewTreeObserver().removeGlobalOnLayoutListener(listener);

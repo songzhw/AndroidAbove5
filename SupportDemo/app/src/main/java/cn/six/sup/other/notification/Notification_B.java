@@ -16,9 +16,12 @@ public class Notification_B extends Activity {
         setContentView(R.layout.activity_tv_btn);
 
         TextView tv = (TextView) findViewById(R.id.tv_simple);
-        tv.setText("Page BBB || "+getIntent().getStringExtra("key"));
+        tv.setText("Page BBB || " + getIntent().getStringExtra("key"));
     }
 
-    public void onClickSimpleButton(View v){}
-    public void onClickSimpleButton2(View v){}
+    public void onClickSimpleButton(View v) {
+    }
+
+    public void onClickSimpleButton2(View v) {
+    }
 }

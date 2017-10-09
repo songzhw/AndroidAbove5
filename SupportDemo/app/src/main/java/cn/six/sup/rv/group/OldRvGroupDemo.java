@@ -26,9 +26,9 @@ public class OldRvGroupDemo extends Activity {
         for (int i = 0; i < 20; i++) {
             strings.add("this is aData:" + i);
         }
-        strings.add(3,"this is title: 1");
-        strings.add(7,"this is title: 2");
-        strings.add(16,"this is title: 3");
+        strings.add(3, "this is title: 1");
+        strings.add(7, "this is title: 2");
+        strings.add(16, "this is title: 3");
         OldRvGroupAdapter adapter = new OldRvGroupAdapter(this, strings);
 
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -37,9 +37,9 @@ public class OldRvGroupDemo extends Activity {
         rv.addOnItemTouchListener(new OnRvItemClickListener(rv) {
             @Override
             public void onItemClick(RecyclerView.ViewHolder vh) {
-                System.out.println("szw [ AdapterPosition = "+vh.getAdapterPosition()
-                    +" ; LayoutPosition = "+vh.getLayoutPosition()
-                    +" ; OldPosition = "+vh.getOldPosition() + " ] ");
+                System.out.println("szw [ AdapterPosition = " + vh.getAdapterPosition()
+                        + " ; LayoutPosition = " + vh.getLayoutPosition()
+                        + " ; OldPosition = " + vh.getOldPosition() + " ] ");
             }
 
             @Override

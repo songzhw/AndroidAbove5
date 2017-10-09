@@ -3,7 +3,6 @@ package cn.six.sup.rv.option_chain.demo4;
 import android.content.Context;
 import android.support.v4.view.NestedScrollingParent;
 import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewGroupCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,7 @@ import android.widget.LinearLayout;
 
 /**
  * Created by songzhw on 2016-11-26
- *
+ * <p>
  * 1. only three children: top, middle(scroll), bottom
  * 2.
  * 3.
@@ -33,7 +32,7 @@ public class NestLinearLayout extends LinearLayout implements NestedScrollingPar
     protected void onFinishInflate() {
         super.onFinishInflate();
         int childrenCount = getChildCount();
-        if(childrenCount != 2){
+        if (childrenCount != 2) {
             throw new RuntimeException("NestLinearLayout must have only three children");
         }
 

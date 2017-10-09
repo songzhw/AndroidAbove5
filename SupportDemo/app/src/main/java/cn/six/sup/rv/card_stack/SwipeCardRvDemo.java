@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,19 +24,19 @@ public class SwipeCardRvDemo extends Activity {
             @Override
             protected void apply(RvViewHolder vh, Integer integer, int position) {
                 vh.setSrc(R.id.ivCards, integer);
-                vh.setText(R.id.tvCards, "This is Item "+position);
+                vh.setText(R.id.tvCards, "This is Item " + position);
             }
         };
 
         CardStackTouchCallback<Integer> callback = new CardStackTouchCallback<>(adapter, new ICardStackActionListener<Integer>() {
             @Override
             public void onSwiping(RecyclerView.ViewHolder vh, float ratio, @CardsDirection int direction) {
-                System.out.println("szw swiping "+direction);
+                System.out.println("szw swiping " + direction);
             }
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder vh, Integer integer, @CardsDirection int direction) {
-                System.out.println("szw swiped "+direction);
+                System.out.println("szw swiped " + direction);
             }
 
             @Override
@@ -50,8 +49,6 @@ public class SwipeCardRvDemo extends Activity {
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
         rv.setLayoutManager(new CardsLayoutManager(rv, touchHelper));
         touchHelper.attachToRecyclerView(rv);
-
-
 
 
         aData = new ArrayList<>();

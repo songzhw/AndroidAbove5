@@ -6,13 +6,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.six.sup.R;
 import cn.six.sup.rv.ItemView;
 import cn.six.sup.rv.OneTypesAdapter;
+
 public class RvWrapMultiRvDemo extends Activity {
 
     @Override
@@ -20,7 +20,7 @@ public class RvWrapMultiRvDemo extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.actv_rv_wrap_multi_rv);
 
-        RecyclerView rv = (RecyclerView)findViewById(R.id.rvWrapMultiRv);
+        RecyclerView rv = (RecyclerView) findViewById(R.id.rvWrapMultiRv);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
         List<ItemView> data = new ArrayList<>();

@@ -14,6 +14,28 @@ public class SwipeMenuLayout extends FrameLayout {
     private ViewDragHelper dragger;
     private View contentView, menuView;
     private int width, menuWidth;
+    private ViewDragHelper.Callback callback = new ViewDragHelper.Callback() {
+        @Override
+        public boolean tryCaptureView(View child, int pointerId) {
+            return child == contentView;
+        }
+
+        @Override
+        public int clampViewPositionHorizontal(View child, int left, int dx) {
+            if (left < -menuWidth) {
+                return -menuWidth;
+            } else if (left > 0) {
+                return 0;
+            }
+            return left;
+        }
+
+        @Override
+        public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
+            super.onViewPositionChanged(changedView, left, top, dx, dy);
+            menuView.offsetLeftAndRight(dx);
+        }
+    };
 
     public SwipeMenuLayout(Context context) {
         super(context);
@@ -44,29 +66,6 @@ public class SwipeMenuLayout extends FrameLayout {
         contentView.layout(left, top, right, bottom);
         menuView.layout(right, top, right + menuWidth, bottom);
     }
-
-    private ViewDragHelper.Callback callback = new ViewDragHelper.Callback() {
-        @Override
-        public boolean tryCaptureView(View child, int pointerId) {
-            return child == contentView;
-        }
-
-        @Override
-        public int clampViewPositionHorizontal(View child, int left, int dx) {
-            if(left < -menuWidth){
-                return -menuWidth;
-            } else if(left > 0){
-                return 0;
-            }
-            return left;
-        }
-
-        @Override
-        public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
-            super.onViewPositionChanged(changedView, left, top, dx, dy);
-            menuView.offsetLeftAndRight(dx);
-        }
-    };
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {

@@ -3,8 +3,6 @@ package cn.six.sup.rv.option_chain.demo1;
 import android.view.View;
 import android.view.ViewGroup;
 
-
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

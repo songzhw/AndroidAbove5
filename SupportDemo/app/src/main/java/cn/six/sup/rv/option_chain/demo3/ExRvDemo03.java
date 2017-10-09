@@ -6,7 +6,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,16 +19,16 @@ public class ExRvDemo03 extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ex_rv_two);
 
-        TextView tv = (TextView)findViewById(R.id.tvEx02);
+        TextView tv = (TextView) findViewById(R.id.tvEx02);
         tv.setText("Demo 002");
 
 
         List<String> numbers = new ArrayList<>();
-        for(int i = 0; i < 20; i++){
-            numbers.add("item "+i);
+        for (int i = 0; i < 20; i++) {
+            numbers.add("item " + i);
         }
 
-        RecyclerView rv = (RecyclerView)findViewById(R.id.rvEx02);
+        RecyclerView rv = (RecyclerView) findViewById(R.id.rvEx02);
         NumbersAdapter adapter = new NumbersAdapter(this, numbers);
         rv.setLayoutManager(new GridLayoutManager(this, 4));
         rv.setHasFixedSize(true);

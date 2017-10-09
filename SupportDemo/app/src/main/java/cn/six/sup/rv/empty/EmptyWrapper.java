@@ -24,20 +24,20 @@ public class EmptyWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public int getItemViewType(int position) {
-        if(isEmpty()){
+        if (isEmpty()) {
             return TYPE_EMPTY;
         }
         return innerAdapter.getItemViewType(position);
     }
 
-    private boolean isEmpty(){
+    private boolean isEmpty() {
         return innerAdapter == null
                 || innerAdapter.getItemCount() == 0;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if(isEmpty()){
+        if (isEmpty()) {
             RvViewHolder vh = RvViewHolder.createViewHolder(emptyView);
             return vh;
         }
@@ -46,7 +46,7 @@ public class EmptyWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if(isEmpty()){
+        if (isEmpty()) {
             return;
         }
         innerAdapter.onBindViewHolder(holder, position);

@@ -28,7 +28,7 @@ public class SpringActivity01 extends Activity {
         iv.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_UP) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
                     anim.start();
                     return true;
                 }

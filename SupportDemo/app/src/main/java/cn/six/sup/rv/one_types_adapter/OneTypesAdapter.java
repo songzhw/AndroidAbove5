@@ -7,6 +7,8 @@ import cn.six.sup.rv.one_adapter.OneAdapter;
 
 public abstract class OneTypesAdapter<T> extends OneAdapter<T> {
 
+    private TypesHelper<T> helper;
+
     public OneTypesAdapter(TypesHelper<T> helper) {
         super(-1);
         this.helper = helper;
@@ -23,6 +25,4 @@ public abstract class OneTypesAdapter<T> extends OneAdapter<T> {
         RvViewHolder holder = RvViewHolder.createViewHolder(parent, layoutResId);
         return holder;
     }
-
-    private TypesHelper<T> helper;
 }

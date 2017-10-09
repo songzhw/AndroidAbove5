@@ -8,7 +8,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +24,7 @@ public class DataDiffDemo extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.actv_single_rv);
 
-        RecyclerView rv = (RecyclerView)findViewById(R.id.rvSingle);
+        RecyclerView rv = (RecyclerView) findViewById(R.id.rvSingle);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
         List<String> data = new ArrayList<>();
@@ -48,7 +47,7 @@ public class DataDiffDemo extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         List<String> olds = adapter.data;
 
-        int size = (int)(Math.random() * 50);
+        int size = (int) (Math.random() * 50);
         List<String> news = new ArrayList<>();
         for (int i = 0; i < size; i++) {
 //            news.add("(" + size + ") new size " + i);

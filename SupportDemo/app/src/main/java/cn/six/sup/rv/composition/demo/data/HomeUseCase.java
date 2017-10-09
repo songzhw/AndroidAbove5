@@ -14,15 +14,15 @@ public class HomeUseCase {
         this.gateway = gateway;
     }
 
-    public List<BaseRow> getHomeRows(){
+    public List<BaseRow> getHomeRows() {
         List<BaseRow> items = new ArrayList<>();
 
-        for(IEntity raw : gateway.getHomeData()){
+        for (IEntity raw : gateway.getHomeData()) {
             int type = raw.getType();
-            if(BaseRow.TYPE_HEADER == type){
+            if (BaseRow.TYPE_HEADER == type) {
                 EntityHeader header = (EntityHeader) raw;
                 items.add(new HeaderRow(header.title));
-            } else if (BaseRow.TYPE_TWO_TEXT == type){
+            } else if (BaseRow.TYPE_TWO_TEXT == type) {
                 EntityTwo two = (EntityTwo) raw;
                 items.add(new TwoTextRow(two.left, two.right));
             }

@@ -16,9 +16,12 @@ public class Notification_C extends Activity {
         setContentView(R.layout.activity_tv_btn);
 
         TextView tv = (TextView) findViewById(R.id.tv_simple);
-        tv.setText("Page CCC || "+getIntent().getStringExtra("key"));
+        tv.setText("Page CCC || " + getIntent().getStringExtra("key"));
     }
 
-    public void onClickSimpleButton(View v){}
-    public void onClickSimpleButton2(View v){}
+    public void onClickSimpleButton(View v) {
+    }
+
+    public void onClickSimpleButton2(View v) {
+    }
 }

@@ -38,8 +38,8 @@ public class DividerOtherActivity extends AppCompatActivity {
             }
         };
         List<String> data = new ArrayList<>();
-        for (int i = 0 ; i < 8; i++){
-            data.add("Item : "+i);
+        for (int i = 0; i < 8; i++) {
+            data.add("Item : " + i);
         }
         adapter.data = data;
         rv.setAdapter(adapter);

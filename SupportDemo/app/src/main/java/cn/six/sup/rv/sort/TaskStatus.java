@@ -1,11 +1,10 @@
 package cn.six.sup.rv.sort;
 
 public class TaskStatus {
+    private static int idCounter = 0;
+    final public int id;
     String text;
     boolean isDone = false;
-
-    final public int id;
-    private static int idCounter = 0;
 
     public TaskStatus(String text) {
         id = idCounter++;

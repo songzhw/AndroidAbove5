@@ -1,7 +1,5 @@
 package cn.six.sup.rv.option_chain.demo1;
 
-import android.support.v7.widget.RecyclerView;
-
 import java.util.ArrayList;
 import java.util.List;
 

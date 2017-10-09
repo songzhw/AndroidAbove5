@@ -3,7 +3,7 @@ package cn.six.sup.rv.grid;
 class WidthNumber implements IWidthType {
     private String num;
 
-    public WidthNumber(String n){
+    public WidthNumber(String n) {
         num = n;
     }
 

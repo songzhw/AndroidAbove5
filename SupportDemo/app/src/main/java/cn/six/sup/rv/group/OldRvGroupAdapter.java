@@ -84,6 +84,7 @@ public class OldRvGroupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     public class GroupViewHolder extends RecyclerView.ViewHolder {
         TextView tvTitle;
+
         public GroupViewHolder(View itemView) {
             super(itemView);
             tvTitle = (TextView) itemView.findViewById(R.id.text);
@@ -94,6 +95,7 @@ public class OldRvGroupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public class ImageViewHolder extends RecyclerView.ViewHolder {
         TextView tvContent;
         ImageView ivContent;
+
         public ImageViewHolder(View itemView) {
             super(itemView);
             tvContent = (TextView) itemView.findViewById(R.id.text);

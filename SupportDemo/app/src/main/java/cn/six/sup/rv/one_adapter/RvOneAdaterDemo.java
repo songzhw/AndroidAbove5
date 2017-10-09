@@ -27,16 +27,16 @@ public class RvOneAdaterDemo extends Activity {
         rv.setLayoutManager(layout);
 
         List<String> data = new ArrayList<>();
-        for (int i = 0 ; i < 50; i++){
-            data.add("Item : "+i);
+        for (int i = 0; i < 50; i++) {
+            data.add("Item : " + i);
         }
 
         OneAdapter<String> adapter = new OneAdapter<String>(R.layout.item_rv_simple) {
             @Override
             protected void apply(RvViewHolder vh, String s, int position) {
                 TextView tv = vh.getView(R.id.tv_rv_simple_item);
-                tv.setText("Position "+position+" : "+s);
-                if(position % 2 == 1){
+                tv.setText("Position " + position + " : " + s);
+                if (position % 2 == 1) {
                     tv.setBackgroundColor(0xffC7EDCC);
                 } else {
                     tv.setBackgroundColor(0xffffffff);

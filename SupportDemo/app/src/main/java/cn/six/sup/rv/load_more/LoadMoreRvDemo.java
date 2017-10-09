@@ -1,25 +1,22 @@
 package cn.six.sup.rv.load_more;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import cn.six.sup.R;
+import cn.six.sup.rv.OnRvItemClickListener;
 import cn.six.sup.rv.RvConstants;
 import cn.six.sup.rv.RvViewHolder;
-import cn.six.sup.rv.OnRvItemClickListener;
 import cn.six.sup.rv.load_more.mock.MockInfo;
 import cn.six.sup.rv.load_more.mock.MockTask;
 import cn.six.sup.rv.one_adapter.OneAdapter;
-
-import cn.six.sup.R;
 
 
 public class LoadMoreRvDemo extends AppCompatActivity implements MockTask.IPost {
@@ -67,8 +64,8 @@ public class LoadMoreRvDemo extends AppCompatActivity implements MockTask.IPost 
             @Override
             public void onItemClick(RecyclerView.ViewHolder vh) {
                 int type = vh.getItemViewType();
-                System.out.println("szw : click " + vh.getAdapterPosition()+" ; type = "+type);
-                if(type == RvConstants.TYPE_FOOTER){
+                System.out.println("szw : click " + vh.getAdapterPosition() + " ; type = " + type);
+                if (type == RvConstants.TYPE_FOOTER) {
                     // TODO
                 }
             }
@@ -82,10 +79,10 @@ public class LoadMoreRvDemo extends AppCompatActivity implements MockTask.IPost 
         listener = new LoadMoreScrollListener((LinearLayoutManager) rv.getLayoutManager()) {
             @Override
             public void onLoadMore(int page) {
-                System.out.println("szw onLoadMore["+page+"]");
+                System.out.println("szw onLoadMore[" + page + "]");
 
-                if(!hasMore){
-                    Toast.makeText(self,"No more infos!", Toast.LENGTH_SHORT).show();
+                if (!hasMore) {
+                    Toast.makeText(self, "No more infos!", Toast.LENGTH_SHORT).show();
                     hideFooter();
                     return;
                 }

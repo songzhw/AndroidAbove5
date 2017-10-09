@@ -4,14 +4,12 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.six.sup.R;
-
 
 public class WidthGridDemo extends Activity {
 
@@ -23,10 +21,10 @@ public class WidthGridDemo extends Activity {
         setContentView(R.layout.activity_rv_demo_wrap);
 
         final List<IWidthType> data = new ArrayList<>();
-        for(int i = 0; i < 20; i++) {
-            data.add(new WidthNumber(""+ (100+i)));
-            data.add(new WidthNumber(""+ (200+i)));
-            data.add(new WidthNumber(""+ (300+i)));
+        for (int i = 0; i < 20; i++) {
+            data.add(new WidthNumber("" + (100 + i)));
+            data.add(new WidthNumber("" + (200 + i)));
+            data.add(new WidthNumber("" + (300 + i)));
             data.add(new WidthAction());
         }
 

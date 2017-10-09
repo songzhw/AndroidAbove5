@@ -30,7 +30,7 @@ public class WidthGridAdapter extends RecyclerView.Adapter<RvViewHolder> {
         IWidthType item = data.get(position);
         int viewType = getItemViewType(position);
         if (viewType == IWidthType.TYPE_NUM) {
-            holder.setText(R.id.tvItemNumber, item.value() );
+            holder.setText(R.id.tvItemNumber, item.value());
         }
     }
 

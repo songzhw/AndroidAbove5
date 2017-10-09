@@ -34,12 +34,12 @@ public class MyFabBehavior extends FloatingActionButton.Behavior {
         // target : (即dependency)  NestedScrollView
         // 因为此例中， rv这个child的滑动， 并不要求parent也滑动。 所以d*Unconsumer全是0,
         // 即child view全滑动了，parent不要求滑动
-        System.out.println("szw consumed : x = "+dxConsumed + " ; y = "+dyConsumed);
-        System.out.println("szw unconsumed : x = "+dxUnconsumed + " ; y = "+dyUnconsumed);
+        System.out.println("szw consumed : x = " + dxConsumed + " ; y = " + dyConsumed);
+        System.out.println("szw unconsumed : x = " + dxUnconsumed + " ; y = " + dyUnconsumed);
 
-        if(dyConsumed > 0 && childFab.getVisibility() == View.VISIBLE){
+        if (dyConsumed > 0 && childFab.getVisibility() == View.VISIBLE) {
             childFab.hide();
-        } else if(dyConsumed < 0 && childFab.getVisibility() != View.VISIBLE){
+        } else if (dyConsumed < 0 && childFab.getVisibility() != View.VISIBLE) {
             childFab.show();
         }
     }

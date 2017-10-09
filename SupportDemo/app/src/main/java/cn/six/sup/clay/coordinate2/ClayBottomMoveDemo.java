@@ -28,8 +28,8 @@ public class ClayBottomMoveDemo extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         List<String> list = new ArrayList<>(30);
-        for(int i = 0 ; i < 30 ; i++){
-            list.add("Position "+i);
+        for (int i = 0; i < 30; i++) {
+            list.add("Position " + i);
         }
         DragDropRvAdapter adapter = new DragDropRvAdapter(list);
 

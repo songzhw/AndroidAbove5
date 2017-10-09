@@ -24,7 +24,7 @@ public class BottomSheetDemo extends Activity implements View.OnClickListener {
         dialog = new BottomSheetDialog(this);
     }
 
-    public void onClickSimpleButton(View v){
+    public void onClickSimpleButton(View v) {
         View view = getLayoutInflater().inflate(R.layout.view_bottom_menu, null);
         view.findViewById(R.id.tvBottomMenuCall).setOnClickListener(this);
         view.findViewById(R.id.tvBottomMenuPhoto).setOnClickListener(this);
@@ -34,13 +34,13 @@ public class BottomSheetDemo extends Activity implements View.OnClickListener {
 
     }
 
-    public void onClickSimpleButton2(View v){
+    public void onClickSimpleButton2(View v) {
         dialog.dismiss();//用不上啊。因为dialog出来时， 点半透明的背景就可以让dialog给消失
     }
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.tvBottomMenuCall:
                 System.out.println("szw call");
                 break;

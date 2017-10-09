@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +35,10 @@ public class GooglePlayLikeDemo extends Activity {
         };
 
         List<List<Integer>> data = new ArrayList<>();
-        for(int i = 0; i < 30; i++){
+        for (int i = 0; i < 30; i++) {
             List<Integer> innerData = new ArrayList<>();
-            for(int j = 0; j < 10; j++){
-                if(j % 2 == 0) {
+            for (int j = 0; j < 10; j++) {
+                if (j % 2 == 0) {
                     innerData.add(R.drawable.ic_launcher);
                 } else {
                     innerData.add(R.drawable.in_icon);

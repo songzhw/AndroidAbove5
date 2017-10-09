@@ -20,7 +20,7 @@ public class LifeWatcherDemo02 extends LifeAppCompatActivity {
         Watcher01 watcher01 = new Watcher01();
         getLifecycle().addObserver(watcher01);
 
-        TextView tv = (TextView)findViewById(R.id.tv_simple);
+        TextView tv = (TextView) findViewById(R.id.tv_simple);
         tv.setText("Watcher Demo 002");
     }
 

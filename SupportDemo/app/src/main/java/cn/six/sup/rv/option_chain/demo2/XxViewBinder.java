@@ -4,10 +4,10 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import cn.six.sup.R;
 import cn.six.sup.rv.option_chain.BaseBinder;
-
-import java.util.List;
 
 public class XxViewBinder extends BaseBinder<XxViewHolder> {
     private Context ctx;

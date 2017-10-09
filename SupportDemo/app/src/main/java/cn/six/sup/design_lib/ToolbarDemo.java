@@ -1,6 +1,5 @@
 package cn.six.sup.design_lib;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -63,7 +62,7 @@ public class ToolbarDemo extends AppCompatActivity implements Toolbar.OnMenuItem
                 break;
         }
 
-        if(!msg.equals("")) {
+        if (!msg.equals("")) {
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         }
         return true;

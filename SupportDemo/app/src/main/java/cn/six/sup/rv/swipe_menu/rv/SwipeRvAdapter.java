@@ -11,11 +11,11 @@ import java.util.List;
 
 import cn.six.sup.R;
 
-public class SwipeRvAdapter extends RecyclerView.Adapter<SwipeRvAdapter .ViewHolder> {
+public class SwipeRvAdapter extends RecyclerView.Adapter<SwipeRvAdapter.ViewHolder> {
 
     private List<String> results;
 
-    public SwipeRvAdapter (List<String> results){
+    public SwipeRvAdapter(List<String> results) {
         this.results = results;
     }
 
@@ -37,15 +37,14 @@ public class SwipeRvAdapter extends RecyclerView.Adapter<SwipeRvAdapter .ViewHol
     }
 
 
-
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView tv;
         public ImageView iv;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            tv = (TextView)  itemView.findViewById(R.id.tvRvItemSwipe);
+            tv = (TextView) itemView.findViewById(R.id.tvRvItemSwipe);
             iv = (ImageView) itemView.findViewById(R.id.ivRvItemSwipe);
         }
     }

@@ -31,8 +31,8 @@ public class EmptyRvDemo extends AppCompatActivity {
 //        rv.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
 
         List<String> data = new ArrayList<>();
-        for (int i = 0 ; i < 20; i++){
-            data.add("Item : "+i);
+        for (int i = 0; i < 20; i++) {
+            data.add("Item : " + i);
         }
         RvSimpleAdapter adapter = new RvSimpleAdapter();
 //        adapter.data = data;

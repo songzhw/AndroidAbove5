@@ -5,15 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-
 
 import java.util.List;
 
 import cn.six.sup.R;
 
-public class NumbersAdapter extends RecyclerView.Adapter<NumbersAdapter.MyViewHolder>{
+public class NumbersAdapter extends RecyclerView.Adapter<NumbersAdapter.MyViewHolder> {
     private Context ctx;
     private List<String> data;
 
@@ -42,6 +40,7 @@ public class NumbersAdapter extends RecyclerView.Adapter<NumbersAdapter.MyViewHo
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView tv;
+
         public MyViewHolder(View view) {
             super(view);
             tv = (TextView) view.findViewById(R.id.tvInner);

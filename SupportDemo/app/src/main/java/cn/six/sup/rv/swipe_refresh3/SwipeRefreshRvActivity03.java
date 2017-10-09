@@ -1,26 +1,24 @@
 package cn.six.sup.rv.swipe_refresh3;
 
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import cn.six.sup.R;
 import cn.six.sup.rv.RvViewHolder;
 import cn.six.sup.rv.load_more.FooterWrapper;
 import cn.six.sup.rv.load_more.LoadMoreScrollListener;
 import cn.six.sup.rv.load_more.mock.MockInfo;
 import cn.six.sup.rv.load_more.mock.MockTask;
 import cn.six.sup.rv.one_adapter.OneAdapter;
-
-import cn.six.sup.R;
 
 // Header +  "swipe to refresh" + Load More
 public class SwipeRefreshRvActivity03 extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, MockTask.IPost {
@@ -33,6 +31,27 @@ public class SwipeRefreshRvActivity03 extends AppCompatActivity implements Swipe
     private View loadMoreView;
     private LoadMoreScrollListener listener;
     private boolean hasMore = true;
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            if (msg.what == 11) {
+                data.clear();
+                for (int i = 0; i < 10; i++) {
+                    data.add("New Item : " + i);
+                }
+                adapter.data = data;
+
+                // help reset the footer
+                showFooter();
+                listener.reset();
+                hasMore = true;
+
+                wrapper.notifyDataSetChanged();
+                rv.smoothScrollToPosition(0); // move to item 0 for better UX
+                slay.setRefreshing(false);
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,10 +80,10 @@ public class SwipeRefreshRvActivity03 extends AppCompatActivity implements Swipe
         listener = new LoadMoreScrollListener((LinearLayoutManager) rv.getLayoutManager()) {
             @Override
             public void onLoadMore(int page) {
-                System.out.println("szw onLoadMore["+page+"]");
+                System.out.println("szw onLoadMore[" + page + "]");
 
-                if(!hasMore){
-                    Toast.makeText(self,"No more infos!", Toast.LENGTH_SHORT).show();
+                if (!hasMore) {
+                    Toast.makeText(self, "No more infos!", Toast.LENGTH_SHORT).show();
                     hideFooter();
                     return;
                 }
@@ -101,7 +120,7 @@ public class SwipeRefreshRvActivity03 extends AppCompatActivity implements Swipe
         wrapper.notifyItemRemoved(adapter.getItemCount());
     }
 
-    private void showFooter(){
+    private void showFooter() {
         wrapper.footView = loadMoreView;
     }
 
@@ -111,26 +130,4 @@ public class SwipeRefreshRvActivity03 extends AppCompatActivity implements Swipe
         // Mock the http
         handler.sendEmptyMessageDelayed(11, 1000);
     }
-
-    private Handler handler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            if(msg.what == 11){
-                data.clear();
-                for(int i = 0; i< 10; i++){
-                    data.add("New Item : "+i);
-                }
-                adapter.data = data;
-
-                // help reset the footer
-                showFooter();
-                listener.reset();
-                hasMore = true;
-
-                wrapper.notifyDataSetChanged();
-                rv.smoothScrollToPosition(0); // move to item 0 for better UX
-                slay.setRefreshing(false);
-            }
-        }
-    };
 }

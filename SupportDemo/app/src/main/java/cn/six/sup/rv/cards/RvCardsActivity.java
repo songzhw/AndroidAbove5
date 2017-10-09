@@ -29,7 +29,9 @@ public class RvCardsActivity extends Activity {
         rv.setLayoutManager(layout);
 
         List<String> data = new ArrayList<>();
-        data.add("13");data.add("ab");data.add("test");
+        data.add("13");
+        data.add("ab");
+        data.add("test");
         RvCardsAdapter adapter = new RvCardsAdapter();
         adapter.data = data;
         rv.setAdapter(adapter);

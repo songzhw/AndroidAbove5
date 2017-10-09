@@ -7,18 +7,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.six.sup.rv.RvViewHolder;
-import cn.six.sup.rv.group_adapter.entity.Province;
 
 /**
  * Created by songzhw on 2016-08-15
- *
+ * <p>
  * G, C should both implemetn IEntityInfo !!!
  */
 public abstract class GroupRvAdapter<G extends IEntityInfo, C extends IEntityInfo>
         extends RecyclerView.Adapter<RvViewHolder> {
     public int parentLayoutId, childLayoutId;
     private List<IEntityInfo> data;
-    private int groupType , childType ;
+    private int groupType, childType;
 
     public GroupRvAdapter(int parentLayoutId, int childLayoutId) {
         this.parentLayoutId = parentLayoutId;
@@ -26,11 +25,11 @@ public abstract class GroupRvAdapter<G extends IEntityInfo, C extends IEntityInf
         data = new ArrayList<>();
     }
 
-    public void setData(List<? extends IEntityInfo> d){
-        for(IEntityInfo parent : d){
+    public void setData(List<? extends IEntityInfo> d) {
+        for (IEntityInfo parent : d) {
             groupType = parent.getType();
             data.add(parent);
-            for(IEntityInfo child: parent.getChildren()){
+            for (IEntityInfo child : parent.getChildren()) {
                 childType = child.getType();
                 data.add(child);
             }
@@ -44,7 +43,7 @@ public abstract class GroupRvAdapter<G extends IEntityInfo, C extends IEntityInf
 
     @Override
     public int getItemViewType(int position) {
-        if(data == null) {
+        if (data == null) {
             return super.getItemViewType(position);
         }
         IEntityInfo item = data.get(position);
@@ -54,9 +53,9 @@ public abstract class GroupRvAdapter<G extends IEntityInfo, C extends IEntityInf
     @Override
     public RvViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RvViewHolder vh = null;
-        if(viewType == groupType){
+        if (viewType == groupType) {
             vh = RvViewHolder.createViewHolder(parent, parentLayoutId);
-        } else if(viewType == childType){
+        } else if (viewType == childType) {
             vh = RvViewHolder.createViewHolder(parent, childLayoutId);
         }
         return vh;
@@ -64,17 +63,16 @@ public abstract class GroupRvAdapter<G extends IEntityInfo, C extends IEntityInf
 
     @Override
     public void onBindViewHolder(RvViewHolder holder, int position) {
-        if(data == null) {
+        if (data == null) {
             return;
         }
         IEntityInfo item = data.get(position);
-        if(getItemViewType(position) == groupType){
+        if (getItemViewType(position) == groupType) {
             applyGroup(holder, (G) item, position);
-        } else if(getItemViewType(position) == childType){
+        } else if (getItemViewType(position) == childType) {
             applyChild(holder, (C) item, position);
         }
     }
-
 
 
     protected abstract void applyGroup(RvViewHolder vh, G item, int position);

@@ -50,7 +50,7 @@ public class DemoView extends View {
 
 
         // 加上action_move， 是因为不加的话， action_down时会有一种抖动的感觉
-        if(event.getAction() == MotionEvent.ACTION_MOVE) {
+        if (event.getAction() == MotionEvent.ACTION_MOVE) {
             CoordinatorLayout.MarginLayoutParams layoutParams = (CoordinatorLayout.MarginLayoutParams) getLayoutParams();
             layoutParams.leftMargin = x - centerX;
             layoutParams.topMargin = y - centerY;

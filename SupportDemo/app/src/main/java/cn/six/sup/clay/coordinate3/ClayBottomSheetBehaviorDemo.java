@@ -44,16 +44,16 @@ public class ClayBottomSheetBehaviorDemo extends AppCompatActivity {
         BottomSheetBehavior<LinearLayout> behavior = BottomSheetBehavior.from(llayBottomSheet);
         behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
-            public void onStateChanged( View bottomSheet, int newState) {
-                if (newState == BottomSheetBehavior.STATE_EXPANDED ) {
+            public void onStateChanged(View bottomSheet, int newState) {
+                if (newState == BottomSheetBehavior.STATE_EXPANDED) {
                     tvOutterBottomTitle.setVisibility(View.VISIBLE);
-                } else if (newState == BottomSheetBehavior.STATE_COLLAPSED ) {
+                } else if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
                     tvOutterBottomTitle.setVisibility(View.GONE);
                 }
             }
 
             @Override
-            public void onSlide( View bottomSheet, float slideOffset) {
+            public void onSlide(View bottomSheet, float slideOffset) {
 
             }
         });

@@ -26,7 +26,7 @@ public class GridDemoAdapter extends RecyclerView.Adapter<RvViewHolder> {
     @Override
     public RvViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         @LayoutRes int layoutResId = 0;
-        switch (viewType){
+        switch (viewType) {
             case IFixedGridType.TYPE_ACTION:
                 layoutResId = R.layout.item_action;
                 break;
@@ -44,14 +44,14 @@ public class GridDemoAdapter extends RecyclerView.Adapter<RvViewHolder> {
     @Override
     public void onBindViewHolder(RvViewHolder holder, int position) {
         IFixedGridType item = data.get(position);
-        if(item instanceof Name){
+        if (item instanceof Name) {
             Name name = (Name) item;
             holder.setText(R.id.tvItemName, name.name);
             holder.setText(R.id.tvItemSubName, name.subName);
-        } else if( item instanceof Numbera){
+        } else if (item instanceof Numbera) {
             Numbera num = (Numbera) item;
-            holder.setText(R.id.tvItemNumber, num.num+"");
-        } else if( item instanceof Action){
+            holder.setText(R.id.tvItemNumber, num.num + "");
+        } else if (item instanceof Action) {
             holder.setText(R.id.btnItemAction, "Action");
         }
 

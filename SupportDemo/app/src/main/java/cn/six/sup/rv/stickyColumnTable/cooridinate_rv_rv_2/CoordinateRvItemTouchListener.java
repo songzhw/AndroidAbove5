@@ -41,13 +41,13 @@ public class CoordinateRvItemTouchListener implements RecyclerView.OnItemTouchLi
     private String getAction(MotionEvent e) {
         String ret;
         int action = e.getAction();
-        if(action == MotionEvent.ACTION_UP){
+        if (action == MotionEvent.ACTION_UP) {
             ret = "up";
-        } else if(action == MotionEvent.ACTION_DOWN){
+        } else if (action == MotionEvent.ACTION_DOWN) {
             ret = "down";
-        } else if(action == MotionEvent.ACTION_MOVE){
+        } else if (action == MotionEvent.ACTION_MOVE) {
             ret = "move";
-        } else if(action == MotionEvent.ACTION_CANCEL){
+        } else if (action == MotionEvent.ACTION_CANCEL) {
             ret = "cancel";
         } else {
             ret = "" + action;

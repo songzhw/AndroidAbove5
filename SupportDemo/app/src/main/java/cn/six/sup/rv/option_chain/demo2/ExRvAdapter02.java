@@ -2,12 +2,12 @@ package cn.six.sup.rv.option_chain.demo2;
 
 import android.content.Context;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cn.six.sup.rv.option_chain.BaseBinder;
 import cn.six.sup.rv.option_chain.BaseBinderAdapter;
 import cn.six.sup.rv.option_chain.demo1.TimeStampeStampBinder;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ExRvAdapter02 extends BaseBinderAdapter {
     private List<BaseBinder> items;

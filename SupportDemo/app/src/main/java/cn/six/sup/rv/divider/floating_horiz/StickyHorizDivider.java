@@ -1,4 +1,3 @@
-
 package cn.six.sup.rv.divider.floating_horiz;
 
 import android.content.Context;
@@ -17,14 +16,13 @@ import cn.six.sup.rv.divider.floating.IFloatingGroupCallback;
 
 public class StickyHorizDivider extends RecyclerView.ItemDecoration {
     public static final int SPACE = 8;
-
+    private final int originalTextY, originalTextX;
     private int width;
     private Paint paint;
     private TextPaint textPaint;
     private Paint.FontMetrics fontMetrics;
     private IFloatingGroupCallback callback;
     private int textHeight;
-    private final int originalTextY, originalTextX;
 
     public StickyHorizDivider(Context ctx, IFloatingGroupCallback callback) {
         this.callback = callback;

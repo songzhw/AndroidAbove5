@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,13 +14,13 @@ import android.view.View;
 import cn.six.sup.R;
 
 public class FloatingTitleDivider extends RecyclerView.ItemDecoration {
+    private final int originalTextY, originalTextX;
     private int height;
     private Paint paint;
     private TextPaint textPaint;
     private Paint.FontMetrics fontMetrics;
     private IFloatingGroupCallback callback;
     private int textHeight;
-    private final int originalTextY, originalTextX;
 
     public FloatingTitleDivider(Context ctx, IFloatingGroupCallback callback) {
         this.callback = callback;

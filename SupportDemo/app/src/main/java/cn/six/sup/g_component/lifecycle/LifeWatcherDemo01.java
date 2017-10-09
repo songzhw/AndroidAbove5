@@ -1,7 +1,6 @@
 package cn.six.sup.g_component.lifecycle;
 
 import android.arch.lifecycle.LifecycleActivity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;

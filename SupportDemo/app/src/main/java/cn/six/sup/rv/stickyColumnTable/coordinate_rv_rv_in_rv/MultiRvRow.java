@@ -12,9 +12,9 @@ import java.util.List;
 import cn.six.sup.R;
 import cn.six.sup.rv.ItemView;
 import cn.six.sup.rv.RvViewHolder;
+import cn.six.sup.rv.one_adapter.OneAdapter;
 import cn.six.sup.rv.stickyColumnTable.coordinate_rv_rv.MultiRvScrollListener;
 import cn.six.sup.rv.stickyColumnTable.cooridinate_rv_rv_2.ObservableHorizontalScrollView;
-import cn.six.sup.rv.one_adapter.OneAdapter;
 
 
 public class MultiRvRow implements ItemView {
@@ -28,14 +28,14 @@ public class MultiRvRow implements ItemView {
 
     public MultiRvRow() {
         dataLeft = new ArrayList<>();
-        for(int i = 1; i <= HEIGHT; i++){
-            dataLeft.add(""+i);
+        for (int i = 1; i <= HEIGHT; i++) {
+            dataLeft.add("" + i);
         }
 
         dataRight = new ArrayList<>();
         int sum = HEIGHT * WIDTH;
-        for(int i = 1; i <= sum; i++){
-            dataRight.add(""+i);
+        for (int i = 1; i <= sum; i++) {
+            dataRight.add("" + i);
         }
     }
 
@@ -81,7 +81,7 @@ public class MultiRvRow implements ItemView {
     }
 
     // 当我滑动完了， 成idle了， recyclerView会移除此监听
-    private class CoordinateRvScrollListener extends MultiRvScrollListener{
+    private class CoordinateRvScrollListener extends MultiRvScrollListener {
         private RecyclerView rvOther;
 
         public CoordinateRvScrollListener(RecyclerView rvOther) {
@@ -110,7 +110,7 @@ public class MultiRvRow implements ItemView {
         @Override
         public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
             // fire the touch event, otherwise ,the onTouchEvent() will never get called
-            if(rv.getScrollState() == RecyclerView.SCROLL_STATE_IDLE) {
+            if (rv.getScrollState() == RecyclerView.SCROLL_STATE_IDLE) {
                 onTouchEvent(rv, e);
             }
             return false;
@@ -119,19 +119,20 @@ public class MultiRvRow implements ItemView {
         @Override
         public void onTouchEvent(RecyclerView rv, MotionEvent e) {
             int action = e.getAction();
-            if(action == MotionEvent.ACTION_DOWN && rvOther.getScrollState() == RecyclerView.SCROLL_STATE_IDLE){
+            if (action == MotionEvent.ACTION_DOWN && rvOther.getScrollState() == RecyclerView.SCROLL_STATE_IDLE) {
                 lastY = rv.getScrollY();
                 rv.addOnScrollListener(scrollListener);
             } else {
                 // if this touch is not a scrolling action, remove the scroll listener
-                if(action == MotionEvent.ACTION_UP && rv.getScrollY() == lastY) {
+                if (action == MotionEvent.ACTION_UP && rv.getScrollY() == lastY) {
                     rv.removeOnScrollListener(scrollListener);
                 }
             }
         }
 
         @Override
-        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) { }
+        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+        }
     }
 
 }

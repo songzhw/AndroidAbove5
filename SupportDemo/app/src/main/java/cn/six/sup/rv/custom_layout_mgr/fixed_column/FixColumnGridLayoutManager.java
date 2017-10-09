@@ -33,8 +33,8 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
 
         int offsetX = 0, offsetY = 0;
         int itemCount = getItemCount();
-        System.out.println("szw item count = "+itemCount);
-        for(int i = 0; i < itemCount; i++){
+        System.out.println("szw item count = " + itemCount);
+        for (int i = 0; i < itemCount; i++) {
             View view = recycler.getViewForPosition(i);
             measureChildWithMargins(view, 0, 0);
             addView(view);
@@ -47,7 +47,7 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
             int posInReal = i + 1;
             int left, top, right, bottom;
             // 1. 最末一列, 布局完后要换行, 即offsetY += height, offsetX = 0
-            if (posInReal % columnSize == 0){
+            if (posInReal % columnSize == 0) {
                 left = offsetX;
                 top = offsetY;
 
@@ -61,7 +61,7 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
                 offsetX += width;
             }
 
-            System.out.println("szw ox = "+ offsetX +" ; oy = "+offsetY);
+            System.out.println("szw ox = " + offsetX + " ; oy = " + offsetY);
             right = left + width;
             bottom = top + height;
             layoutDecorated(view, left, top, right, bottom);
@@ -87,13 +87,13 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
 
         // fixed first coloumn behavior
         int offsetY = 0;
-        if(verticallyOffset > 0) {
+        if (verticallyOffset > 0) {
             int itemCount = getItemCount();
             // TODO Add all items back
             for (int i = 0; i < itemCount; i++) {
                 int posInReal = i + 1;
                 // 第一列
-                if( posInReal % columnSize == 1){
+                if (posInReal % columnSize == 1) {
                     View view = recycler.getViewForPosition(i);
                     measureChildWithMargins(view, 0, 0);
                     addView(view);

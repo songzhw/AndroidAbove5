@@ -2,7 +2,7 @@ package cn.six.sup.rv.composition.demo.data;
 
 import cn.six.sup.rv.composition.BaseRow;
 
-public class EntityTwo implements IEntity{
+public class EntityTwo implements IEntity {
     public String left;
     public String right;
 

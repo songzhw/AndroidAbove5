@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView;
 
 public interface ICardStackActionListener<T> {
     void onSwiping(RecyclerView.ViewHolder vh, float ratio, @CardsDirection int direction);
+
     void onSwiped(RecyclerView.ViewHolder vh, T t, @CardsDirection int direction);
+
     void onSwipedClear();
 }

@@ -5,6 +5,8 @@ package cn.six.sup.rv;
  */
 public interface RvItemDragSwipeListener {
     void onMove(int fromPosition, int toPosition);
+
     void onSwiped(int position);
+
     void onFinishDrag();
 }

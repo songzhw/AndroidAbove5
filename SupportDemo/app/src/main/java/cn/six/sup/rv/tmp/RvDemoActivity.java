@@ -1,17 +1,16 @@
 package cn.six.sup.rv.tmp;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.List;
 
-import cn.six.sup.rv.RvViewHolder;
-import cn.six.sup.rv.OnRvItemClickListener;
-import cn.six.sup.rv.one_adapter.OneAdapter;
-
 import cn.six.sup.R;
+import cn.six.sup.rv.OnRvItemClickListener;
+import cn.six.sup.rv.RvViewHolder;
+import cn.six.sup.rv.one_adapter.OneAdapter;
 import cn.six.sup.rv.tmp.data.TempData;
 
 public class RvDemoActivity extends AppCompatActivity {

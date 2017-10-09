@@ -14,11 +14,11 @@
  * limitations under the License. 
  */
 package cn.six.sup.rv.sort;
- 
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.util.SortedList;
-import android.support.v7.widget.LinearLayoutManager; 
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
@@ -50,7 +50,7 @@ public class SortedListActivity extends AppCompatActivity {
         etAddTask = (EditText) findViewById(R.id.etSortedList);
     }
 
-    public void onAddNewTask(View v){
+    public void onAddNewTask(View v) {
         final String text = etAddTask.getText().toString().trim();
         if (text.length() > 0) {
             adapter.addItem(new TaskStatus(text));

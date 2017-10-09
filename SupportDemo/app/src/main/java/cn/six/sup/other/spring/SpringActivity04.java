@@ -1,16 +1,8 @@
 package cn.six.sup.other.spring;
 
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.animation.DynamicAnimation;
 import android.support.animation.SpringAnimation;
-import android.support.animation.SpringForce;
-import android.support.annotation.Nullable;
-import android.util.DisplayMetrics;
-import android.view.MotionEvent;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;

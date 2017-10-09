@@ -6,7 +6,6 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
 
-import cn.six.sup.rv.RvConstants;
 import cn.six.sup.rv.RvViewHolder;
 
 /**
@@ -20,10 +19,9 @@ import cn.six.sup.rv.RvViewHolder;
 @Deprecated
 public class LoadMoreWrapper extends RecyclerView.Adapter<RvViewHolder> {
     public static final int TYPE_LOAD_MORE = 30;
-
+    public View loadMoreView;
     private RecyclerView.Adapter<RvViewHolder> innerAdapter;
     private ILoadMoreListener listener;
-    public View loadMoreView;
 
     public LoadMoreWrapper(RecyclerView.Adapter innerAdapter, ILoadMoreListener listener) {
         this.innerAdapter = innerAdapter;
@@ -37,7 +35,7 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RvViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        if(position >= innerAdapter.getItemCount()){
+        if (position >= innerAdapter.getItemCount()) {
             return TYPE_LOAD_MORE;
         }
 
@@ -48,7 +46,7 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RvViewHolder> {
 
     @Override
     public RvViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if(viewType == TYPE_LOAD_MORE){
+        if (viewType == TYPE_LOAD_MORE) {
             RvViewHolder holder = RvViewHolder.createViewHolder(loadMoreView);
             return holder;
         }
@@ -57,9 +55,9 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RvViewHolder> {
 
     @Override
     public void onBindViewHolder(RvViewHolder holder, int position) {
-        if(hitBottomAndHasMore(position)){
+        if (hitBottomAndHasMore(position)) {
             listener.onLoadMore();
-            return ;
+            return;
         }
 
         // because the loadMoreView is usually a footer,
@@ -86,12 +84,12 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RvViewHolder> {
     public void onAttachedToRecyclerView(RecyclerView rv) {
         innerAdapter.onAttachedToRecyclerView(rv);
         RecyclerView.LayoutManager layMgr = rv.getLayoutManager();
-        if(layMgr instanceof GridLayoutManager){
+        if (layMgr instanceof GridLayoutManager) {
             final GridLayoutManager lay = (GridLayoutManager) layMgr;
             lay.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
                 @Override
                 public int getSpanSize(int position) {
-                    if(getItemViewType(position) == TYPE_LOAD_MORE){
+                    if (getItemViewType(position) == TYPE_LOAD_MORE) {
                         return lay.getSpanCount();
                     }
                     return 1;
@@ -105,9 +103,9 @@ public class LoadMoreWrapper extends RecyclerView.Adapter<RvViewHolder> {
     public void onViewAttachedToWindow(RvViewHolder holder) {
         innerAdapter.onViewAttachedToWindow(holder);
         int position = holder.getLayoutPosition();
-        if(getItemViewType(position) == TYPE_LOAD_MORE){
+        if (getItemViewType(position) == TYPE_LOAD_MORE) {
             ViewGroup.LayoutParams lp = holder.itemView.getLayoutParams();
-            if(lp != null && lp instanceof StaggeredGridLayoutManager.LayoutParams){
+            if (lp != null && lp instanceof StaggeredGridLayoutManager.LayoutParams) {
                 StaggeredGridLayoutManager.LayoutParams staggerLp = (StaggeredGridLayoutManager.LayoutParams) lp;
                 staggerLp.setFullSpan(true);
             }

@@ -3,14 +3,13 @@ package cn.six.sup.clay.behavior;
 import android.content.Context;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 
 /**
  * Created by songzhw on 2016/2/24
- *
+ * <p>
  * from : https://github.com/saulmm/CoordinatorBehaviorExample
  * from : http://blog.csdn.net/tyk0910/article/details/53792012
  */
@@ -23,21 +22,6 @@ public class TopImageBehavior extends CoordinatorLayout.Behavior<ImageView> {
 
     private int width, height, top, left;
     private int scrollRange;
-
-    public TopImageBehavior(Context context, AttributeSet attrs) {
-        super(context, attrs);
-    }
-
-    @Override
-    public boolean layoutDependsOn(CoordinatorLayout parent, ImageView child, View dependency) {
-        if(dependency instanceof AppBarLayout){
-            final AppBarLayout ablay = (AppBarLayout) dependency;
-            ablay.removeOnOffsetChangedListener(listener);
-            ablay.addOnOffsetChangedListener(listener);
-        }
-        return dependency instanceof AppBarLayout;
-    }
-
     private AppBarLayout.OnOffsetChangedListener listener = new AppBarLayout.OnOffsetChangedListener() {
         @Override
         public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
@@ -45,12 +29,26 @@ public class TopImageBehavior extends CoordinatorLayout.Behavior<ImageView> {
         }
     };
 
+    public TopImageBehavior(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    @Override
+    public boolean layoutDependsOn(CoordinatorLayout parent, ImageView child, View dependency) {
+        if (dependency instanceof AppBarLayout) {
+            final AppBarLayout ablay = (AppBarLayout) dependency;
+            ablay.removeOnOffsetChangedListener(listener);
+            ablay.addOnOffsetChangedListener(listener);
+        }
+        return dependency instanceof AppBarLayout;
+    }
+
     // dependency is the Toolbar
     // @return true if the Behavior changed the child view's size or position, false otherwise
     @Override
     public boolean onDependentViewChanged(CoordinatorLayout parent, ImageView child, View dependency) {
         float y = dependency.getY(); // getY() = mTop + getTranslationY();
-        if(y == 0){
+        if (y == 0) {
             width = child.getWidth();
             height = child.getHeight();
             top = child.getTop();
@@ -65,19 +63,19 @@ public class TopImageBehavior extends CoordinatorLayout.Behavior<ImageView> {
         // 3. 经过上面ablay收到最小了。 rv或nsv再下拉， 因为scrollFlag是"scroll|exitUntilCollapsed"，
         // 所以直到rv或nsv到顶了， top也桓为-504 (即scrollRange的值), ty仍是总为0
         // 之后， rv或nsv再下拉， top就从-504开始变大了， 随着滑动， 值由-502， -493， ... 一直变到0 ， ty仍桓为0
-        System.out.println("szw onDependentViewChanged() : top = "+dependency.getTop()+" ; ty = "+dependency.getTranslationY());
+        System.out.println("szw onDependentViewChanged() : top = " + dependency.getTop() + " ; ty = " + dependency.getTranslationY());
 
         float temp = Math.abs(y) / scrollRange;
         float percent = temp * 0.85f;
 
         // 位移
         child.setX(left + 300 * percent);
-        child.setY( top * (1 - percent) );
+        child.setY(top * (1 - percent));
 
         // 开始变大/变小
         CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) child.getLayoutParams();
         lp.width = (int) (width * (1 - temp / 2));
-        lp.height = (int) (height * (1 - temp /2 ));
+        lp.height = (int) (height * (1 - temp / 2));
         child.setLayoutParams(lp);
         // 注意： 不要用lp.height = (int) (lp.height * ...), 因为本来lp.height就在变小
         // 这样说法小得更快了。 应该要用原来height值再乘以比例

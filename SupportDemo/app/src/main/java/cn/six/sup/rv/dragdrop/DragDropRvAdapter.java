@@ -14,10 +14,10 @@ import cn.six.sup.R;
 
 public class DragDropRvAdapter extends RecyclerView.Adapter<DragDropRvAdapter.ViewHolder> {
 
-//    private Context context;
+    //    private Context context;
     private List<String> results;
 
-    public DragDropRvAdapter(List<String> results){
+    public DragDropRvAdapter(List<String> results) {
         this.results = results;
     }
 
@@ -72,7 +72,7 @@ public class DragDropRvAdapter extends RecyclerView.Adapter<DragDropRvAdapter.Vi
 //        notifyItemRemoved(position);
 //    }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView tv;
         public ImageView iv;

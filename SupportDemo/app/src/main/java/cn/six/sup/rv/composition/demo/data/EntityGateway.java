@@ -10,31 +10,6 @@ import cn.six.sup.rv.composition.BaseRow;
 
 public class EntityGateway {
 
-    public List<IEntity> getHomeData(){
-        List<IEntity> list = new ArrayList<>();
-        try {
-            JSONObject raw = new JSONObject(data);
-            JSONArray payload = raw.getJSONArray("data");
-
-            int size = payload.length();
-            for(int i = 0 ; i < size; i++) {
-                JSONObject item = payload.getJSONObject(i);
-
-                int type = item.getInt("type");
-                if(BaseRow.TYPE_HEADER == type){
-                    list.add(new EntityHeader(item.getString("title"), item.getString("caption")));
-                } else if (BaseRow.TYPE_TWO_TEXT == type){
-                    list.add(new EntityTwo(item.getString("left"), item.getString("right")));
-                }
-
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return list;
-    }
-
     private String data = "{\n" +
             "  \"retCode\": \"200\",\n" +
             "  \"retDesc\": \"succ\",\n" +
@@ -49,4 +24,29 @@ public class EntityGateway {
             "    {\"type\":3, \"title\":\"zhamei\",\"caption\":\"song\"}\n" +
             "  ]\n" +
             "}";
+
+    public List<IEntity> getHomeData() {
+        List<IEntity> list = new ArrayList<>();
+        try {
+            JSONObject raw = new JSONObject(data);
+            JSONArray payload = raw.getJSONArray("data");
+
+            int size = payload.length();
+            for (int i = 0; i < size; i++) {
+                JSONObject item = payload.getJSONObject(i);
+
+                int type = item.getInt("type");
+                if (BaseRow.TYPE_HEADER == type) {
+                    list.add(new EntityHeader(item.getString("title"), item.getString("caption")));
+                } else if (BaseRow.TYPE_TWO_TEXT == type) {
+                    list.add(new EntityTwo(item.getString("left"), item.getString("right")));
+                }
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

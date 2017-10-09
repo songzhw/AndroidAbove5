@@ -1,16 +1,13 @@
 package cn.six.sup.g_component.sample.location;
 
 import android.Manifest;
-import android.app.Activity;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-// compile 'com.google.android.gms:play-services-plus:11.2.0'
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-// compile 'com.google.android.gms:play-services-location:11.2.0'
 import com.google.android.gms.location.FusedLocationProviderApi;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
@@ -19,6 +16,9 @@ import com.google.android.gms.location.LocationServices;
 import ca.six.util.IAfterDo;
 import ca.six.util.Permission6;
 import cn.six.sup.g_component.LifeAppCompatActivity;
+
+// compile 'com.google.android.gms:play-services-plus:11.2.0'
+// compile 'com.google.android.gms:play-services-location:11.2.0'
 
 
 //@SuppressWarnings("MissingPermission")

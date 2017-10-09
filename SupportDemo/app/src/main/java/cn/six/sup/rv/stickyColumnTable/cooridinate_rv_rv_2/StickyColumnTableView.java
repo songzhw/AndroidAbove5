@@ -62,14 +62,14 @@ public class StickyColumnTableView<T> extends LinearLayout {
         rvLeft.addOnItemTouchListener(new OnRvItemClickListener(rvLeft) {
             @Override
             public void onItemClick(RecyclerView.ViewHolder vh) {
-                System.out.println("szw left : "+vh.getAdapterPosition()+" ; "+vh.getLayoutPosition());
+                System.out.println("szw left : " + vh.getAdapterPosition() + " ; " + vh.getLayoutPosition());
             }
         });
 
         rvRight.addOnItemTouchListener(new OnRvItemClickListener(rvRight) {
             @Override
             public void onItemClick(RecyclerView.ViewHolder vh) {
-                System.out.println("szw right : "+vh.getAdapterPosition()+" ; "+vh.getLayoutPosition());
+                System.out.println("szw right : " + vh.getAdapterPosition() + " ; " + vh.getLayoutPosition());
             }
         });
     }

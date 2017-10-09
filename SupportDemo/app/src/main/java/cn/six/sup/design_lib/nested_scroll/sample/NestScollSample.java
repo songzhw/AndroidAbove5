@@ -76,7 +76,7 @@ public class NestScollSample extends FragmentActivity {
         mViewPager = (ViewPager) findViewById(R.id.id_stickynavlayout_viewpager);
 
 		/*
-		RelativeLayout ll = (RelativeLayout) findViewById(R.id.id_stickynavlayout_topview);
+        RelativeLayout ll = (RelativeLayout) findViewById(R.id.id_stickynavlayout_topview);
 		TextView tv = new TextView(this);
 		tv.setText("我的动态添加的");
 		tv.setBackgroundColor(0x77ff0000);

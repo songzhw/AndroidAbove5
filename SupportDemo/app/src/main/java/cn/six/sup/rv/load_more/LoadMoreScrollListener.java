@@ -14,16 +14,16 @@ public abstract class LoadMoreScrollListener extends RecyclerView.OnScrollListen
     private int lastVisiblePosition, oldNum, totalNum, currentPage = 0;
     private boolean isDuplicatedCalled = true;
 
-    public void reset(){
+    public LoadMoreScrollListener(LinearLayoutManager linearLayoutManager) {
+        this.layMgr = linearLayoutManager;
+    }
+
+    public void reset() {
         lastVisiblePosition = 0;
         oldNum = 0;
         totalNum = 0;
         currentPage = 0;
         isDuplicatedCalled = true;
-    }
-
-    public LoadMoreScrollListener(LinearLayoutManager linearLayoutManager) {
-        this.layMgr = linearLayoutManager;
     }
 
 //    @Override
@@ -43,8 +43,7 @@ public abstract class LoadMoreScrollListener extends RecyclerView.OnScrollListen
                 isDuplicatedCalled = false;
                 oldNum = totalNum;
             }
-        }
-        else {
+        } else {
             if ((lastVisiblePosition + 2) == totalNum) {
                 currentPage++;
                 onLoadMore(currentPage);

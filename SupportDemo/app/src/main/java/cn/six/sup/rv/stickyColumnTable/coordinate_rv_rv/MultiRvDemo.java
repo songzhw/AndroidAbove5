@@ -13,8 +13,8 @@ import java.util.List;
 
 import cn.six.sup.R;
 import cn.six.sup.rv.RvViewHolder;
-import cn.six.sup.rv.stickyColumnTable.cooridinate_rv_rv_2.ObservableHorizontalScrollView;
 import cn.six.sup.rv.one_adapter.OneAdapter;
+import cn.six.sup.rv.stickyColumnTable.cooridinate_rv_rv_2.ObservableHorizontalScrollView;
 
 public class MultiRvDemo extends Activity {
     public static final int HEIGHT = 15;
@@ -30,17 +30,17 @@ public class MultiRvDemo extends Activity {
         setContentView(R.layout.actv_multi_rv);
 
         List<String> dataLeft = new ArrayList<>();
-        for(int i = 1; i <= HEIGHT; i++){
-            dataLeft.add(""+i);
+        for (int i = 1; i <= HEIGHT; i++) {
+            dataLeft.add("" + i);
         }
 
         List<String> dataRight = new ArrayList<>();
         int sum = HEIGHT * WIDTH;
-        for(int i = 1; i <= sum; i++){
-            dataRight.add(""+i);
+        for (int i = 1; i <= sum; i++) {
+            dataRight.add("" + i);
         }
 
-        rvLeft = (RecyclerView)findViewById(R.id.rvMultiRvLeft);
+        rvLeft = (RecyclerView) findViewById(R.id.rvMultiRvLeft);
         rvLeft.setLayoutManager(new LinearLayoutManager(this));
         rvLeft.setAdapter(new OneAdapter<String>(R.layout.item_left, dataLeft) {
             @Override
@@ -49,7 +49,7 @@ public class MultiRvDemo extends Activity {
             }
         });
 
-        rvRight = (RecyclerView)findViewById(R.id.rvMultiRvRight);
+        rvRight = (RecyclerView) findViewById(R.id.rvMultiRvRight);
         rvRight.setLayoutManager(new GridLayoutManager(this, WIDTH));
         rvRight.setAdapter(new OneAdapter<String>(R.layout.item_right, dataRight) {
             @Override
@@ -64,7 +64,7 @@ public class MultiRvDemo extends Activity {
         rvRightScrollListener = new CoordinateRvScrollListener(rvLeft);
         rvRight.addOnItemTouchListener(new CoordinateRvItemTouchListener(rvLeft, rvRightScrollListener));
 
-        hsv = (ObservableHorizontalScrollView)findViewById(R.id.hsvRight);
+        hsv = (ObservableHorizontalScrollView) findViewById(R.id.hsvRight);
         hsv.setScrollViewListener(new ObservableHorizontalScrollView.ScrollViewListener() {
             @Override
             public void onScrollChanged(ObservableHorizontalScrollView scrollView, int x, int y, int oldx, int oldy) {
@@ -72,6 +72,23 @@ public class MultiRvDemo extends Activity {
                 rvRight.removeOnScrollListener(rvRightScrollListener);
             }
         });
+    }
+
+    private String getAction(MotionEvent e) {
+        String ret;
+        int action = e.getAction();
+        if (action == MotionEvent.ACTION_UP) {
+            ret = "up";
+        } else if (action == MotionEvent.ACTION_DOWN) {
+            ret = "down";
+        } else if (action == MotionEvent.ACTION_MOVE) {
+            ret = "move";
+        } else if (action == MotionEvent.ACTION_CANCEL) {
+            ret = "cancel";
+        } else {
+            ret = "" + action;
+        }
+        return ret;
     }
 
     // 当我滑动完了， 成idle了， recyclerView会移除此监听
@@ -89,7 +106,6 @@ public class MultiRvDemo extends Activity {
         }
     }
 
-
     // 在rvOther是idle时， 才会真的能移动
     private class CoordinateRvItemTouchListener implements RecyclerView.OnItemTouchListener {
         private RecyclerView rvOther;
@@ -105,7 +121,7 @@ public class MultiRvDemo extends Activity {
         @Override
         public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
             // fire the touch event, otherwise ,the onTouchEvent() will never get called
-            if(rv.getScrollState() == RecyclerView.SCROLL_STATE_IDLE) {
+            if (rv.getScrollState() == RecyclerView.SCROLL_STATE_IDLE) {
                 onTouchEvent(rv, e);
             }
             return false;
@@ -114,8 +130,8 @@ public class MultiRvDemo extends Activity {
         @Override
         public void onTouchEvent(RecyclerView rv, MotionEvent e) {
             int action = e.getAction();
-            System.out.println("szw MultiRvDemo : "+getAction(e));
-            if(action == MotionEvent.ACTION_DOWN && rvOther.getScrollState() == RecyclerView.SCROLL_STATE_IDLE){
+            System.out.println("szw MultiRvDemo : " + getAction(e));
+            if (action == MotionEvent.ACTION_DOWN && rvOther.getScrollState() == RecyclerView.SCROLL_STATE_IDLE) {
                 lastY = rv.getScrollY();
                 rv.addOnScrollListener(scrollListener);
             } else {
@@ -128,25 +144,8 @@ public class MultiRvDemo extends Activity {
         }
 
         @Override
-        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) { }
-    }
-
-
-    private String getAction(MotionEvent e) {
-        String ret;
-        int action = e.getAction();
-        if(action == MotionEvent.ACTION_UP){
-            ret = "up";
-        } else if(action == MotionEvent.ACTION_DOWN){
-            ret = "down";
-        } else if(action == MotionEvent.ACTION_MOVE){
-            ret = "move";
-        } else if(action == MotionEvent.ACTION_CANCEL){
-            ret = "cancel";
-        } else {
-            ret = "" + action;
+        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
         }
-        return ret;
     }
 
 }

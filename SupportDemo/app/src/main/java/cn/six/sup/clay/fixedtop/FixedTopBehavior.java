@@ -10,7 +10,7 @@ import cn.six.sup.R;
 
 /**
  * Created by songzhw on 2016-12-25
- *
+ * <p>
  * rv/sv上还有一个top view. 它们在滑动时， topView不变，还alpha减少， 最终被覆盖掉的过程。
  */
 
@@ -58,7 +58,7 @@ public class FixedTopBehavior extends CoordinatorLayout.Behavior<View> {
 
     @Override
     public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, View child, View directTargetChild, View target, int nestedScrollAxes) {
-        return (nestedScrollAxes & ViewCompat.SCROLL_AXIS_VERTICAL) != 0 ;
+        return (nestedScrollAxes & ViewCompat.SCROLL_AXIS_VERTICAL) != 0;
     }
 
     /* 5. NestScrolling逻辑
@@ -84,12 +84,12 @@ public class FixedTopBehavior extends CoordinatorLayout.Behavior<View> {
     public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, View child, View target, int dx, int dy, int[] consumed) {
         super.onNestedPreScroll(coordinatorLayout, child, target, dx, dy, consumed);
 
-        if(dy < 0) {
+        if (dy < 0) {
             return; //只处理上滑的， 这时的dy是 > 0的
         }
 
         float leftY = child.getTranslationY() - dy;
-        if(leftY > 0){
+        if (leftY > 0) {
             child.setTranslationY(leftY);
             consumed[1] = dy; // 滑动了多少， 处理了多少。第0位是x， 第1位是y
         }
@@ -104,12 +104,12 @@ public class FixedTopBehavior extends CoordinatorLayout.Behavior<View> {
     public void onNestedScroll(CoordinatorLayout coordinatorLayout, View child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
         // !!! dyUnconsumed在下滑时（看前面的内容）， 就是0或负数。 平时是0， 若已经到顶了，还想下滑， 就是负数了。
 
-        if(dyConsumed > 0) {
+        if (dyConsumed > 0) {
             return;
         }
 
         float leftY = child.getTranslationY() - dyUnconsumed; //到顶后再下拉，第一参为0， 第二参为负数，这时leftY就成了正数了。
-        if(leftY > 0 && leftY < topViewHeight){
+        if (leftY > 0 && leftY < topViewHeight) {
             child.setTranslationY(leftY); // child仍是rv
         }
 

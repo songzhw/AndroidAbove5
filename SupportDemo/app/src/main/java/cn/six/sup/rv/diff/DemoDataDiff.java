@@ -25,7 +25,7 @@ public class DemoDataDiff extends DiffUtil.Callback {
     @Override
     public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
         return oldData.get(oldItemPosition).getClass().equals(
-            newData.get(newItemPosition).getClass());
+                newData.get(newItemPosition).getClass());
     }
 
     @Override

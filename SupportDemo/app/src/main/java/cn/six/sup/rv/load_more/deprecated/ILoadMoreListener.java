@@ -6,5 +6,6 @@ package cn.six.sup.rv.load_more.deprecated;
 @Deprecated
 public interface ILoadMoreListener {
     boolean hasMore();
+
     void onLoadMore();
 }

@@ -18,6 +18,16 @@ public class CardsLayoutManager extends RecyclerView.LayoutManager {
 
     private RecyclerView rv;
     private ItemTouchHelper helper;
+    private View.OnTouchListener touchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            RecyclerView.ViewHolder vh = rv.getChildViewHolder(v);
+            if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
+                helper.startSwipe(vh);
+            }
+            return false;
+        }
+    };
 
     public CardsLayoutManager(RecyclerView rv, ItemTouchHelper helper) {
         this.rv = rv;
@@ -67,16 +77,4 @@ public class CardsLayoutManager extends RecyclerView.LayoutManager {
             }
         }
     }
-
-
-    private View.OnTouchListener touchListener = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            RecyclerView.ViewHolder vh = rv.getChildViewHolder(v);
-            if(MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
-                helper.startSwipe(vh);
-            }
-            return false;
-        }
-    };
 }

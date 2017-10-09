@@ -13,6 +13,6 @@ public class SimpleMenuRow implements ItemView {
 
     @Override
     public void bind(RvViewHolder holder) {
-        holder.setText(R.id.tvItemMenu, "id = "+ Math.random() * 10000);
+        holder.setText(R.id.tvItemMenu, "id = " + Math.random() * 10000);
     }
 }

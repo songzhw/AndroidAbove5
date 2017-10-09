@@ -17,7 +17,7 @@ public abstract class OneAdapter<T> extends RecyclerView.Adapter<RvViewHolder> {
         data = new ArrayList<>();
     }
 
-    public OneAdapter(int layoutResId, List<T> data){
+    public OneAdapter(int layoutResId, List<T> data) {
         this.layoutResId = layoutResId;
         this.data = data;
     }
@@ -35,7 +35,7 @@ public abstract class OneAdapter<T> extends RecyclerView.Adapter<RvViewHolder> {
 
     @Override
     public void onBindViewHolder(RvViewHolder holder, int position) {
-        if(data != null && data.size() > position){
+        if (data != null && data.size() > position) {
             apply(holder, data.get(position), position);
         }
     }

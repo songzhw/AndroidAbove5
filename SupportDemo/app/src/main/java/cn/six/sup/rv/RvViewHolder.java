@@ -1,6 +1,5 @@
 package cn.six.sup.rv;
 
-import android.support.annotation.ColorRes;
 import android.support.v4.util.SparseArrayCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -33,9 +32,9 @@ public class RvViewHolder extends RecyclerView.ViewHolder {
         return holder;
     }
 
-    public <T extends View> T getView(int id){
+    public <T extends View> T getView(int id) {
         View view = views.get(id);
-        if(view == null){
+        if (view == null) {
             view = convertView.findViewById(id);
             views.put(id, view);
         }
@@ -43,26 +42,25 @@ public class RvViewHolder extends RecyclerView.ViewHolder {
     }
 
     // ============================================
-    public void setText(int id, String str){
+    public void setText(int id, String str) {
         TextView tv = getView(id);
         tv.setText(str);
     }
 
-    public void setSrc(int id, int drawId){
+    public void setSrc(int id, int drawId) {
         ImageView iv = getView(id);
         iv.setImageResource(drawId);
     }
 
-    public void setBackground(int id, int bgResId){
+    public void setBackground(int id, int bgResId) {
         View view = getView(id);
         view.setBackgroundResource(bgResId);
     }
 
-    public void setClickListener(int id, View.OnClickListener listener){
+    public void setClickListener(int id, View.OnClickListener listener) {
         View view = getView(id);
         view.setOnClickListener(listener);
     }
-
 
 
 }

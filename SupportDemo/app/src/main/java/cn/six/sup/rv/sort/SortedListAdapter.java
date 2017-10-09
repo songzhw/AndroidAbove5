@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import cn.six.sup.R;
 
 public class SortedListAdapter extends RecyclerView.Adapter<TodoViewHolder> {
-    SortedList<TaskStatus> data;
     final LayoutInflater layoutInflater;
+    SortedList<TaskStatus> data;
 
     public SortedListAdapter(LayoutInflater layoutInflater, TaskStatus... items) {
         this.layoutInflater = layoutInflater;

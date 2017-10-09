@@ -34,8 +34,8 @@ public class ViewHolder_PositionActivity extends Activity {
             }
         };
         data = new ArrayList<>();
-        for (int i = 0 ; i < 28; i++){
-            data.add("Item : "+i);
+        for (int i = 0; i < 28; i++) {
+            data.add("Item : " + i);
         }
         adapter.data = data;
         rv.setAdapter(adapter);
@@ -43,13 +43,14 @@ public class ViewHolder_PositionActivity extends Activity {
         rv.addOnItemTouchListener(new OnRvItemClickListener(rv) {
             @Override
             public void onItemClick(RecyclerView.ViewHolder vh) {
-                System.out.println("szw layoutPos  = "+vh.getLayoutPosition());
-                System.out.println("szw adapterPos = "+vh.getAdapterPosition());
-                System.out.println("szw old_Pos    = "+vh.getOldPosition());
+                System.out.println("szw layoutPos  = " + vh.getLayoutPosition());
+                System.out.println("szw adapterPos = " + vh.getAdapterPosition());
+                System.out.println("szw old_Pos    = " + vh.getOldPosition());
             }
 
             @Override
-            public void onLongClick(RecyclerView.ViewHolder vh) { }
+            public void onLongClick(RecyclerView.ViewHolder vh) {
+            }
         });
     }
 
@@ -57,17 +58,17 @@ public class ViewHolder_PositionActivity extends Activity {
     @Override
     public void onBackPressed() {
 
-        if(state == 0){
+        if (state == 0) {
             data.add(0, "New 00");
             data.add(1, "New 01");
             adapter.notifyItemInserted(0);
             adapter.notifyItemInserted(1);
             rv.scrollToPosition(0);
             state = 1;
-        } else if(state == 1){
+        } else if (state == 1) {
             data.clear();
-            for (int i = 0 ; i < 28; i++){
-                data.add("-- pos = "+i);
+            for (int i = 0; i < 28; i++) {
+                data.add("-- pos = " + i);
             }
             adapter.notifyDataSetChanged();
             state = 0;

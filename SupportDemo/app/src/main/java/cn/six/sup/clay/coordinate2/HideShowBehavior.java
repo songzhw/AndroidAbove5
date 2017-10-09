@@ -32,7 +32,7 @@ public class HideShowBehavior extends CoordinatorLayout.Behavior<View> {
         // "child" == fab, "target" == SwipeRefreshLayout
 
         //dy大于0是向上滚动 小于0是向下滚动
-        if(dy >= 0) {
+        if (dy >= 0) {
             child.setVisibility(View.GONE);
         } else {
             child.setVisibility(View.VISIBLE);

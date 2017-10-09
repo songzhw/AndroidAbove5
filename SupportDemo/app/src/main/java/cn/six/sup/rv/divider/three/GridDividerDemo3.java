@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.six.sup.R;
-import cn.six.sup.rv.divider.HighlightGridDivider;
 import cn.six.sup.rv.divider.ThreeColorGridDivider;
 import cn.six.sup.rv.option_chain.demo2.NumbersAdapter;
 

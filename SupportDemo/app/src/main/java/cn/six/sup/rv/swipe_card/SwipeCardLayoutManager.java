@@ -37,7 +37,7 @@ public class SwipeCardLayoutManager extends RecyclerView.LayoutManager {
             // 每个child的left和top都一样，直接设置为0就可以了，这样child就依次叠加在一起了
             this.layoutDecoratedWithMargins(child, 0, 0, width, height);
 
-            if(i < (childCount - 1)){
+            if (i < (childCount - 1)) {
                 child.setScaleX(1.2f);
                 child.setScaleY(1.2f);
             }

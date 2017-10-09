@@ -22,7 +22,7 @@ public class BaseComposedAdapter extends RecyclerView.Adapter<RvViewHolder> {
 
     public BaseComposedAdapter(List<BaseRow> items) {
         this.items = items;
-        for(BaseRow row : items){
+        for (BaseRow row : items) {
             typeRowMap.put(row.getViewType(), row); // 同id时，会覆盖前值
         }
     }
@@ -51,14 +51,14 @@ public class BaseComposedAdapter extends RecyclerView.Adapter<RvViewHolder> {
     }
 
 
-    public void replaceItem(int position, BaseRow newRow){
-        typeRowMap.remove( items.get(position).getViewType() );
+    public void replaceItem(int position, BaseRow newRow) {
+        typeRowMap.remove(items.get(position).getViewType());
         typeRowMap.put(newRow.getViewType(), newRow);
         items.remove(position);
         items.add(position, newRow);
     }
 
-    public void deleteItem(int positoin){
+    public void deleteItem(int positoin) {
         BaseRow row = items.get(positoin);
         typeRowMap.remove(row.getViewType());
         items.remove(row);

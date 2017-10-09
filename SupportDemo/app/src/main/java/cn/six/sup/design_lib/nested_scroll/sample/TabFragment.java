@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +21,14 @@ public class TabFragment extends Fragment {
     private RecyclerView recyclerView;
     // private TextView mTextView;
     private List<String> dataList = new ArrayList<String>();
+
+    public static TabFragment newInstance(String title) {
+        TabFragment tabFragment = new TabFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(TITLE, title);
+        tabFragment.setArguments(bundle);
+        return tabFragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,14 +57,6 @@ public class TabFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         return view;
 
-    }
-
-    public static TabFragment newInstance(String title) {
-        TabFragment tabFragment = new TabFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString(TITLE, title);
-        tabFragment.setArguments(bundle);
-        return tabFragment;
     }
 
 }

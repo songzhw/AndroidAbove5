@@ -1,7 +1,6 @@
 package cn.six.sup.other.notification;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -17,10 +16,13 @@ public class Notification_D extends Activity {
         setContentView(R.layout.activity_tv_btn);
 
         TextView tv = (TextView) findViewById(R.id.tv_simple);
-        tv.setText("Page DDD || "+getIntent().getStringExtra("key"));
+        tv.setText("Page DDD || " + getIntent().getStringExtra("key"));
     }
 
-    public void onClickSimpleButton(View v){}
-    public void onClickSimpleButton2(View v){}
+    public void onClickSimpleButton(View v) {
+    }
+
+    public void onClickSimpleButton2(View v) {
+    }
 
 }

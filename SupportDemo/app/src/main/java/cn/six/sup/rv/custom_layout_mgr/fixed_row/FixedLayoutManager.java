@@ -140,10 +140,9 @@ class FixedLayoutManager extends RecyclerView.LayoutManager {
             layoutDecorated(scrap, 0, 0, frame.right, frame.bottom);
         }
 
-        System.out.println("szw child count = "+getChildCount());
+        System.out.println("szw child count = " + getChildCount());
         // 正常进入是30;  稍一滑动是17; 头未出去, 下面一个又出来时是18.
         // 加上上面一段if(verticalOffset>0)后, 结果是: 进入时仍30, 但滑动时成了18, 19.
-
 
 
     }

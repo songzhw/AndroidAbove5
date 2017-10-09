@@ -19,13 +19,22 @@ import java.util.Map;
 
 public class MainActivity extends ListActivity {
 
+    private final static Comparator<Map<String, Object>> sDisplayNameComparator =
+            new Comparator<Map<String, Object>>() {
+                private final Collator collator = Collator.getInstance();
+
+                public int compare(Map<String, Object> map1, Map<String, Object> map2) {
+                    return collator.compare(map1.get("title"), map2.get("title"));
+                }
+            };
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setListAdapter(new SimpleAdapter(this, getData(),
-                android.R.layout.simple_list_item_1, new String[] { "title" },
-                new int[] { android.R.id.text1 }));
+                android.R.layout.simple_list_item_1, new String[]{"title"},
+                new int[]{android.R.id.text1}));
         getListView().setTextFilterEnabled(true);
     }
 
@@ -47,7 +56,7 @@ public class MainActivity extends ListActivity {
         for (int i = 0; i < len; i++) {
             ResolveInfo info = list.get(i);
             CharSequence labelSeq = info.loadLabel(pm);
-            String label = labelSeq != null ? labelSeq.toString()  : info.activityInfo.name;
+            String label = labelSeq != null ? labelSeq.toString() : info.activityInfo.name;
 
             addItem(myData, label, activityIntent(
                     info.activityInfo.applicationInfo.packageName,
@@ -59,22 +68,12 @@ public class MainActivity extends ListActivity {
         return myData;
     }
 
-
     protected void addItem(List<Map<String, Object>> data, String name, Intent intent) {
         Map<String, Object> temp = new HashMap<String, Object>();
         temp.put("title", name);
         temp.put("intent", intent);
         data.add(temp);
     }
-
-    private final static Comparator<Map<String, Object>> sDisplayNameComparator =
-            new Comparator<Map<String, Object>>() {
-                private final Collator   collator = Collator.getInstance();
-
-                public int compare(Map<String, Object> map1, Map<String, Object> map2) {
-                    return collator.compare(map1.get("title"), map2.get("title"));
-                }
-            };
 
     protected Intent activityIntent(String pkg, String componentName) {
         Intent result = new Intent();
@@ -86,7 +85,7 @@ public class MainActivity extends ListActivity {
     @Override
     @SuppressWarnings("unchecked")
     protected void onListItemClick(ListView l, View v, int position, long id) {
-        Map<String, Object> map = (Map<String, Object>)l.getItemAtPosition(position);
+        Map<String, Object> map = (Map<String, Object>) l.getItemAtPosition(position);
 
         Intent intent = (Intent) map.get("intent");
         startActivity(intent);

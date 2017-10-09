@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import cn.six.sup.R;
@@ -25,7 +24,7 @@ public class ChangeOneRvItemDemo extends Activity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.actv_single_rv);
 
-        RecyclerView rv = (RecyclerView)findViewById(R.id.rvSingle);
+        RecyclerView rv = (RecyclerView) findViewById(R.id.rvSingle);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
         final List<String> data = new ArrayList<>();

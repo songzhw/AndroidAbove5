@@ -18,7 +18,7 @@ public class ExRvDemo01 extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ex_rv_one);
 
-        RecyclerView rv = (RecyclerView)findViewById(R.id.rvEx01);
+        RecyclerView rv = (RecyclerView) findViewById(R.id.rvEx01);
         ExRvAdapter01 adapter = new ExRvAdapter01();
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setHasFixedSize(true);

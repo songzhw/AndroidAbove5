@@ -25,7 +25,7 @@ public class MockTask extends AsyncTask<Integer, Void, MockInfo> {
         listener.onResp(mockInfo);
     }
 
-    public interface IPost{
+    public interface IPost {
         void onResp(MockInfo info);
     }
 }

@@ -5,15 +5,21 @@ import android.os.Bundle;
 import android.support.animation.DynamicAnimation;
 import android.support.animation.SpringAnimation;
 import android.support.animation.SpringForce;
-import android.support.annotation.FloatRange;
 import android.support.annotation.Nullable;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewTreeObserver;
 
 import cn.six.sup.R;
 
 public class SpringActivity03 extends Activity {
+
+    float STIFFNESS = SpringForce.STIFFNESS_MEDIUM;//硬度
+    float DAMPING_RATIO = SpringForce.DAMPING_RATIO_HIGH_BOUNCY;//阻尼
+    SpringAnimation xAnimation;//x方向
+    SpringAnimation yAnimation;//y方向
+    View movingView;//图片
+    float dX = 0f;
+    float dY = 0f;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,18 +74,6 @@ public class SpringActivity03 extends Activity {
         animation.setSpring(spring);
         return animation;
     }
-
-
-    float STIFFNESS = SpringForce.STIFFNESS_MEDIUM;//硬度
-    float DAMPING_RATIO = SpringForce.DAMPING_RATIO_HIGH_BOUNCY;//阻尼
-
-    SpringAnimation xAnimation;//x方向
-    SpringAnimation yAnimation;//y方向
-
-    View movingView;//图片
-
-    float dX = 0f;
-    float dY = 0f;
 
 }
 

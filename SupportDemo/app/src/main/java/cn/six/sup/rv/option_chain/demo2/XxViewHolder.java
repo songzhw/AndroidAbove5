@@ -12,7 +12,7 @@ public class XxViewHolder extends RecyclerView.ViewHolder {
 
     public XxViewHolder(View itemView) {
         super(itemView);
-        rvInner = (RecyclerView)itemView.findViewById(R.id.rvItem);
+        rvInner = (RecyclerView) itemView.findViewById(R.id.rvItem);
     }
 
     @LayoutRes
