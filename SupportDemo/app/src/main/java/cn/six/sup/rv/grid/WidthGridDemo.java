@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.six.sup.R;
-import cn.six.sup.rv.grid.tries.WrappableGridLayoutManager;
 
 
 public class WidthGridDemo extends Activity {
@@ -24,7 +23,7 @@ public class WidthGridDemo extends Activity {
         setContentView(R.layout.activity_rv_demo_wrap);
 
         rv = (RecyclerView) findViewById(R.id.rvRefresh);
-        rv.setLayoutManager(new WrappableGridLayoutManager(this, 4));
+        rv.setLayoutManager(new GridLayoutManager(this, 4));
 //        rv.setHasFixedSize(false);
 
         List<IWidthType> data = new ArrayList<>();
