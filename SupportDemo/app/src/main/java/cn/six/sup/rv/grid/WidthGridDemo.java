@@ -19,7 +19,7 @@ public class WidthGridDemo extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rv_demo);
+        setContentView(R.layout.activity_rv_demo_wrap);
 
         rv = (RecyclerView) findViewById(R.id.rvRefresh);
         rv.setLayoutManager(new GridLayoutManager(this, 4));
@@ -29,7 +29,8 @@ public class WidthGridDemo extends Activity {
             data.add(new WidthNumber(""+ (100+i)));
             data.add(new WidthNumber(""+ (200+i)));
             data.add(new WidthNumber(""+ (300+i)));
-            data.add(new WidthAction());
+            data.add(new WidthNumber(""+ (400+i)));
+//            data.add(new WidthAction());
         }
 
         WidthGridAdapter adapter = new WidthGridAdapter();
