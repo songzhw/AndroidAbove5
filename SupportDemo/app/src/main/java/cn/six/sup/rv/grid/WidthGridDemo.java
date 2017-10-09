@@ -23,7 +23,8 @@ public class WidthGridDemo extends Activity {
         setContentView(R.layout.activity_rv_demo_wrap);
 
         rv = (RecyclerView) findViewById(R.id.rvRefresh);
-        rv.setLayoutManager(new GridLayoutManager(this, 4, LinearLayoutManager.HORIZONTAL, false));
+        rv.setLayoutManager(new GridLayoutManager(this, 4));
+//        rv.setHasFixedSize(false);
 
         List<IWidthType> data = new ArrayList<>();
         for(int i = 0; i < 20; i++) {
