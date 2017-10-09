@@ -22,21 +22,29 @@ public class WidthGridDemo extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rv_demo_wrap);
 
-        rv = (RecyclerView) findViewById(R.id.rvRefresh);
-        rv.setLayoutManager(new GridLayoutManager(this, 4));
-//        rv.setHasFixedSize(false);
-
-        List<IWidthType> data = new ArrayList<>();
+        final List<IWidthType> data = new ArrayList<>();
         for(int i = 0; i < 20; i++) {
             data.add(new WidthNumber(""+ (100+i)));
             data.add(new WidthNumber(""+ (200+i)));
             data.add(new WidthNumber(""+ (300+i)));
-//            data.add(new WidthNumber(""+ (400+i)));
             data.add(new WidthAction());
         }
 
+        rv = (RecyclerView) findViewById(R.id.rvRefresh);
+        GridLayoutManager layMgr = new GridLayoutManager(this, 14);
+        layMgr.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                IWidthType type = data.get(position);
+                return type.teyp() == IWidthType.TYPE_NUM ? 3 : 5;
+            }// num列是60dp, action列是100dp. 所以是3:5的比例
+        });
+
+
         WidthGridAdapter adapter = new WidthGridAdapter();
         adapter.data = data;
+
         rv.setAdapter(adapter);
+        rv.setLayoutManager(layMgr);
     }
 }
