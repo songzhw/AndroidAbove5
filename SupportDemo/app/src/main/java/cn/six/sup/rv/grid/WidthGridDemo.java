@@ -1,10 +1,13 @@
 package cn.six.sup.rv.grid;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.AttributeSet;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 import java.util.List;
