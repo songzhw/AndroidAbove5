@@ -29,6 +29,11 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
         if (getItemCount() <= 0) return;
         if (state.isPreLayout()) return;
 
+        recycleAndFill(recycler);
+
+    }
+
+    private void recycleAndFill(RecyclerView.Recycler recycler) {
         detachAndScrapAttachedViews(recycler);
 
         int offsetX = 0, offsetY = 0;
@@ -66,7 +71,6 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
             bottom = top + height;
             layoutDecorated(view, left, top, right, bottom);
         }
-
     }
 
     @Override
@@ -84,6 +88,7 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
         verticallyOffset += dx;
 
         // TODO bring it back after finished the reycleAndFill() method -- only recycle the first column
+        recycleAndFill(recycler);
 
         // fixed first coloumn behavior
         int offsetY = 0;
@@ -111,6 +116,8 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
     }
 
 
+
+
 // ================= 先disable掉, 方便我调试 =================
 //    @Override
 //    public boolean canScrollVertically() {
@@ -124,5 +131,4 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
 //        return dy;
 //    }
 }
-
 
