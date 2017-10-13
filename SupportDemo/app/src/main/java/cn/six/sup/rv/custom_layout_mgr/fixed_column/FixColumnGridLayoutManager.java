@@ -83,6 +83,7 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
 //            layoutDecorated(view, left, top, right, bottom);
             frame.set(left, top, right, bottom);
             typeCache.put(i, frame);
+            cache.put(type, typeCache);
         }
 
         recycleAndFill(recycler, state);
@@ -131,7 +132,27 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
             }
         }
 
-        // TODO sticky column logic here !!!
+
+        // fixed first coloumn behavior
+        int offsetY = 0;
+        if (horizontalOffset > 0) {
+            // TODO Add all items back
+            for (int i = 0; i < itemCount; i++) {
+                int posInReal = i + 1;
+                // 第一列
+                if (posInReal % columnSize == 1) {
+                    View view = recycler.getViewForPosition(i);
+                    measureChildWithMargins(view, 0, 0);
+                    addView(view);
+
+                    int width = getDecoratedMeasuredWidth(view);
+                    int height = getDecoratedMeasuredHeight(view);
+
+                    layoutDecorated(view, 0, offsetY, width, offsetY + height);
+                    offsetY += height;
+                }
+            }
+        }
 
     }
 
@@ -151,28 +172,6 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
 
         // TODO bring it back after finished the reycleAndFill() method -- only recycle the first column
         recycleAndFill(recycler, state);
-
-//        // fixed first coloumn behavior
-//        int offsetY = 0;
-//        if (horizontalOffset > 0) {
-//            int itemCount = getItemCount();
-//            // TODO Add all items back
-//            for (int i = 0; i < itemCount; i++) {
-//                int posInReal = i + 1;
-//                // 第一列
-//                if (posInReal % columnSize == 1) {
-//                    View view = recycler.getViewForPosition(i);
-//                    measureChildWithMargins(view, 0, 0);
-//                    addView(view);
-//
-//                    int width = getDecoratedMeasuredWidth(view);
-//                    int height = getDecoratedMeasuredHeight(view);
-//
-//                    layoutDecorated(view, 0, offsetY, width, offsetY + height);
-//                    offsetY += height;
-//                }
-//            }
-//        }
 
         return dx;
     }
@@ -199,6 +198,4 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
     //        return dy;
     //    }
 }
-
-
 
