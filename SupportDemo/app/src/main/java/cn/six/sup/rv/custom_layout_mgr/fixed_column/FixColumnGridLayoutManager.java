@@ -16,14 +16,17 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
     private int columnSize = 0;
     private int verticalOffset = 0, horizontalOffset = 0;
     private int totalHeight = 0, totalWidth = 0;
-    private HashMap<Integer, SparseArray<Rect>> cache = new HashMap<>();
+    private SparseArray<SparseArray<Rect>> cache = new SparseArray<>();
 
     private void diagnoseCache(){
-        System.out.println("szw : cache size = "+cache.size());
-        for(Map.Entry<Integer, SparseArray<Rect>> entry : cache.entrySet()){
-            System.out.println("szw :      [sub "+entry.getKey()+"] " + " : "+entry.getValue().size());
+        System.out.println("szw2: cache size = "+cache.size());
+        for(int i = 0; i < cache.size(); i++){
+            int key = cache.keyAt(i);
+            SparseArray<Rect> item = cache.get(key);
+            System.out.println("szw2 :      [sub "+key+"] " + " : "+item.size());
         }
     }
+
 
     public FixColumnGridLayoutManager(int columnSize) {
         this.columnSize = columnSize;
