@@ -41,10 +41,14 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
             @Override
             public void handleMessage(Message msg) {
                 // 不好直接调用 recycleAndFill(recycler, state), 因为没有这2个参数
+                if(msg.what == 11) {
+                    RecyclerView.Recycler recycler = (RecyclerView.Recycler) msg.obj;
+                }
             }
         };
     }
 
+    //又没有onDestory(), 虽说有onDetachWindow(), 但不是我心中所要. 所以不用HandlerThread方案
 
     @Override
     public RecyclerView.LayoutParams generateDefaultLayoutParams() {
@@ -110,13 +114,11 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
             cache.put(type, typeCache);
         }
 
-        recycleAndFill(recycler, state);
+        recycleAndFill(recycler);
 
     }
 
-    private void recycleAndFill(RecyclerView.Recycler recycler, RecyclerView.State state) {
-        if (state.isPreLayout()) return;
-
+    private void recycleAndFill(RecyclerView.Recycler recycler) {
         // 当前scroll offset状态下, 整个rv的显示区域
         Rect displayFrame = new Rect(horizontalOffset, 0, horizontalOffset + getHorizontalSpace(),
                 getVerticalSpace());
@@ -203,8 +205,9 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
         offsetChildrenHorizontal(-dx);
         horizontalOffset += dx;
 
-        recycleAndFill(recycler, state);
-
+        if (!state.isPreLayout()){
+            recycleAndFill(recycler);
+        }
         return dx;
     }
 
