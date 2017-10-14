@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.HashMap;
+import java.util.Map;
 
 // 问题1: 如何适用rv为wrap_content的情形 (目前还没解决)
 // 问题2: 如何循环得用多viewType的各View (解决: 可以用LayMgr中的 **int getItemViewType(View view)** 方法)
@@ -16,6 +17,13 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
     private int verticalOffset = 0, horizontalOffset = 0;
     private int totalHeight = 0, totalWidth = 0;
     private HashMap<Integer, SparseArray<Rect>> cache = new HashMap<>();
+
+    private void diagnoseCache(){
+        System.out.println("szw : cache size = "+cache.size());
+        for(Map.Entry<Integer, SparseArray<Rect>> entry : cache.entrySet()){
+            System.out.println("szw :      [sub "+entry.getKey()+"] " + " : "+entry.getValue().size());
+        }
+    }
 
     public FixColumnGridLayoutManager(int columnSize) {
         this.columnSize = columnSize;
@@ -131,10 +139,11 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
             }
         }
 
-/*
+
         // fixed first coloumn behavior
         int offsetY = 0;
         if (horizontalOffset > 0) {
+            // TODO Add all items back
             for (int i = 0; i < itemCount; i++) {
                 int posInReal = i + 1;
                 // 第一列
@@ -151,7 +160,10 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
                 }
             }
         }
-*/
+
+
+        diagnoseCache();
+
     }
 
     @Override
@@ -196,4 +208,3 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
     //        return dy;
     //    }
 }
-
