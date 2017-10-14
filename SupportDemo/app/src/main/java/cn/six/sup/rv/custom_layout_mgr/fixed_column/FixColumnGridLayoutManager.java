@@ -21,11 +21,11 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
 
     private void diagnoseCache() {
         System.out.println("szw2: cache size = " + cache.size());
-        for (int i = 0; i < cache.size(); i++) {
-            int key = cache.keyAt(i);
-            SparseArray<Rect> item = cache.get(key);
-            System.out.println("szw2 :      [sub " + key + "] " + " : " + item.size());
-        }
+//        for (int i = 0; i < cache.size(); i++) {
+//            int key = cache.keyAt(i);
+//            SparseArray<Rect> item = cache.get(key);
+//            System.out.println("szw2 :      [sub " + key + "] " + " : " + item.size());
+//        }
     }
 
 
@@ -53,7 +53,7 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
 
         int offsetX = 0, offsetY = 0;
         int itemCount = getItemCount();
-        System.out.println("szw item count = " + itemCount);
+        System.out.println("szw onLayoutChildren() item count = " + itemCount);
         for (int i = 0; i < itemCount; i++) {
             View view = recycler.getViewForPosition(i);
             measureChildWithMargins(view, 0, 0);
@@ -104,12 +104,12 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
     }
 
     private void recycleAndFill(final RecyclerView.Recycler recycler) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+//        System.out.println("szw recycleAndFill()");
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
                 // 当前scroll offset状态下, 整个rv的显示区域
-                Rect displayFrame = new Rect(horizontalOffset, 0, horizontalOffset + getHorizontalSpace(),
-                        getVerticalSpace());
+                Rect displayFrame = new Rect(horizontalOffset, 0, horizontalOffset + getHorizontalSpace(), getVerticalSpace());
 
                 // 将滑出屏幕的Items回收到Recycle缓存中
                 Rect childFrame = new Rect();
@@ -121,12 +121,13 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
                     childFrame.bottom = getDecoratedBottom(child);
                     // 如果Item没有在显示区域，就说明需要回收
                     if (!Rect.intersects(displayFrame, childFrame)) {
-                        child.post(new Runnable() {
-                            @Override
-                            public void run() {
+                        // TODO 1. this post(runnable) cause the onLayoutChildren() get called infinitely
+//                        child.post(new Runnable() {
+//                            @Override
+//                            public void run() {
                                 removeAndRecycleView(child, recycler); // LayoutManager的方法. 会导致getChildCount()变得更少
-                            }
-                        });
+//                            }
+//                        });
                     }
                 }
 
@@ -139,11 +140,12 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
 
                     if (Rect.intersects(displayFrame, viewFrame)) {
                         final View scrap = recycler.getViewForPosition(i);
-                        measureChildWithMargins(scrap, 0, 0);
 
-                        scrap.post(new Runnable() {
-                            @Override
-                            public void run() {
+                        // TODO 2. this post(runnable) cause a total white screen
+//                        scrap.post(new Runnable() {
+//                            @Override
+//                            public void run() {
+                                measureChildWithMargins(scrap, 0, 0);
                                 addView(scrap);
 
                                 //将这个item布局出来
@@ -152,8 +154,8 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
                                         viewFrame.top,
                                         viewFrame.right - horizontalOffset,
                                         viewFrame.bottom);
-                            }
-                        });
+//                            }
+//                        });
 
                     }
                 }
@@ -181,8 +183,8 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
 */
 
                 diagnoseCache();
-            }
-        }).run();
+//            }
+//        }).run();
 
     }
 
