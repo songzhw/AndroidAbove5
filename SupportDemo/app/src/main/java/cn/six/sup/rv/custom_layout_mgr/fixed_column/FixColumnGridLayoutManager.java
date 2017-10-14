@@ -19,10 +19,6 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
     private int totalHeight = 0, totalWidth = 0;
     private SparseArray<SparseArray<Rect>> cache = new SparseArray<>();
 
-    private HandlerThread thread;
-    private Handler handler;
-
-
     private void diagnoseCache() {
         System.out.println("szw2: cache size = " + cache.size());
         for (int i = 0; i < cache.size(); i++) {
@@ -35,20 +31,9 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
 
     public FixColumnGridLayoutManager(int columnSize) {
         this.columnSize = columnSize;
-        thread = new HandlerThread("progress");
-
-        handler = new Handler(thread.getLooper()) {
-            @Override
-            public void handleMessage(Message msg) {
-                // 不好直接调用 recycleAndFill(recycler, state), 因为没有这2个参数
-                if(msg.what == 11) {
-                    RecyclerView.Recycler recycler = (RecyclerView.Recycler) msg.obj;
-                }
-            }
-        };
     }
 
-    //又没有onDestory(), 虽说有onDetachWindow(), 但不是我心中所要. 所以不用HandlerThread方案
+    // 又没有onDestory(), 虽说有onDetachWindow(), 但不是我心中所要. 所以不用HandlerThread方案
 
     @Override
     public RecyclerView.LayoutParams generateDefaultLayoutParams() {
@@ -118,52 +103,60 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
 
     }
 
-    private void recycleAndFill(RecyclerView.Recycler recycler) {
-        // 当前scroll offset状态下, 整个rv的显示区域
-        Rect displayFrame = new Rect(horizontalOffset, 0, horizontalOffset + getHorizontalSpace(),
-                getVerticalSpace());
+    private void recycleAndFill(final RecyclerView.Recycler recycler) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // 当前scroll offset状态下, 整个rv的显示区域
+                Rect displayFrame = new Rect(horizontalOffset, 0, horizontalOffset + getHorizontalSpace(),
+                        getVerticalSpace());
 
-        // 将滑出屏幕的Items回收到Recycle缓存中
-        Rect childFrame = new Rect();
-        for (int i = 0; i < getChildCount(); i++) {
-            View child = getChildAt(i);
-            childFrame.left = getDecoratedLeft(child);
-            childFrame.top = getDecoratedTop(child);
-            childFrame.right = getDecoratedRight(child);
-            childFrame.bottom = getDecoratedBottom(child);
-            // 如果Item没有在显示区域，就说明需要回收
-            if (!Rect.intersects(displayFrame, childFrame)) {
-                this.removeAndRecycleView(child, recycler); // LayoutManager的方法. 会导致getChildCount()变得更少
-            }
-        }
-
-        // 从缓存中拿出来复用
-        int itemCount = getItemCount(); //itemCount == adapter.getItemCount()
-        for (int i = 0; i < itemCount; i++) {
-            View view = recycler.getViewForPosition(i);
-            int type = getItemViewType(view);
-            final Rect viewFrame = cache.get(type).get(i);
-
-            if (Rect.intersects(displayFrame, viewFrame)) {
-                final View scrap = recycler.getViewForPosition(i);
-                measureChildWithMargins(scrap, 0, 0);
-
-                scrap.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        addView(scrap);
-
-                        //将这个item布局出来
-                        layoutDecorated(scrap,
-                                viewFrame.left - horizontalOffset,
-                                viewFrame.top,
-                                viewFrame.right - horizontalOffset,
-                                viewFrame.bottom);
+                // 将滑出屏幕的Items回收到Recycle缓存中
+                Rect childFrame = new Rect();
+                for (int i = 0; i < getChildCount(); i++) {
+                    final View child = getChildAt(i);
+                    childFrame.left = getDecoratedLeft(child);
+                    childFrame.top = getDecoratedTop(child);
+                    childFrame.right = getDecoratedRight(child);
+                    childFrame.bottom = getDecoratedBottom(child);
+                    // 如果Item没有在显示区域，就说明需要回收
+                    if (!Rect.intersects(displayFrame, childFrame)) {
+                        child.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                removeAndRecycleView(child, recycler); // LayoutManager的方法. 会导致getChildCount()变得更少
+                            }
+                        });
                     }
-                });
+                }
 
-            }
-        }
+                // 从缓存中拿出来复用
+                int itemCount = getItemCount(); //itemCount == adapter.getItemCount()
+                for (int i = 0; i < itemCount; i++) {
+                    View view = recycler.getViewForPosition(i);
+                    int type = getItemViewType(view);
+                    final Rect viewFrame = cache.get(type).get(i);
+
+                    if (Rect.intersects(displayFrame, viewFrame)) {
+                        final View scrap = recycler.getViewForPosition(i);
+                        measureChildWithMargins(scrap, 0, 0);
+
+                        scrap.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                addView(scrap);
+
+                                //将这个item布局出来
+                                layoutDecorated(scrap,
+                                        viewFrame.left - horizontalOffset,
+                                        viewFrame.top,
+                                        viewFrame.right - horizontalOffset,
+                                        viewFrame.bottom);
+                            }
+                        });
+
+                    }
+                }
 
 /*
         // fixed first coloumn behavior
@@ -187,7 +180,9 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
         }
 */
 
-        diagnoseCache();
+                diagnoseCache();
+            }
+        }).run();
 
     }
 
