@@ -104,10 +104,10 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
     }
 
     private void recycleAndFill(final RecyclerView.Recycler recycler) {
-//        System.out.println("szw recycleAndFill()");
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
+        System.out.println("szw recycleAndFill()");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
                 // 当前scroll offset状态下, 整个rv的显示区域
                 Rect displayFrame = new Rect(horizontalOffset, 0, horizontalOffset + getHorizontalSpace(), getVerticalSpace());
 
@@ -183,8 +183,8 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
 */
 
                 diagnoseCache();
-//            }
-//        }).run();
+            }
+        }).run();
 
     }
 
