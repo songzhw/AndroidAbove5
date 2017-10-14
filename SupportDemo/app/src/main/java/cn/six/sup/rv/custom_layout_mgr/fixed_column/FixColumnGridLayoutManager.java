@@ -1,13 +1,14 @@
 package cn.six.sup.rv.custom_layout_mgr.fixed_column;
 
 import android.graphics.Rect;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Message;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.HashMap;
-import java.util.Map;
 
 // 问题1: 如何适用rv为wrap_content的情形 (目前还没解决)
 // 问题2: 如何循环得用多viewType的各View (解决: 可以用LayMgr中的 **int getItemViewType(View view)** 方法)
@@ -18,19 +19,32 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
     private int totalHeight = 0, totalWidth = 0;
     private SparseArray<SparseArray<Rect>> cache = new SparseArray<>();
 
-    private void diagnoseCache(){
-        System.out.println("szw2: cache size = "+cache.size());
-        for(int i = 0; i < cache.size(); i++){
+    private HandlerThread thread;
+    private Handler handler;
+
+
+    private void diagnoseCache() {
+        System.out.println("szw2: cache size = " + cache.size());
+        for (int i = 0; i < cache.size(); i++) {
             int key = cache.keyAt(i);
             SparseArray<Rect> item = cache.get(key);
-            System.out.println("szw2 :      [sub "+key+"] " + " : "+item.size());
+            System.out.println("szw2 :      [sub " + key + "] " + " : " + item.size());
         }
     }
 
 
     public FixColumnGridLayoutManager(int columnSize) {
         this.columnSize = columnSize;
+        thread = new HandlerThread("progress");
+
+        handler = new Handler(thread.getLooper()) {
+            @Override
+            public void handleMessage(Message msg) {
+                // 不好直接调用 recycleAndFill(recycler, state), 因为没有这2个参数
+            }
+        };
     }
+
 
     @Override
     public RecyclerView.LayoutParams generateDefaultLayoutParams() {
@@ -101,7 +115,7 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
     }
 
     private void recycleAndFill(RecyclerView.Recycler recycler, RecyclerView.State state) {
-        if(state.isPreLayout()) return;
+        if (state.isPreLayout()) return;
 
         // 当前scroll offset状态下, 整个rv的显示区域
         Rect displayFrame = new Rect(horizontalOffset, 0, horizontalOffset + getHorizontalSpace(),
@@ -126,27 +140,33 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
         for (int i = 0; i < itemCount; i++) {
             View view = recycler.getViewForPosition(i);
             int type = getItemViewType(view);
-            Rect viewFrame = cache.get(type).get(i);
+            final Rect viewFrame = cache.get(type).get(i);
 
             if (Rect.intersects(displayFrame, viewFrame)) {
-                View scrap = recycler.getViewForPosition(i);
+                final View scrap = recycler.getViewForPosition(i);
                 measureChildWithMargins(scrap, 0, 0);
-                addView(scrap);
 
-                //将这个item布局出来
-                layoutDecorated(scrap,
-                        viewFrame.left - horizontalOffset,
-                        viewFrame.top ,
-                        viewFrame.right - horizontalOffset,
-                        viewFrame.bottom );
+                scrap.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        addView(scrap);
+
+                        //将这个item布局出来
+                        layoutDecorated(scrap,
+                                viewFrame.left - horizontalOffset,
+                                viewFrame.top,
+                                viewFrame.right - horizontalOffset,
+                                viewFrame.bottom);
+                    }
+                });
+
             }
         }
 
-
+/*
         // fixed first coloumn behavior
         int offsetY = 0;
         if (horizontalOffset > 0) {
-            // TODO Add all items back
             for (int i = 0; i < itemCount; i++) {
                 int posInReal = i + 1;
                 // 第一列
@@ -163,7 +183,7 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
                 }
             }
         }
-
+*/
 
         diagnoseCache();
 
@@ -183,7 +203,6 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
         offsetChildrenHorizontal(-dx);
         horizontalOffset += dx;
 
-        // TODO bring it back after finished the reycleAndFill() method -- only recycle the first column
         recycleAndFill(recycler, state);
 
         return dx;
