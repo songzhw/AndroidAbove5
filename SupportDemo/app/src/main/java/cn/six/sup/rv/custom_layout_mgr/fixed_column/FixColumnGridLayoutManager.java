@@ -77,7 +77,6 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
                 offsetX += width;
             }
 
-            System.out.println("szw ox = " + offsetX + " ; oy = " + offsetY);
             right = left + width;
             bottom = top + height;
 //            layoutDecorated(view, left, top, right, bottom);
@@ -132,11 +131,10 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
             }
         }
 
-
+/*
         // fixed first coloumn behavior
         int offsetY = 0;
         if (horizontalOffset > 0) {
-            // TODO Add all items back
             for (int i = 0; i < itemCount; i++) {
                 int posInReal = i + 1;
                 // 第一列
@@ -153,7 +151,7 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
                 }
             }
         }
-
+*/
     }
 
     @Override
