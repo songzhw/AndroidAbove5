@@ -104,10 +104,10 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
     }
 
     private void recycleAndFill(final RecyclerView.Recycler recycler) {
-        System.out.println("szw recycleAndFill()");
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+//        System.out.println("szw recycleAndFill()");
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
                 // 当前scroll offset状态下, 整个rv的显示区域
                 Rect displayFrame = new Rect(horizontalOffset, 0, horizontalOffset + getHorizontalSpace(), getVerticalSpace());
 
@@ -183,8 +183,8 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
 */
 
                 diagnoseCache();
-            }
-        }).run();
+//            }
+//        }).run();
 
     }
 
@@ -195,16 +195,23 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
 
 
     @Override
-    public int scrollHorizontallyBy(int dx, RecyclerView.Recycler recycler, RecyclerView.State state) {
-        // 先要detach所有attached的view. 因为滑动就有变化, 就有新的项入回收池, 也要从回收池拿出数据来填充
-        detachAndScrapAttachedViews(recycler);
+    public int scrollHorizontallyBy(final int dx, final RecyclerView.Recycler recycler, final RecyclerView.State state) {
 
-        offsetChildrenHorizontal(-dx);
-        horizontalOffset += dx;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // 先要detach所有attached的view. 因为滑动就有变化, 就有新的项入回收池, 也要从回收池拿出数据来填充
+                detachAndScrapAttachedViews(recycler);
 
-        if (!state.isPreLayout()){
-            recycleAndFill(recycler);
-        }
+                offsetChildrenHorizontal(-dx);
+                horizontalOffset += dx;
+
+                if (!state.isPreLayout()){
+                    recycleAndFill(recycler);
+                }
+            }
+        }).run();
+
         return dx;
     }
 

@@ -22,14 +22,14 @@ public class FixColumnGridDemo extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rv_demo);
 
-        int size = 4;
+        int size = 20;
 
         RecyclerView rv = (RecyclerView) findViewById(R.id.rvRefresh);
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new FixColumnGridLayoutManager(size + 2));
 
         List<IFixedGridType> data = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 30; i++) {
             Name name = new Name();
             name.name = "Item " + i;
             name.subName = "description " + i;
