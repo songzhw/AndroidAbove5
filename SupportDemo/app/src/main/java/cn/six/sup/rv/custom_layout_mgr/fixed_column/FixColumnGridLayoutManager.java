@@ -1,9 +1,6 @@
 package cn.six.sup.rv.custom_layout_mgr.fixed_column;
 
 import android.graphics.Rect;
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.Message;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
@@ -20,7 +17,7 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
     private SparseArray<SparseArray<Rect>> cache = new SparseArray<>();
 
     private void diagnoseCache() {
-        System.out.println("szw2: cache size = " + cache.size());
+//        System.out.println("szw2: cache size = " + cache.size());
 //        for (int i = 0; i < cache.size(); i++) {
 //            int key = cache.keyAt(i);
 //            SparseArray<Rect> item = cache.get(key);
@@ -53,7 +50,7 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
 
         int offsetX = 0, offsetY = 0;
         int itemCount = getItemCount();
-        System.out.println("szw onLayoutChildren() item count = " + itemCount);
+//        System.out.println("szw onLayoutChildren() item count = " + itemCount);
         for (int i = 0; i < itemCount; i++) {
             View view = recycler.getViewForPosition(i);
             measureChildWithMargins(view, 0, 0);
@@ -196,10 +193,9 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
 
     @Override
     public int scrollHorizontallyBy(final int dx, final RecyclerView.Recycler recycler, final RecyclerView.State state) {
-//
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
                 // 先要detach所有attached的view. 因为滑动就有变化, 就有新的项入回收池, 也要从回收池拿出数据来填充
                 detachAndScrapAttachedViews(recycler);
 
@@ -209,8 +205,8 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
                 if (!state.isPreLayout()){
                     recycleAndFill(recycler);
                 }
-            }
-        }).start();
+//            }
+//        }).start();
 
         return dx;
     }
