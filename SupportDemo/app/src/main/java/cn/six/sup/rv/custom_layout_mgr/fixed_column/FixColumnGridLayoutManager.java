@@ -184,7 +184,7 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
 
                 diagnoseCache();
 //            }
-//        }).run();
+//        }).start();
 
     }
 
@@ -196,7 +196,7 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
 
     @Override
     public int scrollHorizontallyBy(final int dx, final RecyclerView.Recycler recycler, final RecyclerView.State state) {
-
+//
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -210,7 +210,7 @@ public class FixColumnGridLayoutManager extends RecyclerView.LayoutManager {
                     recycleAndFill(recycler);
                 }
             }
-        }).run();
+        }).start();
 
         return dx;
     }
