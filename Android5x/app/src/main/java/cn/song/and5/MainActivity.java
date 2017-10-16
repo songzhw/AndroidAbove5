@@ -13,6 +13,7 @@ import cn.song.and5.anim.actv.ExplodeActivit01y;
 import cn.song.and5.anim.musicplayer.ListPage;
 import cn.song.and5.anim.transition.AnimFirstActivity;
 import cn.song.and5.anim.ViewCircularRevealActivity;
+import cn.song.and5.appusage.AppUsageDemo;
 import cn.song.and5.snackbar.SnackBarTestActivity;
 
 public class MainActivity extends Activity {
@@ -76,5 +77,9 @@ public class MainActivity extends Activity {
         startActivity(it);
     }
 
+    public void onClickAppUsage(View view) {
+        Intent it = new Intent(this, AppUsageDemo.class);
+        startActivity(it);
+    }
 }
 

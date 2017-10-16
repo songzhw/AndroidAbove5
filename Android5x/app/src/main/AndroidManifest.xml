@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.song.and5" >
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"/>
 
     <application
         android:allowBackup="true"
@@ -16,12 +17,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".rv.waterfall.RvWaterFallActivity"/>
         <activity android:name=".anim.ViewCircularRevealActivity"/>
         <activity android:name=".anim.transition.AnimFirstActivity"/>
         <activity android:name=".anim.transition.AnimSecondActivity"/>
-        <activity android:name=".rv.simple.RvSimpleTestActivity"/>
-        <activity android:name=".rv.cards.RvCardsActivity"/>
         <activity android:name=".snackbar.SnackBarTestActivity"
                   android:theme="@style/six.snackBarTheme"/>
         <activity android:name=".anim.actv.ExplodeActivit01y"/>
@@ -29,6 +27,7 @@
 
         <activity android:name=".anim.musicplayer.ListPage"/>
         <activity android:name=".anim.musicplayer.DetailPage"/>
+        <activity android:name=".appusage.AppUsageDemo"/>
 
 
 
