@@ -1,8 +1,12 @@
 package cn.six.sup.rv.stickyColumnTable.touch;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,9 +22,10 @@ import cn.six.sup.rv.composition.BaseRow;
 import cn.six.sup.rv.composition.ClothRow;
 import cn.six.sup.rv.composition.demo.TwoTextRow;
 
-public class DisorderTouchDemo extends AppCompatActivity {
+public class DisorderTouchDemo extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     private RecyclerView rv;
+    private SwipeRefreshLayout srlay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +42,9 @@ public class DisorderTouchDemo extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        srlay = (SwipeRefreshLayout) findViewById(R.id.srlayRefresh);
+        srlay.setOnRefreshListener(this);
 
         rv = (RecyclerView) findViewById(R.id.rvRefresh);
         rv.setHasFixedSize(true);
@@ -57,4 +65,19 @@ public class DisorderTouchDemo extends AppCompatActivity {
         BaseComposedAdapter adapter = new BaseComposedAdapter(rows);
         rv.setAdapter(adapter);
     }
+
+    @Override
+    public void onRefresh() {
+        handler.sendEmptyMessageDelayed(11, 2000);
+    }
+
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            if(msg.what == 11){
+                srlay.setRefreshing(false); // stop the refreshing
+            }
+        }
+    };
 }
