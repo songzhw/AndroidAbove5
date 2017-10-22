@@ -51,6 +51,7 @@ public class DisorderTouchDemo extends AppCompatActivity implements SwipeRefresh
         rv.setLayoutManager(new LinearLayoutManager(this));
 
         List<BaseRow> rows = new ArrayList<>();
+        rows.add(new StickyCoulmnTableRow());
         rows.add(new TwoTextRow("sing1","song1"));
         rows.add(new TwoTextRow("sing2","song2"));
         rows.add(new TwoTextRow("sing3","song3"));
