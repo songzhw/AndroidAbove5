@@ -7,7 +7,6 @@
     <string name="unknown_toast_text">Unknown Action Clicked with URL: %s</string>
 
 
-
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
@@ -98,5 +97,7 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_disorder_touch_demo">DisorderTouchDemo</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
