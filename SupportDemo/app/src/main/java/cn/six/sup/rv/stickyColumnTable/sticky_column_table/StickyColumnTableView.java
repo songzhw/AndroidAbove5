@@ -28,6 +28,8 @@ public class StickyColumnTableView<T> extends LinearLayout {
     private CoordinateRvScrollListener rvLeftScrollListener, rvRightScrollListener;
     private IStickyColumnTableInflater<T> binder;
 
+    public boolean isSupportingVerticalScroll = true;
+
 
     public StickyColumnTableView(Context context) {
         super(context);
@@ -67,7 +69,7 @@ public class StickyColumnTableView<T> extends LinearLayout {
         rvRight.addOnItemTouchListener(new OnRvItemClickListener(rvRight) {
             @Override
             public void onItemClick(RecyclerView.ViewHolder vh) {
-                System.out.println("szw rvRight click "+vh.getLayoutPosition());
+                System.out.println("szw rvRight click " + vh.getLayoutPosition());
             }
         });
     }
@@ -98,6 +100,10 @@ public class StickyColumnTableView<T> extends LinearLayout {
                 binder.bindRight(vh, value, position);
             }
         });
+
+        if (!isSupportingVerticalScroll) {
+            return;
+        }
 
         rvLeftScrollListener = new CoordinateRvScrollListener(rvRight);
         rvLeft.addOnItemTouchListener(new CoordinateRvItemTouchListener(rvRight, rvLeftScrollListener));
