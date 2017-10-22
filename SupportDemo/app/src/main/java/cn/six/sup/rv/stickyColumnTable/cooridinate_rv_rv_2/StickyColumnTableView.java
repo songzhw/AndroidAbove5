@@ -26,7 +26,7 @@ public class StickyColumnTableView<T> extends LinearLayout {
     private RecyclerView rvLeft, rvRight;
     private CoordinateRvScrollListener rvLeftScrollListener, rvRightScrollListener;
     private IStickyColumnTableInflater<T> binder;
-
+    public boolean isSupportingVerticalScroll = true;
 
     public StickyColumnTableView(Context context) {
         super(context);
@@ -100,6 +100,11 @@ public class StickyColumnTableView<T> extends LinearLayout {
                 binder.bindRight(vh, value, position);
             }
         });
+
+        // if this view is in a rv, then you may have vertical scrolling issue. You should let this boolean be false.
+        if(!isSupportingVerticalScroll) {
+            return;
+        }
 
         rvLeftScrollListener = new CoordinateRvScrollListener(rvRight);
         rvLeft.addOnItemTouchListener(new CoordinateRvItemTouchListener(rvRight, rvLeftScrollListener));

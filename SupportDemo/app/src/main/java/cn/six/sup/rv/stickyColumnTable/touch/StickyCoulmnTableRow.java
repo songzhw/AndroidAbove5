@@ -42,6 +42,7 @@ public class StickyCoulmnTableRow extends BaseRow implements IStickyColumnTableI
         StickyColumnTableAdapter<String> adapter = new StickyColumnTableAdapter<>(dataLeft, dataRight);
         tableView.setAdapter(adapter);
         tableView.setBinder(this);
+        tableView.isSupportingVerticalScroll = false;
         tableView.refresh();
     }
 
