@@ -28,8 +28,6 @@ public class StickyColumnTableView<T> extends LinearLayout {
     private CoordinateRvScrollListener rvLeftScrollListener, rvRightScrollListener;
     private IStickyColumnTableInflater<T> binder;
 
-    public boolean isSupportingVerticalScroll = true;
-
 
     public StickyColumnTableView(Context context) {
         super(context);
@@ -82,7 +80,7 @@ public class StickyColumnTableView<T> extends LinearLayout {
         this.binder = binder;
     }
 
-    public void refresh() {
+    public void refresh(boolean isSupportVerticalScroll) {
         if (adapter == null) {
             return;
         }
@@ -101,9 +99,8 @@ public class StickyColumnTableView<T> extends LinearLayout {
             }
         });
 
-        if (!isSupportingVerticalScroll) {
-            return;
-        }
+        rvLeft.setEnabled(isSupportVerticalScroll);
+        rvRight.setEnabled(isSupportVerticalScroll);
 
         rvLeftScrollListener = new CoordinateRvScrollListener(rvRight);
         rvLeft.addOnItemTouchListener(new CoordinateRvItemTouchListener(rvRight, rvLeftScrollListener));
@@ -111,6 +108,10 @@ public class StickyColumnTableView<T> extends LinearLayout {
         rvRightScrollListener = new CoordinateRvScrollListener(rvLeft);
         rvRight.addOnItemTouchListener(new CoordinateRvItemTouchListener(rvLeft, rvRightScrollListener));
 
+    }
+
+    public void refresh(){
+        refresh(true);
     }
 
 }
