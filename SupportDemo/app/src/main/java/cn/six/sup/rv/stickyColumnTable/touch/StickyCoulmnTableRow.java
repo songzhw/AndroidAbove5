@@ -6,9 +6,9 @@ import java.util.List;
 import cn.six.sup.R;
 import cn.six.sup.rv.RvViewHolder;
 import cn.six.sup.rv.composition.BaseRow;
-import cn.six.sup.rv.stickyColumnTable.cooridinate_rv_rv_2.IStickyColumnTableInflater;
-import cn.six.sup.rv.stickyColumnTable.cooridinate_rv_rv_2.StickyColumnTableAdapter;
-import cn.six.sup.rv.stickyColumnTable.cooridinate_rv_rv_2.StickyColumnTableView;
+import cn.six.sup.rv.stickyColumnTable.sticky_column_table.IStickyColumnTableInflater;
+import cn.six.sup.rv.stickyColumnTable.sticky_column_table.StickyColumnTableAdapter;
+import cn.six.sup.rv.stickyColumnTable.sticky_column_table.StickyColumnTableView;
 
 
 public class StickyCoulmnTableRow extends BaseRow implements IStickyColumnTableInflater<String> {
@@ -42,8 +42,7 @@ public class StickyCoulmnTableRow extends BaseRow implements IStickyColumnTableI
         StickyColumnTableAdapter<String> adapter = new StickyColumnTableAdapter<>(dataLeft, dataRight);
         tableView.setAdapter(adapter);
         tableView.setBinder(this);
-        tableView.isSupportingVerticalScroll = false;
-        tableView.refresh();
+        tableView.refresh(false);
     }
 
     @Override
