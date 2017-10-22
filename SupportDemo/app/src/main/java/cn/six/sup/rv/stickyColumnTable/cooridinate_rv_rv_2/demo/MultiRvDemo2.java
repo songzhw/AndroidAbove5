@@ -37,6 +37,7 @@ public class MultiRvDemo2 extends Activity implements IStickyColumnTableInflater
         StickyColumnTableView<String> tableView = (StickyColumnTableView<String>) findViewById(R.id.sctv_demo2);
         tableView.setAdapter(adapter);
         tableView.setBinder(this);
+        tableView.isSupportingVerticalScroll = false;
         tableView.refresh();
     }
 
