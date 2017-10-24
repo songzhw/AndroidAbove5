@@ -80,7 +80,7 @@ public class StickyColumnTableView<T> extends LinearLayout {
         this.binder = binder;
     }
 
-    public void refresh(boolean isSupportVerticalScroll) {
+    public void refresh(boolean isNestedScrollingEnabled) {
         if (adapter == null) {
             return;
         }
@@ -99,8 +99,9 @@ public class StickyColumnTableView<T> extends LinearLayout {
             }
         });
 
-        rvLeft.setEnabled(isSupportVerticalScroll);
-        rvRight.setEnabled(isSupportVerticalScroll);
+        // add these two line to fix the touch issue when in "rv in rv" situation
+        rvLeft.setNestedScrollingEnabled(isNestedScrollingEnabled);
+        rvRight.setNestedScrollingEnabled(isNestedScrollingEnabled);
 
         rvLeftScrollListener = new CoordinateRvScrollListener(rvRight);
         rvLeft.addOnItemTouchListener(new CoordinateRvItemTouchListener(rvRight, rvLeftScrollListener));
