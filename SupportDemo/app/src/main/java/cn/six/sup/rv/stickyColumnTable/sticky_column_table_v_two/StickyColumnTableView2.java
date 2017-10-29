@@ -49,7 +49,6 @@ public class StickyColumnTableView2<T> extends FrameLayout {
         rvLeft.setLayoutManager(new LinearLayoutManager(ctx));
         rvRight.setLayoutManager(new GridLayoutManager(ctx, width));
 
-        // add these two line to fix the touch issue when in "rv in rv" situation
         rvLeft.setNestedScrollingEnabled(false);
         rvRight.setNestedScrollingEnabled(false);
 
