@@ -6,12 +6,12 @@ import java.util.List;
 import cn.six.sup.R;
 import cn.six.sup.rv.RvViewHolder;
 import cn.six.sup.rv.composition.BaseRow;
-import cn.six.sup.rv.stickyColumnTable.sticky_column_table.IStickyColumnTableInflater;
-import cn.six.sup.rv.stickyColumnTable.sticky_column_table.StickyColumnTableAdapter;
-import cn.six.sup.rv.stickyColumnTable.sticky_column_table.StickyColumnTableView;
+import cn.six.sup.rv.stickyColumnTable.sticky_column_table_v_two.IStickyColumnTableInflater2;
+import cn.six.sup.rv.stickyColumnTable.sticky_column_table_v_two.StickyColumnTableAdapter2;
+import cn.six.sup.rv.stickyColumnTable.sticky_column_table_v_two.StickyColumnTableView2;
 
 
-public class StickyCoulmnTableRow extends BaseRow implements IStickyColumnTableInflater<String> {
+public class StickyCoulmnTableRow extends BaseRow implements IStickyColumnTableInflater2<String> {
     public static final int HEIGHT = 15;
     public static final int WIDTH = 7;
 
@@ -27,7 +27,7 @@ public class StickyCoulmnTableRow extends BaseRow implements IStickyColumnTableI
 
     @Override
     protected void bind(RvViewHolder holder) {
-        StickyColumnTableView<String> tableView = holder.getView(R.id.sctv_demo3);
+        StickyColumnTableView2<String> tableView = holder.getView(R.id.sctv_demo3);
         List<String> dataLeft = new ArrayList<>();
         for (int i = 1; i <= HEIGHT; i++) {
             dataLeft.add("" + i);
@@ -39,7 +39,7 @@ public class StickyCoulmnTableRow extends BaseRow implements IStickyColumnTableI
             dataRight.add("" + i);
         }
 
-        StickyColumnTableAdapter<String> adapter = new StickyColumnTableAdapter<>(dataLeft, dataRight);
+        StickyColumnTableAdapter2<String> adapter = new StickyColumnTableAdapter2<>(dataLeft, dataRight);
         tableView.setAdapter(adapter);
         tableView.setBinder(this);
         tableView.refresh(false);
