@@ -16,14 +16,14 @@ import cn.six.sup.rv.RvViewHolder;
 import cn.six.sup.rv.one_adapter.OneAdapter;
 
 
-public class RvCheckBoxDemo extends Activity implements View.OnClickListener {
+public class RvCheckBoxDemo2 extends Activity implements View.OnClickListener {
     private OneAdapter<String> adapter;
     public static boolean isShowCheckBox = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.actv_single_rv);
+        setContentView(R.layout.actv_rv_cb_focus);
 
         RecyclerView rv = (RecyclerView) findViewById(R.id.rvSingle);
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -36,7 +36,7 @@ public class RvCheckBoxDemo extends Activity implements View.OnClickListener {
         adapter = new OneAdapter<String>(R.layout.item_checkbox_tv, data) {
             @Override
             protected void apply(RvViewHolder vh, String s, int position) {
-                if(isShowCheckBox){
+                if (isShowCheckBox) {
                     vh.setVisibility(R.id.cb_cb_tv, View.VISIBLE);
                 } else {
                     vh.setVisibility(R.id.cb_cb_tv, View.GONE);
@@ -51,14 +51,16 @@ public class RvCheckBoxDemo extends Activity implements View.OnClickListener {
         rv.addOnItemTouchListener(new OnRvItemClickListener(rv) {
             @Override
             public void onItemClick(RecyclerView.ViewHolder vh) {
-                System.out.println("szw click + "+vh.getAdapterPosition());
+                System.out.println("szw click + " + vh.getAdapterPosition());
             }
         });
+
+        rv.setNestedScrollingEnabled(false);
     }
 
     @Override
     public void onClick(View v) {
-        isShowCheckBox = true;
+        isShowCheckBox = !isShowCheckBox;
         adapter.notifyDataSetChanged();
     }
 }

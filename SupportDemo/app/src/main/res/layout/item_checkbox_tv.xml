@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="120dp"
     android:orientation="horizontal"
-    android:descendantFocusability="blocksDescendants">
+    android:descendantFocusability="blocksDescendants"
+    >
 
     <CheckBox
         android:id="@+id/cb_cb_tv"
