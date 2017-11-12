@@ -12,7 +12,6 @@ public class LifeWatcherDemo01 extends LifeAppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        System.out.println("szw onCreate 01");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tv_btn);
 
