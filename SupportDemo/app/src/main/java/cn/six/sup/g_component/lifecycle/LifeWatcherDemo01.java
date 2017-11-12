@@ -2,6 +2,7 @@ package cn.six.sup.g_component.lifecycle;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import cn.six.sup.R;
