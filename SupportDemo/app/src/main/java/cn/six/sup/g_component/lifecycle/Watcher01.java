@@ -9,17 +9,17 @@ import android.arch.lifecycle.OnLifecycleEvent;
 public class Watcher01 implements LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_ANY)
     public void onAny(LifecycleOwner owner, Lifecycle.Event event) {
-        System.out.println("szw watcher : onAny(" + event.name() + ")");
+        System.out.println("szw watcher01 : onAny(" + event.name() + ")");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     public void onResume() {
-        System.out.println("szw watcher : onResume()");
+        System.out.println("szw watcher01 : onResume()");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     public void onPause() {
-        System.out.println("szw watcher : onPause()");
+        System.out.println("szw watcher01 : onPause()");
     }
 }
 
