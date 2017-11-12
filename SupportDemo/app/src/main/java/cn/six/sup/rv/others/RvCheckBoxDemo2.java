@@ -25,21 +25,21 @@ public class RvCheckBoxDemo2 extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.actv_rv_cb_focus);
 
-        RecyclerView rv = (RecyclerView) findViewById(R.id.rvSingle);
-        rv.setLayoutManager(new LinearLayoutManager(this));
+                    RecyclerView rv = (RecyclerView) findViewById(R.id.rvSingle);
+                    rv.setLayoutManager(new LinearLayoutManager(this));
 
-        List<String> data = new ArrayList<>();
-        for (int i = 0; i < 30; i++) {
-            data.add("String Index " + i);
-        }
+                    List<String> data = new ArrayList<>();
+                    for (int i = 0; i < 30; i++) {
+                        data.add("String Index " + i);
+                    }
 
-        adapter = new OneAdapter<String>(R.layout.item_checkbox_tv, data) {
-            @Override
-            protected void apply(RvViewHolder vh, String s, int position) {
-                if (isShowCheckBox) {
-                    vh.setVisibility(R.id.cb_cb_tv, View.VISIBLE);
-                } else {
-                    vh.setVisibility(R.id.cb_cb_tv, View.GONE);
+                    adapter = new OneAdapter<String>(R.layout.item_checkbox_tv, data) {
+                        @Override
+                        protected void apply(RvViewHolder vh, String s, int position) {
+                            if (isShowCheckBox) {
+                                vh.setVisibility(R.id.cb_cb_tv, View.VISIBLE);
+                            } else {
+                                vh.setVisibility(R.id.cb_cb_tv, View.GONE);
                 }
                 vh.setText(R.id.tv_cb_tv, "xx => " + s);
             }
