@@ -1,13 +1,13 @@
 package cn.six.sup.g_component.lifecycle;
 
-import android.arch.lifecycle.LifecycleActivity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
 import cn.six.sup.R;
+import cn.six.sup.g_component.LifeAppCompatActivity;
 
-public class LifeWatcherDemo01 extends LifecycleActivity {
+public class LifeWatcherDemo01 extends LifeAppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
