@@ -3,6 +3,7 @@ package cn.six.sup.g_component.lifecycle;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -10,7 +11,7 @@ import cn.six.sup.R;
 import cn.six.sup.g_component.LifeAppCompatActivity;
 
 
-public class LifeWatcherDemo02 extends LifeAppCompatActivity {
+public class LifeWatcherDemo02 extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -6,9 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import cn.six.sup.R;
-import cn.six.sup.g_component.LifeAppCompatActivity;
 
-public class LifeWatcherDemo01 extends LifeAppCompatActivity {
+public class LifeWatcherDemo01 extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,4 +44,33 @@ public class LifeWatcherDemo01 extends LifeAppCompatActivity {
     }
 }
 
+/*
+// initial launch
+szw onCreate 01
+szw watcher01 : onAny(ON_CREATE)
+szw watcher01 : onAny(ON_START)
+szw onResume 01
+szw watcher01 : onAny(ON_RESUME)
+szw watcher01 : onResume()
 
+// press home key
+szw watcher01 : onAny(ON_PAUSE)
+szw watcher01 : onPause()
+szw onPause 01
+szw watcher01 : onAny(ON_STOP)
+
+// bring it back
+ szw watcher01 : onAny(ON_STOP)
+ szw watcher01 : onAny(ON_START)
+ szw onResume 01
+ szw watcher01 : onAny(ON_RESUME)
+ szw watcher01 : onResume()
+
+ // exit
+ szw watcher01 : onAny(ON_PAUSE)
+szw watcher01 : onPause()
+szw onPause 01
+szw watcher01 : onAny(ON_STOP)
+szw watcher01 : onAny(ON_DESTROY)
+szw onDestroy 01
+ */

@@ -8,6 +8,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+/**
+ * @deprecated
+ *
+ * Because the LifeCycleActivity, and LifecleRegistryOwner is deprecated
+ * Now we should use AppCompatActivity, or custom your own LifecycleOwner class.
+ */
+@Deprecated
 public class LifeAppCompatActivity extends AppCompatActivity implements LifecycleRegistryOwner {
     private LifecycleRegistry mLifecycleRegistry = new LifecycleRegistry(this);
 
