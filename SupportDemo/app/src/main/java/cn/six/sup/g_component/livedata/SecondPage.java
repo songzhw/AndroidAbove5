@@ -20,7 +20,16 @@ public class SecondPage extends Activity {
     }
 
     public void onClickSimpleButton(View v) {
+        MutableLiveData<Worker> worker = StaticDataContainer.worker;
+        Worker realWorker = worker.getValue();
+        int id = 0;
+        if (realWorker != null) {
+            int temp = realWorker.id;
+            id = temp + 1;
+        }
+        worker.setValue(new Worker(id, "worker " + id));
 
+        tv.setText("id has increased to " + id);
     }
 
 
