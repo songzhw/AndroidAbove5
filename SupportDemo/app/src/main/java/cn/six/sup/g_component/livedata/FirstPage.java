@@ -25,6 +25,7 @@ public class FirstPage extends AppCompatActivity {
         final Observer<Worker> workerObserver = new Observer<Worker>() {
             @Override
             public void onChanged(@Nullable Worker worker) {
+                System.out.println("szw observer received : " + worker);
                 tv.setText(worker == null ? "(empty)" : worker.toString());
             }
         };
@@ -33,12 +34,12 @@ public class FirstPage extends AppCompatActivity {
         worker.observe(this, workerObserver); //被废弃的LifeRegistryOwner, 是LifeOwner的子类. 所以第一参在这里没报错!
     }
 
-    public void onClickSimpleButton(View v){
+    public void onClickSimpleButton(View v) {
         startActivity(new Intent(this, SecondPage.class));
     }
 
 
-    public void onClickSimpleButton2(View v){
+    public void onClickSimpleButton2(View v) {
 
     }
 }

@@ -28,6 +28,7 @@ public class SecondPage extends Activity {
             id = temp + 1;
         }
         worker.setValue(new Worker(id, "worker " + id));
+        System.out.println("szw LiveData changed the value -> " + id);
 
         tv.setText("id has increased to " + id);
     }
