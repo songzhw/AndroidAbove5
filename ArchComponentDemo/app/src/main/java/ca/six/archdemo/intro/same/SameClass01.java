@@ -29,6 +29,7 @@ public class SameClass01 extends AppCompatActivity {
         tv = findViewById(R.id.tv_simple);
 
         vm = ViewModelProviders.of(this).get(ZeroViewModel.class);
+        System.out.println("szw SameClass01 : vm = "+vm);
         System.out.println("szw SameClass01 : " + vm.user);
 
     }
