@@ -47,6 +47,6 @@ public class SameClass01 extends AppCompatActivity {
 
     // 启动另一个类. 但启动后关了, 再启动. 看下vm的值.
     public void onClickSimpleButton2(View v) {
-        startActivity(new Intent(this, SameClass01.class));
+        startActivity(new Intent(this, SameClass02.class));
     }
 }
