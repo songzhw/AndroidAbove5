@@ -16,13 +16,11 @@ public class BaseTvBtnActivity extends Activity {
         setContentView(R.layout.activity_tv_btn);
         tv = findViewById(R.id.tv_simple);
 
-
     }
 
     public void onClickSimpleButton(View v) {
 
     }
-
 
     public void onClickSimpleButton2(View v) {
 

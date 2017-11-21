@@ -26,6 +26,8 @@ public class ZeroDemo extends AppCompatActivity {
 
         vm = ViewModelProviders.of(this).get(ZeroViewModel.class);
         System.out.println("szw vm.user = " + vm.user);
+
+        System.out.println("szw other = "+SameVm.user);
     }
 
     @Override
@@ -62,6 +64,7 @@ public class ZeroDemo extends AppCompatActivity {
 
     public void onClickSimpleButton(View v) {
         vm.user = new User(23, "jorden");
+        SameVm.user = new User(21, "king");
     }
 
 
