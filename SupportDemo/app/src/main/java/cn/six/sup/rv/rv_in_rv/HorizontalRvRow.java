@@ -37,9 +37,11 @@ public class HorizontalRvRow extends BaseRow {
         rv.setAdapter(new OneAdapter<String>(R.layout.item_tv_for_horizontal_rv, data) {
             @Override
             protected void apply(RvViewHolder vh, String s, int position) {
+                System.out.println("szw bind grid "+position);
                 vh.setText(R.id.tv_for_horizontal_rv, s);
             }
         });
+
     }
 
     @Override
