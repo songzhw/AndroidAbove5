@@ -6,7 +6,9 @@ import android.arch.lifecycle.ViewModel;
 
 
 public class DupliViewModel extends ViewModel {
-    private MutableLiveData<String> message = new MutableLiveData<>();
+//    private MutableLiveData<String> message = new MutableLiveData<>(); // trap
+    private SingleLiveEvent<String> message = new SingleLiveEvent<>();
+
 
     public void fetchMessage(){
         message.setValue("A New Value");
