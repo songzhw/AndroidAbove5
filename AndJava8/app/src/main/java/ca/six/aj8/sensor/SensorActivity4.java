@@ -78,7 +78,7 @@ public class SensorActivity4 extends AppCompatActivity implements SensorEventLis
         System.err.println("szw onPause()");
         manager.unregisterListener(this);
 
-        // TODO stop the interval observable too !!!
+        // TODO stop the interval observable too !!! 即:subscription.unsubscribe();
     }
 
     @Override
