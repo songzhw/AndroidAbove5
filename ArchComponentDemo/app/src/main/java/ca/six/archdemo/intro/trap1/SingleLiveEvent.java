@@ -35,6 +35,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 * <p>
 * Note that only one observer is going to be notified of changes.
 */
+
+// songzhw: Why not use the EventBus? It should be better than this SingleLiveEvent, which can only one observer
+    // and only one event?
 public class SingleLiveEvent<T> extends MutableLiveData<T> {
 
     private static final String TAG = "SingleLiveEvent";
