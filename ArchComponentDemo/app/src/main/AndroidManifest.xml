@@ -8,7 +8,7 @@
         android:roundIcon="@drawable/ic_launcher_round"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".intro.vmfactotry.VmFactoryDemo">
+        <activity android:name=".intro.zero.ZeroDemo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -17,7 +17,6 @@
 
         <activity android:name=".intro.same.SameClass02"/>
 
-        <activity android:name=".intro.zero.ZeroDemo"/>
 
 
     </application>

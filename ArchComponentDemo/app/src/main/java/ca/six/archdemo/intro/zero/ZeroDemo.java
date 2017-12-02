@@ -22,25 +22,28 @@ public class ZeroDemo extends AppCompatActivity {
         tv = findViewById(R.id.tv_simple);
 
         String value = savedInstanceState == null ? "emptyBundle" : savedInstanceState.getString("key");
-        System.out.println("szw onCreate() " + value);
+        System.out.println("szw onCreate() bundle's value = " + value);
 
         vm = ViewModelProviders.of(this).get(ZeroViewModel.class);
-        System.out.println("szw vm.user = " + vm.user);
+        System.out.println("szw onCreate() vm.user = " + vm.user);
 
-        System.out.println("szw other = "+SameVm.user);
+        System.out.println("szw onCreate() other = "+SameVm.user);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        System.out.println("szw onDestroy()");
+        System.out.println("szw onDestroy() isConfigChange = "+isChangingConfigurations() + " ;" +
+                "isFinish = "+isFinishing());
+        // 正常退出时, 会有isConfigChanging = false; isFinish = true
+        // 转屏时, isConfigChanging = true; isFinish = false
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        String value = outState == null ? "emptyBundle" : outState.getString("key");
-        System.out.println("szw onSaveInstanceState() " + value);
+        outState.putString("key", "valueInOnSaveInstanceState");
+        System.out.println("szw onSaveInstanceState() saved a value" );
     }
 
     @Override
@@ -65,6 +68,7 @@ public class ZeroDemo extends AppCompatActivity {
     public void onClickSimpleButton(View v) {
         vm.user = new User(23, "jorden");
         SameVm.user = new User(21, "king");
+        System.out.println("szw saved values in vm and static");
     }
 
 
