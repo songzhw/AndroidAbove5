@@ -2,6 +2,7 @@ package ca.six.archdemo.intro.zero;
 
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -54,9 +55,18 @@ public class ZeroDemo extends AppCompatActivity {
     }
 
     @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        System.out.println("szw onConfigurationChanged()");
+
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
-        System.out.println("szw onResume()");
+        vm = ViewModelProviders.of(this).get(ZeroViewModel.class);
+        System.out.println("szw onResume() vm.user = " + vm.user);
+        System.out.println("szw onResume() other = "+SameVm.user);
     }
 
     @Override
