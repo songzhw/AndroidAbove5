@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- 正居中, 相当于centerInParent=true -->
+    <Button android:id="@+id/btnA" style="@style/both_wrap" android:text="Button A"
+        app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <Button style="@style/both_wrap" android:text="A的下方    左对齐"
+        app:layout_constraintTop_toBottomOf="@id/btnA" app:layout_constraintLeft_toLeftOf="@id/btnA"
+        />
+
+    <Button style="@style/both_wrap" android:text="A的上方    居中对齐"
+        app:layout_constraintBottom_toTopOf="@id/btnA"
+        app:layout_constraintLeft_toLeftOf="@id/btnA" app:layout_constraintRight_toRightOf="@id/btnA"
+        />
+
+    <!-- 文字的baseline靠齐 -->
+    <Button  android:text="baseline" android:layout_width="80dp" android:layout_height="100dp"
+        app:layout_constraintBaseline_toBaselineOf="@id/btnA" android:gravity="top"
+        />
+
+
+</android.support.constraint.ConstraintLayout>
+
+<!--
+以layout_constraintLeft_toLeftOf为例，其中layout_部分是固定格式，主要的信息包含在下面两部分：
+
+* constraintXXX：指定当前控件需要设置约束的属性部分。如constraintLeft表示对当前控件的左边进行约束设置。
+* toXXXOf：其指定的内容是作为当前控件设置约束需要依赖的控件或父容器（可以理解为设置约束的参照物）。并通过XXX指定被依赖对象用于参考的属性。
+如toLeftOf="parent" ：表示当前控件相对于父容器的左边进行约束设置。
+
+-->

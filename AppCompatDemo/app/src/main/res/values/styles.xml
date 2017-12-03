@@ -9,4 +9,9 @@
         <!-- for "..." menu -->
         <item name="android:textColorSecondary">#ffffff</item>
     </style>
+
+    <style name="both_wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 </resources>
