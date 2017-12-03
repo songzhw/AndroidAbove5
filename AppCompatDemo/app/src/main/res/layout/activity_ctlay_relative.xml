@@ -24,8 +24,29 @@
         app:layout_constraintBaseline_toBaselineOf="@id/btnA" android:gravity="top"
         />
 
+    <Button android:text="垂直对齐" style="@style/both_wrap"
+        app:layout_constraintTop_toTopOf="@id/btnA" app:layout_constraintTop_toBottomOf="@id/btnA"
+        app:layout_constraintLeft_toRightOf="@id/btnA" android:layout_marginLeft="20dp"
+        />
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+        <Button android:id="@+id/btnB" android:text="B1111111"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_margin="20dp"
+            />
+        <Button android:id="@+id/btnB2" android:text="B222222"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp" android:gravity="bottom"
+            android:layout_alignBaseline="@id/btnB" android:layout_toRightOf="@id/btnB"
+            />
+
+
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
+
 
 <!--
 以layout_constraintLeft_toLeftOf为例，其中layout_部分是固定格式，主要的信息包含在下面两部分：
