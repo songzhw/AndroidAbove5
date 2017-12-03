@@ -29,22 +29,6 @@
         app:layout_constraintLeft_toRightOf="@id/btnA" android:layout_marginLeft="20dp"
         />
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        >
-        <Button android:id="@+id/btnB" android:text="B1111111"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:layout_margin="20dp"
-            />
-        <Button android:id="@+id/btnB2" android:text="B222222"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp" android:gravity="bottom"
-            android:layout_alignBaseline="@id/btnB" android:layout_toRightOf="@id/btnB"
-            />
-
-
-    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
 
 
