@@ -4,22 +4,33 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <Button android:id="@+id/btnSizeA" android:text="宽50%, 高50%"
-        android:layout_width="0dp" android:layout_height="0dp"
-        app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintWidth_default="percent" app:layout_constraintWidth_percent="0.5"
-        app:layout_constraintHeight_default="percent" app:layout_constraintHeight_percent="0.5"
+    <!-- 只有android:layout_margin="10dp", 是没效果的, 还要加上约束 -->
+    <TextView android:id="@+id/tvSizeTitle" style="@style/both_wrap" android:layout_margin="10dp"
+        android:text="语言" android:textColor="@color/colorAccent" android:textSize="24dp"
+        app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintTop_toTopOf="parent"
         />
 
-    <Button android:text="minWidth 200dp" android:textAllCaps="false"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintWidth_min="300dp" app:layout_constrainedWidth="true"
+    <TextView android:id="@+id/tvSizeEng" android:layout_width="0dp" android:layout_height="wrap_content"
+        android:text="English" android:textColor="@color/colorPrimary" android:textSize="18dp"
+        app:layout_constraintTop_toBottomOf="@id/tvSizeTitle" android:layout_marginTop="20dp"
+        android:background="#3daa7a"
+        app:layout_constraintWidth_default="percent" app:layout_constraintWidth_percent="0.33"
         />
-    <!--android:minWidth="200dp"-->
-    <!--app:layout_constraintWidth_min="300dp" -->
-    <!--app:layout_constraintWidth_min="300dp" app:layout_constrainedWidth="true"-->
 
+
+    <TextView android:id="@+id/tvSizeJpn" android:layout_width="0dp" android:layout_height="wrap_content"
+        android:text="Japanese" android:textColor="@color/colorPrimary" android:textSize="18dp"
+        app:layout_constraintTop_toBottomOf="@id/tvSizeTitle" android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toRightOf="@id/tvSizeEng" android:background="#f5facd"
+        app:layout_constraintWidth_default="percent" app:layout_constraintWidth_percent="0.33"
+        />
+
+
+    <TextView android:id="@+id/tvSizeChn" android:layout_width="0dp" android:layout_height="wrap_content"
+        android:text="Chinese" android:textColor="@color/colorPrimary" android:textSize="18dp"
+        app:layout_constraintTop_toBottomOf="@id/tvSizeTitle" android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toRightOf="@id/tvSizeJpn" android:background="#ccc"
+        app:layout_constraintWidth_default="percent" app:layout_constraintWidth_percent="0.34"
+        />
 
 </android.support.constraint.ConstraintLayout>
