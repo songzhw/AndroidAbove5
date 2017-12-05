@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 
 import ca.six.demo.R;
 
-
+// ctlay中的尺寸问题
 public class CtlaySizeDemo extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
