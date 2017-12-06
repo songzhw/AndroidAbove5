@@ -11,6 +11,6 @@ public class CtlaySizeDemo extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ctlay_size);
+        setContentView(R.layout.activity_ctlay_ratio);
     }
 }
