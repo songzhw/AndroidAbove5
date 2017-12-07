@@ -6,14 +6,19 @@
 
     <Button android:id="@+id/btnChain1" style="@style/both_wrap" android:text="aaa"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/btnChain2"/>
 
     <Button android:id="@+id/btnChain2" style="@style/both_wrap" android:text="bbb"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/btnChain1"/>
+        app:layout_constraintLeft_toRightOf="@id/btnChain1"
+        app:layout_constraintRight_toLeftOf="@+id/btnChain3"
+        />
 
     <Button android:id="@+id/btnChain3" style="@style/both_wrap" android:text="ccc"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/btnChain2"/>
+        app:layout_constraintLeft_toRightOf="@id/btnChain2"
+        app:layout_constraintRight_toRightOf="parent"
+        />
 
 </android.support.constraint.ConstraintLayout>
