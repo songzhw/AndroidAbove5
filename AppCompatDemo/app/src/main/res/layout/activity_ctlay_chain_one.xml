@@ -8,20 +8,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/btnChain2"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintHorizontal_bias="0"
+        android:layout_width="0dp"
+        app:layout_constraintHorizontal_weight="1"
         />
 
     <Button android:id="@+id/btnChain2" style="@style/both_wrap" android:text="bbb"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toRightOf="@id/btnChain1"
         app:layout_constraintRight_toLeftOf="@+id/btnChain3"
+        android:layout_width="0dp"
+        app:layout_constraintHorizontal_weight="2"
         />
 
     <Button android:id="@+id/btnChain3" style="@style/both_wrap" android:text="ccc"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toRightOf="@id/btnChain2"
         app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="0dp"
+        app:layout_constraintHorizontal_weight="3"
         />
+
 
 </android.support.constraint.ConstraintLayout>
