@@ -8,4 +8,5 @@
             style="@style/both_wrap.tv" android:text="Great discount on this item"/>
     </RelativeLayout>
 
+
 </LinearLayout>

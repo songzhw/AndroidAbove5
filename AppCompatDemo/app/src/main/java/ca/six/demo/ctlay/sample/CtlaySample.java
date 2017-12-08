@@ -3,21 +3,39 @@ package ca.six.demo.ctlay.sample;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.constraint.Group;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.TextView;
 
 import ca.six.demo.R;
 
 public class CtlaySample extends Activity {
 
+    private Group group;
+
+    private boolean isVisible = true;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ctlay_sample_diff_bg);
+        setContentView(R.layout.ctlay_sample_diff_visible);
 
-
+        group = findViewById(R.id.group_jp);
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+            if (isVisible) {
+                group.setVisibility(View.GONE);
+            } else {
+                group.setVisibility(View.VISIBLE);
+            }
+            isVisible = !isVisible;
+
+        }
+        return super.onTouchEvent(event);
+    }
 }
 /*
 1. ctlay_sample_simple_weight : 模仿llay的weight. 一行三个Button, weight全为1
