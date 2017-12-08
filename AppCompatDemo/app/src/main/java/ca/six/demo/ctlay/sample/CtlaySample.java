@@ -13,7 +13,7 @@ public class CtlaySample extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ctlay_sample_weight_zero_one);
+        setContentView(R.layout.ctlay_sample_flay_overlap);
 
 
     }
