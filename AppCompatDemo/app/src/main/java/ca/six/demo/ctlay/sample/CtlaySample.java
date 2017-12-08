@@ -13,7 +13,7 @@ public class CtlaySample extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ctlay_sample_flay_overlap);
+        setContentView(R.layout.ctlay_sample_diff_bg);
 
 
     }
