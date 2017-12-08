@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- 只有android:layout_margin="10dp", 是没效果的, 还要加上约束 -->
+    <TextView android:id="@+id/tvSizeTitle" style="@style/both_wrap" android:layout_margin="10dp"
+        android:text="语言" android:textColor="@color/colorAccent" android:textSize="24dp"
+        app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView android:id="@+id/tvSizeEng" android:layout_width="0dp" android:layout_height="wrap_content"
+        android:text="English" android:textColor="@color/colorPrimary" android:textSize="18dp"
+        app:layout_constraintTop_toBottomOf="@id/tvSizeTitle" android:layout_marginTop="20dp"
+        android:background="#3daa7a"
+        app:layout_constraintWidth_default="percent" app:layout_constraintWidth_percent="0.33"
+        />
+
+    <View android:id="@+id/dividerSize1" android:layout_width="0dp" android:layout_height="2dp"
+        app:layout_constraintTop_toBottomOf="@id/tvSizeTitle" android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toRightOf="@id/tvSizeEng"
+        app:layout_constraintWidth_default="percent" app:layout_constraintWidth_percent="0.005"
+        />
+
+    <TextView android:id="@+id/tvSizeJpn" android:layout_width="0dp" android:layout_height="wrap_content"
+        android:text="Japanese" android:textColor="@color/colorPrimary" android:textSize="18dp"
+        app:layout_constraintTop_toBottomOf="@id/tvSizeTitle" android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toRightOf="@id/dividerSize1" android:background="#f5facd"
+        app:layout_constraintWidth_default="percent" app:layout_constraintWidth_percent="0.33"
+        />
+
+    <View android:id="@+id/dividerSize2" android:layout_width="0dp" android:layout_height="2dp"
+        app:layout_constraintTop_toBottomOf="@id/tvSizeTitle" android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toRightOf="@id/tvSizeJpn"
+        app:layout_constraintWidth_default="percent" app:layout_constraintWidth_percent="0.005"
+        />
+
+    <TextView android:id="@+id/tvSizeChn" android:layout_width="0dp" android:layout_height="wrap_content"
+        android:text="Chinese" android:textColor="@color/colorPrimary" android:textSize="18dp"
+        app:layout_constraintTop_toBottomOf="@id/tvSizeTitle" android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toRightOf="@id/dividerSize2" android:background="#ccc"
+        app:layout_constraintWidth_default="percent" app:layout_constraintWidth_percent="0.33"
+        />
+
+</android.support.constraint.ConstraintLayout>
