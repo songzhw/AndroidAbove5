@@ -44,4 +44,6 @@ public class CtlaySample extends Activity {
 
 3. ctlay_sample_weight_zero_one : 模仿llay中2个view, 一个weight为0, 一个weight为1.
     ()
+4. ctlay_sample_diff_bg: 模仿一些布局就是为了背景和padding.
+5. ctlay_sample_diff_visible: 模仿一些view一起变gone/visible的场景.  是使用ctlay的group
  */
