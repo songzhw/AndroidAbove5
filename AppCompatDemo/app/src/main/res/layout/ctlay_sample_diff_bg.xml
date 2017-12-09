@@ -28,5 +28,9 @@
         app:layout_constraintTop_toBottomOf="@id/tvDesp" android:layout_marginTop="20dp"
         />
 
+    <android.support.constraint.Group style="@style/mawr"
+        app:constraint_referenced_ids="viewWhiteBg,tvTitle,tvDesp"
+        />
+
 
 </android.support.constraint.ConstraintLayout>
