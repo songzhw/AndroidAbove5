@@ -51,8 +51,9 @@ public class SingleLiveEventTest {
 
     @Test
     public void singleUpdate_onResumeAndDataSend(){
+        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_RESUME);
         event.call();
-        verify(observer).onChanged(anyInt());
+        verify(observer).onChanged(null);
     }
 
     @Test
