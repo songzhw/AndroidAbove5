@@ -89,6 +89,7 @@ public class SingleLiveEventTest {
         lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_RESUME);
         event.call();
         verify(observer).onChanged(null);
+        reset(observer);
 
         lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_DESTROY);
         lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_CREATE);
