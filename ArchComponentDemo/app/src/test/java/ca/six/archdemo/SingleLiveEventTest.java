@@ -15,6 +15,8 @@ import org.mockito.MockitoAnnotations;
 
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.reset;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -66,12 +68,31 @@ public class SingleLiveEventTest {
     }
 
     @Test
-    public void twoUpdates_noUpdateUntilActive(){
+    public void twoUpdates_onTwoCalls(){
+        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_RESUME);
+        event.call();
+        event.call();
+        verify(observer, times(2)).onChanged(null);
+    }
 
+    @Test
+    public void twoUpdates_noUpdateUntilActive(){
+        event.call();
+        event.call();
+        event.call();
+        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_RESUME);
+        verify(observer, times(1)).onChanged(null);
     }
 
     @Test
     public void noUpdates_whenConfigChanges(){
+        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_RESUME);
+        event.call();
+        verify(observer).onChanged(null);
 
+        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_DESTROY);
+        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_CREATE);
+        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_RESUME);
+        verify(observer, never()).onChanged(null);
     }
 }
