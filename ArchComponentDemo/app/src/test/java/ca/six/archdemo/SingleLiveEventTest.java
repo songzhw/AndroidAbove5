@@ -26,9 +26,9 @@ public class SingleLiveEventTest {
     @Rule public InstantTaskExecutorRule instantExecutorRule = new InstantTaskExecutorRule();
 
     @Mock LifecycleOwner owner;
-    @Mock Observer<Integer> observer;
+    @Mock Observer<Void> observer;
     private LifecycleRegistry lifecycleRegistry;
-    private SingleLiveEvent<Integer> event;
+    private SingleLiveEvent<Void> event;
 
     @Before
     public void setUp(){
@@ -46,7 +46,7 @@ public class SingleLiveEventTest {
 
     @Test
     public void noValueSet_OnFirstOnResume(){
-        verify(observer, never()).onChanged(anyInt());
+        verify(observer, never()).onChanged(null);
     }
 
     @Test
@@ -58,6 +58,10 @@ public class SingleLiveEventTest {
 
     @Test
     public void noUpdate_onStopAndDataSet(){
+        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_RESUME);
+        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_STOP);
+        event.call();
+        verify(observer, never()).onChanged(null);
 
     }
 
