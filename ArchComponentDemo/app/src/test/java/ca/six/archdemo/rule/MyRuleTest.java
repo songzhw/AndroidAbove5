@@ -6,7 +6,7 @@ import org.junit.Test;
 import static junit.framework.Assert.assertEquals;
 
 public class MyRuleTest {
-    @Rule MyRule rule = new MyRule();
+    @Rule public MyRule rule = new MyRule();
 
     @Test
     public void test1Plus1() {
