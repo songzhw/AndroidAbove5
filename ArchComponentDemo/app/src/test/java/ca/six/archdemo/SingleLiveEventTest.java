@@ -1,11 +1,14 @@
 package ca.six.archdemo;
 
+import android.arch.core.executor.testing.InstantTaskExecutorRule;
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.Observer;
+import android.os.Looper;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -18,6 +21,9 @@ import static org.mockito.Mockito.when;
 // LiveData在stop时不会通知observers, 所以和lifeCycle相关
 
 public class SingleLiveEventTest {
+
+    // Execute tasks synchronously (同步地)
+    @Rule public InstantTaskExecutorRule instantExecutorRule = new InstantTaskExecutorRule();
 
     @Mock LifecycleOwner owner;
     @Mock Observer<Integer> observer;
@@ -44,8 +50,9 @@ public class SingleLiveEventTest {
     }
 
     @Test
-    public void singleUpdate_onResumeAndDataSet(){
-
+    public void singleUpdate_onResumeAndDataSend(){
+        event.call();
+        verify(observer).onChanged(anyInt());
     }
 
     @Test
