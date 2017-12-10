@@ -84,6 +84,13 @@ public class SingleLiveEventTest {
         verify(observer, times(1)).onChanged(null);
     }
 
+    /*
+    I know using "reset()" is a sign of poor tests.
+    But this test case is different. I need to know when the observer get called once,
+    and later it didn't get called.
+    If I just write verify(observer, times(1)).onChanged(null), then I just know the result is called once,
+    but I don't know when it gets called, which is the point of this test case.
+     */
     @Test
     public void noUpdates_whenConfigChanges(){
         lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_RESUME);
