@@ -43,7 +43,7 @@ public class CtlaySample extends Activity {
 2. ctlay_sample_simple_weight_two : 用chain. 那这就看需求, 得有不同chain style. 根据要宽度长达33%的特性, 得变成weight chain
 
 3. ctlay_sample_weight_zero_one : 模仿llay中2个view, 一个weight为0, 一个weight为1.
-    ()
+    (类似一个view就在最底, 另一个在其上.)
 4. ctlay_sample_diff_bg: 模仿一些布局就是为了背景和padding.
 5. ctlay_sample_diff_visible: 模仿一些view一起变gone/visible的场景.  是使用ctlay的group
  */
