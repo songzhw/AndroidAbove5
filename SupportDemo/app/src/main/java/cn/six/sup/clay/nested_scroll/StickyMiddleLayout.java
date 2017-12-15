@@ -22,12 +22,11 @@ public class StickyMiddleLayout extends LinearLayout implements NestedScrollingP
         super(context, attrs);
     }
 
-
     @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         View topChildView = getChildAt(0);
         topViewHeight = topChildView.getMeasuredHeight();
+        super.onSizeChanged(w, h, oldw, oldh);
     }
 
     @Override
