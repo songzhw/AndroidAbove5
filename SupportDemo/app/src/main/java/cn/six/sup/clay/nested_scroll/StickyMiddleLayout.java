@@ -38,6 +38,8 @@ public class StickyMiddleLayout extends LinearLayout implements NestedScrollingP
         int mode = MeasureSpec.getMode(heightMeasureSpec);
         int height = MeasureSpec.getSize(heightMeasureSpec);
 
+        getChildAt(2).measure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+
         if(mode == MeasureSpec.AT_MOST){
             System.out.println("szw measure at_most : "+getChildCount());
             height = 0;
