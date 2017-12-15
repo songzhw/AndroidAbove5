@@ -50,9 +50,21 @@ public class StickyMiddleLayout extends LinearLayout implements NestedScrollingP
         }
     }
 
+    /** @return true if this parent consumed or otherwise reacted to the fling */
     @Override
-    public boolean onNestedPreFling(View target, float velocityX, float velocityY) {
-        return super.onNestedPreFling(target, velocityX, velocityY);
+    public boolean onNestedFling(View target, float velocityX, float velocityY, boolean consumed) {
+        // topView已经不见, 那parent就不管了, 要滑动与fling也是给带滑动的子view了, 所以这时要返回false
+        if (getScrollY() > topViewHeight) {
+            return false;
+        }
+
+        fling( (int) velocityY);
+        return true;  // 反之, 那我们parent就要接掌所有的滑动, 所以这里要返回true
     }
+
+    private void fling(int velocityY) {
+
+    }
+
 }
 
