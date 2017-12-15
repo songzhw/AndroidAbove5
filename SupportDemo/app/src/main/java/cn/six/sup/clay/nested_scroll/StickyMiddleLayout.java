@@ -32,6 +32,27 @@ public class StickyMiddleLayout extends LinearLayout implements NestedScrollingP
     }
 
     @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+
+        int mode = MeasureSpec.getMode(heightMeasureSpec);
+        int height = MeasureSpec.getSize(heightMeasureSpec);
+
+        if(mode == MeasureSpec.AT_MOST){
+            System.out.println("szw measure at_most : "+getChildCount());
+            height = 0;
+            int childCount = getChildCount();
+            for(int i = 0; i < childCount; i++){
+                int childHeight = getChildAt(i).getMeasuredHeight();
+                System.out.println("szw measure child height = "+childHeight);
+                height += childHeight;
+            }
+        }
+
+        int newHeightMeasureSpec = MeasureSpec.makeMeasureSpec(height, mode);
+        setMeasuredDimension(widthMeasureSpec, newHeightMeasureSpec);
+    }
+
+    @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         View topChildView = getChildAt(0);
         topViewHeight = topChildView.getMeasuredHeight();
@@ -51,7 +72,6 @@ public class StickyMiddleLayout extends LinearLayout implements NestedScrollingP
     public void onNestedPreScroll(View target, int dx, int dy, int[] consumed) {
         // 滑动起来了, 我作为父layout, 要不要消耗掉这些滑动, 来做我自己相关的动画
         int scrollY = getScrollY();
-        System.out.println("szw scrollY = " + scrollY);
         boolean isTopNotTotallyHidden = dy > 0 && scrollY < topViewHeight;
         boolean isTopNotTotallyShown = dy < 0 && scrollY > 0
                 && !ViewCompat.canScrollVertically(target, -1); //negative num is scrolling up
