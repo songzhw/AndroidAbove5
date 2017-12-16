@@ -1,19 +1,14 @@
 package cn.six.sup.clay.nested_scroll;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v4.view.NestedScrollingParent;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.OverScroller;
-
-import java.lang.reflect.Method;
 
 
 public class StickyMiddleLayout extends LinearLayout implements NestedScrollingParent {
@@ -39,24 +34,19 @@ public class StickyMiddleLayout extends LinearLayout implements NestedScrollingP
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        // 感觉不能先走这里, 因为这都把child给量完了, 不利于我们后面工作啊
-//        super.onMeasure(widthMeasureSpec, heightMeasureSpec); //不加这一句, 后面的childView.getMeasureHeight()的值就是0 !
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec); //不加这一句, 后面的childView.getMeasureHeight()的值就是0 !
 
         // 不同的mode也应该统一处理, 因为thirdChild的高度都要处理一下才行
         int mode = MeasureSpec.getMode(heightMeasureSpec);
         int height = 0;
 
-        getChildAt(2).measure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+        View topView = getChildAt(0);
+        View middleView = getChildAt(1);
+        View bottomView = getChildAt(2);
 
-        int childCount = getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            int childHeight = getChildAt(i).getMeasuredHeight();
-            System.out.println("szw measure child height = " + childHeight);
-            height += childHeight;
-        }
-
-        int newHeightMeasureSpec = MeasureSpec.makeMeasureSpec(height, mode);
-        setMeasuredDimension(widthMeasureSpec, newHeightMeasureSpec);
+        ViewGroup.LayoutParams lp = bottomView.getLayoutParams();
+        lp.height = getMeasuredHeight() - middleView.getMeasuredHeight();
+        setMeasuredDimension(widthMeasureSpec, topView.getMeasuredHeight() + middleView.getMeasuredHeight() + bottomView.getMeasuredHeight());
     }
 
     @Override
