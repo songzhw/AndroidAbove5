@@ -37,50 +37,9 @@ public class StickyMiddleLayout extends LinearLayout implements NestedScrollingP
         scroller = new OverScroller(ctx);
     }
 
-    private int getHasVirtualKey() {
-        int dpi = 0;
-        Activity actv = (Activity) this.getContext();
-        Display display = actv.getWindowManager().getDefaultDisplay();
-        DisplayMetrics dm = new DisplayMetrics();
-        @SuppressWarnings("rawtypes")
-        Class c;
-        try {
-            c = Class.forName("android.view.Display");
-            @SuppressWarnings("unchecked")
-            Method method = c.getMethod("getRealMetrics", DisplayMetrics.class);
-            method.invoke(display, dm);
-            dpi = dm.heightPixels;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return dpi;
-    }
-
-    private int getStatusHeight() {
-        int statusBarHeight1 = -1;
-        //获取status_bar_height资源的ID
-        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            //根据资源ID获取响应的尺寸值
-            statusBarHeight1 = getResources().getDimensionPixelSize(resourceId);
-        }
-        return statusBarHeight1;
-    }
-
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec); //不加这一句, 后面的childView.getMeasureHeight()的值就是0 !
-
-        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-        int widthPixels = displayMetrics.widthPixels;
-        int heightPixels = displayMetrics.heightPixels;
-        System.out.println("szw phone1 : " + heightPixels);
-        System.out.println("szw phone2 : " + getHasVirtualKey());
-        System.out.println("szw phone3 : " + getStatusHeight());
-
-        System.out.println("szw measure : " + getMeasuredHeight());
-        ViewGroup.LayoutParams lp = getChildAt(2).getLayoutParams();
-        lp.height = getMeasuredHeight() - getChildAt(1).getMeasuredHeight();
 
         int mode = MeasureSpec.getMode(heightMeasureSpec);
         int height = MeasureSpec.getSize(heightMeasureSpec);
