@@ -39,19 +39,20 @@ public class StickyMiddleLayout extends LinearLayout implements NestedScrollingP
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec); //不加这一句, 后面的childView.getMeasureHeight()的值就是0 !
+        // 感觉不能先走这里, 因为这都把child给量完了, 不利于我们后面工作啊
+//        super.onMeasure(widthMeasureSpec, heightMeasureSpec); //不加这一句, 后面的childView.getMeasureHeight()的值就是0 !
 
+        // 不同的mode也应该统一处理, 因为thirdChild的高度都要处理一下才行
         int mode = MeasureSpec.getMode(heightMeasureSpec);
-        int height = MeasureSpec.getSize(heightMeasureSpec);
+        int height = 0;
 
-        if (mode == MeasureSpec.AT_MOST) {
-            height = 0;
-            int childCount = getChildCount();
-            for (int i = 0; i < childCount; i++) {
-                int childHeight = getChildAt(i).getMeasuredHeight();
-                System.out.println("szw measure child height = " + childHeight);
-                height += childHeight;
-            }
+        getChildAt(2).measure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+
+        int childCount = getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            int childHeight = getChildAt(i).getMeasuredHeight();
+            System.out.println("szw measure child height = " + childHeight);
+            height += childHeight;
         }
 
         int newHeightMeasureSpec = MeasureSpec.makeMeasureSpec(height, mode);
