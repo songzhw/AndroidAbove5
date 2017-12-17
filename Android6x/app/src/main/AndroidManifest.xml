@@ -25,7 +25,7 @@
         <activity android:name="others.ted_permission.TedPermissionActivity" />
 
         <activity
-            android:name=".statusbar.StatusBarActivity"
+            android:name=".statusbar.TransparentStatusBarActivity"
             android:label="@string/title_activity_start_bar"
             android:theme="@style/StatusDemoTheme">
             <intent-filter>
