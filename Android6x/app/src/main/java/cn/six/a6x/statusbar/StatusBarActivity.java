@@ -1,12 +1,12 @@
 package cn.six.a6x.statusbar;
 
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -21,6 +21,13 @@ public class StatusBarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start_bar);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        int statusBarHeight = getSystemBarHeight();
+        toolbar.setPadding(toolbar.getPaddingLeft(), statusBarHeight, toolbar.getPaddingRight(),
+                toolbar.getPaddingBottom());
+        toolbar.getLayoutParams().height = statusBarHeight +
+                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 45, getResources().getDisplayMetrics());
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -38,5 +45,14 @@ public class StatusBarActivity extends AppCompatActivity {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(Color.TRANSPARENT);
 
+    }
+
+    private int getSystemBarHeight() {
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
     }
 }
