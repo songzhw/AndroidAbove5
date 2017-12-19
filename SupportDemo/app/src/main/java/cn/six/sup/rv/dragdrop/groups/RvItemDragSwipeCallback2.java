@@ -19,6 +19,7 @@ public class RvItemDragSwipeCallback2 extends ItemTouchHelper.Callback {
     // ========================= ItemTouchHelper.Callback (Basic) =================================
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+        System.out.println("szw getMovementFlags("+viewHolder.getAdapterPosition()+")");
         int noSwipeFlags = 0;
         int dragFlags;
         if (recyclerView.getLayoutManager() instanceof GridLayoutManager) {
@@ -31,6 +32,7 @@ public class RvItemDragSwipeCallback2 extends ItemTouchHelper.Callback {
 
     @Override
     public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+        System.out.println("szw onMove() from "+viewHolder.getAdapterPosition()+" to "+target.getAdapterPosition());
         int fromPosition = viewHolder.getAdapterPosition();
         int toPosition = target.getAdapterPosition();
         listener.onMove(fromPosition, toPosition);
