@@ -1,4 +1,4 @@
-package cn.six.sup.rv.dragdrop;
+package cn.six.sup.rv.dragdrop.simple;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

@@ -1,4 +1,4 @@
-package cn.six.sup.rv.dragdrop;
+package cn.six.sup.rv.dragdrop.simple;
 
 import android.app.Activity;
 import android.os.Bundle;

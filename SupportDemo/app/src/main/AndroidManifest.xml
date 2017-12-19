@@ -190,7 +190,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".rv.dragdrop.DragRecyclerViewDemo"
+            android:name=".rv.dragdrop.simple.DragRecyclerViewDemo"
             android:label="Rv with Drag+Drop ">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

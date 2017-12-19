@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.six.sup.R;
-import cn.six.sup.rv.dragdrop.DragDropRvAdapter;
+import cn.six.sup.rv.dragdrop.simple.DragDropRvAdapter;
 
 /**
  * Created by songzhw on 2016-07-11

@@ -16,10 +16,10 @@
             android:name="others.swirl.demo.SwirlSampleActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
-            <!-- <intent-filter> -->
-                <!-- <action android:name="android.intent.action.MAIN" /> -->
-                <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
         </activity>
 
         <activity android:name="others.ted_permission.TedPermissionActivity" />
@@ -28,10 +28,12 @@
             android:name=".statusbar.TranslucentStatusBarActivity"
             android:label="@string/title_activity_start_bar"
             android:theme="@style/StatusDemoTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".statusbar.TransparentStatusBarActivity"
+            android:label="@string/title_activity_start_bar"
+            android:theme="@style/StatusDemoTheme">
         </activity>
 
     </application>
