@@ -15,6 +15,7 @@ import cn.six.sup.rv.OnRvItemClickListener;
 
 import static cn.six.sup.rv.dragdrop.groups.Company.Country_CHINA;
 import static cn.six.sup.rv.dragdrop.groups.Company.Country_US;
+import static cn.six.sup.rv.dragdrop.groups.Company.TYPE_TITLE;
 
 /**
 * Created by songzhw on 2017-12-18.
@@ -53,7 +54,7 @@ public class DragRecyclerViewDemo2 extends Activity implements RvItemDragSwipeLi
 
             @Override
             public void onItemClick(RecyclerView.ViewHolder vh) {
-                System.out.println("szw click = " + vh.toString());
+                System.out.println("szw click + " + data.get(vh.getAdapterPosition()));
             }
         });
 
@@ -74,7 +75,29 @@ public class DragRecyclerViewDemo2 extends Activity implements RvItemDragSwipeLi
                 Collections.swap(data, i, i - 1);
             }
         }
+
+        int secondTitleIndex = secondTitleIndex();
+        if (toPosition < secondTitleIndex) {
+            data.get(toPosition).country = Country_CHINA;
+        } else {
+            data.get(toPosition).country = Country_US;
+        }
+        adapter.notifyItemChanged(toPosition);
+
         adapter.notifyItemMoved(fromPosition, toPosition);
+
     }
+
+    private int secondTitleIndex() {
+        for (int i = 0; i < data.size(); i++) {
+            Company company = data.get(i);
+            if (company.type == TYPE_TITLE && company.name.contains("US")) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
 
 }

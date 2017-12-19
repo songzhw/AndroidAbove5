@@ -11,6 +11,7 @@ import java.util.List;
 
 import cn.six.sup.R;
 
+import static cn.six.sup.rv.dragdrop.groups.Company.Country_CHINA;
 import static cn.six.sup.rv.dragdrop.groups.Company.TYPE_TITLE;
 
 
@@ -49,7 +50,7 @@ public class DragDropRvAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHo
         } else {
             ContentViewHolder vh = (ContentViewHolder) holder;
             vh.iv.setImageResource(R.drawable.ic_launcher);
-            vh.tv.setText(data.get(position).name);
+            vh.tv.setText(data.get(position).name + " ; "+ (data.get(position).country == Country_CHINA ? "China" : "US"));
         }
 
     }

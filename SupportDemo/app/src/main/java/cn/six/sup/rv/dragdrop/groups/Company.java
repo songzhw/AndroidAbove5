@@ -34,4 +34,13 @@ public class Company {
         this.name = name;
         this.type = TYPE_TITLE;
     }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "name='" + name + '\'' +
+                ", country=" + (country == Country_CHINA ? "China" : "US") +
+                ", type=" + (type == TYPE_TITLE ? "Title" : "Content") +
+                '}';
+    }
 }
