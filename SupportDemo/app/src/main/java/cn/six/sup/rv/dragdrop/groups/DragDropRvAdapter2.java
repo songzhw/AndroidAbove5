@@ -1,7 +1,5 @@
 package cn.six.sup.rv.dragdrop.groups;
 
-import static cn.six.sup.rv.dragdrop.groups.Company.TYPE_TITLE;
-
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +10,8 @@ import android.widget.TextView;
 import java.util.List;
 
 import cn.six.sup.R;
+
+import static cn.six.sup.rv.dragdrop.groups.Company.TYPE_TITLE;
 
 
 public class DragDropRvAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -29,10 +29,10 @@ public class DragDropRvAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if(viewType == TYPE_TITLE){
+        if (viewType == TYPE_TITLE) {
             int layoutResId = R.layout.item_simple_tv;
             View itemView = LayoutInflater.from(parent.getContext()).inflate(layoutResId, parent, false);
-            return new ContentViewHolder(itemView);
+            return new TitleViewHolder(itemView);
         } else {
             int layoutResId = R.layout.item_rv_drag_drop;
             View itemView = LayoutInflater.from(parent.getContext()).inflate(layoutResId, parent, false);
@@ -43,13 +43,13 @@ public class DragDropRvAdapter2 extends RecyclerView.Adapter<RecyclerView.ViewHo
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         int viewType = getItemViewType(position);
-        if(viewType == TYPE_TITLE){
-            ContentViewHolder vh = (ContentViewHolder)holder;
+        if (viewType == TYPE_TITLE) {
+            TitleViewHolder vh = (TitleViewHolder) holder;
+            vh.tvTitle.setText(data.get(position).name);
+        } else {
+            ContentViewHolder vh = (ContentViewHolder) holder;
             vh.iv.setImageResource(R.drawable.ic_launcher);
             vh.tv.setText(data.get(position).name);
-        } else {
-            TitleViewHolder vh = (TitleViewHolder)holder;
-            vh.tvTitle.setText(data.get(position).name);
         }
 
     }

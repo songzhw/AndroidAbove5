@@ -17,7 +17,7 @@ import static cn.six.sup.rv.dragdrop.groups.Company.Country_CHINA;
 import static cn.six.sup.rv.dragdrop.groups.Company.Country_US;
 
 /**
-* Created by songzhw on 2016-06-09.
+* Created by songzhw on 2017-12-18.
 */
 public class DragRecyclerViewDemo2 extends Activity implements RvItemDragSwipeListener2 {
 
