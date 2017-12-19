@@ -82,11 +82,11 @@ public class DragRecyclerViewDemo2 extends Activity implements RvItemDragSwipeLi
         } else {
             data.get(toPosition).country = Country_US;
         }
-        adapter.notifyItemChanged(toPosition);
 
         adapter.notifyItemMoved(fromPosition, toPosition);
-
+        adapter.notifyItemChanged(toPosition);
     }
+
 
     private int secondTitleIndex() {
         for (int i = 0; i < data.size(); i++) {
