@@ -34,20 +34,17 @@ public class StickyMiddleLayout extends LinearLayout implements NestedScrollingP
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec); //不加这一句, 后面的childView.getMeasureHeight()的值就是0 !
-
-        // 不同的mode也应该统一处理, 因为thirdChild的高度都要处理一下才行
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int mode = MeasureSpec.getMode(heightMeasureSpec);
-        int height = 0;
+        int height = MeasureSpec.getSize(heightMeasureSpec);
 
-        View topView = getChildAt(0);
         View middleView = getChildAt(1);
         View bottomView = getChildAt(2);
-
-        ViewGroup.LayoutParams lp = bottomView.getLayoutParams();
-        lp.height = getMeasuredHeight() - middleView.getMeasuredHeight();
-        setMeasuredDimension(widthMeasureSpec, topView.getMeasuredHeight() + middleView.getMeasuredHeight() + bottomView.getMeasuredHeight());
+        int bottomHeight = getMeasuredHeight() - middleView.getMeasuredHeight();
+        int bottomHeightSpec = MeasureSpec.makeMeasureSpec(mode, bottomHeight);
+        bottomView.measure(widthMeasureSpec, bottomHeightSpec);
     }
+
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
