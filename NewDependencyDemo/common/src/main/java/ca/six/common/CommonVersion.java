@@ -1,6 +1,6 @@
 package ca.six.common;
 
-public class VersionHelper {
+public class CommonVersion {
     public int getVersion(){
         return 23;
     }
