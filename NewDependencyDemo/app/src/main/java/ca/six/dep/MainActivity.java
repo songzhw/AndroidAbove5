@@ -14,6 +14,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         String v2 = new BizVersion().getFormatVersion();
-        int v1 = new CommonVersion().getVersion();
+//        int v1 = new CommonVersion().getVersion();
     }
 }
