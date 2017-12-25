@@ -12,32 +12,31 @@
         />
 
     <ImageButton android:id="@+id/ib_save"
-        android:layout_width="60dp" android:layout_height="60dp"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="20dp"
-        app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toLeftOf="@id/ib_edit"
-        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toStartOf="@+id/ib_edit"
         android:src="@drawable/ic_pets"
         />
 
     <ImageButton android:id="@+id/ib_edit"
-        android:layout_width="60dp" android:layout_height="60dp"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="20dp"
-        app:layout_constraintLeft_toRightOf="@id/ib_save" app:layout_constraintRight_toLeftOf="@+id/ib_delete"
-        android:src="@drawable/ic_alarm"
-        />
-
-    <ImageButton android:id="@+id/ib_delete"
-        android:layout_width="60dp" android:layout_height="60dp"
-        app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="20dp"
-        app:layout_constraintLeft_toRightOf="@id/ib_edit" app:layout_constraintRight_toLeftOf="@+id/ib_cancel"
+        app:layout_constraintStart_toEndOf="@+id/ib_save" app:layout_constraintEnd_toStartOf="@+id/ib_cancel"
         android:src="@drawable/ic_launcher"
         />
 
     <ImageButton android:id="@+id/ib_cancel"
-        android:layout_width="60dp" android:layout_height="60dp"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="20dp"
-        app:layout_constraintLeft_toRightOf="@id/ib_edit" app:layout_constraintRight_toLeftOf="parent"
-        android:src="@drawable/block_canary_icon"
+        app:layout_constraintStart_toEndOf="@+id/ib_edit" app:layout_constraintEnd_toStartOf="@+id/ib_delete"
+        android:src="@drawable/ic_alarm"
+        />
+
+    <ImageButton android:id="@+id/ib_delete"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="20dp"
+        app:layout_constraintStart_toEndOf="@+id/ib_cancel" app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_notifications"
         />
 
 </android.support.constraint.ConstraintLayout>
