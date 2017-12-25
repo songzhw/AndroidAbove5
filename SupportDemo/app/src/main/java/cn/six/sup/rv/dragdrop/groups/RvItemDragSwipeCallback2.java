@@ -22,10 +22,10 @@ public class RvItemDragSwipeCallback2 extends ItemTouchHelper.Callback {
         System.out.println("szw getMovementFlags("+viewHolder.getAdapterPosition()+")");
         int noSwipeFlags = 0;
         int dragFlags;
-        if (recyclerView.getLayoutManager() instanceof GridLayoutManager) {
-            dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN | ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
-        } else {
+        if(listener.isDraggable(viewHolder.getAdapterPosition())) {
             dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
+        } else {
+            dragFlags = 0;
         }
         return makeMovementFlags(dragFlags, noSwipeFlags);
     }

@@ -87,6 +87,11 @@ public class DragRecyclerViewDemo2 extends Activity implements RvItemDragSwipeLi
         adapter.notifyItemChanged(toPosition);
     }
 
+    @Override
+    public boolean isDraggable(int position) {
+        return  data.get(position).type == TYPE_TITLE;
+    }
+
 
     private int secondTitleIndex() {
         for (int i = 0; i < data.size(); i++) {
