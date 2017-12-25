@@ -1,8 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent" android:layout_width="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <include layout="@layout/template_ctlay_top"/>
 
+    <ImageView android:id="@+id/iv_top"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:src="@drawable/west_lake" android:scaleType="centerCrop"
+        />
+
+    <ImageButton android:id="@+id/ib_save"
+        android:layout_width="60dp" android:layout_height="60dp"
+        app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="20dp"
+        app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toLeftOf="@id/ib_edit"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:src="@drawable/ic_pets"
+        />
+
+    <ImageButton android:id="@+id/ib_edit"
+        android:layout_width="60dp" android:layout_height="60dp"
+        app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="20dp"
+        app:layout_constraintLeft_toRightOf="@id/ib_save" app:layout_constraintRight_toLeftOf="@+id/ib_delete"
+        android:src="@drawable/ic_alarm"
+        />
+
+    <ImageButton android:id="@+id/ib_delete"
+        android:layout_width="60dp" android:layout_height="60dp"
+        app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="20dp"
+        app:layout_constraintLeft_toRightOf="@id/ib_edit" app:layout_constraintRight_toLeftOf="@+id/ib_cancel"
+        android:src="@drawable/ic_launcher"
+        />
+
+    <ImageButton android:id="@+id/ib_cancel"
+        android:layout_width="60dp" android:layout_height="60dp"
+        app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="20dp"
+        app:layout_constraintLeft_toRightOf="@id/ib_edit" app:layout_constraintRight_toLeftOf="parent"
+        android:src="@drawable/block_canary_icon"
+        />
 
 </android.support.constraint.ConstraintLayout>
