@@ -13,14 +13,14 @@ import cn.six.sup.R;
 
 public class PlaceHolderDemo extends Activity implements View.OnClickListener {
     private Placeholder placeholderButton;
-    private ConstraintLayout constraintLayout;
+    private ConstraintLayout ctlay;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_holder_demo);
 
-        constraintLayout = findViewById(R.id.ctlay_place_holder);
+        ctlay = findViewById(R.id.ctlay_place_holder);
         placeholderButton = findViewById(R.id.template_action_button);
 
         findViewById(R.id.ib_save).setOnClickListener(this);
@@ -33,7 +33,7 @@ public class PlaceHolderDemo extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        TransitionManager.beginDelayedTransition(constraintLayout);
+        TransitionManager.beginDelayedTransition(ctlay);
         placeholderButton.setContentId(id);
     }
 }
