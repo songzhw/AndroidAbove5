@@ -32,9 +32,13 @@ public class CtlayAnimDemo extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.btnAnimApply) {
-
+            // btn1的marginLeft变成了8dp
+            // bnt2因为"其左边依靠的是btn1", 所以其水平也跟着变化
+            // btn2的左边是依赖的parent, 所以其水平位置不变
+            applySet.setMargin(R.id.button1, ConstraintSet.LEFT, 8);
+            applySet.applyTo(ctlay);
         } else if (id == R.id.btnAnimReset) {
-
+            resetSet.applyTo(ctlay);
         }
     }
 }

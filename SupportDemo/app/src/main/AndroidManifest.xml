@@ -405,7 +405,7 @@
         <receiver android:name=".other.chrome.ActionBroadcastReceiver" />
 
         <activity
-            android:name=".ctlay.placeholder.PlaceHolderDemo"
+            android:name=".clay.CtlayAnimDemo"
             android:label="@string/title_activity_disorder_touch_demo"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
