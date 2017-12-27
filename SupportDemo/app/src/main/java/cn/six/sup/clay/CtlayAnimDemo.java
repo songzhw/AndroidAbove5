@@ -10,7 +10,7 @@ import android.view.View;
 
 import cn.six.sup.R;
 
-
+// https://www.jianshu.com/p/575829baa39d
 public class CtlayAnimDemo extends Activity implements View.OnClickListener {
     private ConstraintLayout ctlay;
     private ConstraintSet applySet = new ConstraintSet();
