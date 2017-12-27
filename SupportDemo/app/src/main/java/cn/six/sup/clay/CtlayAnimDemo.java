@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
+import android.support.transition.TransitionManager;
 import android.view.View;
 
 import cn.six.sup.R;
@@ -35,9 +36,11 @@ public class CtlayAnimDemo extends Activity implements View.OnClickListener {
             // btn1的marginLeft变成了8dp
             // bnt2因为"其左边依靠的是btn1", 所以其水平也跟着变化
             // btn2的左边是依赖的parent, 所以其水平位置不变
+            TransitionManager.beginDelayedTransition(ctlay);
             applySet.setMargin(R.id.button1, ConstraintSet.LEFT, 8);
             applySet.applyTo(ctlay);
         } else if (id == R.id.btnAnimReset) {
+            TransitionManager.beginDelayedTransition(ctlay);
             resetSet.applyTo(ctlay);
         }
     }
