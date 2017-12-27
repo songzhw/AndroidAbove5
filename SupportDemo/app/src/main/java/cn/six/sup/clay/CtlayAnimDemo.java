@@ -47,6 +47,13 @@ public class CtlayAnimDemo extends Activity implements View.OnClickListener {
             resetSet.applyTo(ctlay);
         } else if (id == R.id.btnAnimCenter) {
             TransitionManager.beginDelayedTransition(ctlay);
+
+            // 按钮全是600px宽度
+            centerSet.constrainWidth(R.id.button1,600);
+            centerSet.constrainWidth(R.id.button2,600);
+            centerSet.constrainWidth(R.id.button3,600);
+
+            // 按钮全水平居中
             centerSet.centerHorizontally(R.id.button1, R.id.ctlayAnim);
             centerSet.centerHorizontally(R.id.button2, R.id.ctlayAnim);
             centerSet.centerHorizontally(R.id.button3, R.id.ctlayAnim);
