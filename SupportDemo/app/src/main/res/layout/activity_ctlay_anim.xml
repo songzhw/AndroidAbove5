@@ -7,14 +7,21 @@
         android:layout_width="0dp" android:layout_height="50dp"
         android:text="Apply" android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="20dp"
-        app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toLeftOf="@+id/btnAnimReset"
+        app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toLeftOf="@+id/btnAnimCenter"
+        />
+
+    <Button android:id="@+id/btnAnimCenter"
+        android:layout_width="0dp" android:layout_height="50dp" android:layout_marginLeft="10dp"
+        android:text="Center" android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="20dp"
+        app:layout_constraintLeft_toRightOf="@+id/btnAnimApply" app:layout_constraintRight_toLeftOf="@+id/btnAnimReset"
         />
 
     <Button android:id="@+id/btnAnimReset"
-        android:layout_width="0dp" android:layout_height="50dp" android:layout_marginLeft="30dp"
+        android:layout_width="0dp" android:layout_height="50dp" android:layout_marginLeft="10dp"
         android:text="Reset" android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="20dp"
-        app:layout_constraintLeft_toRightOf="@+id/btnAnimApply" app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/btnAnimCenter" app:layout_constraintRight_toRightOf="parent"
         />
 
     <Button

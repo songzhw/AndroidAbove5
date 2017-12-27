@@ -15,6 +15,7 @@ public class CtlayAnimDemo extends Activity implements View.OnClickListener {
     private ConstraintLayout ctlay;
     private ConstraintSet applySet = new ConstraintSet();
     private ConstraintSet resetSet = new ConstraintSet();
+    private ConstraintSet centerSet = new ConstraintSet();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -24,9 +25,11 @@ public class CtlayAnimDemo extends Activity implements View.OnClickListener {
         ctlay = findViewById(R.id.ctlayAnim);
         applySet.clone(ctlay);
         resetSet.clone(ctlay);
+        centerSet.clone(ctlay); //没这句,  一applyTo(), 就全部child view都走到右上角并消失了
 
         findViewById(R.id.btnAnimApply).setOnClickListener(this);
         findViewById(R.id.btnAnimReset).setOnClickListener(this);
+        findViewById(R.id.btnAnimCenter).setOnClickListener(this);
     }
 
     @Override
@@ -42,6 +45,12 @@ public class CtlayAnimDemo extends Activity implements View.OnClickListener {
         } else if (id == R.id.btnAnimReset) {
             TransitionManager.beginDelayedTransition(ctlay);
             resetSet.applyTo(ctlay);
+        } else if (id == R.id.btnAnimCenter) {
+            TransitionManager.beginDelayedTransition(ctlay);
+            centerSet.centerHorizontally(R.id.button1, R.id.ctlayAnim);
+            centerSet.centerHorizontally(R.id.button2, R.id.ctlayAnim);
+            centerSet.centerHorizontally(R.id.button3, R.id.ctlayAnim);
+            centerSet.applyTo(ctlay);
         }
     }
 }
