@@ -57,10 +57,19 @@ public class CtlayChainAnimDemo extends Activity implements View.OnClickListener
             applySet.connect(R.id.button3, ConstraintSet.LEFT, R.id.button2, ConstraintSet.RIGHT, 0);
             applySet.connect(R.id.button3, ConstraintSet.RIGHT, R.id.ctlayAnim, ConstraintSet.RIGHT, 0);
 
-            applySet.createHorizontalChain(R.id.button1, ConstraintSet.LEFT,
-                    R.id.button3, ConstraintSet.RIGHT,
-                    new int[]{R.id.button1, R.id.button3},
-                    null, ConstraintWidget.CHAIN_PACKED);
+            applySet.createHorizontalChain(ConstraintSet.PARENT_ID, ConstraintSet.LEFT,
+                    ConstraintSet.PARENT_ID, ConstraintSet.RIGHT,
+                    new int[]{R.id.button1, R.id.button2, R.id.button3},
+                    null, ConstraintSet.CHAIN_PACKED );
+
+            applySet.constrainWidth(R.id.button1,ConstraintSet.WRAP_CONTENT);
+            applySet.constrainWidth(R.id.button2,ConstraintSet.WRAP_CONTENT);
+            applySet.constrainWidth(R.id.button3,ConstraintSet.WRAP_CONTENT);
+
+            applySet.constrainHeight(R.id.button1,ConstraintSet.WRAP_CONTENT);
+            applySet.constrainHeight(R.id.button2,ConstraintSet.WRAP_CONTENT);
+            applySet.constrainHeight(R.id.button3,ConstraintSet.WRAP_CONTENT);
+
 
 
             applySet.applyTo(ctlay);
