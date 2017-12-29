@@ -46,6 +46,9 @@ public class CtlayChainAnimDemo extends Activity implements View.OnClickListener
         } else  if (id == R.id.btnAnimApply) {
             TransitionManager.beginDelayedTransition(ctlay);
 
+            applySet.clear(R.id.button1);
+            applySet.clear(R.id.button2);
+            applySet.clear(R.id.button3);
 
             applySet.connect(R.id.button1, ConstraintSet.LEFT, R.id.ctlayAnim, ConstraintSet.LEFT, 0);
             applySet.connect(R.id.button1, ConstraintSet.RIGHT, R.id.button2, ConstraintSet.LEFT, 0);
