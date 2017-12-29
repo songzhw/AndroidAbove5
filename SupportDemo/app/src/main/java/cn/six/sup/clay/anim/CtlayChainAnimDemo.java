@@ -61,6 +61,8 @@ public class CtlayChainAnimDemo extends Activity implements View.OnClickListener
                     ConstraintSet.PARENT_ID, ConstraintSet.RIGHT,
                     new int[]{R.id.button1, R.id.button2, R.id.button3},
                     null, ConstraintSet.CHAIN_PACKED );
+            // CHAIN_PACKED, CHAIN_SPREAD, CHAIN_SPREAD_INSIDE
+//            applySet.setHorizontalBias(R.id.button1, 0.2f); // => when CHAIN_PACKED
 
             applySet.constrainWidth(R.id.button1,ConstraintSet.WRAP_CONTENT);
             applySet.constrainWidth(R.id.button2,ConstraintSet.WRAP_CONTENT);
