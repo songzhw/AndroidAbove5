@@ -1,4 +1,4 @@
-package cn.six.sup.clay;
+package cn.six.sup.clay.anim;
 
 import android.app.Activity;
 import android.os.Bundle;
