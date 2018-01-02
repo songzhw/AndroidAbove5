@@ -33,7 +33,6 @@ public class DragRecyclerViewDemo2 extends Activity implements RvItemDragSwipeLi
         RecyclerView rv = (RecyclerView) findViewById(R.id.rvDragDrop);
         rv.setLayoutManager(new LinearLayoutManager(this));
         this.data = new ArrayList<>();
-        this.data.add(new Company("-- China --"));
         this.data.add(new Company("Alibaba", Country_CHINA));
         this.data.add(new Company("NetEase", Country_CHINA));
         this.data.add(new Company("Tecent", Country_CHINA));
@@ -75,7 +74,12 @@ public class DragRecyclerViewDemo2 extends Activity implements RvItemDragSwipeLi
                 Collections.swap(data, i, i - 1);
             }
         }
+        adapter.notifyItemMoved(fromPosition, toPosition);
 
+        onPostMove(toPosition);
+    }
+
+    private void onPostMove(int toPosition) {
         int secondTitleIndex = secondTitleIndex();
         if (toPosition < secondTitleIndex) {
             data.get(toPosition).country = Country_CHINA;
@@ -83,9 +87,9 @@ public class DragRecyclerViewDemo2 extends Activity implements RvItemDragSwipeLi
             data.get(toPosition).country = Country_US;
         }
 
-        adapter.notifyItemMoved(fromPosition, toPosition);
         adapter.notifyItemChanged(toPosition);
     }
+
 
     @Override
     public boolean isDraggable(int position) {

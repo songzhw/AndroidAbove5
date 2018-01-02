@@ -3,6 +3,15 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/tvGroupTitle"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="26dp"
+        android:text="-- China --" />
+
     <android.support.v7.widget.RecyclerView android:id="@+id/rvDragDrop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
