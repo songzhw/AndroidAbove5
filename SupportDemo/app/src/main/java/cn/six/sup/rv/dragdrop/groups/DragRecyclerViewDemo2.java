@@ -53,7 +53,8 @@ public class DragRecyclerViewDemo2 extends Activity implements RvItemDragSwipeLi
 
             @Override
             public void onItemClick(RecyclerView.ViewHolder vh) {
-                System.out.println("szw click + " + data.get(vh.getAdapterPosition()));
+                int position = vh.getAdapterPosition();
+                moveToAnotherGroup(position);
             }
         });
 
@@ -61,6 +62,16 @@ public class DragRecyclerViewDemo2 extends Activity implements RvItemDragSwipeLi
         itemTouchHelper.attachToRecyclerView(rv);
     }
 
+    private void moveToAnotherGroup(int position){
+        int titlePosition = secondTitleIndex();
+        int toPosition;
+        if(position > titlePosition){
+            toPosition = 0;
+        } else {
+            toPosition = titlePosition;
+        }
+        this.onMove(position, toPosition);
+    }
 
     // =============== RvItemDragSwipeListener =================
     @Override
