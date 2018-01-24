@@ -72,8 +72,12 @@ public class StickyMiddleLayout extends LinearLayout implements NestedScrollingP
         boolean isTopNotTotallyHidden = scrollY < topViewHeight;
         boolean isTopNotTotallyShown = scrollY > 0
                 && !ViewCompat.canScrollVertically(target, -1); //negative num is scrolling up
+
+        int scrollUp = -1; // 手指向下, 即拉出底部来, 或说是让topView不可见
+        boolean isTopShowing = scrollY > 0 && scrollY < topViewHeight;
+        boolean isVerticalScroll = target.canScrollVertically(scrollUp); //即表示底部仍有内容, 仍可以拉
         System.out.println("szw isTopNotTotallyHidden = "+isTopNotTotallyHidden+" ; isTopNotTotallyShown = "+isTopNotTotallyShown);
-        if (isTopNotTotallyHidden || isTopNotTotallyShown) {
+        if (isTopShowing && isVerticalScroll) {
             scrollBy(0, dy);
             consumed[1] = dy;
         }
