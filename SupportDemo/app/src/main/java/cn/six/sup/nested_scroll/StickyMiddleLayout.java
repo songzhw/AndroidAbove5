@@ -6,6 +6,7 @@ import android.support.v4.view.NestedScrollingParent;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.OverScroller;
 
@@ -34,14 +35,15 @@ public class StickyMiddleLayout extends LinearLayout implements NestedScrollingP
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int mode = MeasureSpec.getMode(heightMeasureSpec);
-        int height = MeasureSpec.getSize(heightMeasureSpec);
 
+        View topView = getChildAt(0);
         View middleView = getChildAt(1);
         View bottomView = getChildAt(2);
-        int bottomHeight = getMeasuredHeight() - middleView.getMeasuredHeight();
-        int bottomHeightSpec = MeasureSpec.makeMeasureSpec(mode, bottomHeight);
-        bottomView.measure(widthMeasureSpec, bottomHeightSpec);
+
+        ViewGroup.LayoutParams lp = bottomView.getLayoutParams();
+        lp.height = getMeasuredHeight() - middleView.getMeasuredHeight();
+
+        setMeasuredDimension(getMeasuredWidth(), topView.getMeasuredHeight() + middleView.getMeasuredHeight() + bottomView.getMeasuredHeight());
     }
 
 
