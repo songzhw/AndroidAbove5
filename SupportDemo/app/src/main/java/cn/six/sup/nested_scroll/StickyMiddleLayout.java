@@ -1,4 +1,4 @@
-package cn.six.sup.clay.nested_scroll;
+package cn.six.sup.nested_scroll;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -6,7 +6,6 @@ import android.support.v4.view.NestedScrollingParent;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.OverScroller;
 

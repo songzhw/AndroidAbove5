@@ -1,4 +1,4 @@
-package cn.six.sup.clay.nested_scroll;
+package cn.six.sup.nested_scroll;
 
 import android.os.Bundle;
 import android.app.Activity;
