@@ -63,21 +63,23 @@ public class StickyMiddleLayout extends LinearLayout implements NestedScrollingP
     }
 
     /**
+     * @param target: 经测试, 是那个可以自己滑动的RecyclerView
      * @param dy : 往上推, 让topView不见时, dy是正数; 反之, 是负数
      */
     @Override
     public void onNestedPreScroll(View target, int dx, int dy, int[] consumed) {
         // 滑动起来了, 我作为父layout, 要不要消耗掉这些滑动, 来做我自己相关的动画
-        int scrollY = getScrollY();
-        boolean isTopNotTotallyHidden = scrollY < topViewHeight;
-        boolean isTopNotTotallyShown = scrollY > 0
-                && !ViewCompat.canScrollVertically(target, -1); //negative num is scrolling up
+        int scrollY = getScrollY(); //scrollY > 0 就是scroll up, 即让topView不可见, 让显示更多底部
 
-        int scrollUp = -1; // 手指向下, 即拉出底部来, 或说是让topView不可见
-        boolean isTopShowing = scrollY > 0 && scrollY < topViewHeight;
-        boolean isVerticalScroll = target.canScrollVertically(scrollUp); //即表示底部仍有内容, 仍可以拉
-        System.out.println("szw isTopNotTotallyHidden = "+isTopNotTotallyHidden+" ; isTopNotTotallyShown = "+isTopNotTotallyShown);
-        if (isTopShowing && isVerticalScroll) {
+        int scrollUp = -1; // 手指的动作是向上拉, 即拉出底部来, 或说是让topView不可见. || 负数就是scroll up
+        int scrollDown = 1;//正数就是scroll down
+
+        boolean isTopShowing = scrollY >= 0 && scrollY < topViewHeight;
+        boolean isRvStillHasContentNotShow = target.canScrollVertically(scrollUp); //即表示底部仍有内容, 仍可以拉
+        boolean isRvAtTop = !target.canScrollVertically(scrollDown);
+
+        if ( (isTopShowing && isRvStillHasContentNotShow && dy > 0)
+                || isRvAtTop && dy < 0) {
             scrollBy(0, dy);
             consumed[1] = dy;
         }
