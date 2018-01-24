@@ -55,6 +55,7 @@ public class StickyMiddleLayout extends LinearLayout implements NestedScrollingP
         super.onSizeChanged(w, h, oldw, oldh);
     }
 
+    // ============================= Scroll =============================
     @Override
     public boolean onStartNestedScroll(View child, View target, int nestedScrollAxes) {
         // onStartNestedScroll()中要指明我要关注哪个滑动方向
@@ -68,15 +69,18 @@ public class StickyMiddleLayout extends LinearLayout implements NestedScrollingP
     public void onNestedPreScroll(View target, int dx, int dy, int[] consumed) {
         // 滑动起来了, 我作为父layout, 要不要消耗掉这些滑动, 来做我自己相关的动画
         int scrollY = getScrollY();
-        boolean isTopNotTotallyHidden = dy > 0 && scrollY < topViewHeight;
-        boolean isTopNotTotallyShown = dy < 0 && scrollY > 0
+        boolean isTopNotTotallyHidden = scrollY < topViewHeight;
+        boolean isTopNotTotallyShown = scrollY > 0
                 && !ViewCompat.canScrollVertically(target, -1); //negative num is scrolling up
+        System.out.println("szw isTopNotTotallyHidden = "+isTopNotTotallyHidden+" ; isTopNotTotallyShown = "+isTopNotTotallyShown);
         if (isTopNotTotallyHidden || isTopNotTotallyShown) {
             scrollBy(0, dy);
             consumed[1] = dy;
         }
     }
 
+
+    // ============================= fling =============================
 
     /**
      * @return true if this parent consumed the fling ahead of the target view
