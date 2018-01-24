@@ -42,6 +42,7 @@ public class StickyMiddleLayout extends LinearLayout implements NestedScrollingP
 
         ViewGroup.LayoutParams lp = bottomView.getLayoutParams();
         lp.height = getMeasuredHeight() - middleView.getMeasuredHeight();
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec); // 再次计算. super.onMeasure()里会计入child.lp.height的
 
         setMeasuredDimension(getMeasuredWidth(), topView.getMeasuredHeight() + middleView.getMeasuredHeight() + bottomView.getMeasuredHeight());
     }
