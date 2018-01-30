@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-
 public class MyReportFragment extends Fragment {
     // 对于同一个Activity, 可能会有多个lifecycle的observer
     List<MyLifecycleListener> listeners = new ArrayList<>();
