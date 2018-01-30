@@ -1,0 +1,8 @@
+[ViewModel]
+
+ViewModel的数据和一个activity的实例是绑定的, 而且和它的生命周期是绑定的.
+(这就像LiveData一样, 为何ViewModel也在lifecycle.extension包里了).
+
+原理:
+通过给Activity添加一个HolderFragment ,设置 setRetainInstance(true);
+(屏幕旋转时,保持数据的状态)
