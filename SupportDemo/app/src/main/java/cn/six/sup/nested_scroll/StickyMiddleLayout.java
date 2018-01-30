@@ -1,20 +1,28 @@
 package cn.six.sup.nested_scroll;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v4.view.NestedScrollingParent;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.OverScroller;
 
 
 public class StickyMiddleLayout extends LinearLayout implements NestedScrollingParent {
+    private final static int TOP_CHILD_FLING_THRESHOLD = 3;
+
+    private View topView;
+
     // OverScroller class encapsulates scrolling with the ability to overshoot the bounds of a scrolling operation.
     // This class is a drop-in replacement for android.widget.Scroller in most cases.
     private OverScroller scroller;
+    private ValueAnimator animator;
 
     private int topViewHeight;
 
@@ -36,7 +44,7 @@ public class StickyMiddleLayout extends LinearLayout implements NestedScrollingP
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        View topView = getChildAt(0);
+        topView = getChildAt(0);
         View middleView = getChildAt(1);
         View bottomView = getChildAt(2);
 
@@ -94,23 +102,77 @@ public class StickyMiddleLayout extends LinearLayout implements NestedScrollingP
 
     // ============================= fling =============================
 
-    /**
-     * @return true if this parent consumed the fling ahead of the target view
-     */
-    @Override
-    public boolean onNestedPreFling(View target, float velocityX, float velocityY) {
-        // topView已经不见, 那parent就不管了, 要滑动与fling也是给带滑动的子view了, 所以这时要返回false
-        if (getScrollY() > topViewHeight) {
-            return false;
+    private int computeDuration(float velocityY) {
+        final int distance;
+        if (velocityY > 0) {
+            distance = Math.abs(topView.getHeight() - getScrollY());
+        } else {
+            distance = Math.abs(topView.getHeight() - (topView.getHeight() - getScrollY()));
         }
 
-        fling((int) velocityY);
-        return true;  // 反之, 那我们parent就要接掌所有的滑动, 所以这里要返回true
+
+        final int duration;
+        velocityY = Math.abs(velocityY);
+        if (velocityY > 0) {
+            duration = 3 * Math.round(1000 * (distance / velocityY));
+        } else {
+            final float distanceRatio = (float) distance / getHeight();
+            duration = (int) ((distanceRatio + 1) * 150);
+        }
+
+        return duration;
+
     }
 
-    private void fling(int velocityY) {
-        scroller.fling(0, getScrollY(), 0, velocityY, 0, 0, 0, topViewHeight);
-        invalidate();
+    @Override
+    public boolean onNestedFling(View target, float velocityX, float velocityY, boolean consumed) {
+        //如果是recyclerView 根据判断第一个元素是哪个位置可以判断是否消耗
+        //这里判断如果第一个元素的位置是大于TOP_CHILD_FLING_THRESHOLD的
+        //认为已经被消耗，在animateScroll里不会对velocityY<0时做处理
+        if (target instanceof RecyclerView && velocityY < 0) {
+            final RecyclerView recyclerView = (RecyclerView) target;
+            final View firstChild = recyclerView.getChildAt(0);
+            final int childAdapterPosition = recyclerView.getChildAdapterPosition(firstChild);
+            consumed = childAdapterPosition > TOP_CHILD_FLING_THRESHOLD;
+        }
+        if (!consumed) {
+            animateScroll(velocityY, computeDuration(0), consumed);
+        } else {
+            animateScroll(velocityY, computeDuration(velocityY), consumed);
+        }
+        return true;
+    }
+
+    private void animateScroll(float velocityY, final int duration, boolean consumed) {
+        final int currentOffset = getScrollY();
+        final int topHeight = topView.getHeight();
+        if (animator == null) {
+            animator = new ValueAnimator();
+            animator.setInterpolator(new AccelerateDecelerateInterpolator());
+            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    if (animation.getAnimatedValue() instanceof Integer) {
+                        scrollTo(0, (Integer) animation.getAnimatedValue());
+                    }
+                }
+            });
+        } else {
+            animator.cancel();
+        }
+        animator.setDuration(Math.min(duration, 600));
+
+        if (velocityY >= 0) {
+            animator.setIntValues(currentOffset, topHeight);
+            animator.start();
+        } else {
+            //如果子View没有消耗down事件 那么就让自身滑倒0位置
+            if (!consumed) {
+                animator.setIntValues(currentOffset, 0);
+                animator.start();
+            }
+
+        }
     }
 
     @Override
