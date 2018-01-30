@@ -11,33 +11,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.LinearLayout;
-import android.widget.OverScroller;
 
 
 public class StickyMiddleLayout extends LinearLayout implements NestedScrollingParent {
     private final static int TOP_CHILD_FLING_THRESHOLD = 3;
 
     private View topView;
-
-    // OverScroller class encapsulates scrolling with the ability to overshoot the bounds of a scrolling operation.
-    // This class is a drop-in replacement for android.widget.Scroller in most cases.
-    private OverScroller scroller;
     private ValueAnimator animator;
 
     private int topViewHeight;
 
     public StickyMiddleLayout(Context context) {
         super(context);
-        init(context);
     }
 
     public StickyMiddleLayout(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        init(context);
-    }
-
-    private void init(Context ctx) {
-        scroller = new OverScroller(ctx);
     }
 
     @Override
@@ -172,14 +161,6 @@ public class StickyMiddleLayout extends LinearLayout implements NestedScrollingP
                 animator.start();
             }
 
-        }
-    }
-
-    @Override
-    public void computeScroll() {
-        if (scroller.computeScrollOffset()) {
-            scrollTo(0, scroller.getCurrY());
-            invalidate();
         }
     }
 
