@@ -122,7 +122,7 @@ public class StickyMiddleLayout extends LinearLayout implements NestedScrollingP
             final RecyclerView recyclerView = (RecyclerView) target;
             final View firstChild = recyclerView.getChildAt(0);
             final int childAdapterPosition = recyclerView.getChildAdapterPosition(firstChild);
-            consumed = childAdapterPosition > TOP_CHILD_FLING_THRESHOLD;
+            consumed = childAdapterPosition > TOP_CHILD_FLING_THRESHOLD; //第几项不见时可以开始推topView了
         }
         if (!consumed) {
             animateScroll(velocityY, computeDuration(0), consumed);
