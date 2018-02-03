@@ -17,13 +17,15 @@ public class TransformViewModel3 extends ViewModel {
     }
 
     public LiveData<String> getPenName() {
-        penName = Transformations.switchMap(name, str -> {
-            MutableLiveData<String> ret = new MutableLiveData<>();
-            String penNameString = "from " + str;
-            ret.setValue(penNameString);
-            System.out.println("szw getPenName(" + penNameString + ")");
-            return ret;
-        });
+//        penName = Transformations.switchMap(name, str -> {
+//            MutableLiveData<String> ret = new MutableLiveData<>();
+//            String penNameString = "from " + str;
+//            ret.setValue(penNameString);
+//            System.out.println("szw getPenName(" + penNameString + ")");
+//            return ret;
+//        });
+
+        penName = Transformations.map(name, str -> "map/from "+str);
         return penName;
     }
 
