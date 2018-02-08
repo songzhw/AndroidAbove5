@@ -3,7 +3,6 @@ package cn.six.sup.clay.appbar;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.TabLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -15,7 +14,6 @@ import cn.six.sup.R;
 public class AppBarAnimDemo extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener {
 
     private AppBarLayout appBarLayout;
-    private TabLayout tabLayout;
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
@@ -42,11 +40,7 @@ public class AppBarAnimDemo extends AppCompatActivity implements AppBarLayout.On
 
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
-        if (i == 0) {
-            mSwipeRefreshLayout.setEnabled(true);
-        } else {
-            mSwipeRefreshLayout.setEnabled(false);
-        }
+        mSwipeRefreshLayout.setEnabled(i == 0);
     }
 
     @Override
