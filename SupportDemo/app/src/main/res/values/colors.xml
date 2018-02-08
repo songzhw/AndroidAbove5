@@ -9,6 +9,7 @@
     <color name="light_green">#048403</color>
     <color name="pale_green">#d8e4d7</color>
     <color name="white">#fff</color>
+    <color name="light_gray">#eee</color>
 
 
 </resources>
