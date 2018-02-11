@@ -118,6 +118,10 @@ public class DragRecyclerViewDemo3 extends Activity implements RvItemDragSwipeLi
         return -1;
     }
 
+    @Override
+    public void onClearView() {
+        System.out.println("szw actv clearView");
+    }
 
 
 }

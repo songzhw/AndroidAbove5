@@ -4,4 +4,7 @@ public interface RvItemDragSwipeListener3 {
     void onMove(int fromPosition, int toPosition);
 
     boolean isDraggable(int adapterPosition);
+
+    void onClearView();
+
 }
