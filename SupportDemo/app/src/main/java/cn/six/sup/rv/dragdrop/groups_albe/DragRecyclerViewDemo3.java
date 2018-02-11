@@ -2,6 +2,7 @@ package cn.six.sup.rv.dragdrop.groups_albe;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -133,8 +134,12 @@ public class DragRecyclerViewDemo3 extends Activity implements RvItemDragSwipeLi
         ret.addAll(tops);
         ret.addAll(bottoms);
 
-        adapter.data = ret;
-        adapter.notifyDataSetChanged();
+        Handler handler = new Handler();
+        handler.post(() -> {
+            adapter.data = ret;
+            adapter.notifyDataSetChanged();
+        });
+
     }
 
 
