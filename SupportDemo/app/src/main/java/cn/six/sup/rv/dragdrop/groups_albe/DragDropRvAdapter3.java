@@ -16,7 +16,7 @@ import static cn.six.sup.rv.dragdrop.groups.Company.TYPE_TITLE;
 
 
 public class DragDropRvAdapter3 extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private List<Company3> data;
+    public List<Company3> data;
 
     public DragDropRvAdapter3(List<Company3> results) {
         this.data = results;

@@ -60,6 +60,7 @@ public class RvItemDragSwipeCallback3 extends ItemTouchHelper.Callback {
     public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
         super.clearView(recyclerView, viewHolder);
         viewHolder.itemView.setBackgroundColor(0);
+        listener.onClearView();
     }
 
 }

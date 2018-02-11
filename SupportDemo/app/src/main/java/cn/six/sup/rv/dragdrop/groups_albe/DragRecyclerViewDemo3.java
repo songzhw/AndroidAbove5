@@ -121,7 +121,22 @@ public class DragRecyclerViewDemo3 extends Activity implements RvItemDragSwipeLi
     @Override
     public void onClearView() {
         System.out.println("szw actv clearView");
+
+        //reorder the list
+        int titlePosition = secondTitleIndex();
+        List<Company3> tops = data.subList(0, titlePosition + 1);
+        List<Company3> bottoms = data.subList(titlePosition + 1, data.size());
+
+        Collections.sort(bottoms, (c1, c2) -> c1.name.compareTo(c2.name));
+
+        List<Company3> ret = new ArrayList<>();
+        ret.addAll(tops);
+        ret.addAll(bottoms);
+
+        adapter.data = ret;
+        adapter.notifyDataSetChanged();
     }
+
 
 
 }
