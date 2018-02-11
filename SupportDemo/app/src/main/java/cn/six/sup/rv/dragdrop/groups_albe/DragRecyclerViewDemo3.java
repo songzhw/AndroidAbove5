@@ -122,6 +122,11 @@ public class DragRecyclerViewDemo3 extends Activity implements RvItemDragSwipeLi
     @Override
     public void onClearView() {
         System.out.println("szw actv clearView");
+    }
+
+    @Override
+    public void onSelectionIsIdle(RecyclerView.ViewHolder viewHolder) {
+        System.out.println("szw onSelectionIsIdel");
 
         //reorder the list
         int titlePosition = secondTitleIndex();

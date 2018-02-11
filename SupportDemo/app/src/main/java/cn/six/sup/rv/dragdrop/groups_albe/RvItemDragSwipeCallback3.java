@@ -51,7 +51,10 @@ public class RvItemDragSwipeCallback3 extends ItemTouchHelper.Callback {
     public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
         if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
             viewHolder.itemView.setBackgroundColor(0x33cccccc);
+        } else {
+            listener.onSelectionIsIdle(viewHolder);
         }
+
         super.onSelectedChanged(viewHolder, actionState);
     }
 
