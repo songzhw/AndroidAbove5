@@ -104,7 +104,7 @@ public class DragRecyclerViewDemo2 extends Activity implements RvItemDragSwipeLi
 
     @Override
     public boolean isDraggable(int position) {
-        return  data.get(position).type == TYPE_TITLE;
+        return  data.get(position).type != TYPE_TITLE;
     }
 
 
