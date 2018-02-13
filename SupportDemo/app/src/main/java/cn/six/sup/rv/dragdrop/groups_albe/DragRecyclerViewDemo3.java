@@ -92,14 +92,14 @@ public class DragRecyclerViewDemo3 extends Activity implements RvItemDragSwipeLi
     }
 
     private void onPostMove(int toPosition) {
-//        int secondTitleIndex = secondTitleIndex();
-//        if (toPosition < secondTitleIndex) {
-//            data.get(toPosition).country = Country_CHINA;
-//        } else {
-//            data.get(toPosition).country = Country_US;
-//        }
-//
-//        adapter.notifyItemChanged(toPosition);
+        int secondTitleIndex = secondTitleIndex();
+        if (toPosition < secondTitleIndex) {
+            data.get(toPosition).country = Country_CHINA;
+        } else {
+            data.get(toPosition).country = Country_US;
+        }
+
+        adapter.notifyItemChanged(toPosition);
     }
 
 
