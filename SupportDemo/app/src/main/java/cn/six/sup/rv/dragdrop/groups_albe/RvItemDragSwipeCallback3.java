@@ -35,10 +35,7 @@ public class RvItemDragSwipeCallback3 extends ItemTouchHelper.Callback {
         System.out.println("szw onMove() from "+viewHolder.getAdapterPosition()+" to "+target.getAdapterPosition());
         int fromPosition = viewHolder.getAdapterPosition();
         int toPosition = target.getAdapterPosition();
-        if(fromPosition != toPosition) {
-            listener.onMove(fromPosition, toPosition);
-        }
-
+        listener.onMove(fromPosition, toPosition);
         return true;
     }
 
