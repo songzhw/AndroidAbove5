@@ -139,11 +139,11 @@ public class DragRecyclerViewDemo3 extends Activity implements RvItemDragSwipeLi
         ret.addAll(tops);
         ret.addAll(bottoms);
 
-        Handler handler = new Handler();
-        handler.postDelayed( () -> {
+//        Handler handler = new Handler();
+//        handler.postDelayed( () -> {
             adapter.data = ret;
             adapter.notifyDataSetChanged();
-        }, 1000);
+//        }, 1000);
 
 
     }

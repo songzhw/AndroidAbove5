@@ -1,4 +1,4 @@
-package cn.six.sup.design_lib.nested_scroll.sample;
+package cn.six.sup.nested_scroll.nested_scroll.sample;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

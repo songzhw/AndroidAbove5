@@ -12,18 +12,9 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".rv.custom_layout_mgr.fixed_column.demo.FixColumnGridDemo"></activity>
-        <activity android:name=".sample.clay.ClayNewDemo"></activity>
         <activity
             android:name=".rv.stickyColumnTable.cooridinate_rv_rv_2.demo.MultiRvDemo2"
             android:label="2个rv互动">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="ca.six.sup.demo" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".sample.clay.BuyActivity"
-            android:theme="@style/Theme.CustomDialog">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="ca.six.sup.demo" />
@@ -294,7 +285,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".design_lib.nested_scroll.sample.NestScollSample"
+            android:name=".nested_scroll.nested_scroll.sample.NestScollSample"
             android:label="NestedScrolling : 01 sample from Internet">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -376,14 +367,6 @@
         <activity
             android:name=".other.chrome.ChromeJumperDemo"
             android:label="z Others - Chrome Custom Tab">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="ca.six.sup.demo" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".design_lib.constraitlay.ConstraintLayoutDemo02"
-            android:label="z Constraint - 02">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="ca.six.sup.demo" />

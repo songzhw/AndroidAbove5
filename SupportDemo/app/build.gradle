@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '27.0.2'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "cn.six.sup"
-        minSdkVersion 20
-        targetSdkVersion 25
+        minSdkVersion 21
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
     }
@@ -23,7 +23,7 @@ android {
     }
 }
 
-def v = "26.1.0"
+def v = "27.0.2"
 
 dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -36,17 +36,7 @@ dependencies {
     compile "com.android.support:cardview-v7:$v"
     compile "com.android.support:customtabs:$v"
     compile "com.android.support:support-dynamic-animation:$v"
-    compile 'com.android.support.constraint:constraint-layout:1.1.0-beta4'
-
-    compile 'com.google.android.gms:play-services-plus:11.2.0'
-    compile 'com.google.android.gms:play-services-location:11.2.0'
-
-    // Android Architecture Components - lifecycle
-    implementation "android.arch.lifecycle:runtime:1.0.3" // not necessary if you are using lifecycle:extensions or lifecycle:common-java8
-    annotationProcessor "android.arch.lifecycle:compiler:1.0.0" // not needed if you are using the DefaultLifecycleObserver from common-java8 artifact.
-
-    // Android Architecture Components - LiveData & ViewModel
-    implementation "android.arch.lifecycle:extensions:1.0.0"
+    compile 'com.android.support.constraint:constraint-layout:1.1.0-beta5'
 
     compile 'com.github.markzhai:blockcanary-android:1.5.0'
 

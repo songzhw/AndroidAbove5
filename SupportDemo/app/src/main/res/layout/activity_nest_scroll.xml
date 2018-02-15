@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<cn.six.sup.design_lib.nested_scroll.sample.StickyNavLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<cn.six.sup.nested_scroll.nested_scroll.sample.StickyNavLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,7 +20,7 @@
             android:textStyle="bold" />
     </RelativeLayout>
 
-    <cn.six.sup.design_lib.nested_scroll.sample.SimpleViewPagerIndicator
+    <cn.six.sup.nested_scroll.nested_scroll.sample.SimpleViewPagerIndicator
         android:id="@id/id_stickynavlayout_indicator"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -31,4 +31,4 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-</cn.six.sup.design_lib.nested_scroll.sample.StickyNavLayout>
+</cn.six.sup.nested_scroll.nested_scroll.sample.StickyNavLayout>
