@@ -51,7 +51,6 @@ public class DragRecyclerViewDemo3 extends Activity implements RvItemDragSwipeLi
         rv.addOnItemTouchListener(new OnRvItemClickListener(rv) {
             @Override
             public void onLongClick(RecyclerView.ViewHolder vh) {
-                System.out.println("szw long click = " + vh.toString());
             }
 
             @Override
@@ -85,7 +84,6 @@ public class DragRecyclerViewDemo3 extends Activity implements RvItemDragSwipeLi
         onPostMove(toPosition);
     }
 
-
     private void onPostMove(int toPosition) {
         int secondTitleIndex = secondTitleIndex();
         if (toPosition < secondTitleIndex) {
@@ -111,7 +109,6 @@ public class DragRecyclerViewDemo3 extends Activity implements RvItemDragSwipeLi
                 ret = i;
             }
         }
-        System.out.println("szw secondTimePos = "+ret);
         return ret;
     }
 

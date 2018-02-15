@@ -19,7 +19,6 @@ public class RvItemDragSwipeCallback3 extends ItemTouchHelper.Callback {
     // ========================= ItemTouchHelper.Callback (Basic) =================================
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-        System.out.println("szw getMovementFlags("+viewHolder.getAdapterPosition()+")");
         int noSwipeFlags = 0;
         int dragFlags;
         if(listener.isDraggable(viewHolder.getAdapterPosition())) {
