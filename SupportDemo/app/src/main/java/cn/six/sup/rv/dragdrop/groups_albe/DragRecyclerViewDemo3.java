@@ -25,13 +25,15 @@ public class DragRecyclerViewDemo3 extends Activity implements RvItemDragSwipeLi
 
     private List<Company3> data;
     private DragDropRvAdapter3 adapter;
+    private RecyclerView rv;
+    private ItemTouchHelper itemTouchHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drag_rv);
 
-        RecyclerView rv = (RecyclerView) findViewById(R.id.rvDragDrop);
+        rv = (RecyclerView) findViewById(R.id.rvDragDrop);
         rv.setLayoutManager(new LinearLayoutManager(this));
         this.data = new ArrayList<>();
         this.data.add(new Company3("Alibaba", Country_CHINA));
@@ -59,7 +61,7 @@ public class DragRecyclerViewDemo3 extends Activity implements RvItemDragSwipeLi
             }
         });
 
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RvItemDragSwipeCallback3(this));
+        itemTouchHelper = new ItemTouchHelper(new RvItemDragSwipeCallback3(this));
         itemTouchHelper.attachToRecyclerView(rv);
     }
 
@@ -139,15 +141,14 @@ public class DragRecyclerViewDemo3 extends Activity implements RvItemDragSwipeLi
         ret.addAll(tops);
         ret.addAll(bottoms);
 
-//        Handler handler = new Handler();
-//        handler.postDelayed( () -> {
+        Handler handler = new Handler();
+        handler.post( () -> {
             adapter.data = ret;
             adapter.notifyDataSetChanged();
-//        }, 1000);
 
-
+            itemTouchHelper.attachToRecyclerView(null);
+            itemTouchHelper.attachToRecyclerView(rv);
+        });
     }
-
-
 
 }
