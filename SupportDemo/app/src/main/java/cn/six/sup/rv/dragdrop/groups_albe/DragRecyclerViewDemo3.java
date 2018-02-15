@@ -79,19 +79,12 @@ public class DragRecyclerViewDemo3 extends Activity implements RvItemDragSwipeLi
     // =============== RvItemDragSwipeListener =================
     @Override
     public void onMove(int fromPosition, int toPosition) {
-        if (fromPosition < toPosition) {
-            for (int i = fromPosition; i < toPosition; i++) {
-                Collections.swap(data, i, i + 1);
-            }
-        } else {
-            for (int i = fromPosition; i > toPosition; i--) {
-                Collections.swap(data, i, i - 1);
-            }
-        }
+        Collections.swap(data, fromPosition, toPosition);
         adapter.notifyItemMoved(fromPosition, toPosition);
 
         onPostMove(toPosition);
     }
+
 
     private void onPostMove(int toPosition) {
         int secondTitleIndex = secondTitleIndex();
