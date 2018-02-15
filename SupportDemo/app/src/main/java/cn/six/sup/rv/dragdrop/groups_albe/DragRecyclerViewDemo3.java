@@ -110,15 +110,16 @@ public class DragRecyclerViewDemo3 extends Activity implements RvItemDragSwipeLi
         return  data.get(position).type != TYPE_TITLE;
     }
 
-
     private int secondTitleIndex() {
+        int ret = -1;
         for (int i = 0; i < data.size(); i++) {
             Company3 company = data.get(i);
             if (company.type == TYPE_TITLE && company.name.contains("US")) {
-                return i;
+                ret = i;
             }
         }
-        return -1;
+        System.out.println("szw secondTimePos = "+ret);
+        return ret;
     }
 
     @Override
