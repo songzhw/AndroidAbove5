@@ -132,13 +132,9 @@ public class DragRecyclerViewDemo3 extends Activity implements RvItemDragSwipeLi
         ret.addAll(tops);
         ret.addAll(bottoms);
 
-
-        Handler handler = new Handler();
-        handler.post( () -> {
-            rv.setAdapter(null);
-            adapter = new DragDropRvAdapter3(this.data);
-            rv.setAdapter(adapter);
-        });
+        rv.setAdapter(null);
+        adapter = new DragDropRvAdapter3(this.data);
+        rv.setAdapter(adapter);
 
     }
 
