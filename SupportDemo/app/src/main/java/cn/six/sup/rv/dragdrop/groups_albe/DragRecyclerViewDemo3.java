@@ -119,7 +119,7 @@ public class DragRecyclerViewDemo3 extends Activity implements RvItemDragSwipeLi
 
     @Override
     public void onSelectionIsIdle(RecyclerView.ViewHolder viewHolder) {
-        System.out.println("szw onSelectionIsIdel");
+        System.out.println("szw onSelectionIsIdle");
 
         //reorder the list
         int titlePosition = secondTitleIndex();
@@ -132,14 +132,15 @@ public class DragRecyclerViewDemo3 extends Activity implements RvItemDragSwipeLi
         ret.addAll(tops);
         ret.addAll(bottoms);
 
+
         Handler handler = new Handler();
         handler.post( () -> {
-            adapter.data = ret;
-            adapter.notifyDataSetChanged();
-
-            itemTouchHelper.attachToRecyclerView(null);
-            itemTouchHelper.attachToRecyclerView(rv);
+            rv.setAdapter(null);
+            adapter = new DragDropRvAdapter3(this.data);
+            rv.setAdapter(adapter);
         });
+
     }
+
 
 }
