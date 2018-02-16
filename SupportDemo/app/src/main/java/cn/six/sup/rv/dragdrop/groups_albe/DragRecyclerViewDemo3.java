@@ -132,7 +132,7 @@ public class DragRecyclerViewDemo3 extends Activity implements RvItemDragSwipeLi
         ret.addAll(tops);
         ret.addAll(bottoms);
 
-        rv.setAdapter(null);
+        // add the two line below to make sure the drag&drop would be weird after the reordering
         adapter = new DragDropRvAdapter3(this.data);
         rv.setAdapter(adapter);
 
