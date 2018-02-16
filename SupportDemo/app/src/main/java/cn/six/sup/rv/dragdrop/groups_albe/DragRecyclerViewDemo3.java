@@ -115,6 +115,7 @@ public class DragRecyclerViewDemo3 extends Activity implements RvItemDragSwipeLi
     @Override
     public void onClearView() {
         System.out.println("szw actv clearView");
+        // login in the onSelectionIsIdle() could also put in here
     }
 
     @Override
