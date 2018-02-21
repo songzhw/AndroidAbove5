@@ -40,10 +40,17 @@ public class DragRecyclerViewDemo3 extends Activity implements RvItemDragSwipeLi
         this.data.add(new Company3("NetEase", Country_CHINA));
         this.data.add(new Company3("Tecent", Country_CHINA));
         this.data.add(new Company3("Xiaomi", Country_CHINA));
+        this.data.add(new Company3("SomeA", Country_CHINA));
+        this.data.add(new Company3("SomeB", Country_CHINA));
         this.data.add(new Company3("-- US --"));
         this.data.add(new Company3("Google", Country_US));
         this.data.add(new Company3("Apple", Country_US));
         this.data.add(new Company3("Microsoft", Country_US));
+        this.data.add(new Company3("Amazon", Country_US));
+        this.data.add(new Company3("Facebook", Country_US));
+        this.data.add(new Company3("Airbnb", Country_US));
+        this.data.add(new Company3("Square", Country_US));
+        this.data.add(new Company3("Tweet", Country_US));
 
         adapter = new DragDropRvAdapter3(this.data);
         rv.setAdapter(adapter);
