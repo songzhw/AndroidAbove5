@@ -10,6 +10,21 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
+
+
+
+        <activity
+            android:name=".ctlay.anim.TransitionAnimDemo"
+            android:label="@string/title_activity_disorder_touch_demo"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".rv.custom_layout_mgr.fixed_column.demo.FixColumnGridDemo"></activity>
         <activity
@@ -387,15 +402,6 @@
 
         <receiver android:name=".other.chrome.ActionBroadcastReceiver" />
 
-        <activity
-            android:name=".rv.dragdrop.groups_albe.DragRecyclerViewDemo3"
-            android:label="@string/title_activity_disorder_touch_demo"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>
