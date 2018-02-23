@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView android:id="@+id/ivFood"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/west_lake"
+        />
+
+    <TextView android:id="@+id/tvFoodName"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:textSize="25dp" android:textColor="#fff" android:text="西湖美景三月天" android:background="@color/colorPrimary"
+        android:layout_margin="10dp"
+        app:layout_constraintRight_toLeftOf="@id/ivFood" app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView android:id="@+id/tvFoodDesp"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:textSize="18dp" android:textColor="#fff" android:lineSpacingMultiplier="1.15"
+        android:layout_margin="20dp" android:background="@color/colorAccent"
+        app:layout_constraintTop_toBottomOf="@id/ivFood" app:layout_constraintLeft_toLeftOf="parent"
+        android:text="西湖旧称武林水，其余三面环山，面积约6.5平方千米，南北长约3.2 千米，东西宽约2.8千米，绕湖一周近15千米。西湖平均水深2.27米，水体容量约为1429万立方米。
+
+西湖被孤山、白堤、苏堤、杨公堤分隔，按面积大小分别为外西湖、西里湖（又称“后西湖”或“后湖”）、北里湖（又称“里西湖”）、小南湖（又称“南湖”）及岳湖等五片水面，其中外西湖面积最大。孤山是西湖中最大的天然岛屿，苏堤、白堤越过湖面，小瀛洲、湖心亭、阮公墩三个人工小岛鼎立于外西湖湖心，夕照山的雷峰塔与宝石山的保俶塔隔湖相映，由此形成了“一山、二塔、三岛、三堤、五湖”的基本格局。"
+        />
+
 
 </android.support.constraint.ConstraintLayout>
