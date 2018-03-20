@@ -26,7 +26,8 @@ public class BoolFingerActivity extends Activity {
 
         btnPress = (Button) findViewById(R.id.btnMarioDecrypt);
         tvLog = (TextView) findViewById(R.id.tvMarioLog);
-/*
+
+/* TODO bring it back in production
         // We should check permission on runtime in Marshmallow
         if (checkSelfPermission(Manifest.permission.USE_FINGERPRINT) == PackageManager.PERMISSION_GRANTED) {
             if (!fingerprintMgr.isHardwareDetected()) {
