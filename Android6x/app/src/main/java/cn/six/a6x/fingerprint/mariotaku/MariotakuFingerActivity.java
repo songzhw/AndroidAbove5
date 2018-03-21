@@ -225,11 +225,11 @@ public class MariotakuFingerActivity extends Activity {
         // Use Decrypt mode
         cipher.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(IV));
         final FingerprintManager.CryptoObject crypto = new FingerprintManager.CryptoObject(cipher);
-        fingerprintManager.authenticate(null, null, 0, new SimpleAuthenticationCallback() {
-            @Override
-            public void onAuthenticationSucceeded(final FingerprintManager.AuthenticationResult result) {
+//        fingerprintManager.authenticate(crypto, null, 0, new SimpleAuthenticationCallback() {
+//            @Override
+//            public void onAuthenticationSucceeded(final FingerprintManager.AuthenticationResult result) {
                 try {
-                    final Cipher cipher = result.getCryptoObject().getCipher();
+//                    final Cipher cipher = result.getCryptoObject().getCipher();
                     writeLog("[OK]\n");
 
                     byte[] decrypted = cipher.doFinal(encrypted);
@@ -237,8 +237,8 @@ public class MariotakuFingerActivity extends Activity {
                 } catch (Exception e) {
                     writeError(e);
                 }
-            }
-        }, new Handler());
+//            }
+//        }, new Handler());
         return true;
     }
 
