@@ -188,11 +188,11 @@ public class MariotakuFingerActivity extends Activity {
                 + KeyProperties.BLOCK_MODE_CBC + "/" + KeyProperties.ENCRYPTION_PADDING_PKCS7);
         // Use Encrypt mode.
         cipher.init(Cipher.ENCRYPT_MODE, key);
-        final FingerprintManager.CryptoObject crypto = new FingerprintManager.CryptoObject(cipher);
-        fingerprintManager.authenticate(crypto, null, 0, new SimpleAuthenticationCallback() {
-            @Override
-            public void onAuthenticationSucceeded(final FingerprintManager.AuthenticationResult result) {
-                final Cipher cipher = result.getCryptoObject().getCipher();
+//        final FingerprintManager.CryptoObject crypto = new FingerprintManager.CryptoObject(cipher);
+//        fingerprintManager.authenticate(crypto, null, 0, new SimpleAuthenticationCallback() {
+//            @Override
+//            public void onAuthenticationSucceeded(final FingerprintManager.AuthenticationResult result) {
+//                final Cipher cipher = result.getCryptoObject().getCipher();
                 String str = "szw is an android programmer";
                 final byte[] data = str.getBytes();
                 writeLog("[OK]\n");
@@ -204,9 +204,9 @@ public class MariotakuFingerActivity extends Activity {
                 } catch (IllegalBlockSizeException | BadPaddingException e) {
                     writeError(e);
                 }
-            }
-
-        }, new Handler());
+//            }
+//
+//        }, new Handler());
         return true;
     }
 
