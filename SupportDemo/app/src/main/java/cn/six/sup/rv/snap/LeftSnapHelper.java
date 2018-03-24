@@ -22,19 +22,19 @@ public class LeftSnapHelper extends LinearSnapHelper {
     public View findSnapView(RecyclerView.LayoutManager layoutManager) {
         horizontalHelper = getHorizontalHelper(layoutManager);
         if (layoutManager instanceof LinearLayoutManager) {
-            int firstChild = ((LinearLayoutManager) layoutManager).findFirstVisibleItemPosition();
-            if (firstChild == RecyclerView.NO_POSITION) {
+            int firstChildPosition = ((LinearLayoutManager) layoutManager).findFirstVisibleItemPosition();
+            if (firstChildPosition == RecyclerView.NO_POSITION) {
                 return null;
             }
 
-            View child = layoutManager.findViewByPosition(firstChild);
+            View child = layoutManager.findViewByPosition(firstChildPosition);
             int childWidth = horizontalHelper.getDecoratedMeasurement(child); //因为现在是水平方向, 所以此方法得出来的是水平上的所占空间, 自然也就是width了
             int childEnd = horizontalHelper.getDecoratedEnd(child);
 
             if (childEnd >= childWidth / 2) {
                 return child;
             } else {
-                return layoutManager.findViewByPosition(firstChild + 1);
+                return layoutManager.findViewByPosition(firstChildPosition + 1); //若是往右滑, 过半, 那这时firstVisibleItem的childEnd就很小, 没过半, 所以我们要跳到下一项去, 所以这里 +1
             }
         }
 
@@ -93,8 +93,20 @@ getStartAfterPadding(): Returns the start position of the layout after the start
  但不论decroatedStart, decoratedEnd如何在滑动时变化, (decoratedEnd - decoratedStart)的值一定是1050,
 
 如滑动时, 记录[position] decoratedStart - decoratedEnd ; decoratedMeasurement
-    [0] -661 - 389 ; m = 1050
-    [0] -807 - 243 ; m = 1050
-    [1] 0 - 1050 ; m = 1050
+    szw findSnapView(): [0] -661 - 389 ; m = 1050
+    szw findSnapView(): [0] -807 - 243 ; m = 1050
+    szw findSnapView(): [1] 0 - 1050 ; m = 1050
 
+所以, decoratedEnd >= decoratedMeasurement / 2时, 这说明, 已经触发了SnapHelper的条件, 松手就会自动滑动到***项了.
 */
+
+/*
+findSnapView()在滑动时不会被调用
+只有在松手后, 才会被调用 -- 用来看下要滑动到哪个位置.
+
+如从第5项到第4项, 滑动过半, 松手, 日志为:
+    szw findSnapView(): [4] -381 - 669 ; m = 1050
+    szw findSnapView(): [4] -392 - 658 ; m = 1050
+    szw findSnapView(): [4] 0 - 1050 ; m = 1050
+
+ */
