@@ -42,11 +42,6 @@ public class LeftSnapHelper extends LinearSnapHelper {
                 return null;
             }
 
-            // 这是为了解决当翻到最后一页的时候，最后一个Item不能完整显示的问题
-            if (lastChild == layoutManager.getItemCount() - 1) {
-                return layoutManager.findViewByPosition(lastChild);
-            }
-
             View child = layoutManager.findViewByPosition(firstChild);
             // 得到此时需要左对齐显示的条目
             if (helper.getDecoratedEnd(child) >= helper.getDecoratedMeasurement(child) / 2
