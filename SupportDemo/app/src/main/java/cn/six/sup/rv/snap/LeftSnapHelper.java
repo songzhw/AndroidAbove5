@@ -30,6 +30,7 @@ public class LeftSnapHelper extends LinearSnapHelper {
             View child = layoutManager.findViewByPosition(firstChild);
             int childWidth = horizontalHelper.getDecoratedMeasurement(child); //因为现在是水平方向, 所以此方法得出来的是水平上的所占空间, 自然也就是width了
             int childEnd = horizontalHelper.getDecoratedEnd(child);
+
             if (childEnd >= childWidth / 2) {
                 return child;
             } else {
@@ -84,4 +85,16 @@ getDecoratedMeasurement(view): Returns the space occupied by this View in the cu
 getDecoratedStart(view): Returns the start of the view including its decoration and margin.
 getDecoratedEnd(view):  Returns the end of the view including its decoration and margin.
 getStartAfterPadding(): Returns the start position of the layout after the start padding is added.
- */
+
+以rv是水平, 且一item宽度为1050为例, 那:
+ decoratedMeasurement一定总是1050
+ decroatedStart一开始是负数, 一直到0
+ decoratedEnd最终是1050
+ 但不论decroatedStart, decoratedEnd如何在滑动时变化, (decoratedEnd - decoratedStart)的值一定是1050,
+
+如滑动时, 记录[position] decoratedStart - decoratedEnd ; decoratedMeasurement
+    [0] -661 - 389 ; m = 1050
+    [0] -807 - 243 ; m = 1050
+    [1] 0 - 1050 ; m = 1050
+
+*/
