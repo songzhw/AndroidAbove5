@@ -14,7 +14,7 @@
 
 
         <activity
-            android:name=".ctlay.anim.TransitionAnimDemo"
+            android:name=".rv.snap.SnapHelperDemo"
             android:label="@string/title_activity_disorder_touch_demo"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -358,14 +358,6 @@
         <activity
             android:name=".rv.composition.demo.ComposedRvDemo"
             android:label="Rv + Composed Row">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="ca.six.sup.demo" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".rv.snap.SnapHelperDemo"
-            android:label="Rv + SnapHelper">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="ca.six.sup.demo" />

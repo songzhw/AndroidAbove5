@@ -14,7 +14,6 @@ import cn.six.sup.rv.RvViewHolder;
 import cn.six.sup.rv.one_adapter.OneAdapter;
 
 public class SnapHelperDemo extends Activity {
-    public static final int COLUMN_COUNT = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +21,7 @@ public class SnapHelperDemo extends Activity {
         setContentView(R.layout.activity_rv_divider_one);
 
         List<String> numbers = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 9; i++) {
             numbers.add("$ " + i);
         }
 
