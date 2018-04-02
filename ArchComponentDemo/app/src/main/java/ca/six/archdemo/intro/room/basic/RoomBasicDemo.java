@@ -28,13 +28,29 @@ public class RoomBasicDemo extends Activity {
     }
 
     public void onClickSimpleButton(View v) {
-        User user = new User(100, "chandler", "bean");
-        dao.insertAll(user);
+        new Thread(){
+            @Override
+            public void run() {
+                User user = new User(100, "chandler", "bean");
+                dao.insertAll(user);
+                System.out.println("szw insertion complete");
+            }
+        }.start();
+
     }
 
     public void onClickSimpleButton2(View v) {
-        User user = dao.findByName("chandler", "bean");
-        System.out.println("szw use id = " + user.uid);
+        new Thread(){
+            @Override
+            public void run() {
+                User user = dao.findByName("chandler", "bean");
+                System.out.println("szw use id = " + user.uid);
+            }
+        }.start();
+
     }
 
 }
+
+// 若在主线程上操作, 如dao.insertAll(user),   会有:  java.lang.IllegalStateException: Cannot access database on the main thread since it may potentially lock the UI for a long period of time.
+// 同样在主线程上取数据, 如dao.findByName(), 也会有:  java.lang.IllegalStateException: Cannot access database on the main thread since it may potentially lock the UI for a long period of time.
