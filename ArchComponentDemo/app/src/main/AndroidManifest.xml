@@ -8,7 +8,7 @@
         android:roundIcon="@drawable/ic_launcher_round"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".intro.transfer.auto2.TransformDemo3"
+        <activity android:name=".intro.room.basic.RoomBasicDemo"
             android:configChanges="orientation|fontScale|locale|keyboardHidden|screenSize"
             >
             <intent-filter>

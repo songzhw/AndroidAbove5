@@ -30,11 +30,11 @@ public class RoomBasicDemo extends Activity {
     public void onClickSimpleButton(View v) {
         User user = new User(100, "chandler", "bean");
         dao.insertAll(user);
-
     }
 
     public void onClickSimpleButton2(View v) {
-
+        User user = dao.findByName("chandler", "bean");
+        System.out.println("szw use id = " + user.uid);
     }
 
 }
