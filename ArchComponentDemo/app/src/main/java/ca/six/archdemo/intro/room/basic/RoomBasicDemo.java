@@ -32,7 +32,7 @@ public class RoomBasicDemo extends Activity {
             @Override
             public void run() {
                 Address address = new Address("Toronto", 222);
-                User user = new User(100, "chandler", "bean", address);
+                User user = new User(100, "chandler bean", address);
                 dao.insertAll(user);
                 System.out.println("szw insertion complete");
             }
@@ -44,7 +44,7 @@ public class RoomBasicDemo extends Activity {
         new Thread(){
             @Override
             public void run() {
-                User user = dao.findByName("chandler", "bean");
+                User user = dao.findByName("chandler bean");
                 System.out.println("szw use = " + user);
             }
         }.start();

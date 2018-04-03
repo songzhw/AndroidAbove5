@@ -10,23 +10,16 @@ import android.arch.persistence.room.PrimaryKey;
  public class User {
      @PrimaryKey
      public int uid;
-
-     @ColumnInfo(name = "first_name")
-     public String firstName;
-
-     @ColumnInfo(name = "last_name")
-     public String lastName;
-
+     public String name;
      @Embedded(prefix = "adds_")
      public Address address;
 
      public User() {
      }
 
-     public User(int uid, String firstName, String lastName, Address address) {
+     public User(int uid, String name, Address address) {
          this.uid = uid;
-         this.firstName = firstName;
-         this.lastName = lastName;
+         this.name = name;
          this.address = address;
      }
 
@@ -34,8 +27,7 @@ import android.arch.persistence.room.PrimaryKey;
      public String toString() {
          return "User{" +
                  "uid=" + uid +
-                 ", firstName='" + firstName + '\'' +
-                 ", lastName='" + lastName + '\'' +
+                 ", name='" + name + '\'' +
                  ", address=" + address +
                  '}';
      }
