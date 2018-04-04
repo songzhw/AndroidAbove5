@@ -1,8 +1,11 @@
 package ca.six.archdemo.intro.room.basic;
 
 import android.app.Activity;
+import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Room;
+import android.arch.persistence.room.migration.Migration;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
@@ -22,7 +25,16 @@ public class RoomBasicDemo extends Activity {
         setContentView(R.layout.activity_tv_btn);
         tv = findViewById(R.id.tv_simple);
 
+        Migration migration1to2 = new Migration(1, 2) {
+            @Override
+            public void migrate(@NonNull SupportSQLiteDatabase database) {
+                database.execSQL("ALTER TABLE User ADD COLUMN name TEXT");
+                // database.execSQL("ALTER TABLE User DROP COLUMN last_name"); //不支持drop column
+            }
+        };
         db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "dbName")
+                // .fallbackToDestructiveMigration() //旧表会被全丢弃. 请慎用
+                .addMigrations(migration1to2) // 这里参数是一个migrate..., 可以加多个migrate
                 .build();
         dao = db.userDao();
     }
@@ -31,8 +43,8 @@ public class RoomBasicDemo extends Activity {
         new Thread(){
             @Override
             public void run() {
-                Address address = new Address("Toronto", 222);
-                User user = new User(100, "chandler bean", address);
+                Address address = new Address("NY", 333);
+                User user = new User(200, "Ross Gallar", address);
                 dao.insertAll(user);
                 System.out.println("szw insertion complete");
             }
