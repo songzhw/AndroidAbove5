@@ -28,12 +28,18 @@ public class RoomBasicDemo extends Activity {
         Migration migration1to2 = new Migration(1, 2) {
             @Override
             public void migrate(@NonNull SupportSQLiteDatabase database) {
-                database.execSQL("ALTER TABLE User ADD COLUMN name TEXT");
-                // database.execSQL("ALTER TABLE User DROP COLUMN last_name"); //不支持drop column
+//                database.execSQL("ALTER TABLE User ADD COLUMN name TEXT");
+
+                // 旧表是: uid, first_name, last_name, adds_city, adds_postCode
+                // 新表是: uid, name,                  adds_city, adds_postCode
+
+                database.execSQL("CREATE TABLE usr_bak (uid INTEGER, uname TEXT, adds_city TEXT, adds_postCode INTEGER, PRIMARY KEY(uid))");
+                database.execSQL("INSERT INTO usr_bak (uid, uname, adds_city, adds_postCode) SELECT uid, first_name, adds_city, adds_postCode FROM User");
+                database.execSQL("DROP TABLE User");
+                database.execSQL("ALTER TABLE usr_bak RENAME TO User");
             }
         };
         db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "dbName")
-                // .fallbackToDestructiveMigration() //旧表会被全丢弃. 请慎用
                 .addMigrations(migration1to2) // 这里参数是一个migrate..., 可以加多个migrate
                 .build();
         dao = db.userDao();

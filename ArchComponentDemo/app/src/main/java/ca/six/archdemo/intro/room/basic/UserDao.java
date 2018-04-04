@@ -16,7 +16,7 @@ public interface UserDao {
     @Query("SELECT * FROM user WHERE uid IN (:userIds)")
     List<User> loadAllByIds(int[] userIds);
 
-    @Query("SELECT * FROM user WHERE name LIKE :name LIMIT 1")
+    @Query("SELECT * FROM user WHERE uname LIKE :name LIMIT 1")
     User findByName(String name);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
