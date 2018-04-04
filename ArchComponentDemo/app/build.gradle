@@ -29,6 +29,8 @@ def supportVersion = "27.1.0"
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation 'com.facebook.stetho:stetho:1.5.0'
+
     implementation "com.android.support:appcompat-v7:$supportVersion"
     implementation "com.android.support:design:$supportVersion"
     implementation "com.android.support:cardview-v7:$supportVersion"
