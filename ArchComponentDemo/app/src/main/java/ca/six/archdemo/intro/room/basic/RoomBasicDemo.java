@@ -47,8 +47,8 @@ public class RoomBasicDemo extends Activity {
         new Thread(){
             @Override
             public void run() {
-                Address address = new Address("NY", 333);
-                User user = new User(200, "Ross Gallar", address);
+                Address address = new Address("NewYork", 444);
+                User user = new User(200, "Monica Gallar", address);
                 dao.insertAll(user);
                 System.out.println("szw insertion complete");
             }
