@@ -1,5 +1,6 @@
 package ca.six.archdemo.intro.room.basic;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -13,6 +14,7 @@ public interface UserDao {
     @Query("SELECT * FROM user")
     List<User> getAll();
 
+    // 传递数组, List时, 用 (:**) 来传递
     @Query("SELECT * FROM user WHERE uid IN (:userIds)")
     List<User> loadAllByIds(int[] userIds);
 
@@ -24,5 +26,8 @@ public interface UserDao {
 
     @Delete
     void delete(User user);
+
+    @Query("SELECT * FROM user WHERE uid IN (:uids)")
+    LiveData<List<User>> loadAllByIds(List<Integer> uids);
 
 }
