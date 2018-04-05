@@ -28,12 +28,10 @@ public class RoomBasicDemo extends Activity {
         Migration migration1to2 = new Migration(1, 2) {
             @Override
             public void migrate(@NonNull SupportSQLiteDatabase database) {
-//                database.execSQL("ALTER TABLE User ADD COLUMN name TEXT");
+                // 旧表是: uid, first_name, last_name,  adds_city, adds_postCode
+                // 新表是: uid, uname,                  adds_city, adds_postCode
 
-                // 旧表是: uid, first_name, last_name, adds_city, adds_postCode
-                // 新表是: uid, name,                  adds_city, adds_postCode
-
-                database.execSQL("CREATE TABLE usr_bak (uid INTEGER, uname TEXT, adds_city TEXT, adds_postCode INTEGER, PRIMARY KEY(uid))");
+                database.execSQL("CREATE TABLE usr_bak (uid INTEGER PRIMARY KEY NOT NULL, uname TEXT, adds_city TEXT, adds_postCode INTEGER)");
                 database.execSQL("INSERT INTO usr_bak (uid, uname, adds_city, adds_postCode) SELECT uid, first_name, adds_city, adds_postCode FROM User");
                 database.execSQL("DROP TABLE User");
                 database.execSQL("ALTER TABLE usr_bak RENAME TO User");
@@ -64,6 +62,9 @@ public class RoomBasicDemo extends Activity {
             public void run() {
                 User user = dao.findByName("chandler bean");
                 System.out.println("szw use = " + user);
+
+                User user2 = dao.findByName("Ross Gallar");
+                System.out.println("szw user2 = "+user2);
             }
         }.start();
 
