@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.util.Date;
+import java.util.List;
 
 import ca.six.archdemo.R;
 
@@ -57,9 +58,9 @@ public class RoomBasicDemo extends Activity {
         new Thread(){
             @Override
             public void run() {
-                Date birthday = new Date(1985, 01, 01);
-                Address address = new Address("NewYork", 444);
-                User user = new User(200, "Monica Gallar", address, birthday);
+                Date birthday = new Date(1984, 01, 01);
+                Address address = new Address("NewYork", 488);
+                User user = new User(300, "Rachel Green", address, birthday);
                 dao.insertAll(user);
                 System.out.println("szw insertion complete");
             }
@@ -71,11 +72,13 @@ public class RoomBasicDemo extends Activity {
         new Thread(){
             @Override
             public void run() {
-                User user = dao.findByName("chandler bean");
-                System.out.println("szw use = " + user);
+                Date from = new Date(1980, 1, 1);
+                Date to = new Date(1989, 12, 31);
+                List<User> users = dao.findUserBornIn(from, to);
 
-                User user2 = dao.findByName("Ross Gallar");
-                System.out.println("szw user2 = "+user2);
+                for(User user: users){
+                    System.out.println("szw find user : "+user);
+                }
             }
         }.start();
 
