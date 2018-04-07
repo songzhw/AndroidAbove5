@@ -4,7 +4,7 @@ import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
 
-@Database(entities = {User.class}, version = 2)
+@Database(entities = {User.class}, version = 3)
 @TypeConverters({DbConverters.class})
 public abstract class AppDatabase extends RoomDatabase {
     public abstract UserDao userDao();

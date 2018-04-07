@@ -12,14 +12,14 @@ import java.util.List;
 
 @Dao
 public interface UserDao {
-    @Query("SELECT * FROM user")
+    @Query("SELECT * FROM User")
     List<User> getAll();
 
     // 传递数组, List时, 用 (:**) 来传递
-    @Query("SELECT * FROM user WHERE uid IN (:userIds)")
+    @Query("SELECT * FROM User WHERE uid IN (:userIds)")
     List<User> loadAllByIds(int[] userIds);
 
-    @Query("SELECT * FROM user WHERE uname LIKE :name LIMIT 1")
+    @Query("SELECT * FROM User WHERE uname LIKE :name LIMIT 1")
     User findByName(String name);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -28,10 +28,10 @@ public interface UserDao {
     @Delete
     void delete(User user);
 
-    @Query("SELECT * FROM user WHERE uid IN (:uids)")
+    @Query("SELECT * FROM User WHERE uid IN (:uids)")
     LiveData<List<User>> loadAllByIds(List<Integer> uids);
 
-    @Query("SELECT * FROM user WHERE birthday BETWEEN :from AND :to")
+    @Query("SELECT * FROM User WHERE birthday BETWEEN :from AND :to")
     List<User> findUserBornIn(Date from, Date to);
 
 }

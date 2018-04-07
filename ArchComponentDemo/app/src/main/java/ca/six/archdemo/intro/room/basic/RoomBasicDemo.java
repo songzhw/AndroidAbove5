@@ -39,8 +39,16 @@ public class RoomBasicDemo extends Activity {
                 database.execSQL("ALTER TABLE usr_bak RENAME TO User");
             }
         };
+
+        Migration migration2to3 = new Migration(2, 3) {
+            @Override
+            public void migrate(@NonNull SupportSQLiteDatabase database) {
+                database.execSQL("ALTER TABLE User ADD COLUMN birthday INTEGER");
+            }
+        };
+
         db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "dbName")
-                .addMigrations(migration1to2) // 这里参数是一个migrate..., 可以加多个migrate
+                .addMigrations(migration1to2, migration2to3)
                 .build();
         dao = db.userDao();
     }
