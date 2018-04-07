@@ -7,6 +7,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
+import java.util.Date;
 import java.util.List;
 
 @Dao
@@ -29,5 +30,8 @@ public interface UserDao {
 
     @Query("SELECT * FROM user WHERE uid IN (:uids)")
     LiveData<List<User>> loadAllByIds(List<Integer> uids);
+
+    @Query("SELECT * FROM user WHERE birthday BETWEEN :from AND :to")
+    List<User> findUserBornIn(Date from, Date to);
 
 }

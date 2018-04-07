@@ -10,6 +10,8 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.Date;
+
 import ca.six.archdemo.R;
 
 
@@ -47,8 +49,9 @@ public class RoomBasicDemo extends Activity {
         new Thread(){
             @Override
             public void run() {
+                Date birthday = new Date(1985, 01, 01);
                 Address address = new Address("NewYork", 444);
-                User user = new User(200, "Monica Gallar", address);
+                User user = new User(200, "Monica Gallar", address, birthday);
                 dao.insertAll(user);
                 System.out.println("szw insertion complete");
             }
