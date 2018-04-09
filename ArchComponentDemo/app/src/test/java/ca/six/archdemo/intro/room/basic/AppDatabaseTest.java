@@ -5,16 +5,21 @@ import static junit.framework.Assert.assertNull;
 
 import android.arch.persistence.room.Room;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
+import org.robolectric.annotation.Config;
 
 import java.util.Date;
 import java.util.List;
 
+import ca.six.archdemo.BuildConfig;
+
 @RunWith(RobolectricTestRunner.class)
+@Config(constants = BuildConfig.class, sdk = 21)
 public class AppDatabaseTest {
     private AppDatabase db;
     private UserDao dao;
@@ -23,6 +28,11 @@ public class AppDatabaseTest {
     public void setUp() {
         db = Room.inMemoryDatabaseBuilder(RuntimeEnvironment.application, AppDatabase.class).build();
         dao = db.userDao();
+    }
+
+    @After
+    public void cleanUp(){
+        db.close();
     }
 
     @Test
