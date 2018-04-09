@@ -37,13 +37,14 @@ public class AppDatabaseTest {
     }
 
     @Test
-    public void f1() {
+    public void f1() throws InterruptedException {
         Thread thread = new Thread( () -> {
             System.out.println("szw1 Thread = " + Thread.currentThread().getName());
             User user = dao.findByName("jorden");
             assertNotNull(user);
         });
         thread.start();
+        thread.join();
     }
 
 
