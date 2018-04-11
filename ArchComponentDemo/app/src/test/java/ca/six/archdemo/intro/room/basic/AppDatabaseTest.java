@@ -36,15 +36,15 @@ public class AppDatabaseTest {
         db.close();
     }
 
+    User user;
     @Test
-    public void f1() throws InterruptedException {
+    public void readJordon_userNotFound() throws InterruptedException {
         Thread thread = new Thread( () -> {
-            System.out.println("szw1 Thread = " + Thread.currentThread().getName());
-            User user = dao.findByName("jorden");
-            assertNotNull(user);
+            user = dao.findByName("jorden");
         });
         thread.start();
         thread.join();
+        assertNull(user);
     }
 
 
