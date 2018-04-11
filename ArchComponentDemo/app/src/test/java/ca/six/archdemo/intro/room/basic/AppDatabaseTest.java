@@ -34,6 +34,7 @@ public class AppDatabaseTest {
     @After
     public void cleanUp() {
         db.close();
+        user = null;
     }
 
     User user;
