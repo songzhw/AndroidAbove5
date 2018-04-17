@@ -1,10 +1,12 @@
 package ca.six.archdemo.intro.room.basic;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
 
 import android.arch.persistence.room.Room;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,24 +31,23 @@ public class AppDatabaseTest {
         dao = db.userDao();
     }
 
-    @Test
-    public void f1() {
-        new Thread( () -> {
-            User user  = dao.findByName("jorden");
-            assertNull(user);
-        }).start();
-
+    @After
+    public void cleanUp() {
+        db.close();
+        user = null;
     }
 
+    User user;
     @Test
-    public void f2(){
-        new Thread( () -> {
-            dao.insertAll(new User(100, "jim", new Address("ny",100), new Date(1900, 1, 1)));
-            dao.insertAll(new User(200, "lee", new Address("ny",200), new Date(1910, 1, 1)));
-            dao.insertAll(new User(300, "kim", new Address("ny",300), new Date(1980, 1, 1)));
-
-            List<User> oldUsers = dao.findUserBornIn(new Date(1900, 1,1), new Date(1920, 12, 31));
-            assertEquals(3, oldUsers.size());
-        }).start();
+    public void readJordon_userNotFound() throws InterruptedException {
+        Thread thread = new Thread( () -> {
+            user = dao.findByName("jorden");
+        });
+        thread.start();
+        thread.join();
+        assertNull(user);
     }
+
+
+
 }
