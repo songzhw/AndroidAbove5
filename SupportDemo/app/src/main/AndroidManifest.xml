@@ -14,7 +14,7 @@
 
 
         <activity
-            android:name=".rv.snap.SnapHelperDemo"
+            android:name=".rv.one_adapter.RvOneAdaterDemo"
             android:label="@string/title_activity_disorder_touch_demo"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -211,14 +211,14 @@
                 <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".rv.one_adapter.RvOneAdaterDemo"
-            android:label="Rv with One Adapter">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="ca.six.sup.demo" />
-            </intent-filter>
-        </activity>
+        <!--<activity-->
+            <!--android:name=".rv.one_adapter.RvOneAdaterDemo"-->
+            <!--android:label="Rv with One Adapter">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+                <!--<category android:name="ca.six.sup.demo" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
         <activity
             android:name=".rv.group_adapter.GroupRvDemo"
             android:label="Rv with GroupAdapter">
