@@ -17,7 +17,7 @@ import cn.six.sup.R;
 import cn.six.sup.rv.RvViewHolder;
 import cn.six.sup.rv.load_more.deprecated.ILoadMoreListener;
 import cn.six.sup.rv.load_more.deprecated.LoadMoreWrapper;
-import cn.six.sup.rv.one_adapter.OneAdapter;
+import cn.six.sup.rv.OneAdapter;
 
 // "swipe to refresh" + Load More
 // bug: 到达最后一页， 无法让loadMoreView消失！

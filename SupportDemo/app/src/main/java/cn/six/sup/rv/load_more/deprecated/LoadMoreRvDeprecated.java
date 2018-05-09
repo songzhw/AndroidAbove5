@@ -13,7 +13,7 @@ import java.util.List;
 import cn.six.sup.R;
 import cn.six.sup.rv.OnRvItemClickListener;
 import cn.six.sup.rv.RvViewHolder;
-import cn.six.sup.rv.one_adapter.OneAdapter;
+import cn.six.sup.rv.OneAdapter;
 
 // songzhw, 2016-08-21
 @Deprecated

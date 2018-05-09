@@ -12,7 +12,7 @@ import cn.six.sup.R;
 import cn.six.sup.rv.RvViewHolder;
 import cn.six.sup.rv.divider.floating.FloatingModel;
 import cn.six.sup.rv.divider.floating.IFloatingGroupCallback;
-import cn.six.sup.rv.one_adapter.OneAdapter;
+import cn.six.sup.rv.OneAdapter;
 
 public class StickyHorizDemo extends Activity implements IFloatingGroupCallback {
     private RecyclerView rv;

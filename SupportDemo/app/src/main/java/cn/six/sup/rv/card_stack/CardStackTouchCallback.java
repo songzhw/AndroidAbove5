@@ -5,7 +5,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 
 import java.util.List;
 
-import cn.six.sup.rv.one_adapter.OneAdapter;
+import cn.six.sup.rv.OneAdapter;
 
 /**
  * Created by songzhw on 2017-03-16

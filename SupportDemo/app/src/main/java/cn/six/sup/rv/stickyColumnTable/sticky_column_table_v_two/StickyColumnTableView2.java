@@ -13,7 +13,7 @@ import android.widget.FrameLayout;
 import cn.six.sup.R;
 import cn.six.sup.rv.OnRvItemClickListener;
 import cn.six.sup.rv.RvViewHolder;
-import cn.six.sup.rv.one_adapter.OneAdapter;
+import cn.six.sup.rv.OneAdapter;
 
 public class StickyColumnTableView2<T> extends FrameLayout {
     public static final int DEFAULT_COLUMN_NUMBER = 8;

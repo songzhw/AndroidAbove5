@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.six.sup.R;
+import cn.six.sup.rv.OneAdapter;
 import cn.six.sup.rv.RvViewHolder;
 
 /**

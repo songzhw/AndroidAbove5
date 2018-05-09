@@ -18,7 +18,7 @@ import cn.six.sup.rv.load_more.FooterWrapper;
 import cn.six.sup.rv.load_more.LoadMoreScrollListener;
 import cn.six.sup.rv.load_more.mock.MockInfo;
 import cn.six.sup.rv.load_more.mock.MockTask;
-import cn.six.sup.rv.one_adapter.OneAdapter;
+import cn.six.sup.rv.OneAdapter;
 
 // Header +  "swipe to refresh" + Load More
 public class SwipeRefreshRvActivity03 extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, MockTask.IPost {
