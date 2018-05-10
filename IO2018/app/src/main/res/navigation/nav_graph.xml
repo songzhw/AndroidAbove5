@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            app:startDestination="@id/homeListActivity">
+
+    <activity
+        android:id="@+id/addActivity"
+        android:name="ca.six.io2018.biz.homelist.AddActivity"
+        android:label="AddActivity"
+        tools:layout="@layout/activity_add"
+        >
+    </activity>
+
+    <activity
+        android:id="@+id/homeListActivity"
+        android:name="ca.six.io2018.biz.homelist.HomeListActivity"
+        android:label="HomeListActivity"
+        tools:layout="@layout/activity_home"
+        >
+        <action android:id="@+id/ac11"
+                app:destination="@id/addActivity"/>
+    </activity>
+
+</navigation>
