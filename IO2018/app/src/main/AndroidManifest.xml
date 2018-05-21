@@ -8,15 +8,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".biz.homelist.HomeListActivity">
+        <activity android:name=".biz.pull.PullActivity"/>
+        <activity android:name=".biz.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-        <activity android:name=".biz.homelist.AddActivity"/>
-        <activity android:name=".biz.pull.PullActivity"/>
     </application>
 
 </manifest>
