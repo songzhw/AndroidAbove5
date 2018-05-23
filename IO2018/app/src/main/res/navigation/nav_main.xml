@@ -13,7 +13,11 @@
         >
         <action
             android:id="@+id/nav_action_main_to_settings"
-            app:destination="@+id/nav_activity_setting"/>
+            app:destination="@+id/nav_activity_setting"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            />
+
     </fragment>
 
     <activity
@@ -21,6 +25,9 @@
         android:name="ca.six.io2018.biz.settings.SettingsActivity"
         android:label="SettingsActivity"
         tools:layout="@layout/activity_settings"/>
+
+
+
 
 
 </navigation>
