@@ -10,7 +10,11 @@
         android:name="ca.six.io2018.biz.main.MainFragment"
         android:label="MainFragment"
         tools:layout="@layout/fragment_main"
-        />
+        >
+        <action
+            android:id="@+id/nav_action_main_to_settings"
+            app:destination="@+id/nav_activity_setting"/>
+    </fragment>
 
     <activity
         android:id="@+id/nav_activity_setting"
