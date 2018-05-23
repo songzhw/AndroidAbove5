@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
-    android:id="@+id/flayMain"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,11 +10,18 @@
 
     <fragment
         android:id="@+id/fragmentInMain"
-        android:name="ca.six.io2018.biz.main.MainFragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:defaultNavHost="true"
         app:navGraph="@navigation/nav_main"
+        app:defaultNavHost="true"
+        />
+    <!-- app:defaultNavHost="true" : ensures your NavHostFragment incercepts the system BACK button. -->
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="->"
         />
 
 </FrameLayout>

@@ -2,6 +2,7 @@ package ca.six.io2018.biz.main
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.Navigation
 import ca.six.io2018.R
 
 class MainActivity : AppCompatActivity() {
@@ -10,11 +11,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentInMain, MainFragment.newInstance())
-                    .commitNow()
-        }
     }
+
+    override fun onSupportNavigateUp()
+        = Navigation.findNavController(this, R.id.fragmentInMain)
+            .navigateUp()
 
 }
