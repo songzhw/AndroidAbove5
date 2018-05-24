@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".biz.settings.SettingsActivity">
 
-    <TextView
+    <TextView android:id="@+id/tvSingleTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Settings"

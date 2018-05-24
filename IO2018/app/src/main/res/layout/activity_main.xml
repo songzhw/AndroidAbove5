@@ -18,10 +18,4 @@
         />
     <!-- app:defaultNavHost="true" : ensures your NavHostFragment incercepts the system BACK button. -->
 
-    <Button
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:text="->"
-        />
-
 </FrameLayout>

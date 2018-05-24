@@ -17,7 +17,10 @@
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right"
             />
-
+        <action
+            android:id="@+id/nav_action_main_to_profile"
+            app:destination="@+id/nav_activity_profile"
+            />
     </fragment>
 
     <activity
@@ -26,7 +29,14 @@
         android:label="SettingsActivity"
         tools:layout="@layout/activity_settings"/>
 
-
+    <activity
+        android:id="@+id/nav_activity_profile"
+        android:name="ca.six.io2018.biz.profile.ProfileActivity"
+        android:label="ProfileActivity"
+        >
+        <argument android:name="id" app:type="integer"/>
+        <argument android:name="name" app:type="string"/>
+    </activity>
 
 
 

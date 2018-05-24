@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.Navigation
 import ca.six.io2018.R
@@ -21,12 +22,25 @@ class MainFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         val viewWhole = inflater.inflate(R.layout.fragment_main, container, false)
+
         val tvMainMessage = viewWhole.findViewById<TextView>(R.id.tvMainMessage)
         tvMainMessage.setOnClickListener { tv ->
             // findNavController(view): @param view -- the view to search from
             Navigation.findNavController(viewWhole)
                     .navigate(R.id.nav_action_main_to_settings)
         }
+
+        val btn01 = viewWhole.findViewById<Button>(R.id.btnMain01)
+        btn01.setOnClickListener { btn ->
+            val bundle = Bundle().apply {
+                putInt("id", 23)
+                putString("name", "from Main")
+            }
+            Navigation.findNavController(viewWhole)
+                    .navigate(R.id.nav_action_main_to_profile, bundle)
+
+        }
+
         return viewWhole
     }
 
