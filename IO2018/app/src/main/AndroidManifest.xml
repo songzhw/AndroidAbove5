@@ -25,6 +25,22 @@
             android:label="@string/title_activity_settings"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+
+        <activity
+            android:name=".biz.ad.AdActivity"
+            android:label="AdActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="https"/>
+                <data android:scheme="http"/>
+                <data android:host="www.songzhw.com"/>
+                <data android:pathPrefix="/ad/"/>
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

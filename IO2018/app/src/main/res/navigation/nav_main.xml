@@ -38,6 +38,14 @@
         <argument android:name="name" app:type="string"/>
     </activity>
 
+    <activity
+        android:id="@+id/nav_activity_ad"
+        android:name="ca.six.io2018.biz.ad.AdActivity"
+        android:label="AdActivity"
+        >
+        <deepLink app:uri="www.songzhw.com/ad/{adID}"/>
+    </activity>
+
 
 
 </navigation>
