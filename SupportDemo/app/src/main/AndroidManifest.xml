@@ -14,7 +14,7 @@
 
 
         <activity
-            android:name=".rv.one_adapter.RvOneAdaterDemo"
+            android:name=".rv.swipe_menu.rv.SwipeMenuRvDemo"
             android:label="@string/title_activity_disorder_touch_demo"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -259,14 +259,7 @@
                 <category android:name="ca.six.sup.demo" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".rv.swipe_menu.rv.SwipeMenuRvDemo"
-            android:label="Rv with Swipe Menu (in item)">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="ca.six.sup.demo" />
-            </intent-filter>
-        </activity>
+
         <activity
             android:name=".rv.card_stack.SwipeCardRvDemo"
             android:label="Rv with Swipe Card">
