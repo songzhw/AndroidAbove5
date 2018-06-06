@@ -14,7 +14,7 @@
 
 
         <activity
-            android:name=".rv.swipe_menu.rv.SwipeMenuRvDemo"
+            android:name=".rv.swipe_menu.SwipeMenuRvDemo"
             android:label="@string/title_activity_disorder_touch_demo"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
