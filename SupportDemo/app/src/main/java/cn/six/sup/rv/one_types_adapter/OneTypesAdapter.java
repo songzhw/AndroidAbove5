@@ -3,7 +3,7 @@ package cn.six.sup.rv.one_types_adapter;
 import android.view.ViewGroup;
 
 import cn.six.sup.rv.RvViewHolder;
-import cn.six.sup.rv.one_adapter.OneAdapter;
+import cn.six.sup.rv.OneAdapter;
 
 public abstract class OneTypesAdapter<T> extends OneAdapter<T> {
 

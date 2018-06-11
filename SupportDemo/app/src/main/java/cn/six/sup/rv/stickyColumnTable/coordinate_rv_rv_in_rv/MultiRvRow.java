@@ -12,7 +12,7 @@ import java.util.List;
 import cn.six.sup.R;
 import cn.six.sup.rv.ItemView;
 import cn.six.sup.rv.RvViewHolder;
-import cn.six.sup.rv.one_adapter.OneAdapter;
+import cn.six.sup.rv.OneAdapter;
 import cn.six.sup.rv.stickyColumnTable.coordinate_rv_rv.MultiRvScrollListener;
 import cn.six.sup.rv.stickyColumnTable.cooridinate_rv_rv_2.ObservableHorizontalScrollView;
 

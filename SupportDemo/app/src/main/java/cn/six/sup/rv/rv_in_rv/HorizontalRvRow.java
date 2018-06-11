@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import cn.six.sup.R;
 import cn.six.sup.rv.RvViewHolder;
 import cn.six.sup.rv.composition.BaseRow;
-import cn.six.sup.rv.one_adapter.OneAdapter;
+import cn.six.sup.rv.OneAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

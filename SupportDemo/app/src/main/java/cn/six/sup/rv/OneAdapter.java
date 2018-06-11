@@ -1,4 +1,4 @@
-package cn.six.sup.rv.one_adapter;
+package cn.six.sup.rv;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;

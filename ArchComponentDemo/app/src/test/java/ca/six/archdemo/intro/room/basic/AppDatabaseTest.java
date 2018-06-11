@@ -48,6 +48,4 @@ public class AppDatabaseTest {
         assertNull(user);
     }
 
-
-
 }

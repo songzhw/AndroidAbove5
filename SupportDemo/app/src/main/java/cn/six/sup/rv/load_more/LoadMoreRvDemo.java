@@ -16,7 +16,7 @@ import cn.six.sup.rv.RvConstants;
 import cn.six.sup.rv.RvViewHolder;
 import cn.six.sup.rv.load_more.mock.MockInfo;
 import cn.six.sup.rv.load_more.mock.MockTask;
-import cn.six.sup.rv.one_adapter.OneAdapter;
+import cn.six.sup.rv.OneAdapter;
 
 
 public class LoadMoreRvDemo extends AppCompatActivity implements MockTask.IPost {

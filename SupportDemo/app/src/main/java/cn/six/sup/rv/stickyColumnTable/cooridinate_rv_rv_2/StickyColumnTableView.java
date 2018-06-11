@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import cn.six.sup.R;
 import cn.six.sup.rv.OnRvItemClickListener;
 import cn.six.sup.rv.RvViewHolder;
-import cn.six.sup.rv.one_adapter.OneAdapter;
+import cn.six.sup.rv.OneAdapter;
 
 /**
  * Need to setAdapter(), then call refresh().
