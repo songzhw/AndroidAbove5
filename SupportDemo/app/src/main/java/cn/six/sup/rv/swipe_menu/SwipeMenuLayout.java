@@ -1,6 +1,8 @@
 package cn.six.sup.rv.swipe_menu;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -14,6 +16,7 @@ public class SwipeMenuLayout extends FrameLayout {
     private ViewDragHelper dragger;
     private View contentView, menuView;
     private int menuWidth;
+    private int draggedDistance;
 
     public SwipeMenuLayout(Context context) {
         super(context);
@@ -42,8 +45,6 @@ public class SwipeMenuLayout extends FrameLayout {
         menuWidth = menuView.getMeasuredWidth();
         contentView.layout(left, top, right, bottom);
         menuView.layout(right, top, right + menuWidth, bottom);
-
-        System.out.println("szw layout MenuWidth = " + menuWidth);
     }
 
     private ViewDragHelper.Callback callback = new ViewDragHelper.Callback() {
@@ -65,8 +66,25 @@ public class SwipeMenuLayout extends FrameLayout {
         @Override
         public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
             super.onViewPositionChanged(changedView, left, top, dx, dy);
-            System.out.println("szw left = " + left + " ; dx = " + dx);
+            draggedDistance = left; // menuWidth是246. 左滑拉出菜单时, left从0一直变到-246.  反之则是一直从负数变成0
             menuView.offsetLeftAndRight(dx);
+        }
+
+        @Override
+        public void onViewReleased(@NonNull View releasedChild, float xvel, float yvel) { //后两参是velocity
+            if (releasedChild != contentView) {
+                return;  //对menuView不要滑, 只要点击即可
+            }
+
+            int distance = Math.abs(draggedDistance); //大于0, 说明菜单拉出来了一部分.  若为0, 才表示菜单没出来.
+            int threshold = menuWidth / 2;
+            if(distance > threshold) { //拉出了一半多, 这时松手, 要回到拉出的状态
+                dragger.smoothSlideViewTo(contentView, -menuWidth, 0);
+            } else {
+//                ViewCompat.postInvalidateOnAnimation(this); //TODO
+                dragger.smoothSlideViewTo(contentView, 0, 0);
+            }
+
         }
     };
 
