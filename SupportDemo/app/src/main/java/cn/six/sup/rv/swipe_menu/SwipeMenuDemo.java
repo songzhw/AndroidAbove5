@@ -9,6 +9,6 @@ public class SwipeMenuDemo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.item_swipe_menu_demo);
+        setContentView(R.layout.activity_single_swipe_menu_demo);
     }
 }
