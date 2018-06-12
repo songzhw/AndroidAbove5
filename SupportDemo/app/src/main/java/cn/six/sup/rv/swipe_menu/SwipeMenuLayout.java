@@ -121,6 +121,13 @@ public class SwipeMenuLayout extends FrameLayout {
             ViewCompat.postInvalidateOnAnimation(self);
         }
     }
+
+    public void closeWithAnimation(){
+        isOpen = false;
+        dragger.settleCapturedViewAt(0, 0);
+
+    }
+
 }
 
 /*
