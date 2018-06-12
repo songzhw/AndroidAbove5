@@ -18,7 +18,7 @@ public class SwipeMenuLayout extends FrameLayout {
     private View contentView, menuView;
     private int menuWidth;
     private int draggedDistance;
-    private boolean isOpen = false;
+    public boolean isOpen = false;
 
     public SwipeMenuLayout(Context context) {
         super(context);

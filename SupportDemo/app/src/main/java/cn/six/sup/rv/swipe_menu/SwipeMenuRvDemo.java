@@ -35,6 +35,10 @@ public class SwipeMenuRvDemo extends AppCompatActivity {
         adapter = new OneAdapter<String>(R.layout.item_swipe_menu_demo, data) {
             @Override
             protected void apply(RvViewHolder vh, String value, int position) {
+                SwipeMenuLayout swipeMenuLayout = vh. getView(R.id.swipeMenuLayout);
+                if(swipeMenuLayout.isOpen){
+                    swipeMenuLayout.close();
+                }
                 vh.setSrc(R.id.ivRvItemSwipe, R.drawable.ic_launcher);
                 vh.setText(R.id.tvRvItemSwipe, value);
             }
