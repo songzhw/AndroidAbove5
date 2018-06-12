@@ -122,11 +122,10 @@ public class SwipeMenuLayout extends FrameLayout {
         }
     }
 
-    public void closeWithAnimation(){
-        isOpen = false;
-        dragger.settleCapturedViewAt(0, 0);
-
-    }
+//    public void closeWithAnimation(){
+//        isOpen = false;
+//        dragger.settleCapturedViewAt(0, 0); //效果和smoothSlideViewTo()一样
+//    }
 
 }
 
