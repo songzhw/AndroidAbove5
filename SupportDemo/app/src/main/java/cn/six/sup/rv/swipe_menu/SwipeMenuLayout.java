@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
  * Created by songzhw on 2016-09-08
  */
 public class SwipeMenuLayout extends FrameLayout {
+    private SwipeMenuLayout self;
     private ViewDragHelper dragger;
     private View contentView, menuView;
     private int menuWidth;
@@ -29,6 +30,7 @@ public class SwipeMenuLayout extends FrameLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
+        self = this;
         contentView = getChildAt(0);
         menuView = getChildAt(1);
         dragger = ViewDragHelper.create(this, callback);
@@ -78,11 +80,14 @@ public class SwipeMenuLayout extends FrameLayout {
 
             int distance = Math.abs(draggedDistance); //大于0, 说明菜单拉出来了一部分.  若为0, 才表示菜单没出来.
             int threshold = menuWidth / 2;
-            if(distance > threshold) { //拉出了一半多, 这时松手, 要回到拉出的状态
-                dragger.smoothSlideViewTo(contentView, -menuWidth, 0);
+            if (distance > threshold) { //拉出了一半多, 这时松手, 要回到拉出的状态
+                if (dragger.smoothSlideViewTo(contentView, -menuWidth, 0)) {
+                    ViewCompat.postInvalidateOnAnimation(self);
+                }
             } else {
-//                ViewCompat.postInvalidateOnAnimation(this); //TODO
-                dragger.smoothSlideViewTo(contentView, 0, 0);
+                if (dragger.smoothSlideViewTo(contentView, 0, 0)) {
+                    ViewCompat.postInvalidateOnAnimation(self);
+                }
             }
 
         }
