@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent" android:layout_margin="20dp"
     android:elevation="20dp" android:translationZ="20dp" app:cardCornerRadius="20dp">
 
     <android.support.constraint.ConstraintLayout android:id="@+id/ctlayItemRvParallex"
         android:layout_width="match_parent" android:layout_height="match_parent">
 
+        <android.support.constraint.Guideline android:id="@+id/guildlineItemRvParallex"
+            android:layout_width="0dp" android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5"/>
 
+        <!-- ImageView比屏幕大; 并且与guideline居中对齐 (后面guideline动时, iv也会跟着动)-->
+        <ImageView android:id="@+id/ivItemRvParallex"
+                   android:layout_width="700dp" android:layout_height="400dp"
+                   android:scaleType="centerCrop" tools:src="@drawable/galaxy"
+                   app:layout_constraintLeft_toLeftOf="@id/guildlineItemRvParallex"
+                   app:layout_constraintRight_toRightOf="@id/guildlineItemRvParallex"
+                   />
+
+        <TextView android:id="@+id/tvItemRvParallex"
+                  android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:textSize="29dp" android:textColor="#000" tools:text="text"
+                  app:layout_constraintTop_toBottomOf="@id/ivItemRvParallex" app:layout_constraintLeft_toLeftOf="parent"
+                  android:layout_margin="10dp"
+                  />
 
 
     </android.support.constraint.ConstraintLayout>
