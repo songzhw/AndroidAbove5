@@ -37,7 +37,7 @@ abstract class OneAdapter<T> : RecyclerView.Adapter<RvViewHolder> {
     }
 
 
-    protected abstract fun apply(vh: RvViewHolder, t: T, position: Int)
+    protected abstract fun apply(vh: RvViewHolder, value: T, position: Int)
 
 }
 /*
