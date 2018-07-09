@@ -13,6 +13,30 @@ Just use `ConstraintSet` to load two different layout xml, and apply one of them
 
 ## Bouncing Fab
 
+```java
+final Guideline guideline = findViewById(R.id.guideline);
+final int end = ((ConstraintLayout.LayoutParams)guideline.getLayoutParams()).guideEnd;
+
+ValueAnimator anim = ValueANimator.ofInt(0, end);
+anim.setDuration(2000);
+anim.setInterpolator(new BounceInterpolator());
+
+anim.addUpdateListener( animator -> {
+      ConstraintLayout.LayoutParams lp = (ConstraintLayout.LayoutParams) guideline.getLayoutParams();
+      lp.guideEnd = (integer) animator.getAnimatedValue();
+      guideline.setLayoutParams(lp);
+});
+
+anim.start();
+
+```
+
+## ArcMenu
+
+Thanks to the circle posionting feature in ConstraintLayout, making an ArcMenu would be super easy for us right now. 
+
+![](./pic/ArcMenu.gif)
+
 
 ## MotionLayout
 
