@@ -9,10 +9,10 @@
         android:orientation="horizontal" app:layout_constraintGuide_percent="0.5"/>
 
     <ImageView android:id="@+id/ivItemParallexAd"
-        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:layout_width="match_parent" android:layout_height="600dp"
         android:scaleType="matrix" android:src="@drawable/beauty"
-        app:layout_constraintLeft_toLeftOf="@id/guildlineItemRvParallex2"
-        app:layout_constraintRight_toRightOf="@id/guildlineItemRvParallex2"
+        app:layout_constraintTop_toTopOf="@id/guildlineItemRvParallex2"
+        app:layout_constraintBottom_toBottomOf="@id/guildlineItemRvParallex2"
         />
 
 </android.support.constraint.ConstraintLayout>
