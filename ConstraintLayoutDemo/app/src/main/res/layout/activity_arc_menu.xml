@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             android:layout_width="match_parent" android:layout_height="match_parent"
+                                             >
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabTotal"
+        android:layout_width="55dp" android:layout_height="55dp"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toTopOf="parent" app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintRight_toRightOf="parent"
+        android:src="@drawable/ic_menu" android:tint="#fff"
+        />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabMenuAlarm"
+        android:layout_width="50dp" android:layout_height="50dp"
+        app:layout_constraintCircle="@+id/fabTotal"
+        app:layout_constraintCircleRadius="0dp"
+        app:layout_constraintCircleAngle="0"
+        android:src="@drawable/ic_alarm"  android:tint="#fff"
+        android:visibility="invisible"
+        />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabMenuAutorenew"
+        android:layout_width="50dp" android:layout_height="50dp"
+        app:layout_constraintCircle="@+id/fabTotal"
+        app:layout_constraintCircleRadius="0dp"
+        app:layout_constraintCircleAngle="315"
+        android:src="@drawable/ic_autorenew"  android:tint="#fff"
+        android:visibility="invisible"
+        />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabMenuBuild"
+        android:layout_width="50dp" android:layout_height="50dp"
+        app:layout_constraintCircle="@+id/fabTotal"
+        app:layout_constraintCircleRadius="0dp"
+        app:layout_constraintCircleAngle="270"
+        android:src="@drawable/ic_build"  android:tint="#fff"
+        android:visibility="invisible"
+        />
+
+</android.support.constraint.ConstraintLayout>
