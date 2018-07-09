@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import ca.six.ctlay.R
 import ca.six.ctlay.utils.rv.compose.ItemView
 import ca.six.ctlay.utils.rv.compose.OneTypesAdapter
@@ -11,6 +12,7 @@ import kotlinx.android.synthetic.main.activity_rv_parallex.*
 
 class ParallexRvAdDemo : AppCompatActivity() {
     private lateinit var layoutManager: LinearLayoutManager
+    private lateinit var onScrollListener: RecyclerView.OnScrollListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +35,18 @@ class ParallexRvAdDemo : AppCompatActivity() {
         rvParallex.adapter = adapter
         rvParallex.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
+        onScrollListener = object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+
+            }
+        }
+        rvParallex.addOnScrollListener(onScrollListener)
 
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        rvParallex.removeOnScrollListener(onScrollListener)
+    }
+
 }
