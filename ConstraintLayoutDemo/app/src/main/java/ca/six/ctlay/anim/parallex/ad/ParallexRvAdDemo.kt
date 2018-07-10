@@ -48,11 +48,20 @@ class ParallexRvAdDemo : AppCompatActivity() {
                     val itemView = layoutManager.findViewByPosition(i)  // 高度桓为630, 广告位的高度也是630 (但其drawable高为2100)
                     val adView = itemView.findViewById<ImageView>(R.id.ivItemParallexAd)
                     if (adView != null) { // 说明这一行是广告位
-                        val diff = offset - itemView.top
-                        val height = itemView.height
+                        val itemHeight = itemView.height
                         val adDrawableRect = Rect()
                         adView.getDrawingRect(adDrawableRect)  //adDrawableRect.height()是2100
-                        println("szw offset = $offset  ,  top = ${itemView.top}  ,  itemHeight = $height, imageHeight = ${adDrawableRect.height()}  , rvHeight = ${layoutManager.height}")
+//                        println("szw offset = $offset , top = ${itemView.top}  ,  itemHeight = $itemHeight, imageHeight = ${adDrawableRect.height()} ,  rvHeight = ${layoutManager.height}")
+
+                        val maxPercent : Float = 0.5f * adDrawableRect.height() / itemHeight
+                        val minPercent : Float = 0f
+
+                        val lastItemTop = rvHeight - itemHeight   // 1482
+                        val itemTop = Math.max(0, itemView.top)  // 不要到负数, 在顶上还上推, 就不parallex了  [0, 1477]
+                        val percent = 1.0f * itemTop / lastItemTop  // [0,1]之间
+
+                        val guidePercent = maxPercent * percent
+                        println("szw per = ${guidePercent}")
                     }
                 }
             }
