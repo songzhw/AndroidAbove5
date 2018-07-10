@@ -40,8 +40,8 @@ class ParallexRvAdDemo : AppCompatActivity() {
         onScrollListener = object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 val offset = rvParallex.computeVerticalScrollOffset() // offset值, 会从0到rv滑动到底时(即2200多). 再滑到顶, offset又成了0
-                var first = layoutManager.findFirstVisibleItemPosition()
-                var last = layoutManager.findLastCompletelyVisibleItemPosition() //因为想至少让ad的初始部分先全显示出来, 再拖动才会有Parallex效果
+                val first = layoutManager.findFirstVisibleItemPosition()
+                val last = layoutManager.findLastCompletelyVisibleItemPosition() //因为想至少让ad的初始部分先全显示出来, 再拖动才会有Parallex效果
                 val rvHeight = layoutManager.height
 
                 for (i in first..last) {
@@ -52,7 +52,7 @@ class ParallexRvAdDemo : AppCompatActivity() {
                         val height = itemView.height
                         val adDrawableRect = Rect()
                         adView.getDrawingRect(adDrawableRect)  //adDrawableRect.height()是2100
-                        println("szw offset = $offset ,  top = ${itemView.top}  ,  itemHeight = $height, imageHeight = ${adDrawableRect.height()}")
+                        println("szw offset = $offset  ,  top = ${itemView.top}  ,  itemHeight = $height, imageHeight = ${adDrawableRect.height()}  , rvHeight = ${layoutManager.height}")
                     }
                 }
             }
