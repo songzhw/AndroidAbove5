@@ -1,10 +1,12 @@
 package ca.six.ctlay.anim.parallex.ad
 
+import android.graphics.Rect
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.widget.ImageView
 import ca.six.ctlay.R
 import ca.six.ctlay.utils.rv.compose.ItemView
 import ca.six.ctlay.utils.rv.compose.OneTypesAdapter
@@ -37,7 +39,22 @@ class ParallexRvAdDemo : AppCompatActivity() {
 
         onScrollListener = object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                val offset = rvParallex.computeVerticalScrollOffset() // offset值, 会从0到rv滑动到底时(即2200多). 再滑到顶, offset又成了0
+                var first = layoutManager.findFirstVisibleItemPosition()
+                var last = layoutManager.findLastCompletelyVisibleItemPosition() //因为想至少让ad的初始部分先全显示出来, 再拖动才会有Parallex效果
+                val rvHeight = layoutManager.height
 
+                for (i in first..last) {
+                    val itemView = layoutManager.findViewByPosition(i)  // 高度桓为630, 广告位的高度也是630 (但其drawable高为2100)
+                    val adView = itemView.findViewById<ImageView>(R.id.ivItemParallexAd)
+                    if (adView != null) { // 说明这一行是广告位
+                        val diff = offset - itemView.top
+                        val height = itemView.height
+                        val adDrawableRect = Rect()
+                        adView.getDrawingRect(adDrawableRect)  //adDrawableRect.height()是2100
+                        println("szw offset = $offset ,  top = ${itemView.top}  ,  itemHeight = $height, imageHeight = ${adDrawableRect.height()}")
+                    }
+                }
             }
         }
         rvParallex.addOnScrollListener(onScrollListener)
