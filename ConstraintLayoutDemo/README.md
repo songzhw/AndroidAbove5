@@ -1,11 +1,13 @@
 ConstraintLayout : demo, animation demo
 
 ## RecyclerView Parallex Effect
-It's a magic of GuideLine. 
+It's a magic of GuideLine.
 
-P.S. [Second Appraoch] 
-It could also be done by a ImageView whose scaleType is matrix. 
-As you scorll the RecyclerView, the matrix of that ImageView will move as well.
+![](./pic/ad_rv_parallex.gif)
+
+P.S. [Another Appraoch]
+It could also be done by a customized ImageView whose scaleType is matrix.
+As you scorll the RecyclerView, the matrix of that ImageView will move as well. (p.s. drawable.setBounds())
 
 
 ## Expand/Collapsed
