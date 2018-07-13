@@ -10,5 +10,26 @@
         android:layout_width="match_parent" android:layout_height="?android:attr/actionBarSize"
         />
 
+    <View
+        android:id="@+id/viewWhole"
+        android:layout_width="match_parent" android:layout_height="0dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        />
+
+    <View
+        android:id="@+id/viewCard"
+        android:layout_width="330dp" android:layout_height="250dp"
+        app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        android:background="#fff"
+        />
+
 
 </android.support.constraint.ConstraintLayout>
+
+<!-- 1. TranisitionManager只对layout有效. 不会管textColor, textSize这些的 -->
+<!-- 2. ctlay只对其直属子view做动画, 不管子view的子view. 所以这里要小心-->
+
+<!-- TODO 1. 给ctlayPlaceOrder设置颜色. 另一xml中没有, 应该TransitionManger不起作用. 验证一下 -->
+<!-- TODO 2. -->

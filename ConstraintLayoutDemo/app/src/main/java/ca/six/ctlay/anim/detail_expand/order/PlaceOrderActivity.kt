@@ -3,7 +3,6 @@ package ca.six.ctlay.anim.detail_expand.order
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.Window
 import ca.six.ctlay.R
 import kotlinx.android.synthetic.main.activity_place_order.*
 
