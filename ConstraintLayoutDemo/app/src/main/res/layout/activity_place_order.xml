@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    android:id="@+id/ctlayPlaceOrder"
+    android:id="@+id/ctlayPlaceOrder" xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:layout_height="match_parent"
     >
@@ -25,6 +25,63 @@
         android:background="#fff"
         />
 
+    <TextView
+        android:id="@+id/tvQuantity"
+        android:layout_width="80dp" android:layout_height="@dimen/height_place_order_item"
+        android:gravity="center_vertical" android:paddingLeft="10dp"
+        app:layout_constraintLeft_toLeftOf="@id/viewCard" app:layout_constraintTop_toTopOf="@id/viewCard"
+        android:text="Quantity" android:textColor="@color/colorPrimaryDark" android:textStyle="bold"
+        />
+    <EditText
+        android:id="@+id/etQuantity"
+        android:layout_width="0dp" android:layout_height="@dimen/height_place_order_item"
+        android:gravity="right|center_vertical" android:paddingRight="20dp"
+        android:singleLine="true" android:hint="0"
+        app:layout_constraintLeft_toRightOf="@id/tvQuantity" app:layout_constraintRight_toRightOf="@id/viewCard" app:layout_constraintTop_toTopOf="@id/viewCard"
+        android:background="@null" android:cursorVisible="false"
+        android:inputType="number"
+        />
+
+
+    <TextView
+        android:id="@+id/tvPriceLabel"
+        android:layout_width="80dp" android:layout_height="@dimen/height_place_order_item"
+        android:gravity="center_vertical" android:paddingLeft="10dp"
+        app:layout_constraintLeft_toLeftOf="@id/viewCard" app:layout_constraintTop_toBottomOf="@id/tvQuantity"
+        android:text="Price" android:textColor="@color/colorPrimaryDark" android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/tvPrice"
+        android:layout_width="0dp" android:layout_height="@dimen/height_place_order_item"
+        android:gravity="right|center_vertical" android:paddingRight="20dp"
+        android:maxLines="1" android:text="$32.99" android:textColor="#1e1e1e"
+        app:layout_constraintLeft_toRightOf="@id/tvPriceLabel" app:layout_constraintRight_toRightOf="@id/viewCard" app:layout_constraintTop_toBottomOf="@id/etQuantity"
+        android:background="@null" android:cursorVisible="false"
+        />
+
+    <View
+        android:id="@+id/viewDivider"
+        android:layout_width="0dp" android:layout_height="1dp"
+        android:background="#ccc"
+        app:layout_constraintLeft_toLeftOf="@id/viewCard" app:layout_constraintRight_toRightOf="@id/viewCard"
+        app:layout_constraintTop_toBottomOf="@id/tvPrice"
+        />
+
+    <TextView
+        android:id="@+id/tvCostLabel"
+        android:layout_width="80dp" android:layout_height="@dimen/height_place_order_item"
+        android:gravity="center_vertical" android:paddingLeft="10dp"
+        app:layout_constraintLeft_toLeftOf="@id/viewCard" app:layout_constraintTop_toBottomOf="@id/viewDivider"
+        android:text="Cost" android:textColor="#a5d6a7" android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/tvCost"
+        android:layout_width="0dp" android:layout_height="@dimen/height_place_order_item"
+        android:gravity="right|center_vertical" android:paddingRight="20dp"
+        android:maxLines="1" tools:text="$329.90" android:textColor="#1e1e1e"  android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/tvCostLabel" app:layout_constraintRight_toRightOf="@id/viewCard" app:layout_constraintTop_toBottomOf="@id/viewDivider"
+        android:background="@null" android:cursorVisible="false"
+        />
 
 </android.support.constraint.ConstraintLayout>
 
