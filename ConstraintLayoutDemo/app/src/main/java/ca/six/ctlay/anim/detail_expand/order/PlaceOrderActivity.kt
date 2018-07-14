@@ -16,5 +16,9 @@ class PlaceOrderActivity : AppCompatActivity() {
         toolbar.setNavigationIcon(R.drawable.ic_nav_back)
         toolbar.setTitle("Place Order")
         toolbar.setTitleTextColor(Color.WHITE)
+
+        viewCard.setOnClickListener{ v ->
+            // TODO constraintSet change, and animation with TransitionManager
+        }
     }
 }
