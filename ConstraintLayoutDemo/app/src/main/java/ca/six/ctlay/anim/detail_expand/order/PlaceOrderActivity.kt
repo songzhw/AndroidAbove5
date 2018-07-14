@@ -22,7 +22,12 @@ class PlaceOrderActivity : AppCompatActivity() {
         toolbar.setTitleTextColor(Color.WHITE)
 
 
-
+        /*
+        虽然本Activity是用了import kotlinx.android.synthetic.main.activity_place_order.*
+        但是在expanded状态下, 即在使用了R.layout.layout_place_order_expanded布局的情况下,
+        这个viewCard仍是有效!  (这个要赞一个! )
+        (其实是因为我们仍是在用activity_place_order的布局, 只不过是是变化了不同的constraints而已!!!!)
+         */
         viewCard.setOnClickListener { v ->
             // 若已经是expanded状态, 那再点击就要转为缩回状态
             val layoutResId = if (isExpaned) R.layout.activity_place_order else R.layout.layout_place_order_expanded
@@ -34,6 +39,8 @@ class PlaceOrderActivity : AppCompatActivity() {
 
             isExpaned = !isExpaned
         }
+
+
     }
 
 }
