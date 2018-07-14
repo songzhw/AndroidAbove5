@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    android:id="@+id/ctlayPlaceOrder"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        />
+
+    <View
+        android:id="@+id/viewWhole"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        />
+
+    <View
+        android:id="@+id/viewCard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:background="#fff"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        />
+
+    <TextView
+        android:id="@+id/tvQuantity"
+        android:layout_width="80dp"
+        android:layout_height="@dimen/height_place_order_item"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:text="Quantity"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/viewCard"
+        app:layout_constraintTop_toTopOf="@id/viewCard"
+        />
+
+    <EditText
+        android:id="@+id/etQuantity"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/height_place_order_item"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@null"
+        android:cursorVisible="false"
+        android:gravity="right|center_vertical"
+        android:hint="0"
+        android:inputType="number"
+        android:paddingRight="20dp"
+        android:singleLine="true"
+        app:layout_constraintLeft_toRightOf="@id/tvQuantity"
+        app:layout_constraintRight_toRightOf="@id/viewCard"
+        app:layout_constraintTop_toTopOf="@id/viewCard"
+        />
+
+
+    <TextView
+        android:id="@+id/tvPriceLabel"
+        android:layout_width="80dp"
+        android:layout_height="@dimen/height_place_order_item"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:text="Price"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/viewCard"
+        app:layout_constraintTop_toBottomOf="@id/tvQuantity"
+        />
+
+    <TextView
+        android:id="@+id/tvPrice"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/height_place_order_item"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@null"
+        android:cursorVisible="false"
+        android:gravity="right|center_vertical"
+        android:maxLines="1"
+        android:paddingRight="20dp"
+        android:text="$32.99"
+        android:textColor="#1e1e1e"
+        app:layout_constraintLeft_toRightOf="@id/tvPriceLabel"
+        app:layout_constraintRight_toRightOf="@id/viewCard"
+        app:layout_constraintTop_toBottomOf="@id/etQuantity"
+        />
+
+    <View
+        android:id="@+id/viewDivider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:background="#ccc"
+        app:layout_constraintLeft_toLeftOf="@id/viewCard"
+        app:layout_constraintRight_toRightOf="@id/viewCard"
+        app:layout_constraintTop_toBottomOf="@id/tvPrice"
+        />
+
+    <TextView
+        android:id="@+id/tvCostLabel"
+        android:layout_width="80dp"
+        android:layout_height="@dimen/height_place_order_item"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:text="Cost"
+        android:textColor="#a5d6a7"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/viewCard"
+        app:layout_constraintTop_toBottomOf="@id/viewDivider"
+        />
+
+    <TextView
+        android:id="@+id/tvCost"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/height_place_order_item"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@null"
+        android:cursorVisible="false"
+        android:gravity="right|center_vertical"
+        android:maxLines="1"
+        android:paddingRight="20dp"
+        android:textColor="#1e1e1e"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@id/tvCostLabel"
+        app:layout_constraintRight_toRightOf="@id/viewCard"
+        app:layout_constraintTop_toBottomOf="@id/viewDivider"
+        tools:text="$329.90"
+        />
+
+    <TextView
+        android:id="@+id/tvPlaceOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="35dp"
+        android:layout_marginTop="40dp"
+        android:text="Place Order"
+        android:textColor="#1b5e20"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintRight_toRightOf="@id/viewCard"
+        app:layout_constraintTop_toBottomOf="@id/tvCost"
+        />
+
+</android.support.constraint.ConstraintLayout>
