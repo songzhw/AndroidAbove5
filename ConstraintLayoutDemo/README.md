@@ -11,7 +11,10 @@ As you scorll the RecyclerView, the matrix of that ImageView will move as well. 
 
 
 ## Expand/Collapsed
-Just use `ConstraintSet` to load two different layout xml, and apply one of them to the ContraintLayout in your Activity.
+Use `ConstraintSet` to load two different layout xml, and apply one of them to the ContraintLayout in your Activity.
+
+![](./pic/ctlay_anim_3_4.gif)
+
 
 ## Bouncing Fab
 
@@ -48,3 +51,4 @@ Thanks to the circle posionting feature in ConstraintLayout, making an ArcMenu w
 
 [https://github.com/ibhavikmakwana/Constraint-Layout-Animations](https://github.com/ibhavikmakwana/Constraint-Layout-Animations)
 
+[https://robinhood.engineering/beautiful-animations-using-android-constraintlayout-eee5b72ecae3](https://robinhood.engineering/beautiful-animations-using-android-constraintlayout-eee5b72ecae3)
