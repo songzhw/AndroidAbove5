@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import ca.six.archdemo.R;
-import ca.six.archdemo.data.User;
+import ca.six.archdemo.pojo.User;
 
 public class ZeroDemo extends AppCompatActivity {
     private TextView tv;

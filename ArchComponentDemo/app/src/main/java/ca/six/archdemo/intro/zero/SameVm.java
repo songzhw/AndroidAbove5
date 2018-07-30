@@ -1,6 +1,6 @@
 package ca.six.archdemo.intro.zero;
 
-import ca.six.archdemo.data.User;
+import ca.six.archdemo.pojo.User;
 
 /**
  * Created by songzhw on 2017/11/18.

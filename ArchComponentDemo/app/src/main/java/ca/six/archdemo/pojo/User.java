@@ -1,4 +1,4 @@
-package ca.six.archdemo.data;
+package ca.six.archdemo.pojo;
 
 public class User {
     public int id;

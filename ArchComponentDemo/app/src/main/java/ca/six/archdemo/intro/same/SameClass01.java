@@ -1,6 +1,5 @@
 package ca.six.archdemo.intro.same;
 
-import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import ca.six.archdemo.R;
-import ca.six.archdemo.data.User;
-import ca.six.archdemo.intro.zero.ZeroDemo;
+import ca.six.archdemo.pojo.User;
 import ca.six.archdemo.intro.zero.ZeroViewModel;
 
 /**
