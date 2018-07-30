@@ -1,6 +1,5 @@
 package ca.six.archdemo.trap.event.bad;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -24,13 +23,17 @@ public class Event_BadDemo extends AppCompatActivity {
         tv = findViewById(R.id.tv_simple);
 
         vm = ViewModelProviders.of(this).get(Event_BadViewModel.class);
-        vm.getMessage().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                System.out.println("szw updated ~");
-                Toast.makeText(self, "updated "+s, Toast.LENGTH_SHORT).show();
-            }
+
+        vm.getMessage().observe(this, s -> {
+            System.out.println("szw updated ~");
+            Toast.makeText(self, "updated " + s, Toast.LENGTH_SHORT).show();
         });
+
+        vm.getClickCount().observe(this, count -> { // count : Integer
+                    System.out.println("szw click(2) : " + count);
+                    Toast.makeText(self, "szw click : " + count, Toast.LENGTH_SHORT).show();
+                }
+        );
     }
 
     public void onClickSimpleButton(View v) {
@@ -38,6 +41,6 @@ public class Event_BadDemo extends AppCompatActivity {
     }
 
     public void onClickSimpleButton2(View v) {
-
+        vm.clickAndIncrese();
     }
 }
