@@ -13,6 +13,7 @@ class NoHttpDemo : AppCompatActivity() {
         setContentView(R.layout.activity_tv_btn)
     }
 
+    // Staring with Androipd P, cleartext support is disabled by default
     fun onClickSimpleButton(v: View) {
         HttpEngine.request("splash") { payload -> // worker thread
             val imgUrl = payload.get("imgUrl") as String
@@ -24,3 +25,17 @@ class NoHttpDemo : AppCompatActivity() {
 
     }
 }
+
+/*
+API: http://192.168.2.26:8899/splash
+
+Response:
+{
+  code: 200,
+  msg: "success",
+  payload: {
+    imgUrl: "http://192.168.2.26:8899/images/splash/splash4.jpg"
+  }
+}
+
+ */
