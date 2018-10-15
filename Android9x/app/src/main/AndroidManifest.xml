@@ -16,7 +16,10 @@
         android:networkSecurityConfig="@xml/network_security_config"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
-        <activity android:name=".http.NoHttpDemo">
+        <activity
+            android:name=".screen_rotate.ScreenOrigDemo"
+            android:configChanges="keyboardHidden|keyboard|orientation|screenSize"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
