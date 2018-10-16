@@ -36,4 +36,5 @@ proguard/
 *.ipr
 *.iws
 .idea/
+.settings/
 
