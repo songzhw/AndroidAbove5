@@ -17,7 +17,7 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
         <activity
-            android:name=".screen_rotate.ScreenOrigDemo"
+            android:name=".screen_rotate.ScreenRotateDemo"
             android:configChanges="keyboardHidden|keyboard|orientation|screenSize"
             >
             <intent-filter>
