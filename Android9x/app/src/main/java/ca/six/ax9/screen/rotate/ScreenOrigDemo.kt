@@ -1,4 +1,4 @@
-package ca.six.ax9.screen_rotate
+package ca.six.ax9.screen.rotate
 
 import android.content.res.Configuration
 import android.os.Bundle

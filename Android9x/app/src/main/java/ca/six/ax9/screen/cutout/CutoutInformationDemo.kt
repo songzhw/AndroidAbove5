@@ -1,4 +1,4 @@
-package ca.six.ax9.screen_rotate
+package ca.six.ax9.screen.cutout
 
 import android.content.res.Configuration
 import android.os.Bundle
@@ -7,7 +7,7 @@ import android.util.Log
 import android.view.View
 import ca.six.ax9.R
 
-class ScreenRotateDemo : AppCompatActivity() {
+class CutoutInformationDemo : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
