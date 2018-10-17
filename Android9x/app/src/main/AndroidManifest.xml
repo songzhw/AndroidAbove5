@@ -19,6 +19,7 @@
         <activity
             android:name=".screen.cutout.CutoutExpandDemo"
             android:configChanges="keyboardHidden|keyboard|orientation|screenSize"
+            android:theme="@style/fullScreen"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
