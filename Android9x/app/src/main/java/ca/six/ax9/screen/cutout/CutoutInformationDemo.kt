@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.DisplayCutout
 import android.view.View
+import android.view.WindowManager
 import ca.six.ax9.R
 
 class CutoutInformationDemo : AppCompatActivity() {
@@ -15,6 +16,10 @@ class CutoutInformationDemo : AppCompatActivity() {
 
         //开局就一张背景图
         setContentView(R.layout.activity_display_cutout)
+
+        val params = window.attributes
+        params.layoutInDisplayCutoutMode =
+                WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
 
         val decorView = window.decorView
 
