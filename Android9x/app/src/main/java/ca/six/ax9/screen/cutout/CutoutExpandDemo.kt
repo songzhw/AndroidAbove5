@@ -13,7 +13,7 @@ class CutoutExpandDemo : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_cutout_expand)
-//        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+//        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)  // 只加这行, 不加下一行, 就不能全屏地显示图片
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
 
         val lp = window.attributes

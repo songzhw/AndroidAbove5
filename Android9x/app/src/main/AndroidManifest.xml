@@ -17,8 +17,7 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
         <activity
-            android:name=".screen.cutout.CutoutExpandDemo"
-            android:configChanges="keyboardHidden|keyboard|orientation|screenSize"
+            android:name=".screen.cutout.ScreenSizeDemo"
             android:theme="@style/fullScreen"
             >
             <intent-filter>
