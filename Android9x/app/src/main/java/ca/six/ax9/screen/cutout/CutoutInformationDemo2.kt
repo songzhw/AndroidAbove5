@@ -2,6 +2,7 @@ package ca.six.ax9.screen.cutout
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.support.v4.view.WindowInsetsCompat
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.DisplayCutout
@@ -16,7 +17,7 @@ import ca.six.ax9.R
 
 
  */
-
+// 要想图片伸到danger area, 就得三组(lp, systemUiVisibility, fullScreen的theme), 缺一不可
 class CutoutInformationDemo2 : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +29,10 @@ class CutoutInformationDemo2 : AppCompatActivity() {
         val params = window.attributes
         params.layoutInDisplayCutoutMode =
                 WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+
+//        getWindow().getDecorView().systemUiVisibility = (
+//                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+//                or View.SYSTEM_UI_FLAG_FULLSCREEN)
 
     }
 
@@ -46,7 +51,8 @@ class CutoutInformationDemo2 : AppCompatActivity() {
         val decorView = window.decorView
 
         decorView.post {
-            val displayCutout: DisplayCutout? = decorView.rootWindowInsets.displayCutout
+            val windowInset = decorView.rootWindowInsets
+            val displayCutout: DisplayCutout? = windowInset.displayCutout
             println("szw 01 : ${decorView.rootWindowInsets}")
             println("szw 02 : ${decorView.rootWindowInsets.displayCutout}")
             Log.e("szw", "安全区域距离屏幕左边的距离 SafeInsetLeft:" + displayCutout?.safeInsetLeft)
