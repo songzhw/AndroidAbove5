@@ -87,3 +87,29 @@ szw: 安全区域距离屏幕顶部的距离 SafeInsetTop:null
 szw: 安全区域距离屏幕底部的距离 SafeInsetBottom:null
 szw: 不是刘海屏
  */
+
+/*
+加了
+params.layoutInDisplayCutoutMode =
+                WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+之后:
+
+转屏前是:
+安全区域距离屏幕左边的距离 SafeInsetLeft:0
+安全区域距离屏幕右部的距离 SafeInsetRight:0
+安全区域距离屏幕顶部的距离 SafeInsetTop:137
+安全区域距离屏幕底部的距离 SafeInsetBottom:0
+刘海屏数量:1
+刘海屏区域：Rect(586, 0 - 726, 137)
+
+
+转屏后是:
+安全区域距离屏幕左边的距离 SafeInsetLeft:0
+安全区域距离屏幕右部的距离 SafeInsetRight:137
+安全区域距离屏幕顶部的距离 SafeInsetTop:0
+安全区域距离屏幕底部的距离 SafeInsetBottom:0
+刘海屏数量:1
+刘海屏区域：Rect(2423, 586 - 2560, 726)
+
+注意top, right的值!
+ */
