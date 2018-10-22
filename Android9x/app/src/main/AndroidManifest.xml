@@ -17,9 +17,7 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
         <activity
-            android:name=".screen.cutout.CutoutInformationDemo2"
-            android:configChanges="keyboardHidden|keyboard|orientation|screenSize"
-            android:theme="@style/fullScreen"
+            android:name=".http.NoHttpDemo_WebView"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -28,5 +26,6 @@
         </activity>
 
     </application>
-
+    <!--android:configChanges="keyboardHidden|keyboard|orientation|screenSize"-->
+    <!--android:theme="@style/fullScreen"-->
 </manifest>

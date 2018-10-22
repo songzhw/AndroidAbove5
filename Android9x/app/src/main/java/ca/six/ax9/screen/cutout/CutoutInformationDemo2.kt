@@ -14,9 +14,11 @@ import ca.six.ax9.R
 相对于CutoutInformationDemo类, 主要是本类多加了个配置:
              android:configChanges="keyboardHidden|keyboard|orientation|screenSize"
 
-
+即"fullScreen + config自己控制"的页面, displayCutout数据就混乱了
 
  */
+
+
 // 要想图片伸到danger area, 就得三组(lp, systemUiVisibility, fullScreen的theme), 缺一不可
 class CutoutInformationDemo2 : AppCompatActivity() {
 
@@ -30,9 +32,9 @@ class CutoutInformationDemo2 : AppCompatActivity() {
         params.layoutInDisplayCutoutMode =
                 WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
 
-//        getWindow().getDecorView().systemUiVisibility = (
-//                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-//                or View.SYSTEM_UI_FLAG_FULLSCREEN)
+        getWindow().getDecorView().systemUiVisibility = (
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                or View.SYSTEM_UI_FLAG_FULLSCREEN)
 
     }
 
@@ -55,18 +57,18 @@ class CutoutInformationDemo2 : AppCompatActivity() {
             val displayCutout: DisplayCutout? = windowInset.displayCutout
             println("szw 01 : ${decorView.rootWindowInsets}")
             println("szw 02 : ${decorView.rootWindowInsets.displayCutout}")
-            Log.e("szw", "安全区域距离屏幕左边的距离 SafeInsetLeft:" + displayCutout?.safeInsetLeft)
-            Log.e("szw", "安全区域距离屏幕右部的距离 SafeInsetRight:" + displayCutout?.safeInsetRight)
-            Log.e("szw", "安全区域距离屏幕顶部的距离 SafeInsetTop:" + displayCutout?.safeInsetTop)
-            Log.e("szw", "安全区域距离屏幕底部的距离 SafeInsetBottom:" + displayCutout?.safeInsetBottom)
+            Log.e("szw", "SafeArea SafeInsetLeft:" + displayCutout?.safeInsetLeft)
+            Log.e("szw", "SafeArea SafeInsetRight:" + displayCutout?.safeInsetRight)
+            Log.e("szw", "SafeArea SafeInsetTop:" + displayCutout?.safeInsetTop)
+            Log.e("szw", "SafeArea SafeInsetBottom:" + displayCutout?.safeInsetBottom)
 
             val rects = displayCutout?.boundingRects
             if (rects == null || rects.size === 0) {
-                Log.e("szw", "不是刘海屏")
+                Log.e("szw", "Have No Notch")
             } else {
-                Log.e("szw", "刘海屏数量:" + rects.size)
+                Log.e("szw", "Nonch Count:" + rects.size)
                 for (rect in rects) {
-                    Log.e("szw", "刘海屏区域：$rect")
+                    Log.e("szw", "Nonch Area：$rect")
                 }
             }
         }
