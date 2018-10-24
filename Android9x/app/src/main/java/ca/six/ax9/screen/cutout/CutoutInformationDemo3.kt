@@ -34,36 +34,34 @@ class CutoutInformationDemo3 : AppCompatActivity() {
 
 	override fun onResume() {
 		super.onResume()
-		ivDisplayCutout.post { info() }
+		ivDisplayCutout.postDelayed({ info() }, 300)
 	}
 
 	override fun onConfigurationChanged(newConfig: Configuration?) {
 		super.onConfigurationChanged(newConfig)
-		ivDisplayCutout.post { info() }
+		ivDisplayCutout.postDelayed({ info() }, 300)
 	}
 
 	fun info() {
 
 		val decorView = window.decorView
 
-		decorView.post {
-			val windowInset = decorView.rootWindowInsets
-			val displayCutout: DisplayCutout? = windowInset.displayCutout
-			println("szw 01 : ${decorView.rootWindowInsets}")
-			println("szw 02 : ${decorView.rootWindowInsets.displayCutout}")
-			Log.e("szw", "SafeArea SafeInsetLeft:" + displayCutout?.safeInsetLeft)
-			Log.e("szw", "SafeArea SafeInsetRight:" + displayCutout?.safeInsetRight)
-			Log.e("szw", "SafeArea SafeInsetTop:" + displayCutout?.safeInsetTop)
-			Log.e("szw", "SafeArea SafeInsetBottom:" + displayCutout?.safeInsetBottom)
+		val windowInset = decorView.rootWindowInsets
+		val displayCutout: DisplayCutout? = windowInset.displayCutout
+		println("szw 01 : ${decorView.rootWindowInsets}")
+		println("szw 02 : ${decorView.rootWindowInsets.displayCutout}")
+		Log.e("szw", "SafeArea SafeInsetLeft:" + displayCutout?.safeInsetLeft)
+		Log.e("szw", "SafeArea SafeInsetRight:" + displayCutout?.safeInsetRight)
+		Log.e("szw", "SafeArea SafeInsetTop:" + displayCutout?.safeInsetTop)
+		Log.e("szw", "SafeArea SafeInsetBottom:" + displayCutout?.safeInsetBottom)
 
-			val rects = displayCutout?.boundingRects
-			if (rects == null || rects.size === 0) {
-				Log.e("szw", "Have No Notch")
-			} else {
-				Log.e("szw", "Nonch Count:" + rects.size)
-				for (rect in rects) {
-					Log.e("szw", "Nonch Area：$rect")
-				}
+		val rects = displayCutout?.boundingRects
+		if (rects == null || rects.size === 0) {
+			Log.e("szw", "Have No Notch")
+		} else {
+			Log.e("szw", "Nonch Count:" + rects.size)
+			for (rect in rects) {
+				Log.e("szw", "Nonch Area：$rect")
 			}
 		}
 	}
