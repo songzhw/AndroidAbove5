@@ -12,20 +12,9 @@ import android.widget.ImageView
 import ca.six.ax9.R
 import kotlinx.android.synthetic.main.activity_display_cutout.*
 
-/*
-相对于CutoutInformationDemo类, 主要是本类多加了个配置:
-             android:configChanges="keyboardHidden|keyboard|orientation|screenSize"
-
-即"fullScreen + config自己控制"的页面, displayCutout数据就混乱了
-
-[总结]
-CutoutInformationDemo2: 没有解决问题
-CutoutInformationDemo3: 解决了问题
- */
-
 
 // 要想图片伸到danger area, 就得三组(lp, systemUiVisibility, fullScreen的theme), 缺一不可
-class CutoutInformationDemo2 : AppCompatActivity() {
+class CutoutInformationDemo3 : AppCompatActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
@@ -45,12 +34,12 @@ class CutoutInformationDemo2 : AppCompatActivity() {
 
 	override fun onResume() {
 		super.onResume()
-		info()
+		ivDisplayCutout.post { info() }
 	}
 
 	override fun onConfigurationChanged(newConfig: Configuration?) {
 		super.onConfigurationChanged(newConfig)
-		info()
+		ivDisplayCutout.post { info() }
 	}
 
 	fun info() {
@@ -77,7 +66,6 @@ class CutoutInformationDemo2 : AppCompatActivity() {
 				}
 			}
 		}
-
 	}
 }
 
