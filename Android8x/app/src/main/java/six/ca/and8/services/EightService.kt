@@ -21,8 +21,11 @@ class EightService : Service() {
 	override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
 		println("szw EightService.onStartCmd()")
 
-
-		this.startForeground(100, null);
+		val channel = NotificationChannel("id", "name", NotificationManager.IMPORTANCE_LOW);
+		val manager = this.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+		manager.createNotificationChannel(channel);
+		val notification = Notification.Builder(this, "id").build();
+		this.startForeground(100, notification);
 
 		return super.onStartCommand(intent, flags, startId)
 	}
