@@ -18,6 +18,7 @@
 
         <activity
             android:name=".screen.rotate.RotateDemo2"
+            android:configChanges="keyboardHidden|keyboard|orientation|screenSize|fontScale|locale|layoutDirection|smallestScreenSize|density|uiMode|screenLayout"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
