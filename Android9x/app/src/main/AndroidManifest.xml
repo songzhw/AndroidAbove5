@@ -18,8 +18,6 @@
 
         <activity
             android:name=".screen.rotate.RotateDemo2"
-            android:configChanges="keyboardHidden|keyboard|orientation|screenSize"
-            android:theme="@style/fullScreen"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

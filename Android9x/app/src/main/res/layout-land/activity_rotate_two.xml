@@ -3,12 +3,12 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 
-	<Button
+	<CheckBox
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_margin="100dp"
-		android:textSize="40dp"
-		android:text="sw600dp Button"
+		android:layout_margin="170dp"
+		android:textSize="20dp"
+		android:text="sw600dp land?"
 		/>
 
 </RelativeLayout>
