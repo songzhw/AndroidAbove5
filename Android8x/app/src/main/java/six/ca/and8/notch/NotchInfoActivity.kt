@@ -1,35 +1,31 @@
-package ca.six.ax9.screen.cutout
+package six.ca.and8.notch
 
 import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
-import android.support.v4.view.WindowInsetsCompat
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.view.DisplayCutout
 import android.view.View
 import android.view.WindowManager
-import android.widget.ImageView
-import ca.six.ax9.R
-import kotlinx.android.synthetic.main.activity_display_cutout.*
+import kotlinx.android.synthetic.main.activity_notch_info.*
+import six.ca.and8.R
 
+class NotchInfoActivity : AppCompatActivity() {
+	val BUILD_VERSION_P = 28
+	val LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES = 1
 
-// 要想图片伸到danger area, 就得三组(lp, systemUiVisibility, fullScreen的theme), 缺一不可
-class CutoutInformationDemo3 : AppCompatActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
+		setContentView(R.layout.activity_notch_info)
 
-		//开局就一张背景图
-		setContentView(R.layout.activity_display_cutout)
-
-		val params = window.attributes
-		params.layoutInDisplayCutoutMode =
-				WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+		if (Build.VERSION.SDK_INT >= BUILD_VERSION_P) {
+			val lp = window.attributes
+			lp.layoutInDisplayCutoutMode = LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+		}
 
 		getWindow().getDecorView().systemUiVisibility = (
 				View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
 						or View.SYSTEM_UI_FLAG_FULLSCREEN)
-
-
 	}
 
 	override fun onResume() {
@@ -41,6 +37,7 @@ class CutoutInformationDemo3 : AppCompatActivity() {
 		super.onConfigurationChanged(newConfig)
 		ivDisplayCutout.postDelayed({ info() }, 300)
 	}
+
 
 	fun info() {
 

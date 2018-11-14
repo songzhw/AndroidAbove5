@@ -1,0 +1,1 @@
+try to get the notch information without sdk 28

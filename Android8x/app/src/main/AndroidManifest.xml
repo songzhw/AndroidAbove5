@@ -15,7 +15,10 @@
 		android:theme="@style/AppTheme"
 		tools:ignore="GoogleAppIndexingWarning">
 
-		<activity android:name=".MainActivity">
+		<activity android:name=".notch.NotchInfoActivity"
+			android:configChanges="keyboardHidden|keyboard|orientation|screenSize"
+			android:theme="@style/fullScreen"
+			>
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
@@ -30,13 +33,13 @@
 			</intent-filter>
 		</activity>
 
-		<receiver android:name=".services.BootCompleteReceiver">
-			<intent-filter>
-				<action android:name="android.intent.action.BOOT_COMPLETED" />
-			</intent-filter>
-		</receiver>
+		<!--<receiver android:name=".services.BootCompleteReceiver">-->
+			<!--<intent-filter>-->
+				<!--<action android:name="android.intent.action.BOOT_COMPLETED" />-->
+			<!--</intent-filter>-->
+		<!--</receiver>-->
 
-		<service android:name=".services.EightService" />
+		<!--<service android:name=".services.EightService" />-->
 
 	</application>
 
