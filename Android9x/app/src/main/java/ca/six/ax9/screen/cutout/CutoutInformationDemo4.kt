@@ -2,6 +2,9 @@ package ca.six.ax9.screen.cutout
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.support.v4.view.OnApplyWindowInsetsListener
+import android.support.v4.view.ViewCompat
+import android.support.v4.view.WindowInsetsCompat
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.DisplayCutout
@@ -10,9 +13,9 @@ import android.view.WindowManager
 import ca.six.ax9.R
 import kotlinx.android.synthetic.main.activity_display_cutout.*
 
+// The final, successful version
 
-// 要想图片伸到danger area, 就得三组(lp, systemUiVisibility, fullScreen的theme), 缺一不可
-class CutoutInformationDemo3 : AppCompatActivity() {
+class CutoutInformationDemo4 : AppCompatActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
@@ -32,12 +35,22 @@ class CutoutInformationDemo3 : AppCompatActivity() {
 
 	override fun onResume() {
 		super.onResume()
-		ivDisplayCutout.postDelayed({ info() }, 300)
+		listen()
 	}
 
 	override fun onConfigurationChanged(newConfig: Configuration?) {
 		super.onConfigurationChanged(newConfig)
-		ivDisplayCutout.postDelayed({ info() }, 300)
+		listen()
+	}
+
+	fun listen() {
+		ViewCompat.setOnApplyWindowInsetsListener(ivDisplayCutout, object : OnApplyWindowInsetsListener {
+			override fun onApplyWindowInsets(view: View?, insets: WindowInsetsCompat): WindowInsetsCompat {
+				info()
+				return insets
+			}
+
+		})
 	}
 
 	fun info() {
