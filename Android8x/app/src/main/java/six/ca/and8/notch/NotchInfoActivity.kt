@@ -11,7 +11,6 @@ import kotlinx.android.synthetic.main.activity_notch_info.*
 import six.ca.and8.R
 import java.lang.reflect.Field
 import android.view.WindowInsets
-import java.lang.reflect.InvocationTargetException
 
 
 class NotchInfoActivity : AppCompatActivity() {
@@ -26,7 +25,7 @@ class NotchInfoActivity : AppCompatActivity() {
 			val lp = window.attributes
 
 			//正常情况下, 用sdk28就这样用
-//			lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+			//			lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
 
 			val clz = WindowManager.LayoutParams::class.java
 			var field: Field? = null
@@ -48,16 +47,27 @@ class NotchInfoActivity : AppCompatActivity() {
 
 	override fun onResume() {
 		super.onResume()
-		ivDisplayCutout.postDelayed({ info() }, 300)
+		println("szw onResume()")
+		info()
 	}
 
 	override fun onConfigurationChanged(newConfig: Configuration?) {
 		super.onConfigurationChanged(newConfig)
-		ivDisplayCutout.postDelayed({ info() }, 300)
+		println("szw onConfigurationChanged()")
+		info()
 	}
 
 
 	fun info() {
+		ivDisplayCutout.setOnApplyWindowInsetsListener(object : View.OnApplyWindowInsetsListener {
+			override fun onApplyWindowInsets(v: View, insets: WindowInsets): WindowInsets {
+				detect()
+				return insets
+			}
+		})
+	}
+
+	fun detect() {
 
 		val decorView = window.decorView
 
@@ -73,13 +83,14 @@ class NotchInfoActivity : AppCompatActivity() {
 			val right = clz.getMethod("getSafeInsetRight").invoke(displayCutout) as Int
 			val bottom = clz.getMethod("getSafeInsetBottom").invoke(displayCutout) as Int
 
-			Log.e("szw", "SafeArea SafeInsetLeft: $left" )
-			Log.e("szw", "SafeArea SafeInsetRight: $right")
-			Log.e("szw", "SafeArea SafeInsetTop: $top"  )
-			Log.e("szw", "SafeArea SafeInsetBottom: $bottom")
+			Log.d("szw", "SafeArea SafeInsetLeft: $left")
+			Log.d("szw", "SafeArea SafeInsetRight: $right")
+			Log.d("szw", "SafeArea SafeInsetTop: $top")
+			Log.d("szw", "SafeArea SafeInsetBottom: $bottom")
 
 		} catch (e: Exception) {
 			e.printStackTrace()
+			println("szw error: do not support display cutout")
 		}
 
 
