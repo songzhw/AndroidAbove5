@@ -25,5 +25,11 @@ class SecurityDemo : Activity() {
             editor.putString("key200", "value200")
             editor.apply()
         }
+
+        // 因为key也被加密了, 所以用"key200"取不出来值
+        btnReadSp.setOnClickListener {
+            val value = sp.getString("key200", "[empty]")
+            tvSpInfo.text = value
+        }
     }
 }

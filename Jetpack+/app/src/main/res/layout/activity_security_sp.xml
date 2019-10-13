@@ -9,11 +9,11 @@
 
     <Button android:id="@+id/btnReadSp"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="save"/>
+        android:text="Read Normal"/>
 
     <Button android:id="@+id/btnReadDecryptSp"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="save"/>
+        android:text="Read Encrypted"/>
 
     <TextView android:id="@+id/tvSpInfo"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
