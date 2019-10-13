@@ -13,17 +13,5 @@
         android:layout_width="100dp" android:layout_height="40dp"
         android:text="2222"/>
 
-    <Button android:id="@+id/btnSecurity3"
-        android:layout_width="100dp" android:layout_height="40dp"
-        android:text="Security Lib"/>
-    <Button android:id="@+id/btn23"
-        android:layout_width="100dp" android:layout_height="40dp"
-        android:text="2222"/>
-    <Button android:id="@+id/btnSecurity4"
-        android:layout_width="100dp" android:layout_height="40dp"
-        android:text="Security Lib"/>
-    <Button android:id="@+id/btn24"
-        android:layout_width="100dp" android:layout_height="40dp"
-        android:text="2222"/>
 
 </com.google.android.flexbox.FlexboxLayout>
