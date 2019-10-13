@@ -28,14 +28,13 @@ class SecurityDemo : Activity() {
 
         // 因为key也被加密了, 所以用"key200"取不出来值
         btnReadSp.setOnClickListener {
-            val values = sp.all
-            for ( key in values.keys){
-                println("szw key = $key, value=${values.get(key)}")
-            }
+            val value = sp.getString("key100", "[empty11]")
+            tvSpInfo.text = value
         }
 
         btnReadDecryptSp.setOnClickListener {
-
+            val value = sp.getString("key200", "[empty22]")
+            tvSpInfo.text = value
         }
     }
 }
