@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import androidx.core.content.edit
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 import ca.six.jet.R
@@ -16,9 +17,8 @@ class SecurityDemo : Activity() {
         setContentView(R.layout.activity_security_sp)
 
         this.getSharedPreferences("normal1", Context.MODE_PRIVATE)
-            .edit()
-            .putString("key001", "value001")
-            .apply()
+            .edit {putString("key001", "value001")}
+
 
         val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
         val sp = EncryptedSharedPreferences.create(
