@@ -13,6 +13,7 @@ class LV_ViewModel : ViewModel() {
     fun fetch() {
         Http.get("http://www.mocky.io/v2/5dab51b03100002d00beceaa") { resp ->
             val json = JSONObject(resp)
+            println("szw thread = ${Thread.currentThread().name}")
             println("szw : resp = $json")
         }
     }
