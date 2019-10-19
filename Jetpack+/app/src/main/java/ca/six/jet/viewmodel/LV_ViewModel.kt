@@ -11,7 +11,7 @@ class LV_ViewModel : ViewModel() {
     private lateinit var platforms: MutableLiveData<List<Platform>>
 
     fun fetch() {
-        Http.get("https://www.mocky.io/v2/5dab51b03100002d00beceaa") { resp ->
+        Http.get("http://www.mocky.io/v2/5dab51b03100002d00beceaa") { resp ->
             val json = JSONObject(resp)
             println("szw : resp = $json")
         }
