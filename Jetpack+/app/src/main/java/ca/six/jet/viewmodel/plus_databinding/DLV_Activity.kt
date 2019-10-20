@@ -14,6 +14,7 @@ class DLV_Activity : AppCompatActivity() {
         val viewModel = ViewModelProviders.of(this).get(DLV_ViewModel::class.java)
 
         val binding: ActivityDlvBinding = DataBindingUtil.setContentView(this, R.layout.activity_dlv)
+        binding.lifecycleOwner = this
         binding.viewmodel = viewModel
 
         if (viewModel.user.value == null) {
