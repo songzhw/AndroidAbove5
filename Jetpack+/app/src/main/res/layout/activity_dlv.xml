@@ -10,7 +10,7 @@
 
         <TextView android:textSize="22dp"
             android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="@{viewmodel.user.id}"/>
+            android:text="@{String.valueOf(viewmodel.user.id)}"/>
 
         <TextView android:textSize="22dp"
             android:layout_width="wrap_content" android:layout_height="wrap_content"
