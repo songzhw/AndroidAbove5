@@ -14,6 +14,7 @@ class LV_Activity : AppCompatActivity() {
 
         vm.getPlatforms().observe(this, Observer<List<Platform>> {platforms ->
             println("szw actv thread = ${Thread.currentThread().name}") //=> thread = main (因为vm中使用了postValue(), 而不是setValue())
+            println("szw actv list = $platforms")
             // tv.text = platforms.toString()
         })
     }

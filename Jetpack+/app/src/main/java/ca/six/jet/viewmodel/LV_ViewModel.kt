@@ -8,6 +8,7 @@ import ca.six.jet.core.http.Http
 import org.json.JSONArray
 import org.json.JSONObject
 
+// the liveData will know the value even when you rotate the screen
 class LV_ViewModel : ViewModel() {
     private val platforms: MutableLiveData<List<Platform>> = MutableLiveData()
 
@@ -28,3 +29,19 @@ class LV_ViewModel : ViewModel() {
         return platforms
     }
 }
+
+/*
+
+// 1. 一开始进入页面
+szw resp thread = OkHttp http://www.mocky.io/...
+szw actv thread = main
+szw actv list = [Platform(id=1, name=android), Platform(id=2, name=iOS), Platform(id=3, name=react native)]
+
+// 2. rotate the screen
+szw actv thread = main
+szw actv list = [Platform(id=1, name=android), Platform(id=2, name=iOS), Platform(id=3, name=react native)]
+szw resp thread = OkHttp http://www.mocky.io/...
+szw actv thread = main
+szw actv list = [Platform(id=1, name=android), Platform(id=2, name=iOS), Platform(id=3, name=react native)]
+
+ */
