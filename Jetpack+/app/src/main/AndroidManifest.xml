@@ -25,6 +25,7 @@
 
         <activity android:name=".security.SecurityDemo" />
         <activity android:name=".viewmodel.LV_Activity" />
+        <activity android:name=".viewmodel.plus_databinding.DLV_Activity" />
 
     </application>
 

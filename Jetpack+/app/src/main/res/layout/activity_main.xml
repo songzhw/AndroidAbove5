@@ -12,6 +12,9 @@
     <Button android:id="@+id/btnLV"
         android:layout_width="200dp" android:layout_height="40dp"
         android:text="ViewModel +LiveData" android:textAllCaps="false"/>
+    <Button android:id="@+id/btnDLV"
+        android:layout_width="320dp" android:layout_height="40dp"
+        android:text="ViewModel +LiveData + DataBinding" android:textAllCaps="false"/>
 
 
 </com.google.android.flexbox.FlexboxLayout>

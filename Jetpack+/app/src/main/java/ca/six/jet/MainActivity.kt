@@ -7,6 +7,7 @@ import androidx.work.PeriodicWorkRequest
 import androidx.work.PeriodicWorkRequestBuilder
 import ca.six.jet.security.SecurityDemo
 import ca.six.jet.viewmodel.LV_Activity
+import ca.six.jet.viewmodel.plus_databinding.DLV_Activity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +20,6 @@ class MainActivity : AppCompatActivity() {
 
         btnSecurity.setOnClickListener { startActivity(Intent(this, SecurityDemo::class.java)) }
         btnLV.setOnClickListener { startActivity(Intent(this, LV_Activity::class.java)) }
-
+        btnDLV.setOnClickListener { startActivity(Intent(this, DLV_Activity::class.java)) }
     }
 }
