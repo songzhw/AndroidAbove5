@@ -9,7 +9,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 class LV_ViewModel : ViewModel() {
-    private lateinit var platforms: MutableLiveData<List<Platform>>
+    private val platforms: MutableLiveData<List<Platform>> = MutableLiveData()
 
     fun fetch() {
         Http.get("http://www.mocky.io/v2/5dab51b03100002d00beceaa") { resp ->
