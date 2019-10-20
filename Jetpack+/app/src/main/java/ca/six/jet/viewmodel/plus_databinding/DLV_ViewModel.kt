@@ -14,6 +14,7 @@ class DLV_ViewModel : ViewModel() {
             println("szw resp thread = ${Thread.currentThread().name}") //=> thread = OkHttp http://www.mocky.io/...
             val json = JSONObject(resp).get("user") as JSONObject
             val userInResp = User(json.getInt("id"), json.getString("name"))
+            println("szw DLV_vm $userInResp")
             user.postValue(userInResp)
         }
     }
