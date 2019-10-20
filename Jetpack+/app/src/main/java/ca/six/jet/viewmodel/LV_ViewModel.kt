@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ca.six.jet.Platform
 import ca.six.jet.core.http.Http
+import org.json.JSONArray
 import org.json.JSONObject
 
 class LV_ViewModel : ViewModel() {
@@ -12,9 +13,15 @@ class LV_ViewModel : ViewModel() {
 
     fun fetch() {
         Http.get("http://www.mocky.io/v2/5dab51b03100002d00beceaa") { resp ->
-            val json = JSONObject(resp)
-            println("szw thread = ${Thread.currentThread().name}")
-            println("szw : resp = $json")
+            println("szw resp thread = ${Thread.currentThread().name}") //=> thread = OkHttp http://www.mocky.io/...
+            val json = (JSONObject(resp).get("payload") as JSONObject).get("platforms") as JSONArray
+            val list = ArrayList<Platform>()
+            for(i in 0..json.length()) {
+                println("szw $i")
+//                val obj = json.get(i) as JSONObject
+//                list[i] = Platform(obj.getInt("id"), obj.getString("name"))
+            }
+            println("szw $list")
         }
     }
 
