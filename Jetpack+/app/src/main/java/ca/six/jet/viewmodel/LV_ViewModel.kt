@@ -18,8 +18,8 @@ class LV_ViewModel : ViewModel() {
             val list = ArrayList<Platform>()
             for(i in 0 until json.length()) {
                 println("szw $i")
-//                val obj = json.get(i) as JSONObject
-//                list[i] = Platform(obj.getInt("id"), obj.getString("name"))
+                val obj = json.get(i) as JSONObject
+                list[i] = Platform(obj.getInt("id"), obj.getString("name"))
             }
             println("szw $list")
         }
