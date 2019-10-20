@@ -19,7 +19,7 @@ class LV_ViewModel : ViewModel() {
             for(i in 0 until json.length()) {
                 println("szw $i")
                 val obj = json.get(i) as JSONObject
-                list[i] = Platform(obj.getInt("id"), obj.getString("name"))
+                list.add(Platform(obj.getInt("id"), obj.getString("name")))
             }
             println("szw $list")
         }
