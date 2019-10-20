@@ -21,5 +21,8 @@ class DLV_Activity : AppCompatActivity() {
             viewModel.fetch()
         }
 
+        println("szw actv 01 : name = ${viewModel.name}")
+
+
     }
 }

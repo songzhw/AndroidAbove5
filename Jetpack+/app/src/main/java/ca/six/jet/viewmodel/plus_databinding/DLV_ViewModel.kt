@@ -8,6 +8,7 @@ import org.json.JSONObject
 
 class DLV_ViewModel : ViewModel() {
     val user = MutableLiveData<User>()
+    val name = MutableLiveData<String>()
 
     fun fetch() {
         Http.get("http://www.mocky.io/v2/5dabb3a53000005f00298617") { resp ->
@@ -16,6 +17,7 @@ class DLV_ViewModel : ViewModel() {
             val userInResp = User(json.getInt("id"), json.getString("name"))
             println("szw DLV_vm $userInResp")
             user.postValue(userInResp)
+            name.postValue(json.getString("name"))
         }
     }
 }
