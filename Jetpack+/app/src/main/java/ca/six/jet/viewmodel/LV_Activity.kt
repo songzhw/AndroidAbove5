@@ -12,8 +12,9 @@ class LV_Activity : AppCompatActivity() {
         val vm = ViewModelProviders.of(this).get(LV_ViewModel::class.java)
         vm.fetch()
 
-        vm.getPlatforms().observe(this, Observer<List<Platform>> {Platforms ->
-            println("szw actv thread = ${Thread.currentThread().name}")
+        vm.getPlatforms().observe(this, Observer<List<Platform>> {platforms ->
+            println("szw actv thread = ${Thread.currentThread().name}") //=> thread = main (因为vm中使用了postValue(), 而不是setValue())
+            // tv.text = platforms.toString()
         })
     }
 }

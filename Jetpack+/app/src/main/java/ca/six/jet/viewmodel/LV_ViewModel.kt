@@ -17,11 +17,10 @@ class LV_ViewModel : ViewModel() {
             val json = (JSONObject(resp).get("payload") as JSONObject).get("platforms") as JSONArray
             val list = ArrayList<Platform>()
             for (i in 0 until json.length()) {
-                println("szw $i")
                 val obj = json.get(i) as JSONObject
                 list.add(Platform(obj.getInt("id"), obj.getString("name")))
             }
-            platforms.value = list
+            platforms.postValue(list)
         }
     }
 
