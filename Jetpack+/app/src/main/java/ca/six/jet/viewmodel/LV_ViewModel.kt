@@ -38,9 +38,7 @@ szw actv thread = main
 szw actv list = [Platform(id=1, name=android), Platform(id=2, name=iOS), Platform(id=3, name=react native)]
 
 // 2. rotate the screen
-szw actv thread = main
 szw actv list = [Platform(id=1, name=android), Platform(id=2, name=iOS), Platform(id=3, name=react native)]
-szw resp thread = OkHttp http://www.mocky.io/...
 szw actv thread = main
 szw actv list = [Platform(id=1, name=android), Platform(id=2, name=iOS), Platform(id=3, name=react native)]
 
