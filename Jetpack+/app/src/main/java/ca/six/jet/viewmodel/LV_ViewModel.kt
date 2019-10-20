@@ -16,7 +16,7 @@ class LV_ViewModel : ViewModel() {
             println("szw resp thread = ${Thread.currentThread().name}") //=> thread = OkHttp http://www.mocky.io/...
             val json = (JSONObject(resp).get("payload") as JSONObject).get("platforms") as JSONArray
             val list = ArrayList<Platform>()
-            for(i in 0..json.length()) {
+            for(i in 0 until json.length()) {
                 println("szw $i")
 //                val obj = json.get(i) as JSONObject
 //                list[i] = Platform(obj.getInt("id"), obj.getString("name"))
