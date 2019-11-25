@@ -9,7 +9,7 @@ import android.content.pm.PackageManager
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
 
-
+@Deprecated("this screen will crash, due to Android 10's strict policy")
 class WriteFilesToMine : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +39,7 @@ class WriteFilesToMine : AppCompatActivity() {
 
         // Environment.getExternalStorageDirectory()  //=> /storage/emulated/0
         val file = File(Environment.getExternalStorageDirectory(), "one.txt")
-        val fos = FileOutputStream(file)
+        val fos = FileOutputStream(file)  //=> java.io.FileNotFoundException: /storage/emulated/0/one.txt: open failed: EACCES (Permission denied)
         val info = "I am a uuid!"
         fos.write(info.toByteArray())
         fos.close()
