@@ -21,5 +21,7 @@ interface StudentDao{
     @Update
     fun update(student: Student)
 
-
+    // 其实也可以用@Delete.  @Query其实就是executeSQL()的方式, 可以包罗万象.
+    @Query("delete from Student")
+    fun deleteAll()
 }
