@@ -2,21 +2,23 @@ package ca.six.jet.room
 
 import android.app.Activity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.viewModelScope
 import ca.six.jet.R
 import kotlinx.android.synthetic.main.activity_room.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class SimpleRoomDemo : Activity() {
+class SimpleRoomDemo : AppCompatActivity() {
     lateinit var vm: SimpleRoomViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_room)
 
-        vm = SimpleRoomViewModel()
+        vm = ViewModelProviders.of(this).get(SimpleRoomViewModel::class.java)
         val db = DatabaseProvider.db(this)
         val dao = db.studentDao()
 
