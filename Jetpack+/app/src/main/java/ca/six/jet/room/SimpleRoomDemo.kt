@@ -58,6 +58,7 @@ class SimpleRoomViewModel : ViewModel() {
     }
 
     fun queryAll(dao: StudentDao) {
+        viewModelScope.launch {
             val result = dao.getStudents();
             result.collect { students ->
                 liveStudents.postValue(students)
