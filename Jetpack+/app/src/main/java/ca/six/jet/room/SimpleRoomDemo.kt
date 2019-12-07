@@ -66,7 +66,7 @@ class SimpleRoomViewModel : ViewModel() {
     fun queryOne(dao: StudentDao) {
         viewModelScope.launch {
             val result = dao.getStudentById(6)
-            println("szw " + result)
+            println("szw2 " + result)
         }
     }
 }
