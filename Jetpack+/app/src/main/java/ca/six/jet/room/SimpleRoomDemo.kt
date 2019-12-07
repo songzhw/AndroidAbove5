@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ca.six.jet.R
 import kotlinx.android.synthetic.main.activity_room.*
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class SimpleRoomDemo : Activity() {
@@ -23,6 +24,10 @@ class SimpleRoomDemo : Activity() {
             vm.insertValues(dao)
             tvInfo.text = "inserted"
         }
+
+        btnQuery.setOnClickListener {
+            vm.query(dao);
+        }
     }
 }
 
@@ -35,6 +40,17 @@ class SimpleRoomViewModel : ViewModel() {
             dao.insert(Student(null, "Ali", "1990-08-06", MAN))
             dao.insert(Student(null, "Lily", "1991-12-01", WOMAN))
             dao.insert(Student(null, "Hellen", "1992-03-01", WOMAN))
+        }
+    }
+
+    fun query(dao: StudentDao) {
+        viewModelScope.launch {
+            val result = dao.getStudents();
+            result.collect { students ->
+                students.forEach {
+                    println("szw " + it)
+                }
+            }
         }
     }
 }
