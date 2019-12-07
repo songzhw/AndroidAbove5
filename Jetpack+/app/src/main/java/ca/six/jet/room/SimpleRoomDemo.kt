@@ -34,14 +34,14 @@ class SimpleRoomDemo : AppCompatActivity() {
             tvInfo.text = "inserted"
         }
 
-        btnQuery.setOnClickListener {
-            vm.query(dao);
-        }
+        btnQueryAll.setOnClickListener { vm.queryAll(dao); }
+        btnQueryOne.setOnClickListener { vm.queryOne(dao) }
     }
 }
 
 class SimpleRoomViewModel : ViewModel() {
-    val liveStudents: MutableLiveData<List<Student>> = MutableLiveData<List<Student>>()
+    val liveStudents = MutableLiveData<List<Student>>()
+    val liveStudent = MutableLiveData<Student>()
 
     fun insertValues(dao: StudentDao) {
         viewModelScope.launch {
@@ -54,12 +54,19 @@ class SimpleRoomViewModel : ViewModel() {
         }
     }
 
-    fun query(dao: StudentDao) {
+    fun queryAll(dao: StudentDao) {
         viewModelScope.launch {
             val result = dao.getStudents();
             result.collect { students ->
                 liveStudents.postValue(students)
             }
+        }
+    }
+
+    fun queryOne(dao: StudentDao) {
+        viewModelScope.launch {
+            val result = dao.getStudentById(6)
+            println("szw " + result)
         }
     }
 }

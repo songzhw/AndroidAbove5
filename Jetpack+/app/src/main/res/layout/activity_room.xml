@@ -11,8 +11,12 @@
         android:layout_width="match_parent" android:layout_height="40dp"
         android:text="insert" android:textAllCaps="false"/>
 
-    <Button android:id="@+id/btnQuery"
+    <Button android:id="@+id/btnQueryAll"
         android:layout_width="match_parent" android:layout_height="40dp"
-        android:text="query" android:textAllCaps="false"/>
+        android:text="queryAll" android:textAllCaps="false"/>
+
+    <Button android:id="@+id/btnQueryOne"
+        android:layout_width="match_parent" android:layout_height="40dp"
+        android:text="queryOne" android:textAllCaps="false"/>
 
 </LinearLayout>

@@ -20,7 +20,7 @@ interface StudentDao{
     fun getStudents(): Flow<List<Student>>
 
     @Query("select * from Student where id = :id")
-    fun getStudentById(id: String): Student?
+    fun getStudentById(id: Int): Student?
 
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
