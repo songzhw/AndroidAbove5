@@ -1,11 +1,8 @@
 package ca.six.jet.room
 
-import android.app.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProviders
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import ca.six.jet.R
 import kotlinx.android.synthetic.main.activity_room.*
 import kotlinx.coroutines.flow.collect
@@ -18,9 +15,19 @@ class SimpleRoomDemo : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_room)
 
-        vm = ViewModelProviders.of(this).get(SimpleRoomViewModel::class.java)
         val db = DatabaseProvider.db(this)
         val dao = db.studentDao()
+
+        vm = ViewModelProviders.of(this).get(SimpleRoomViewModel::class.java)
+        vm.liveStudents.observe(this, Observer { students ->
+            val sb = StringBuilder()
+            students.forEach { student ->
+                sb.append(student)
+                sb.append("\n")
+            }
+            tvInfo.text = sb.toString()
+        })
+
 
         btnInsert.setOnClickListener {
             vm.insertValues(dao)
@@ -34,6 +41,8 @@ class SimpleRoomDemo : AppCompatActivity() {
 }
 
 class SimpleRoomViewModel : ViewModel() {
+    val liveStudents: MutableLiveData<List<Student>> = MutableLiveData<List<Student>>()
+
     fun insertValues(dao: StudentDao) {
         viewModelScope.launch {
             dao.insert(Student(null, "Jim", "1990-01-01", MAN))
@@ -49,9 +58,7 @@ class SimpleRoomViewModel : ViewModel() {
         viewModelScope.launch {
             val result = dao.getStudents();
             result.collect { students ->
-                students.forEach {
-                    println("szw " + it)
-                }
+                liveStudents.postValue(students)
             }
         }
     }
