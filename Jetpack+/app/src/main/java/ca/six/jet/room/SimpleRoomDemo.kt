@@ -27,6 +27,9 @@ class SimpleRoomDemo : AppCompatActivity() {
             }
             tvInfo.text = sb.toString()
         })
+        vm.liveStudent.observe(this, Observer { student ->
+            tvInfo.text = student.toString()
+        })
 
 
         btnInsert.setOnClickListener {
@@ -55,7 +58,6 @@ class SimpleRoomViewModel : ViewModel() {
     }
 
     fun queryAll(dao: StudentDao) {
-        viewModelScope.launch {
             val result = dao.getStudents();
             result.collect { students ->
                 liveStudents.postValue(students)
@@ -66,7 +68,7 @@ class SimpleRoomViewModel : ViewModel() {
     fun queryOne(dao: StudentDao) {
         viewModelScope.launch {
             val result = dao.getStudentById(6)
-            println("szw2 " + result)
+            liveStudent.postValue(result)
         }
     }
 }
