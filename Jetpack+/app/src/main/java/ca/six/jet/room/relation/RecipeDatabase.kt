@@ -26,12 +26,22 @@ data class Cuisine(
     val name: String?
 )
 
+/*
+foreignKeys=[ForeignKey{referenceTable='Ingredient',
+onDelete='NO ACTION',
+onUpdate='NO ACTION',
+columnNames=[IngredientId],
+referenceColumnNames=[id]},
+ */
 @Entity
 data class IngredientCuisine(
     @PrimaryKey(autoGenerate = true) val id: Int?,
+    @ForeignKey(entity = Ingredient::class, parentColumns = ["id"], childColumns = ["ingredientId"])
     val ingredientId: Int?,
+    @ForeignKey(entity = Cuisine::class, parentColumns = ["id"], childColumns = ["cuisineId"])
     val cuisineId: Int?
 )
+
 
 data class CuisineWithIngredients(
     @Embedded val cuisine: Cuisine,
@@ -51,9 +61,11 @@ interface RecipeDao {
     suspend fun cuisines(): List<CuisineWithIngredients> //数据不对
 }
 
-@Database(entities = [Ingredient::class, Cuisine::class, IngredientCuisine::class],
-    version = 1, exportSchema = false)
-abstract class RecipeDatabase: RoomDatabase(){
+@Database(
+    entities = [Ingredient::class, Cuisine::class, IngredientCuisine::class],
+    version = 1, exportSchema = false
+)
+abstract class RecipeDatabase : RoomDatabase() {
     abstract fun dao(): RecipeDao
 }
 
