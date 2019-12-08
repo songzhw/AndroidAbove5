@@ -28,6 +28,7 @@ data class Cuisine(
 
 @Entity
 data class IngredientCuisine(
+    @PrimaryKey(autoGenerate = true) val id: Int?,
     val ingredientId: Int,
     val cuisineId: Int
 )
