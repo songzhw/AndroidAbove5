@@ -70,7 +70,8 @@ object RecipeDatabaseProvider {
         Room.databaseBuilder(
             context.applicationContext,
             RecipeDatabase::class.java,
-            "recipe.db"
+            "recipes.db"
         )
+            .createFromAsset("database/recipes.db")
             .build()
 }
