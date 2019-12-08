@@ -17,13 +17,13 @@ CREATE TABLE IF NOT EXISTS ingredient_cuisine (
 @Entity
 data class Ingredient(
     @PrimaryKey(autoGenerate = true) val id: Int?,
-    val name: String
+    val name: String?
 )
 
 @Entity
 data class Cuisine(
     @PrimaryKey(autoGenerate = true) val id: Int?,
-    val name: String
+    val name: String?
 )
 
 @Entity
