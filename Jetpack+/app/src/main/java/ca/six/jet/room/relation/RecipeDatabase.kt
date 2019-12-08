@@ -29,13 +29,12 @@ data class Cuisine(
 @Entity
 data class IngredientCuisine(
     @PrimaryKey(autoGenerate = true) val id: Int?,
-    val ingredientId: Int,
-    val cuisineId: Int
+    val ingredientId: Int?,
+    val cuisineId: Int?
 )
 
-@Entity
 data class CuisineWithIngredients(
-    @Embedded val cusine: Cuisine,
+    @Embedded val cuisine: Cuisine,
     @Relation(
         parentColumn = "id",
         entity = Ingredient::class,
