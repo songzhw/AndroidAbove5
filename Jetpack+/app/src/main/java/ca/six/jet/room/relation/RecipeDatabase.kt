@@ -73,6 +73,6 @@ object RecipeDatabaseProvider {
             RecipeDatabase::class.java,
             "recipes.db"
         )
-            .createFromAsset("database/recipes.db")
+            .createFromAsset("databases/recipes.db")
             .build()
 }
