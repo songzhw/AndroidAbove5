@@ -1,7 +1,6 @@
 package ca.six.android10x.sdcard
 
 import android.os.Bundle
-import android.os.Environment
 import androidx.appcompat.app.AppCompatActivity
 import java.io.File
 import java.io.FileInputStream

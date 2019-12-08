@@ -15,7 +15,7 @@ class SimpleRoomDemo : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_room)
 
-        val db = DatabaseProvider.db(this)
+        val db = SimpleDatabaseProvider.db(this)
         val dao = db.studentDao()
 
         vm = ViewModelProviders.of(this).get(SimpleRoomViewModel::class.java)
@@ -28,7 +28,7 @@ class SimpleRoomDemo : AppCompatActivity() {
             tvInfo.text = sb.toString()
         })
         vm.liveStudent.observe(this, Observer { student ->
-            tvInfo.text = student.toString()
+            tvInfo.text = student?.toString()
         })
 
 
