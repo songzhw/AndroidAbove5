@@ -49,7 +49,7 @@ data class CuisineWithIngredients(
 interface RecipeDao {
     @Transaction
     @Query("select * from Cuisine")
-    suspend fun cuisines(): List<CuisineWithIngredients>
+    suspend fun cuisines(): List<CuisineWithIngredients> //数据不对
 }
 
 @Database(entities = [Ingredient::class, Cuisine::class, IngredientCuisine::class],
