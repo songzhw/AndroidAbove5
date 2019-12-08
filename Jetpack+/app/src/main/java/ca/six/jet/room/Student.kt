@@ -1,6 +1,7 @@
 package ca.six.jet.room
 
 import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 
 val MAN = 1
 val WOMAN = 2
@@ -15,8 +16,11 @@ data class Student(
 
 @Dao
 interface StudentDao{
+    @Query("select * from Student ")
+    fun getStudents(): Flow<List<Student>>
+
     @Query("select * from Student where id = :id")
-    fun getStudentById(id: String): Student?
+    suspend fun getStudentById(id: Int): Student?
 
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
