@@ -16,13 +16,13 @@ CREATE TABLE IF NOT EXISTS ingredient_cuisine (
 
 @Entity
 data class Ingredient(
-    @PrimaryKey(autoGenerate = true) val id: Int?,
+    @PrimaryKey(autoGenerate = true) val ingredientId: Int?,
     val name: String?
 )
 
 @Entity
 data class Cuisine(
-    @PrimaryKey(autoGenerate = true) val id: Int?,
+    @PrimaryKey(autoGenerate = true) val cuisineId: Int?,
     val name: String?
 )
 
@@ -35,10 +35,10 @@ referenceColumnNames=[id]},
  */
 @Entity
 data class IngredientCuisine(
-    @PrimaryKey(autoGenerate = true) val id: Int?,
-    @ForeignKey(entity = Ingredient::class, parentColumns = ["id"], childColumns = ["ingredientId"])
+    @PrimaryKey(autoGenerate = true) val icID: Int?,
+    @ForeignKey(entity = Ingredient::class, parentColumns = ["ingredientId"], childColumns = ["ingredientId"])
     val ingredientId: Int?,
-    @ForeignKey(entity = Cuisine::class, parentColumns = ["id"], childColumns = ["cuisineId"])
+    @ForeignKey(entity = Cuisine::class, parentColumns = ["cuisineId"], childColumns = ["cuisineId"])
     val cuisineId: Int?
 )
 
@@ -46,9 +46,9 @@ data class IngredientCuisine(
 data class CuisineWithIngredients(
     @Embedded val cuisine: Cuisine,
     @Relation(
-        parentColumn = "id",
+        parentColumn = "cuisineId",
         entity = Ingredient::class,
-        entityColumn = "id",
+        entityColumn = "ingredientId",
         associateBy = Junction(IngredientCuisine::class)
     )
     val ingredients: List<Ingredient>
