@@ -3,16 +3,6 @@ package ca.six.jet.room.relation
 import android.content.Context
 import androidx.room.*
 
-/*
-CREATE TABLE IF NOT EXISTS ingredient (id INTEGER PRIMARY KEY AUTOINCREMENT, name text);
-CREATE TABLE IF NOT EXISTS cuisine (id INTEGER PRIMARY KEY AUTOINCREMENT, name text);
-CREATE TABLE IF NOT EXISTS ingredient_cuisine (
-  ingredientId INTEGER,
-  cuisineId INTEGER,
-  FOREIGN KEY(ingredientId) REFERENCES ingredient(id),
-  FOREIGN KEY(cuisineId) REFERENCES cuisine(id)
-);
- */
 
 @Entity
 data class Ingredient(
@@ -26,13 +16,6 @@ data class Cuisine(
     val name: String?
 )
 
-/*
-foreignKeys=[ForeignKey{referenceTable='Ingredient',
-onDelete='NO ACTION',
-onUpdate='NO ACTION',
-columnNames=[IngredientId],
-referenceColumnNames=[id]},
- */
 @Entity
 data class IngredientCuisine(
     @PrimaryKey(autoGenerate = true) val icID: Int?,
@@ -58,7 +41,7 @@ data class CuisineWithIngredients(
 interface RecipeDao {
     @Transaction
     @Query("select * from Cuisine")
-    suspend fun cuisines(): List<CuisineWithIngredients> //数据不对
+    suspend fun cuisines(): List<CuisineWithIngredients>
 
     @Transaction
     @Insert
@@ -97,6 +80,6 @@ object RecipeDatabaseProvider {
             RecipeDatabase::class.java,
             "recipes.db"
         )
-//            .createFromAsset("databases/recipes.db")
+            .createFromAsset("databases/recipes.db")
             .build()
 }
