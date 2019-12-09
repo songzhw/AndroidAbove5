@@ -59,6 +59,19 @@ interface RecipeDao {
     @Transaction
     @Query("select * from Cuisine")
     suspend fun cuisines(): List<CuisineWithIngredients> //数据不对
+
+    @Transaction
+    @Insert
+    suspend fun insertCuisine(cusine: Cuisine)
+
+    @Transaction
+    @Insert
+    suspend fun insertIngredient(ingredient: Ingredient)
+
+    @Transaction
+    @Insert
+    suspend fun insertJoint(join: IngredientCuisine)
+
 }
 
 @Database(
@@ -84,6 +97,6 @@ object RecipeDatabaseProvider {
             RecipeDatabase::class.java,
             "recipes.db"
         )
-            .createFromAsset("databases/recipes.db")
+//            .createFromAsset("databases/recipes.db")
             .build()
 }
