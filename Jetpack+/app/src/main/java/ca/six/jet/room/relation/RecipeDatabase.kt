@@ -1,9 +1,12 @@
 package ca.six.jet.room.relation
 
 import android.content.Context
+import android.os.AsyncTask
 import androidx.room.*
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 @Entity
@@ -21,9 +24,17 @@ data class Cuisine(
 @Entity
 data class IngredientCuisine(
     @PrimaryKey(autoGenerate = true) val icID: Int?,
-    @ForeignKey(entity = Ingredient::class, parentColumns = ["ingredientId"], childColumns = ["ingredientId"])
+    @ForeignKey(
+        entity = Ingredient::class,
+        parentColumns = ["ingredientId"],
+        childColumns = ["ingredientId"]
+    )
     val ingredientId: Int?,
-    @ForeignKey(entity = Cuisine::class, parentColumns = ["cuisineId"], childColumns = ["cuisineId"])
+    @ForeignKey(
+        entity = Cuisine::class,
+        parentColumns = ["cuisineId"],
+        childColumns = ["cuisineId"]
+    )
     val cuisineId: Int?
 )
 
@@ -82,12 +93,33 @@ object RecipeDatabaseProvider {
             RecipeDatabase::class.java,
             "recipes.db"
         )
-            .addMigrations(migration_0_1)
+            .addCallback(object : RoomDatabase.Callback() {
+                override fun onCreate(db: SupportSQLiteDatabase) {
+                    GlobalScope.launch {
+                        println("szw RecipeDatabase create db")
+                        val dao = db(context).dao()
+                        dao.insertCuisine(Cuisine(null, "西红柿炒蛋"))
+                        dao.insertCuisine(Cuisine(null, "牛肉滑蛋"))
+                        dao.insertCuisine(Cuisine(null, "青椒小炒牛肉"))
+                        dao.insertCuisine(Cuisine(null, "西红柿炖牛腩"))
+
+                        dao.insertIngredient(Ingredient(null, "鸡蛋"))
+                        dao.insertIngredient(Ingredient(null, "西红柿"))
+                        dao.insertIngredient(Ingredient(null, "牛肉"))
+                        dao.insertIngredient(Ingredient(null, "辣椒"))
+
+                        dao.insertJoint(IngredientCuisine(null, 1, 1))
+                        dao.insertJoint(IngredientCuisine(null, 2, 1))
+                        dao.insertJoint(IngredientCuisine(null, 1, 2))
+                        dao.insertJoint(IngredientCuisine(null, 3, 2))
+                        dao.insertJoint(IngredientCuisine(null, 4, 3))
+                        dao.insertJoint(IngredientCuisine(null, 3, 3))
+                        dao.insertJoint(IngredientCuisine(null, 2, 4))
+                        dao.insertJoint(IngredientCuisine(null, 3, 4))
+                        dao.insertJoint(IngredientCuisine(null, 4, 4))
+                    }
+                }
+            })
             .build()
 
-    val migration_0_1 = object: Migration(0, 1){
-        override fun migrate(database: SupportSQLiteDatabase) {
-            println("szw now : v = ${database.version}")
-        }
-    }
 }
