@@ -2,6 +2,8 @@ package ca.six.jet.room.relation
 
 import android.content.Context
 import androidx.room.*
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 
 
 @Entity
@@ -80,6 +82,12 @@ object RecipeDatabaseProvider {
             RecipeDatabase::class.java,
             "recipes.db"
         )
-            .createFromAsset("databases/recipes.db")
+            .addMigrations(migration_0_1)
             .build()
+
+    val migration_0_1 = object: Migration(0, 1){
+        override fun migrate(database: SupportSQLiteDatabase) {
+            println("szw now : v = ${database.version}")
+        }
+    }
 }
