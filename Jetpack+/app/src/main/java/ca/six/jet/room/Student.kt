@@ -6,20 +6,28 @@ import kotlinx.coroutines.flow.Flow
 val MAN = 1
 val WOMAN = 2
 
+//@Entity
+//data class Student(
+//    val name: String,
+//    val age: String,
+//    val sex: Int
+//) {
+//    @PrimaryKey(autoGenerate = true)
+//    var id: Int = 0
+//
+//    override fun toString(): String {
+//        // 这个super.toString仍是"Student@内存地址"
+//        return "Student[$id, $name, age=$age, gender=$sex] "
+//    }
+//}
+
 @Entity
 data class Student(
     val name: String,
     val age: String,
-    val sex: Int
-) {
-    @PrimaryKey(autoGenerate = true)
-    var id: Int = 0
-
-    override fun toString(): String {
-        // 这个super.toString仍是"Student@内存地址"
-        return "Student[$id, $name, age=$age, gender=$sex] "
-    }
-}
+    val sex: Int,
+    @PrimaryKey(autoGenerate = true) var id: Int = 0
+)
 
 @Dao
 interface StudentDao {
