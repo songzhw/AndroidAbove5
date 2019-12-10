@@ -8,14 +8,21 @@ val WOMAN = 2
 
 @Entity
 data class Student(
-    @PrimaryKey(autoGenerate = true) val id: Int?,
     val name: String,
     val age: String,
     val sex: Int
-)
+) {
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0
+
+    override fun toString(): String {
+        // 这个super.toString仍是"Student@内存地址"
+        return "Student[$id, $name, age=$age, gender=$sex] "
+    }
+}
 
 @Dao
-interface StudentDao{
+interface StudentDao {
     @Query("select * from Student ")
     fun getStudents(): Flow<List<Student>>
 

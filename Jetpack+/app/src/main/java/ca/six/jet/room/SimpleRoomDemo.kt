@@ -48,12 +48,12 @@ class SimpleRoomViewModel : ViewModel() {
 
     fun insertValues(dao: StudentDao) {
         viewModelScope.launch {
-            dao.insert(Student(null, "Jim", "1990-01-01", MAN))
-            dao.insert(Student(null, "Mark", "1990-12-21", MAN))
-            dao.insert(Student(null, "Kevin", "1990-05-20", MAN))
-            dao.insert(Student(null, "Ali", "1990-08-06", MAN))
-            dao.insert(Student(null, "Lily", "1991-12-01", WOMAN))
-            dao.insert(Student(null, "Hellen", "1992-03-01", WOMAN))
+            dao.insert(Student("Jim", "1990-01-01", MAN))
+            dao.insert(Student("Mark", "1990-12-21", MAN))
+            dao.insert(Student("Kevin", "1990-05-20", MAN))
+            dao.insert(Student("Ali", "1990-08-06", MAN))
+            dao.insert(Student("Lily", "1991-12-01", WOMAN))
+            dao.insert(Student("Hellen", "1992-03-01", WOMAN))
         }
     }
 
