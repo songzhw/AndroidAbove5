@@ -22,7 +22,7 @@ data class SofaPillow(@Embedded val sofa: Sofa, @Embedded val pillow: Pillow)
 @Dao
 interface SofaDao {
     @Query("select Sofa.id, Pillow.id from Sofa inner join Pillow on Pillow.sofaId = Sofa.id")
-    suspend fun getAll(): LiveData<List<SofaPillow>>
+    suspend fun getAll(): List<SofaPillow>>
 
     @Insert
     suspend fun insertSofa(sofa: Sofa)
