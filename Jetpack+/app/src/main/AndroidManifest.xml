@@ -27,7 +27,8 @@
         <activity android:name=".viewmodel.LV_Activity" />
         <activity android:name=".viewmodel.plus_databinding.DLV_Activity" />
         <activity android:name=".room.SimpleRoomDemo" />
-        <activity android:name=".room.relation.RecipeDbDemo"/>
+        <activity android:name=".room.relation.RecipeDbDemo" />
+        <activity android:name=".room.same_name.SofaActivity" />
 
     </application>
 
