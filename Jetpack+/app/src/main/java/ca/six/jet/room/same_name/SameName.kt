@@ -3,7 +3,6 @@ package ca.six.jet.room.same_name
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.viewModelScope
@@ -12,16 +11,16 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Entity
-data class Sofa(val id: Int)
+data class Sofa(@PrimaryKey val id: Int)
 
 @Entity
-data class Pillow(val id: Int, val sofaId: Int)
+data class Pillow(@PrimaryKey val id: Int, val sofaId: Int)
 
 data class SofaPillow(@Embedded val sofa: Sofa, @Embedded val pillow: Pillow)
 
 @Dao
 interface SofaDao {
-    @Query("select Sofa.id as sid, Pillow.id as pid from Sofa inner join Pillow on Pillow.sofaId = Sofa.id")
+    @Query("select Sofa.*, Pillow.*  from Sofa inner join Pillow on Pillow.sofaId = Sofa.id")
     suspend fun getAll(): List<SofaPillow>
 
     @Insert
