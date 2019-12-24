@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.*
 import androidx.room.*
 import kotlinx.coroutines.launch
+import androidx.lifecycle.MutableLiveData
 
 @Entity
 data class Sofa(@PrimaryKey val id: Int)
@@ -66,16 +67,16 @@ class SofaActivity : AppCompatActivity() {
         val vm = ViewModelProviders.of(this).get(SofaViewModel::class.java)
         vm.init(dao)
 
-        vm.data.observe(this, Observer {
-            println("szw sofas = $it")
-        })
+//        vm.data.observe(this, Observer {
+//            println("szw sofas = $it")
+//        })
 
 
     }
 }
 
 class SofaViewModel : ViewModel() {
-    lateinit var data: LiveData<List<Sofa>>
+    var data = MutableLiveData<List<Sofa>>()
     fun init(dao: SofaDao) {
         viewModelScope.launch {
             //            dao.insertSofa(Sofa(10))
@@ -84,7 +85,7 @@ class SofaViewModel : ViewModel() {
 //            dao.insertPillow(Pillow(12, 10))
 //            dao.insertPillow(Pillow(21, 20))
 
-            data = dao.getSofas()
+            dao.getSofas()
         }
     }
 }
