@@ -21,7 +21,7 @@ interface SofaDao {
 //    suspend fun getAll(): List<SofaPillow>
 
     @Query("select * from Sofa")
-    fun getSofas(): LiveData<List<Sofa>>
+    suspend fun getSofas(): List<Sofa>
 
     @Insert
     suspend fun insertSofa(sofa: Sofa)
@@ -78,7 +78,7 @@ class SofaViewModel : ViewModel() {
     lateinit var data: LiveData<List<Sofa>>
     fun init(dao: SofaDao) {
         viewModelScope.launch {
-//            dao.insertSofa(Sofa(10))
+            //            dao.insertSofa(Sofa(10))
 //            dao.insertSofa(Sofa(20))
 //            dao.insertPillow(Pillow(11, 10))
 //            dao.insertPillow(Pillow(12, 10))
