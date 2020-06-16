@@ -19,8 +19,11 @@ class NormalActivity : AppCompatActivity() {
         getSize("status_bar_height", "status")
 
 
-        val inset = window.decorView.rootWindowInsets.mandatorySystemGestureInsets
-        println("szw insert = $inset")
+        runOnUiThread {
+            val inset = window.decorView.rootWindowInsets.mandatorySystemGestureInsets
+            println("szw insert = $inset")
+        }
+
     }
 
     private fun getSize(resName: String, logName: String) {
