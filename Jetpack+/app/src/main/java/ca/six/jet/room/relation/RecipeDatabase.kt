@@ -1,7 +1,12 @@
 package ca.six.jet.room.relation
 
 import android.content.Context
+import android.os.AsyncTask
 import androidx.room.*
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 @Entity
@@ -19,9 +24,17 @@ data class Cuisine(
 @Entity
 data class IngredientCuisine(
     @PrimaryKey(autoGenerate = true) val icID: Int?,
-    @ForeignKey(entity = Ingredient::class, parentColumns = ["ingredientId"], childColumns = ["ingredientId"])
+    @ForeignKey(
+        entity = Ingredient::class,
+        parentColumns = ["ingredientId"],
+        childColumns = ["ingredientId"]
+    )
     val ingredientId: Int?,
-    @ForeignKey(entity = Cuisine::class, parentColumns = ["cuisineId"], childColumns = ["cuisineId"])
+    @ForeignKey(
+        entity = Cuisine::class,
+        parentColumns = ["cuisineId"],
+        childColumns = ["cuisineId"]
+    )
     val cuisineId: Int?
 )
 
@@ -71,6 +84,7 @@ object RecipeDatabaseProvider {
     private var db: RecipeDatabase? = null
 
     fun db(context: Context): RecipeDatabase = db ?: synchronized(this) {
+        println("szw db: ${db == null}")
         db ?: build(context).also { db = it }
     }
 
@@ -82,4 +96,5 @@ object RecipeDatabaseProvider {
         )
             .createFromAsset("databases/recipes.db")
             .build()
+
 }
