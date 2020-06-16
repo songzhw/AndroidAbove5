@@ -18,11 +18,16 @@ class NormalActivity : AppCompatActivity() {
         //=> 三按钮时, 66.0, 66  ; GestureNav时, 66.0, 66
         getSize("status_bar_height", "status")
 
+        val resId = resources.getIdentifier("config_navBarInteractionMode", "integer", "android")
+        if(resId > 0){
+            val mode = resources.getInteger(resId)
+            println("szw mode = $mode")
+        } //0是3Button, 1是2Button(Android P里有的), 2是gestureNav(Android Q里有的)
 
-        runOnUiThread {
-            val inset = window.decorView.rootWindowInsets.mandatorySystemGestureInsets
-            println("szw insert = $inset")
-        }
+
+        // these code would crash, the rootwindowinsets is null
+//            val inset = window.decorView.rootWindowInsets.mandatorySystemGestureInsets
+//            println("szw insert = $inset")
 
     }
 
