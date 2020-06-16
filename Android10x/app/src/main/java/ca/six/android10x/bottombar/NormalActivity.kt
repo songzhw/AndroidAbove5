@@ -19,6 +19,7 @@ class NormalActivity : AppCompatActivity() {
         getSize("status_bar_height", "status")
 
 
+        WindowInsets.getMandatoryGestureInsets()
     }
 
     private fun getSize(resName: String, logName: String) {
