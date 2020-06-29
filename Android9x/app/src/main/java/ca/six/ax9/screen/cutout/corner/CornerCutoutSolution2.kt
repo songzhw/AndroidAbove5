@@ -1,8 +1,10 @@
 package ca.six.ax9.screen.cutout.corner
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.DisplayMetrics
+import android.view.Surface.ROTATION_90
 import android.view.View
 import android.view.WindowManager
 import ca.six.ax9.R
@@ -29,6 +31,14 @@ class CornerCutoutSolution2 : AppCompatActivity() {
 //            insets
 //        } //=> 只能看到cutout高132 (因为systemWindoInsets是[0, top=132, 0, 0]的Rect)
 
+        btnClose.setOnClickListener {
+            println("szw close")
+        }
+    }
+
+
+    override fun onConfigurationChanged(newConfig: Configuration?) {
+
         window.decorView.post {
             val cutout = window.decorView.rootWindowInsets.displayCutout
             //=> 下面只是安全区域距离屏幕边缘的大小(单位px): szw margin: left = 0, top = 132, right = 0, bottom = 0
@@ -44,17 +54,16 @@ class CornerCutoutSolution2 : AppCompatActivity() {
                 val metrics = DisplayMetrics()
                 windowManager.defaultDisplay.getMetrics(metrics)
                 val screenWidth = metrics.widthPixels
+                val deviceRotation = windowManager.defaultDisplay.rotation
 
-                if(screenWidth == rect.right){
+                if (screenWidth == rect.right && deviceRotation == ROTATION_90) {
                     println("szw notch is on the right")
                     btnClose.setPadding(100, 0, 0, 0);
+                } else {
+                    btnClose.setPadding(0, 0, 0, 0)
                 }
             }
         }
-
-        btnClose.setOnClickListener {
-            println("szw close")
-        }
+        super.onConfigurationChanged(newConfig)
     }
-
 }
