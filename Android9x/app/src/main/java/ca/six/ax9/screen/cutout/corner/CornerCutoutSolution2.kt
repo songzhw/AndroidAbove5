@@ -30,7 +30,16 @@ class CornerCutoutSolution2 : AppCompatActivity() {
 
         window.decorView.post {
             val cutout = window.decorView.rootWindowInsets.displayCutout
-            println("szw cutout = $cutout")
+            //=> 下面只是安全区域距离屏幕边缘的大小(单位px): szw margin: left = 0, top = 132, right = 0, bottom = 0
+            println("szw margin: left = ${cutout.safeInsetLeft}, top = ${cutout.safeInsetTop}, right = ${cutout.safeInsetRight}, bottom = ${cutout.safeInsetBottom}")
+
+            val rects = cutout.boundingRects
+            for (rect in rects) {
+                // 有一些Rect就是[0,0 - 0,0]. 这并不反应任何cutout信息, 所以要过滤掉
+                if (rect.width() == 0 && rect.height() == 0) continue
+                println("szw cutout size = $rect (width=${rect.width()}, height = ${rect.height()})")
+                //=> 上面的结果是: szw cutout size = Rect(948, 0 - 1080, 132) (width=132, height = 132)
+            }
         }
 
         btnClose.setOnClickListener {
