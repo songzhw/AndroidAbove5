@@ -1,5 +1,6 @@
 package ca.six.android10x.bottombar
 
+import android.content.res.Configuration
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.WindowInsets

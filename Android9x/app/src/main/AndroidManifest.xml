@@ -17,7 +17,7 @@
 		tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
 		<activity
-			android:name=".screen.cutout.CutoutInformationDemo4"
+			android:name=".screen.cutout.CornerCutoutDemo"
 			android:configChanges="keyboardHidden|keyboard|orientation|screenSize"
 			android:theme="@style/fullScreen"
 			>
