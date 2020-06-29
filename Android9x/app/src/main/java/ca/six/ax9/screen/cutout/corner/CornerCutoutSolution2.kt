@@ -2,6 +2,7 @@ package ca.six.ax9.screen.cutout.corner
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.DisplayMetrics
 import android.view.View
 import android.view.WindowManager
 import ca.six.ax9.R
@@ -39,6 +40,15 @@ class CornerCutoutSolution2 : AppCompatActivity() {
                 if (rect.width() == 0 && rect.height() == 0) continue
                 println("szw cutout size = $rect (width=${rect.width()}, height = ${rect.height()})")
                 //=> 上面的结果是: szw cutout size = Rect(948, 0 - 1080, 132) (width=132, height = 132)
+
+                val metrics = DisplayMetrics()
+                windowManager.defaultDisplay.getMetrics(metrics)
+                val screenWidth = metrics.widthPixels
+
+                if(screenWidth == rect.right){
+                    println("szw notch is on the right")
+                    btnClose.setPadding(100, 0, 0, 0);
+                }
             }
         }
 
