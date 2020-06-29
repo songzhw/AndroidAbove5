@@ -28,8 +28,10 @@ class CornerCutoutSolution2 : AppCompatActivity() {
 //            insets
 //        } //=> 只能看到cutout高132 (因为systemWindoInsets是[0, top=132, 0, 0]的Rect)
 
+        window.decorView.post {
             val cutout = window.decorView.rootWindowInsets.displayCutout
             println("szw cutout = $cutout")
+        }
 
         btnClose.setOnClickListener {
             println("szw close")
