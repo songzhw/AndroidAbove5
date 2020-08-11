@@ -13,12 +13,12 @@ interface IGithubService {
         @Query("q") query: String,
         @Query("page") page: Int,
         @Query("per_page") pageSize: Int
-    )
+    ): RepoSearchResponse
 }
 
 object GithubService {
     private val BASE_URL = "https://api.github.com/"
-    val api : IGithubService
+    val api: IGithubService
 
     init {
         val httpClient = OkHttpClient.Builder().build() //这可加interceptor
@@ -30,3 +30,4 @@ object GithubService {
             .create(IGithubService::class.java)
     }
 }
+
