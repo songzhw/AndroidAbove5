@@ -27,7 +27,7 @@ class GithubPagingSource(private val service: IGithubService, private val query:
         val page = params.key ?: BEGIN_PAGE // load()第一次被call时, params.key是null的值. 所以这里要加一个默认值
         val apiQuery = query + "in:name,description" //限定只在库的名字与描述中查找字样
         return try {  //注意, kotlin里 return里也可以有try-catch了!
-            val response = GithubService.api.searchRepo(apiQuery, page, params.loadSize)
+            val response = service.searchRepo(apiQuery, page, params.loadSize)
             val data = response.items
             val prevPage = if (page == BEGIN_PAGE) null else page - 1
             val nextPage = if (data.isEmpty()) null else page + 1
